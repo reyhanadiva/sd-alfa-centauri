@@ -1,0 +1,123 @@
+@import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque/index.css";
+@import "@fontsource-variable/plus-jakarta-sans/index.css";
+
+/*
+  Palet diambil dari logo SD Alfa Centauri (biru muda cerah ≈ #4884FE).
+  Navy dipakai sebagai pendamping gelap untuk teks heading dan blok kontras.
+*/
+@theme {
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Plus Jakarta Sans Variable", ui-sans-serif, sans-serif;
+
+  --color-brand-50: #f3f8ff;
+  --color-brand-100: #e4efff;
+  --color-brand-200: #cfe2ff;
+  --color-brand-300: #a6c8ff;
+  --color-brand-400: #6fa2ff;
+  --color-brand-500: #4884fe;
+  --color-brand-600: #2f6bea;
+  --color-brand-700: #2456c4;
+
+  --color-navy-700: #173a7a;
+  --color-navy-800: #0f2a5c;
+  --color-navy-900: #0a1c40;
+
+  --color-sky: #0394ff;
+  --color-coral: #ff7a59;
+  --color-sun: #ffc83d;
+
+  --radius-card: 1.5rem;
+
+  --shadow-soft: 0 10px 30px -12px rgb(47 107 234 / 0.25);
+  --shadow-lift: 0 24px 60px -24px rgb(15 42 92 / 0.35);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 1.8s ease-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--r, 0deg));
+    }
+    50% {
+      transform: translateY(-8px) rotate(var(--r, 0deg));
+    }
+  }
+  @keyframes pulse-dot {
+    0% {
+      box-shadow: 0 0 0 0 rgb(34 197 94 / 0.55);
+    }
+    100% {
+      box-shadow: 0 0 0 10px rgb(34 197 94 / 0);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-navy-800);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--color-navy-900);
+}
+
+/* Highlighter di bawah kata kunci judul */
+.hl {
+  background-image: linear-gradient(
+    to top,
+    var(--color-brand-200) 0,
+    var(--color-brand-200) 34%,
+    transparent 34%
+  );
+  background-repeat: no-repeat;
+  padding: 0 0.12em;
+  margin: 0 -0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand-500);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
