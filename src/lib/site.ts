@@ -67,34 +67,70 @@ const FOUNDED = 2009;
 
 export const yearsActive = new Date().getFullYear() - FOUNDED;
 
-// Foto stock (Unsplash, hotlink) sementara. Ganti dengan foto asli sekolah di Photo `src`.
-// Semuanya perlu dicek tampilannya saat live; kalau gagal dimuat, otomatis jadi placeholder.
-const u = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=70&w=900`;
-export const stock = {
-  teacher: u("1758685733907-42e9651721f5"),
-  beads: u("1646070107254-3713cec279c1"),
-  drawing: u("1646617747566-b7e784435a48"),
-  puzzle: u("1650420600515-7b5dd9e6e83d"),
-  reading: u("1532789339108-2ebc484efbf1"),
-  play: u("1502086223501-7ea6ecd79368"),
-};
+// Program Pendidikan Inklusif (LSU). Sumber: website lama + transkrip video. Verifikasi dengan sekolah.
+export const lsuPoints = [
+  { icon: "psikolog", title: "Pengawasan Psikolog Profesional", desc: "Program dirancang dan dipantau tenaga ahli." },
+  { icon: "ppi", title: "Program Pendampingan Individual (PPI)", desc: "Pendampingan akademik dan perilaku per anak." },
+  { icon: "terapi", title: "Layanan Terapi Terintegrasi", desc: "Terpadu dengan kegiatan belajar." },
+] as const;
 
-// Kartu LSU (strip bergaya galeri). Sumber: transkrip video profil + website lama. Verifikasi dengan sekolah.
-export const lsuCards: {
-  title: string;
-  caption: string;
-  photo?: string;
-  icon?: "psikolog" | "terapi";
-  tone?: "blue" | "sky";
-}[] = [
-  { title: "Melatih motorik", caption: "Manik-manik, mengancing, yoga, latihan keseimbangan.", photo: stock.beads },
-  { title: "Diawasi psikolog", caption: "Setiap program dirancang dan dipantau tenaga ahli.", icon: "psikolog", tone: "blue" },
-  // Kartu ke-3 jadi kartu tengah saat pertama tampil
-  { title: "Pendampingan individual", caption: "Akademik dan perilaku, sesuai kebutuhan ananda.", photo: stock.teacher },
-  { title: "Layanan terapi", caption: "Terintegrasi dengan kegiatan belajar.", icon: "terapi", tone: "sky" },
-  { title: "Berekspresi", caption: "Menggambar dengan bebas dan penuh warna.", photo: stock.drawing },
-  { title: "Melatih fokus", caption: "Puzzle dan permainan berpikir.", photo: stock.puzzle },
-];
+export const lsuActivities = [
+  { icon: "manik", label: "Menyusun Manik-manik" },
+  { icon: "yoga", label: "Yoga" },
+  { icon: "puzzle", label: "Puzzle" },
+  { icon: "seimbang", label: "Latihan Keseimbangan" },
+  { icon: "gambar", label: "Menggambar" },
+  { icon: "kancing", label: "Mengancing" },
+] as const;
+
+// ---------- Program (tiga ranah, dari transkrip video) ----------
+export const ranah = [
+  {
+    key: "Taqwa",
+    tagline: "Iman yang tumbuh lewat kebiasaan.",
+    items: [
+      { icon: "quran", title: "Tahfidz & Munaqosyah" },
+      { icon: "sun", title: "Shalat Dhuha" },
+      { icon: "masjid", title: "Shalat wajib berjamaah" },
+    ],
+  },
+  {
+    key: "Cerdas",
+    tagline: "Numerasi, literasi, dan teknologi.",
+    items: [
+      { icon: "book", title: "Gakko Tosho", desc: "Budaya literasi" },
+      { icon: "calc", title: "Surala", desc: "Belajar matematika lewat e-learning" },
+      { icon: "read", title: "Reading Challenge", desc: "Tantangan membaca berkala" },
+      { icon: "project", title: "Project Based Learning" },
+      { icon: "trophy", title: "Pembinaan FLS2N & Olimpiade" },
+    ],
+  },
+  {
+    key: "Kreatif",
+    tagline: "Ruang untuk berkarya dan tampil.",
+    items: [
+      { icon: "reflect", title: "Pekan Refleksi" },
+      { icon: "parents", title: "Parents Day" },
+      { icon: "palette", title: "Pekan Kreativitas" },
+      { icon: "expo", title: "Expo" },
+      { icon: "trip", title: "Fieldtrip Edukatif" },
+    ],
+  },
+] as const;
+
+// Dari transkrip; "menari" kemungkinan terdengar sebagai "menarik" (verifikasi).
+export const ekskul = [
+  { icon: "film", label: "Sinematografi" },
+  { icon: "drum", label: "Marching Band" },
+  { icon: "music", label: "Musik" },
+  { icon: "tent", label: "Pramuka" },
+  { icon: "swim", label: "Renang" },
+  { icon: "goal", label: "Futsal" },
+  { icon: "bot", label: "Robotik" },
+  { icon: "dance", label: "Menari" },
+  { icon: "medal", label: "Taekwondo" },
+] as const;
+
 
 // ---------- Tentang Kami ----------
 
@@ -113,13 +149,12 @@ export const links = {
 
 // Dua poin ringkas di bawah video. Sumber: website lama + transkrip video profil (auto-generated, verifikasi).
 export const about = {
-  founded: { label: "Berdiri 12 Juli 2009", desc: "Di bawah naungan Yayasan Taqwa Cerdas Kreatif." },
+  founded: { label: "Berdiri 12 Juli 2009" },
   star: {
-    label: "Bintang kembar Alpha Centauri",
-    desc: "Lambang kami: sekolah, guru, dan orang tua jadi partner mengantar ananda sukses di dunia dan akhirat.",
+    label: "Bintang kembar Alfa Centauri",
+    desc: "Seperti dua bintang yang saling menyinari, sekolah dan orang tua bermitra mengantarkan ananda meraih kesuksesan di dunia dan akhirat.",
   },
 };
-
 
 // ---------- Mengapa Memilih ----------
 

@@ -161,24 +161,23 @@ html {
   }
 }
 
-/* Strip LSU: kartu tengah tegak, kartu tepi miring dan memudar */
-@keyframes lsu-tilt {
-  0% {
-    transform: perspective(900px) rotateY(-34deg) scale(0.84);
-    opacity: 0.45;
-  }
-  50% {
-    transform: perspective(900px) rotateY(0deg) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: perspective(900px) rotateY(34deg) scale(0.84);
-    opacity: 0.45;
+/* Aktivitas LSU: berjalan pelan, jeda saat disentuh; reduce-motion: geser manual */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
   }
 }
-@supports (animation-timeline: view(inline)) {
-  .lsu-card {
-    animation: lsu-tilt linear both;
-    animation-timeline: view(inline);
+.marquee {
+  animation: marquee 42s linear infinite;
+}
+.marquee-wrap:hover .marquee {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none !important;
+  }
+  .marquee-wrap {
+    overflow-x: auto;
   }
 }

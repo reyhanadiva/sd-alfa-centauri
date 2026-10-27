@@ -1,6 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
-import { ssc, unggulanPills } from "@/lib/site";
-import { AskAdmin } from "./AskAdmin";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ssc, unggulanPills, waLink } from "@/lib/site";
+import { ExpandChips } from "./ExpandChips";
 import { CertificateDialog } from "./CertificateDialog";
 import { Photo } from "./Photo";
 
@@ -8,9 +8,6 @@ import { Photo } from "./Photo";
 // Tiap kartu sengaja beda gaya: huruf raksasa, foto latar, tipografi di atas navy, kartu bergaya form.
 // Judul + satu kalimat di tiap kartu; tidak ada paragraf panjang.
 export function WhyChoose() {
-  const shown = unggulanPills.slice(0, 3);
-  const rest = unggulanPills.length - shown.length;
-
   return (
     <section
       id="mengapa"
@@ -57,18 +54,11 @@ export function WhyChoose() {
             <p className="mt-1.5 max-w-md text-[16px] leading-snug text-white/85">
               Mengembangkan potensi, minat, dan bakat setiap siswa.
             </p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {shown.map((p) => (
-                <li key={p} className="rounded-full bg-white/20 px-3.5 py-1.5 text-[14px] font-semibold ring-1 ring-white/30 backdrop-blur-md">
-                  {p}
-                </li>
-              ))}
-              <li className="rounded-full bg-white px-3.5 py-1.5 text-[14px] font-bold text-navy-900">+{rest} lainnya</li>
-            </ul>
+            <ExpandChips items={unggulanPills} />
           </article>
 
           {/* 3. Kemitraan SSC: tipografi di atas navy */}
-          <article className="reveal relative flex min-h-[15rem] flex-col overflow-hidden rounded-[2rem] bg-navy-900 p-7 text-white lg:col-span-4 lg:min-h-0">
+          <article className="reveal relative flex min-h-[15rem] flex-col overflow-hidden rounded-[2rem] bg-navy-900 p-7 text-white lg:col-span-5 lg:min-h-0">
             <p
               aria-hidden
               className="pointer-events-none absolute -bottom-6 -right-3 select-none font-display text-[8.5rem] font-semibold leading-none tracking-[-0.07em] text-white/[0.07]"
@@ -89,12 +79,23 @@ export function WhyChoose() {
             ) : null}
           </article>
 
-          {/* 4. Tanya admin: kartu bergaya form */}
-          <article className="reveal relative flex min-h-[15rem] flex-col overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-500 to-brand-700 p-7 text-white sm:col-span-2 lg:col-span-4 lg:min-h-0">
-            <h3 className="text-2xl font-semibold !text-white">Masih ada pertanyaan?</h3>
-            <p className="mt-1.5 text-[16px] leading-snug text-white/85">Tanya admin kami langsung.</p>
-            <AskAdmin />
-          </article>
+          {/* 4. Tanya admin: kecil, langsung ke WhatsApp */}
+          <a
+            href={waLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="reveal group relative flex min-h-[10rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-brand-600 p-6 text-white transition hover:bg-brand-700 sm:col-span-2 lg:col-span-3 lg:min-h-0"
+          >
+            <span className="grid size-11 place-items-center rounded-full bg-white/15 ring-1 ring-white/30">
+              <MessageCircle size={21} aria-hidden />
+            </span>
+            <div>
+              <h3 className="text-xl font-semibold !text-white">Ada pertanyaan?</h3>
+              <p className="mt-1 inline-flex items-center gap-1.5 text-[15px] font-semibold text-white/90">
+                Chat admin <ArrowUpRight size={16} aria-hidden className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </p>
+            </div>
+          </a>
         </div>
       </div>
     </section>

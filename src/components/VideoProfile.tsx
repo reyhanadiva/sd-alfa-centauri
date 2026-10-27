@@ -18,6 +18,8 @@ export function VideoProfile({ className = "" }: { className?: string }) {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [reduced, setReduced] = useState(false);
+  const [ytLoaded, setYtLoaded] = useState(false); // iframe dimuat sekali, lalu tetap ada
+  const frameRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     const el = boxRef.current;
@@ -25,7 +27,13 @@ export function VideoProfile({ className = "" }: { className?: string }) {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onMq = () => setReduced(mq.matches);
     mq.addEventListener("change", onMq);
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.45 });
+    const io = new IntersectionObserver(
+      ([e]) => {
+        setInView(e.isIntersecting);
+        if (e.isIntersecting) setYtLoaded(true);
+      },
+      { threshold: 0.45 },
+    );
     io.observe(el);
     // nilai awal dibaca lewat callback agar tidak setState sinkron di badan effect
     const t = setTimeout(onMq, 0);
@@ -47,6 +55,16 @@ export function VideoProfile({ className = "" }: { className?: string }) {
     }
   }, [inView, reduced, mp4]);
 
+  // YouTube: jeda saat keluar layar, lanjut dari titik terakhir saat kembali.
+  useEffect(() => {
+    const w = frameRef.current?.contentWindow;
+    if (!w || !ytLoaded) return;
+    const cmd = (func: string) =>
+      w.postMessage(JSON.stringify({ event: "command", func, args: "" }), "*");
+    if (inView && !reduced) cmd("playVideo");
+    else if (!inView) cmd("pauseVideo");
+  }, [inView, reduced, ytLoaded]);
+
   const toggle = () => {
     const v = videoRef.current;
     if (!v) return;
@@ -55,7 +73,7 @@ export function VideoProfile({ className = "" }: { className?: string }) {
   };
 
   const ytSrc = youtubeId
-    ? `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=${reduced ? 0 : 1}&mute=1&loop=1&playlist=${youtubeId}&controls=1&playsinline=1&rel=0&modestbranding=1`
+    ? `https://www.youtube-nocookie.com/embed/${youtubeId}?enablejsapi=1&autoplay=${reduced ? 0 : 1}&mute=1&loop=1&playlist=${youtubeId}&controls=1&playsinline=1&rel=0&modestbranding=1`
     : null;
 
   return (
@@ -97,8 +115,9 @@ export function VideoProfile({ className = "" }: { className?: string }) {
             </button>
           </div>
         </>
-      ) : ytSrc && inView ? (
+      ) : ytSrc && ytLoaded ? (
         <iframe
+          ref={frameRef}
           src={ytSrc}
           title={title}
           allow="autoplay; encrypted-media; picture-in-picture"

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
 import { spmb } from "@/lib/site";
 import { CertificateDialog } from "./CertificateDialog";
-import { SpmbCard } from "./SpmbCard";
 
 // Hero penuh layar tanpa kotak: foto gedung edge-to-edge, headline besar di kiri bawah,
 // dua chip kaca kecil di kanan bawah (akreditasi dan SPMB). Navbar transparan melayang di atasnya.
@@ -57,15 +56,14 @@ export function Hero() {
         </div>
 
         {/* Dua chip kaca, sengaja kecil */}
-        <div className="animate-fade-up flex flex-col gap-2.5 sm:flex-row lg:w-[19.5rem] lg:flex-col lg:shrink-0" style={{ animationDelay: "300ms" }}>
-          <div className="flex flex-1 items-center gap-3.5 rounded-2xl bg-white/[0.13] px-4 py-3 ring-1 ring-white/25 backdrop-blur-xl">
+        <div className="animate-fade-up flex flex-col gap-2.5 sm:flex-row lg:shrink-0" style={{ animationDelay: "300ms" }}>
+          <div className="flex items-center gap-3.5 rounded-2xl bg-white/[0.13] px-4 py-3 ring-1 ring-white/25 backdrop-blur-xl">
             <span aria-hidden className="font-display text-[2.6rem] font-semibold leading-none">A</span>
             <div className="text-[13px] leading-snug">
               <p className="font-bold">Terakreditasi BAN-S/M</p>
               <CertificateDialog variant="link" />
             </div>
           </div>
-          <SpmbCard className="flex-1" />
         </div>
       </div>
     </section>

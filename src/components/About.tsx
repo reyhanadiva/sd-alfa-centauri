@@ -44,7 +44,18 @@ export function About() {
               </p>
               <div>
                 <p className="text-[17px] font-bold text-navy-900">{about.founded.label}</p>
-                <p className="mt-1 text-[15px] leading-snug text-navy-700">{about.founded.desc}</p>
+                <p className="mt-1 text-[15px] leading-snug text-navy-700">
+                  Di bawah naungan{" "}
+                  <a
+                    href={links.yayasan}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-600"
+                  >
+                    Yayasan Taqwa Cerdas Kreatif
+                  </a>
+                  .
+                </p>
               </div>
             </div>
 

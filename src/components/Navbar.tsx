@@ -14,6 +14,7 @@ export function Navbar() {
 
   useEffect(() => {
     let last = window.scrollY;
+    let down = 0; // jarak scroll turun berturut-turut
     let raf = 0;
     const update = () => {
       raf = 0;
@@ -22,8 +23,10 @@ export function Navbar() {
       const heroEnd = hero ? hero.offsetTop + hero.offsetHeight - 96 : 80;
       setSolid(y > heroEnd);
       const delta = y - last;
-      if (Math.abs(delta) > 6) {
-        setHidden(delta > 0 && y > 120);
+      if (Math.abs(delta) > 4) {
+        // Baru sembunyi setelah scroll turun cukup jauh (±350px); naik sedikit saja langsung muncul.
+        down = delta > 0 ? down + delta : 0;
+        setHidden(delta > 0 && down > 350 && y > 200);
         last = y;
       }
       if (y < 40) setHidden(false);
@@ -56,8 +59,8 @@ export function Navbar() {
           hidden && !open ? "-translate-y-full" : "translate-y-0"
         } ${
           solid
-            ? "border-b border-brand-100 bg-white/90 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.45)] backdrop-blur-xl"
-            : "border-b border-transparent bg-transparent"
+            ? "border-b border-white/60 bg-white/60 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.45)] backdrop-blur-2xl backdrop-saturate-[1.8]"
+            : "border-b border-white/15 bg-white/[0.06] backdrop-blur-xl backdrop-saturate-150"
         }`}
       >
         <div className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between gap-3 px-5 sm:px-8">

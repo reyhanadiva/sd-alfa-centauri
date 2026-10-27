@@ -31,7 +31,7 @@ lalu hapus tanda TODO di kode.
 ## Dari transkrip video profil (auto-generated, banyak salah dengar: verifikasi)
 
 - [ ] Tanggal berdiri **12 Juli 2009** dan "di bawah naungan Yayasan Taqwa Cerdas Kreatif" (dipakai di kartu Tentang Kami)
-- [ ] Asal nama: **bintang kembar Alpha Centauri**, "gugus bintang ketiga yang paling terang" (klaim astronomi di video; kartu hanya memakai "bintang kembar")
+- [ ] Asal nama: **bintang kembar Alfa Centauri**, "gugus bintang ketiga yang paling terang" (klaim astronomi di video; kartu hanya memakai "bintang kembar")
 - [ ] LSU: "di bawah pengawasan psikolog", "pendampingan individual akademik dan perilaku", "layanan terapi" (sudah dipakai di kartu LSU)
 - [ ] Kemitraan internasional: transkrip menyebut "Bridge" dan "The Hills ... Australia sejak 2018" (nama tertulis rusak). **Belum dipakai di website.** Pastikan nama sekolah/organisasinya.
 - [ ] Program Surala (e-learning matematika asal Jepang), Reading Challenge, LMS/Zoom, Project Based Learning, pekan refleksi, Parents Day, pekan kreativitas, Expo (belum dipakai kecuali yang ada di pills)
