@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Award, X } from "lucide-react";
 import { Photo } from "./Photo";
 
-export function CertificateDialog({ variant = "solid" }: { variant?: "solid" | "link" }) {
+export function CertificateDialog({ variant = "solid" }: { variant?: "solid" | "link" | "dark" }) {
   const ref = useRef<HTMLDialogElement>(null);
 
   return (
@@ -15,10 +15,12 @@ export function CertificateDialog({ variant = "solid" }: { variant?: "solid" | "
         className={
           variant === "link"
             ? "relative z-10 inline-flex items-center gap-1.5 text-[13px] font-bold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
-            : "inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-bold text-brand-700 transition hover:-translate-y-0.5 hover:bg-brand-50"
+            : variant === "dark"
+              ? "inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-2.5 text-[14px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-navy-700"
+              : "inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-bold text-brand-700 transition hover:-translate-y-0.5 hover:bg-brand-50"
         }
       >
-        <Award size={variant === "link" ? 14 : 18} aria-hidden /> Lihat sertifikat
+        <Award size={variant === "link" ? 14 : 17} aria-hidden /> Lihat sertifikat
       </button>
 
       <dialog

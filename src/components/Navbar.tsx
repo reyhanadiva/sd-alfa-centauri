@@ -7,14 +7,38 @@ import { nav, portals, site, spmb } from "@/lib/site";
 import { LangToggle } from "./LangToggle";
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  // solid: sudah melewati hero. hidden: sedang scroll turun (muncul lagi saat scroll naik).
+  const [solid, setSolid] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let last = window.scrollY;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const hero = document.getElementById("hero");
+      const heroEnd = hero ? hero.offsetTop + hero.offsetHeight - 96 : 80;
+      setSolid(y > heroEnd);
+      const delta = y - last;
+      if (Math.abs(delta) > 6) {
+        setHidden(delta > 0 && y > 120);
+        last = y;
+      }
+      if (y < 40) setHidden(false);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {
@@ -26,23 +50,25 @@ export function Navbar() {
 
   return (
     <>
-      {/* Wrapper transparan; hanya pill-nya yang menerima klik */}
-      <header className="pointer-events-none sticky top-0 z-50 px-3 pt-3 sm:px-5">
-        <div
-          className={`pointer-events-auto mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full pl-5 pr-2 ring-1 ring-brand-100 transition-all duration-300 ${
-            scrolled
-              ? "h-14 bg-white/75 shadow-[0_10px_30px_-14px_rgb(15_42_92/0.4)] backdrop-blur-xl"
-              : "h-16 bg-white shadow-soft"
-          }`}
-        >
+      {/* Transparan di atas hero (teks putih), solid setelah melewati hero. Sembunyi saat scroll turun. */}
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,box-shadow,border-color] duration-300 ${
+          hidden && !open ? "-translate-y-full" : "translate-y-0"
+        } ${
+          solid
+            ? "border-b border-brand-100 bg-white/90 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.45)] backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between gap-3 px-5 sm:px-8">
           <a href="#" aria-label="SD Alfa Centauri, ke beranda" className="shrink-0">
             <Image
-              src="/images/logo-horizontal.png"
+              src={solid ? "/images/logo-horizontal.png" : "/images/logo-horizontal-white.png"}
               alt="SD Alfa Centauri"
               width={1200}
               height={232}
               priority
-              className={`w-auto transition-all duration-300 ${scrolled ? "h-8" : "h-9"}`}
+              className="h-9 w-auto"
             />
           </a>
 
@@ -51,7 +77,9 @@ export function Navbar() {
               <div key={item.label} className="group relative">
                 <a
                   href={item.href}
-                  className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-semibold text-navy-800 transition hover:bg-brand-50 hover:text-brand-700"
+                  className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-semibold transition ${
+                    solid ? "text-navy-800 hover:bg-brand-50 hover:text-brand-700" : "text-white hover:bg-white/15"
+                  }`}
                 >
                   {item.label}
                   {item.children && (
@@ -85,7 +113,9 @@ export function Navbar() {
             <div className="group relative hidden lg:block">
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-[14px] font-semibold text-navy-700 transition hover:bg-brand-50"
+                className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-[14px] font-semibold transition ${
+                  solid ? "text-navy-700 hover:bg-brand-50" : "text-white/90 hover:bg-white/15"
+                }`}
               >
                 Portal
                 <ChevronDown size={14} aria-hidden className="transition group-hover:rotate-180 group-focus-within:rotate-180" />
@@ -103,11 +133,13 @@ export function Navbar() {
               </div>
             </div>
 
-            <LangToggle className="hidden xl:flex" />
+            <LangToggle className="hidden xl:flex" onDark={!solid} />
 
             <a
               href={spmb.href}
-              className="hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-bold text-white transition hover:bg-brand-700 sm:inline-flex"
+              className={`hidden items-center gap-2 rounded-full px-5 py-2.5 text-[15px] font-bold transition sm:inline-flex ${
+                solid ? "bg-brand-600 text-white hover:bg-brand-700" : "bg-white text-navy-900 hover:bg-brand-50"
+              }`}
             >
               <Send size={15} aria-hidden /> Daftar SPMB
             </a>
@@ -116,7 +148,9 @@ export function Navbar() {
               onClick={() => setOpen(true)}
               aria-label="Buka menu"
               aria-expanded={open}
-              className="grid size-11 place-items-center rounded-full bg-brand-50 text-navy-800 lg:hidden"
+              className={`grid size-11 place-items-center rounded-full transition lg:hidden ${
+                solid ? "bg-brand-50 text-navy-800" : "bg-white/15 text-white"
+              }`}
             >
               <Menu size={22} aria-hidden />
             </button>

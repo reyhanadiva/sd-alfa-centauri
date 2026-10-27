@@ -67,27 +67,34 @@ const FOUNDED = 2009;
 
 export const yearsActive = new Date().getFullYear() - FOUNDED;
 
-// TODO(verifikasi dengan sekolah): poin 3 dan alur 3 langkah belum dikonfirmasi.
-export const inklusi = {
-  points: [
-    "Pengawasan Psikolog Profesional",
-    "Program Pendampingan Individual (PPI)",
-    "Layanan Terapi Terintegrasi",
-  ],
-  steps: [
-    { title: "Asesmen", desc: "" },
-    { title: "Rencana", desc: "" },
-    { title: "Evaluasi bersama orang tua", desc: "" },
-  ],
-  activities: [
-    "Menyusun Manik-manik",
-    "Yoga",
-    "Puzzle",
-    "Latihan Keseimbangan",
-    "Menggambar",
-    "Mengancing",
-  ],
+// Foto stock (Unsplash, hotlink) sementara. Ganti dengan foto asli sekolah di Photo `src`.
+// Semuanya perlu dicek tampilannya saat live; kalau gagal dimuat, otomatis jadi placeholder.
+const u = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=70&w=900`;
+export const stock = {
+  teacher: u("1758685733907-42e9651721f5"),
+  beads: u("1646070107254-3713cec279c1"),
+  drawing: u("1646617747566-b7e784435a48"),
+  puzzle: u("1650420600515-7b5dd9e6e83d"),
+  reading: u("1532789339108-2ebc484efbf1"),
+  play: u("1502086223501-7ea6ecd79368"),
 };
+
+// Kartu LSU (strip bergaya galeri). Sumber: transkrip video profil + website lama. Verifikasi dengan sekolah.
+export const lsuCards: {
+  title: string;
+  caption: string;
+  photo?: string;
+  icon?: "psikolog" | "terapi";
+  tone?: "blue" | "sky";
+}[] = [
+  { title: "Melatih motorik", caption: "Manik-manik, mengancing, yoga, latihan keseimbangan.", photo: stock.beads },
+  { title: "Diawasi psikolog", caption: "Setiap program dirancang dan dipantau tenaga ahli.", icon: "psikolog", tone: "blue" },
+  // Kartu ke-3 jadi kartu tengah saat pertama tampil
+  { title: "Pendampingan individual", caption: "Akademik dan perilaku, sesuai kebutuhan ananda.", photo: stock.teacher },
+  { title: "Layanan terapi", caption: "Terintegrasi dengan kegiatan belajar.", icon: "terapi", tone: "sky" },
+  { title: "Berekspresi", caption: "Menggambar dengan bebas dan penuh warna.", photo: stock.drawing },
+  { title: "Melatih fokus", caption: "Puzzle dan permainan berpikir.", photo: stock.puzzle },
+];
 
 // ---------- Tentang Kami ----------
 
@@ -100,10 +107,19 @@ export const profileVideo: { mp4?: string; youtubeId?: string; poster: string; t
   title: "Video profil SD Alfa Centauri",
 };
 
-export const about = {
-  founding:
-    "Didirikan pada tahun 2009 oleh Sony Sugema (alm.), SD Alfa Centauri berdedikasi menjawab tantangan pendidikan berkualitas sejak usia dini dengan memadukan sains dan spiritualitas.",
+export const links = {
+  yayasan: "https://alfacentauri.sch.id/yayasan/",
 };
+
+// Dua poin ringkas di bawah video. Sumber: website lama + transkrip video profil (auto-generated, verifikasi).
+export const about = {
+  founded: { label: "Berdiri 12 Juli 2009", desc: "Di bawah naungan Yayasan Taqwa Cerdas Kreatif." },
+  star: {
+    label: "Bintang kembar Alpha Centauri",
+    desc: "Lambang kami: sekolah, guru, dan orang tua jadi partner mengantar ananda sukses di dunia dan akhirat.",
+  },
+};
+
 
 // ---------- Mengapa Memilih ----------
 

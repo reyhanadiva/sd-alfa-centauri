@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@import "@fontsource-variable/bricolage-grotesque/index.css";
+@import "@fontsource-variable/inter-tight/wght.css";
+@import "@fontsource/instrument-serif/latin-400.css";
+@import "@fontsource/instrument-serif/latin-400-italic.css";
 @import "@fontsource-variable/plus-jakarta-sans/index.css";
 
 /*
@@ -8,7 +10,8 @@
 */
 @theme {
   --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Bricolage Grotesque Variable", "Plus Jakarta Sans Variable", ui-sans-serif, sans-serif;
+  --font-display: "Inter Tight Variable", "Plus Jakarta Sans Variable", ui-sans-serif, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
 
   --color-brand-50: #f3f8ff;
   --color-brand-100: #e4efff;
@@ -85,9 +88,19 @@ html {
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.028em;
+    line-height: 1.05;
     color: var(--color-navy-900);
   }
+}
+
+/* Kata penekanan di judul: serif miring, kontras dengan grotesque di sekitarnya */
+.em-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
 /* Highlighter di bawah kata kunci judul */
@@ -145,5 +158,27 @@ html {
     animation: fade-up linear both;
     animation-timeline: view();
     animation-range: entry 0% entry 35%;
+  }
+}
+
+/* Strip LSU: kartu tengah tegak, kartu tepi miring dan memudar */
+@keyframes lsu-tilt {
+  0% {
+    transform: perspective(900px) rotateY(-34deg) scale(0.84);
+    opacity: 0.45;
+  }
+  50% {
+    transform: perspective(900px) rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(900px) rotateY(34deg) scale(0.84);
+    opacity: 0.45;
+  }
+}
+@supports (animation-timeline: view(inline)) {
+  .lsu-card {
+    animation: lsu-tilt linear both;
+    animation-timeline: view(inline);
   }
 }
