@@ -193,12 +193,16 @@ export const portals = [
 
 // ---------- Fasilitas & Keamanan ----------
 // TODO(verifikasi): daftar fasilitas dan keamanan di bawah masih draf, cocokkan dengan website lama.
-export const fasilitas: { title: string; caption: string; photo?: string }[] = [
-  { title: "Gedung & ruang kelas", caption: "Nyaman dan tertata untuk belajar sehari-hari.", photo: "/images/gedung-sd.jpg" },
-  { title: "Perpustakaan", caption: "Sudut baca untuk budaya literasi." },
-  { title: "Tempat ibadah", caption: "Shalat dhuha dan berjamaah di sekolah." },
-  { title: "Area bermain & olahraga", caption: "Ruang bergerak untuk futsal dan senam." },
-  { title: "Ruang penunjang", caption: "Ruang kreativitas dan kegiatan khusus." },
+export const fasilitasTabs = ["Semua", "Belajar", "Ibadah & Olahraga", "Lingkungan"] as const;
+export const fasilitas: { title: string; caption: string; cat: (typeof fasilitasTabs)[number]; photo?: string }[] = [
+  { title: "Ruang kelas", caption: "Nyaman dan tertata untuk belajar sehari-hari.", cat: "Belajar", photo: "/images/gedung-sd.jpg" },
+  { title: "Perpustakaan", caption: "Sudut baca untuk budaya literasi.", cat: "Belajar" },
+  { title: "Ruang kreativitas", caption: "Tempat berkarya dan kegiatan khusus.", cat: "Belajar" },
+  { title: "Tempat ibadah", caption: "Shalat dhuha dan berjamaah di sekolah.", cat: "Ibadah & Olahraga" },
+  { title: "Lapangan olahraga", caption: "Ruang bergerak untuk futsal dan senam.", cat: "Ibadah & Olahraga" },
+  { title: "Taman hijau", caption: "Lingkungan asri yang menenangkan.", cat: "Lingkungan" },
+  { title: "UKS", caption: "Pertolongan pertama dan pemantauan kesehatan.", cat: "Lingkungan" },
+  { title: "Kantin sehat", caption: "Tempat makan yang bersih dan tertata.", cat: "Lingkungan" },
 ];
 
 export const keamanan = [
@@ -215,4 +219,17 @@ export const praktis = {
   jemput: { value: "XX.XX", note: "Area antar-jemput dan aturannya" },
   katering: { value: "Menu harian", note: "Info penyedia dan biaya" },
   seragam: { value: "Seragam sekolah", note: "Ketentuan hari dan atribut" },
+};
+
+// ---------- Prestasi ----------
+// TODO(data real): semua angka dan nama lomba di bawah placeholder. Isi dari sekolah.
+export const prestasi = {
+  total: 120, // placeholder
+  since: 2009,
+  categories: [
+    { name: "Akademik", count: 40, items: [["Juara 1", "[Nama lomba], tingkat kota, 20XX"], ["Juara 2", "[Nama olimpiade], tingkat provinsi, 20XX"]] },
+    { name: "Olahraga", count: 30, items: [["Juara 1", "[Cabang], tingkat kota, 20XX"], ["Juara 3", "[Cabang], tingkat provinsi, 20XX"]] },
+    { name: "Seni & Kreativitas", count: 30, items: [["Juara 1", "[Lomba seni], tingkat kota, 20XX"], ["Finalis", "[FLS2N], tingkat provinsi, 20XX"]] },
+    { name: "Tahfidz", count: 20, items: [["Juara 2", "[Lomba tahfidz], tingkat kota, 20XX"], ["Lulus", "Munaqosyah juz [X], 20XX"]] },
+  ],
 };

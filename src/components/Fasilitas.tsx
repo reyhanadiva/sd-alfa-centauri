@@ -2,26 +2,28 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { fasilitas, keamanan } from "@/lib/site";
-import { FasilitasCarousel } from "./FasilitasCarousel";
+import { fasilitas, fasilitasTabs, keamanan } from "@/lib/site";
 import { Photo } from "./Photo";
 
-// EKSPERIMEN: empat gaya penyajian Fasilitas + Keamanan. Pilih satu lewat tombol melayang,
-// lalu sisanya dihapus.
-//   jam      = kartu + latar sama-tema, jarum melingkar mengganti kartu (inspo 1 & 2)
-//   kipas    = animasi mengikuti scroll: kartu menumpuk lalu mengembang, lalu keluar (inspo 4 dst.)
-//   geser    = tumpukan kartu yang digeser kiri-kanan (inspo 3)
-//   carousel = strip kartu biasa
+// EKSPERIMEN: empat gaya Fasilitas + Keamanan, semuanya menampilkan banyak fasilitas sekaligus.
+// Pilih satu lewat tombol melayang, lalu sisanya dihapus.
+//   split    = foto besar kiri, panel tab + kartu kanan (inspo travel)
+//   daftar   = latar foto penuh + daftar bernomor di kanan (inspo dark list)
+//   lengkung = deretan kartu melengkung (inspo galeri gelap)
+//   kipas    = kartu mengipas menimpa judul raksasa (inspo kartu kaca)
 const variants = [
-  ["jam", "Jam"],
+  ["split", "Split"],
+  ["daftar", "Daftar"],
+  ["lengkung", "Lengkung"],
   ["kipas", "Kipas"],
-  ["geser", "Geser"],
-  ["carousel", "Carousel"],
 ] as const;
 type Variant = (typeof variants)[number][0];
 
+const pad = (n: number) => String(n).padStart(2, "0");
+const N = fasilitas.length;
+
 export function Fasilitas() {
-  const [v, setV] = useState<Variant>("jam");
+  const [v, setV] = useState<Variant>("split");
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -34,13 +36,12 @@ export function Fasilitas() {
   }, []);
 
   return (
-    <section ref={ref} id="fasilitas" aria-label="Fasilitas dan keamanan">
-      {v === "jam" && <Jam />}
+    <section ref={ref} id="fasilitas" aria-labelledby="fasilitas-title">
+      {v === "split" && <Split />}
+      {v === "daftar" && <Daftar />}
+      {v === "lengkung" && <Lengkung />}
       {v === "kipas" && <Kipas />}
-      {v === "geser" && <Geser />}
-      {v === "carousel" && <Carousel />}
 
-      {/* Pemilih eksperimen (sementara) */}
       <div
         className={`fixed right-3 top-1/2 z-40 -translate-y-1/2 transition duration-300 ${
           inView ? "translate-x-0 opacity-100" : "pointer-events-none translate-x-4 opacity-0"
@@ -65,313 +66,252 @@ export function Fasilitas() {
   );
 }
 
-/* ---------- Baris keamanan: teks saja, tanpa ikon ---------- */
-function Keamanan({ dark = false }: { dark?: boolean }) {
+const H2 = ({ className = "", light = false }: { className?: string; light?: boolean }) => (
+  <h2 id="fasilitas-title" className={`text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem] ${light ? "!text-white" : ""} ${className}`}>
+    Tempat belajar yang{" "}
+    <span className={`em-serif ${light ? "text-brand-200" : "text-brand-600"}`}>aman dan nyaman</span>
+  </h2>
+);
+
+/* Baris keamanan: teks saja, tanpa ikon */
+function Keamanan({ dark = false, className = "" }: { dark?: boolean; className?: string }) {
   return (
     <ul
       id="keamanan"
       aria-label="Keamanan dan kesehatan"
-      className={`grid grid-cols-2 gap-y-4 border-t pt-5 lg:grid-cols-4 ${dark ? "border-white/25" : "border-navy-900/10"}`}
+      className={`grid grid-cols-2 gap-y-3 border-t pt-4 lg:grid-cols-4 ${dark ? "border-white/25" : "border-navy-900/10"} ${className}`}
     >
       {keamanan.map((k, i) => (
-        <li key={k.title} className={`pr-4 ${i > 0 ? "lg:border-l lg:pl-6 " : ""}${dark ? "border-white/20" : "border-navy-900/10"}`}>
-          <p className={`text-[17px] font-semibold ${dark ? "text-white" : "text-navy-900"}`}>{k.title}</p>
-          <p className={`mt-0.5 text-[14px] leading-snug ${dark ? "text-white/70" : "text-navy-700/80"}`}>{k.desc}</p>
+        <li key={k.title} className={`pr-4 ${i > 0 ? "lg:border-l lg:pl-5 " : ""}${dark ? "border-white/20" : "border-navy-900/10"}`}>
+          <p className={`text-[16px] font-semibold ${dark ? "text-white" : "text-navy-900"}`}>{k.title}</p>
+          <p className={`mt-0.5 text-[13.5px] leading-snug ${dark ? "text-white/70" : "text-navy-700/80"}`}>{k.desc}</p>
         </li>
       ))}
     </ul>
   );
 }
 
-const shell = "px-5 py-16 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6";
+/* Tumpukan foto yang berganti dengan crossfade + zoom */
+function Stack({ i, sizes = "100vw" }: { i: number; sizes?: string }) {
+  return (
+    <>
+      {fasilitas.map((x, k) => (
+        <div
+          key={x.title}
+          aria-hidden={k !== i}
+          className={`absolute inset-0 transition-[opacity,transform] duration-[1200ms] ease-out ${k === i ? "scale-100 opacity-100" : "scale-[1.1] opacity-0"}`}
+        >
+          <Photo src={x.photo} alt={x.title} label={x.title} sizes={sizes} />
+        </div>
+      ))}
+    </>
+  );
+}
 
-/* ---------- A. Jam ---------- */
-const DURATION = 5200;
+/* ---------- A. Split ---------- */
+function Split() {
+  const [i, setI] = useState(0);
+  const [tab, setTab] = useState<(typeof fasilitasTabs)[number]>("Semua");
+  const f = fasilitas[i];
+  const list = fasilitas.map((x, idx) => ({ x, idx })).filter(({ x }) => tab === "Semua" || x.cat === tab);
+  const step = (d: 1 | -1) => setI((c) => (c + d + N) % N);
 
-function Jam() {
+  return (
+    <div className="grid lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:grid-cols-[0.85fr_1.15fr]">
+      <div className="relative isolate min-h-[26rem] overflow-hidden text-white lg:rounded-r-[2.5rem]">
+        <div className="absolute inset-0 -z-20"><Stack i={i} sizes="(min-width:1024px) 45vw, 100vw" /></div>
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-navy-900/15 to-navy-900/30" />
+        <div className="flex h-full min-h-[26rem] flex-col justify-end gap-5 p-7 sm:p-10">
+          <div key={i} className="fade-in">
+            <h3 className="text-[2.4rem] font-semibold leading-[1.05] !text-white sm:text-5xl">{f.title}</h3>
+            <p className="mt-2 max-w-sm text-[16px] text-white/85">{f.caption}</p>
+          </div>
+          <div className="flex items-center gap-4 text-[14px] font-semibold tabular-nums">
+            <span>{pad(i + 1)}</span>
+            <span className="relative h-px flex-1 bg-white/30">
+              <span className="absolute inset-y-0 left-0 h-px bg-white transition-all duration-500" style={{ width: `${((i + 1) / N) * 100}%`, height: 2, top: -0.5 }} />
+            </span>
+            <span className="text-white/60">{pad(N)}</span>
+            <button type="button" onClick={() => step(-1)} aria-label="Sebelumnya" className="grid size-10 place-items-center rounded-full ring-1 ring-white/40 transition hover:bg-white/15"><ChevronLeft size={18} aria-hidden /></button>
+            <button type="button" onClick={() => step(1)} aria-label="Berikutnya" className="grid size-10 place-items-center rounded-full ring-1 ring-white/40 transition hover:bg-white/15"><ChevronRight size={18} aria-hidden /></button>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col justify-center gap-6 px-5 py-12 sm:px-10 lg:py-6 xl:px-14">
+        <H2 className="lg:text-[2.6rem]" />
+        <div role="tablist" aria-label="Kategori fasilitas" className="flex flex-wrap gap-x-5 gap-y-1 border-b border-navy-900/10">
+          {fasilitasTabs.map((t) => (
+            <button
+              key={t}
+              role="tab"
+              type="button"
+              aria-selected={tab === t}
+              onClick={() => { setTab(t); const first = fasilitas.findIndex((x) => t === "Semua" || x.cat === t); if (first >= 0) setI(first); }}
+              className={`-mb-px border-b-2 pb-2.5 text-[15px] font-semibold transition ${tab === t ? "border-brand-600 text-brand-600" : "border-transparent text-navy-700/60 hover:text-navy-900"}`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+        <ul key={tab} className="fade-in grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {list.map(({ x, idx }) => (
+            <li key={x.title}>
+              <button
+                type="button"
+                onClick={() => setI(idx)}
+                aria-pressed={idx === i}
+                className={`group relative isolate block aspect-[4/5] w-full overflow-hidden rounded-2xl p-3 text-left text-white transition ${idx === i ? "ring-[3px] ring-brand-600 ring-offset-2" : "opacity-90 hover:opacity-100"}`}
+              >
+                <Photo src={x.photo} alt="" label={x.title} sizes="180px" className="-z-20 transition duration-500 group-hover:scale-105" />
+                <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
+                <span className="absolute inset-x-3 bottom-3 text-[14px] font-semibold leading-tight">{x.title}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <Keamanan />
+      </div>
+    </div>
+  );
+}
+
+/* ---------- B. Daftar bernomor ---------- */
+function Daftar() {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
-  const n = fasilitas.length;
-
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setTimeout(() => setI((x) => (x + 1) % n), DURATION);
+    const t = setTimeout(() => setI((x) => (x + 1) % N), 5000);
     return () => clearTimeout(t);
-  }, [i, paused, n]);
-
+  }, [i, paused]);
   const f = fasilitas[i];
+
   return (
     <div
       className="relative isolate overflow-hidden text-white lg:h-[calc(100svh-5rem)] lg:min-h-[44rem]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Latar: foto yang sama dengan kartu, diperbesar dan digelapkan */}
-      {fasilitas.map((x, k) => (
-        <div
-          key={x.title}
-          aria-hidden
-          className={`absolute inset-0 -z-20 transition-[opacity,transform] duration-[1400ms] ease-out ${
-            k === i ? "scale-100 opacity-100" : "scale-[1.12] opacity-0"
-          }`}
-        >
-          <Photo src={x.photo} alt="" label={x.title} sizes="100vw" />
-        </div>
-      ))}
+      <div className="absolute inset-0 -z-20"><Stack i={i} /></div>
       <div aria-hidden className="absolute inset-0 -z-10 bg-navy-900/55" />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/80 via-transparent to-navy-900/40" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900/80 via-navy-900/20 to-navy-900/30" />
 
-      <div className="mx-auto flex h-full w-full max-w-[78rem] flex-col justify-between gap-8 px-5 py-16 sm:px-8 lg:py-8">
-        <h2 id="fasilitas-title" className="reveal max-w-3xl text-4xl font-semibold leading-[1.05] !text-white sm:text-5xl lg:text-[3rem]">
-          Tempat belajar yang <span className="em-serif text-brand-200">aman dan nyaman</span>
-        </h2>
-
-        <div className="flex flex-col items-center gap-5">
-          {/* Kartu + jarum jam */}
-          <div className="relative w-[min(17rem,72vw)]">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] shadow-lift ring-1 ring-white/25">
-              {fasilitas.map((x, k) => (
-                <div
-                  key={x.title}
-                  className={`absolute inset-0 transition-[opacity,transform] duration-[1000ms] ease-out ${
-                    k === i ? "scale-100 opacity-100" : "scale-110 opacity-0"
-                  }`}
-                >
-                  <Photo src={x.photo} alt={x.title} label={x.title} sizes="320px" />
-                </div>
-              ))}
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/10 to-transparent" />
-              <div key={i} className="fade-in absolute inset-x-0 bottom-0 p-5">
-                <h3 className="text-[1.75rem] font-semibold leading-[1.05] !text-white">{f.title}</h3>
-                <p className="mt-1.5 text-[15px] leading-snug text-white/85">{f.caption}</p>
-              </div>
+      <div className="mx-auto grid h-full w-full max-w-[78rem] gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-6">
+        <div className="flex h-full flex-col justify-between gap-8 lg:py-4">
+          <H2 light className="max-w-xl" />
+          <div>
+            <p key={`n${i}`} className="fade-in font-display text-[6rem] font-semibold leading-none tracking-[-0.05em] text-white/35 sm:text-[8rem]">{pad(i + 1)}</p>
+            <div key={i} className="fade-in">
+              <h3 className="mt-1 text-3xl font-semibold !text-white sm:text-4xl">{f.title}</h3>
+              <p className="mt-1.5 max-w-sm text-[16px] text-white/80">{f.caption}</p>
             </div>
-
-            {/* Busur yang menyapu searah jarum jam, satu putaran = satu kartu */}
-            <div className="absolute -right-4 -top-4 grid size-[4.25rem] place-items-center rounded-full bg-navy-900/70 ring-1 ring-white/25 backdrop-blur-md">
-              <svg viewBox="0 0 48 48" aria-hidden className="absolute inset-0 -rotate-90">
-                <circle cx="24" cy="24" r="20" fill="none" stroke="white" strokeOpacity="0.2" strokeWidth="3" />
-                <circle
-                  key={i}
-                  cx="24"
-                  cy="24"
-                  r="20"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  pathLength={100}
-                  strokeDasharray="100"
-                  className="ring-sweep"
-                  style={{ animationDuration: `${DURATION}ms`, animationPlayState: paused ? "paused" : "running" }}
-                />
-              </svg>
-              <span className="text-[13px] font-bold tabular-nums">
-                {String(i + 1).padStart(2, "0")}
-                <span className="text-white/55">/{String(n).padStart(2, "0")}</span>
-              </span>
-            </div>
-          </div>
-
-          <div className="flex gap-2" role="tablist" aria-label="Pilih fasilitas">
-            {fasilitas.map((x, k) => (
-              <button
-                key={x.title}
-                type="button"
-                role="tab"
-                aria-selected={k === i}
-                aria-label={x.title}
-                onClick={() => setI(k)}
-                className={`h-2 rounded-full transition-all duration-500 ${k === i ? "w-8 bg-white" : "w-2 bg-white/40 hover:bg-white/70"}`}
-              />
-            ))}
+            <Keamanan dark className="mt-7 max-w-2xl" />
           </div>
         </div>
 
+        <ul aria-label="Daftar fasilitas" className="grid gap-2">
+          {fasilitas.map((x, k) => (
+            <li key={x.title}>
+              <button
+                type="button"
+                onClick={() => setI(k)}
+                aria-current={k === i}
+                className={`relative flex w-full items-center gap-4 overflow-hidden rounded-2xl px-4 py-2.5 text-left transition ${k === i ? "bg-white text-navy-900" : "bg-white/10 text-white ring-1 ring-white/15 backdrop-blur-md hover:bg-white/20"}`}
+              >
+                <span className={`font-display text-[1.6rem] font-semibold leading-none tabular-nums ${k === i ? "text-brand-600" : "text-white/55"}`}>{pad(k + 1)}</span>
+                <span className="text-[16px] font-semibold">{x.title}</span>
+                {k === i && !paused && <span key={i} className="bar-fill absolute inset-x-0 bottom-0 h-0.5 bg-brand-600" />}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- C. Lengkung ---------- */
+function Lengkung() {
+  const ref = useRef<HTMLUListElement>(null);
+  const [active, setActive] = useState(3);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const items = el.querySelectorAll<HTMLElement>("li");
+    const center = (k: number) => items[k].offsetLeft - (el.clientWidth - items[k].offsetWidth) / 2;
+    el.scrollLeft = center(3);
+    const on = () => {
+      let best = 0, d = Infinity;
+      items.forEach((it, k) => {
+        const dd = Math.abs(it.offsetLeft + it.offsetWidth / 2 - (el.scrollLeft + el.clientWidth / 2));
+        if (dd < d) { d = dd; best = k; }
+      });
+      setActive(best);
+    };
+    el.addEventListener("scroll", on, { passive: true });
+    return () => el.removeEventListener("scroll", on);
+  }, []);
+
+  const go = (k: number) => {
+    const el = ref.current;
+    const it = el?.querySelectorAll<HTMLElement>("li")[k];
+    if (el && it) el.scrollTo({ left: it.offsetLeft - (el.clientWidth - it.offsetWidth) / 2, behavior: "smooth" });
+  };
+
+  return (
+    <div className="relative isolate overflow-x-clip bg-navy-900 py-14 text-white lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:flex-col lg:justify-center lg:py-6">
+      <div aria-hidden className="absolute left-1/2 top-0 -z-10 h-72 w-[56rem] -translate-x-1/2 rounded-full bg-brand-600/25 blur-[110px]" />
+      <H2 light className="mx-auto max-w-3xl px-5 text-center" />
+      <ul ref={ref} aria-label="Fasilitas sekolah" className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[calc(50%-8.5rem)] py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {fasilitas.map((x, k) => (
+          <li key={x.title} className="arc-card relative isolate h-[min(22rem,calc(100svh-28rem))] min-h-[16rem] w-[17rem] shrink-0 snap-center overflow-hidden rounded-[1.5rem]">
+            <button type="button" onClick={() => go(k)} className="block size-full text-left" aria-label={x.title}>
+              <Photo src={x.photo} alt={x.title} label={x.title} sizes="272px" className="-z-20" />
+              <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent" />
+              <span className="absolute inset-x-4 bottom-4 text-[1.2rem] font-semibold leading-tight text-white">{x.title}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div className="mx-auto mt-2 flex w-full max-w-[78rem] flex-col gap-5 px-5 sm:px-8">
+        <p key={active} className="fade-in text-center text-[15px] text-white/80">{fasilitas[active].caption}</p>
         <Keamanan dark />
       </div>
     </div>
   );
 }
 
-/* ---------- B. Kipas (mengikuti scroll) ---------- */
+/* ---------- D. Kipas ---------- */
 function Kipas() {
-  const wrap = useRef<HTMLDivElement>(null);
-  const stage = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const w = wrap.current;
-    const s = stage.current;
-    if (!w || !s) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let raf = 0;
-    const clamp = (x: number) => Math.min(1, Math.max(0, x));
-    const update = () => {
-      raf = 0;
-      const r = w.getBoundingClientRect();
-      const total = r.height - window.innerHeight;
-      const p = clamp(-r.top / total);
-      // 0 → 0.4 mengembang, 0.4 → 0.8 tahan, 0.8 → 1 keluar
-      s.style.setProperty("--s", reduced ? "1" : String(clamp(p / 0.4)));
-      s.style.setProperty("--e", reduced ? "0" : String(clamp((p - 0.8) / 0.2)));
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  const mid = (fasilitas.length - 1) / 2;
+  const mid = (N - 1) / 2;
   return (
-    <div ref={wrap} className="relative h-[300svh]">
-      <div
-        ref={stage}
-        style={{ "--s": 0, "--e": 0 } as React.CSSProperties}
-        className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden bg-gradient-to-b from-white via-brand-50 to-white px-5 pb-8 pt-24 sm:px-8 [--u:3.6rem] sm:[--u:8rem] lg:[--u:11.5rem]"
-      >
-        <div className="mx-auto w-full max-w-[78rem]">
-          <h2
-            id="fasilitas-title"
-            className="mx-auto max-w-3xl text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.2rem]"
-            style={{ transform: "translateY(calc(var(--e) * -12svh))", opacity: "calc(1 - var(--e))" }}
-          >
-            Tempat belajar yang <span className="em-serif text-brand-600">aman dan nyaman</span>
-          </h2>
+    <div className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50 to-white px-5 py-14 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6">
+      <div className="mx-auto w-full max-w-[78rem] [--u:2.6rem] sm:[--u:5.2rem] lg:[--u:7.6rem]">
+        <h2 id="fasilitas-title" className="text-center text-[clamp(3rem,8.5vw,7.25rem)] font-semibold leading-[0.95] tracking-[-0.045em]">
+          Fasilitas <span className="em-serif text-brand-600">lengkap</span>
+        </h2>
 
-          <div className="relative mx-auto mt-10 h-[min(20rem,42svh)] sm:mt-14">
-            {fasilitas.map((f, idx) => (
-              <article
-                key={f.title}
-                style={
-                  {
-                    "--k": idx - mid,
-                    transform:
-                      "translate3d(calc(var(--k) * var(--s) * var(--u)), calc(var(--e) * -40svh), 0) rotate(calc(var(--k) * var(--s) * 3.5deg)) scale(calc(0.62 + 0.38 * var(--s)))",
-                    zIndex: 10 - Math.round(Math.abs(idx - mid)),
-                  } as React.CSSProperties
-                }
-                className="absolute left-1/2 top-0 -ml-[5.5rem] h-full w-[11rem] overflow-hidden rounded-[1.5rem] shadow-lift ring-4 ring-white sm:-ml-[7rem] sm:w-[14rem] lg:-ml-[8rem] lg:w-[16rem]"
+        <ul aria-label="Fasilitas sekolah" className="relative mx-auto -mt-1 mb-20 h-[min(17rem,32svh)] sm:mb-24">
+          {fasilitas.map((x, k) => {
+            const d = k - mid;
+            return (
+              <li
+                key={x.title}
+                style={{ "--d": d, zIndex: 20 - Math.round(Math.abs(d) * 2) } as React.CSSProperties}
+                className="group absolute left-1/2 top-0 -ml-[4.5rem] h-full w-[9rem] translate-x-[calc(var(--d)*var(--u))] translate-y-[calc(var(--d)*var(--d)*0.45rem)] rotate-[calc(var(--d)*4.5deg)] transition duration-500 ease-out hover:z-50 hover:-translate-y-5 hover:rotate-0 hover:scale-105 sm:-ml-[5.5rem] sm:w-[11rem] lg:-ml-[6.5rem] lg:w-[13rem]"
               >
-                <Photo src={f.photo} alt={f.title} label={f.title} sizes="256px" />
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-3.5 text-white sm:p-4">
-                  <h3 className="text-[15px] font-semibold leading-tight !text-white sm:text-lg">{f.title}</h3>
+                <div className="relative isolate size-full overflow-hidden rounded-[1.4rem] shadow-lift ring-4 ring-white">
+                  <Photo src={x.photo} alt={x.title} label={x.title} sizes="208px" className="-z-20" />
+                  <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
+                  <span className="absolute inset-x-3 bottom-3 text-[14px] font-semibold leading-tight text-white sm:text-[15px]">{x.title}</span>
                 </div>
-              </article>
-            ))}
-          </div>
-
-          <div
-            className="mt-10 sm:mt-14"
-            style={{ opacity: "calc(var(--s) * var(--s) * (1 - var(--e)))", transform: "translateY(calc((1 - var(--s)) * 2rem))" }}
-          >
-            <Keamanan />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ---------- C. Geser (tumpukan kartu) ---------- */
-function Geser() {
-  const n = fasilitas.length;
-  const [order, setOrder] = useState(() => fasilitas.map((_, k) => k));
-  const [dx, setDx] = useState(0);
-  const start = useRef(0);
-  const [dragging, setDragging] = useState(false);
-
-  const next = () => setOrder((o) => [...o.slice(1), o[0]]);
-  const prev = () => setOrder((o) => [o[o.length - 1], ...o.slice(0, -1)]);
-
-  return (
-    <div className={`${shell} bg-gradient-to-b from-white via-brand-50 to-white`}>
-      <div className="mx-auto w-full max-w-[78rem]">
-        <h2 id="fasilitas-title" className="reveal text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem]">
-          Tempat belajar yang <span className="em-serif text-brand-600">aman dan nyaman</span>
-        </h2>
-
-        <div className="mt-10 flex items-center justify-center gap-4 sm:gap-8">
-          <button type="button" onClick={prev} aria-label="Sebelumnya" className="hidden size-12 shrink-0 place-items-center rounded-full bg-white ring-1 ring-brand-200 transition hover:bg-brand-600 hover:text-white active:scale-95 sm:grid">
-            <ChevronLeft size={21} aria-hidden />
-          </button>
-
-          <div className="relative h-[27rem] w-[min(19rem,80vw)] touch-pan-y select-none">
-            {fasilitas.map((f, idx) => {
-              const pos = order.indexOf(idx);
-              const front = pos === 0;
-              return (
-                <article
-                  key={f.title}
-                  onPointerDown={front ? (e) => { start.current = e.clientX; setDragging(true); e.currentTarget.setPointerCapture(e.pointerId); } : undefined}
-                  onPointerMove={front ? (e) => { if (dragging) setDx(e.clientX - start.current); } : undefined}
-                  onPointerUp={
-                    front
-                      ? () => {
-                          if (dx < -70) next();
-                          else if (dx > 70) prev();
-                          setDx(0);
-                          setDragging(false);
-                        }
-                      : undefined
-                  }
-                  style={{
-                    transform: front
-                      ? `translateX(${dx}px) rotate(${dx / 24}deg)`
-                      : `translateY(${Math.min(pos, 3) * 1.1}rem) scale(${1 - Math.min(pos, 3) * 0.06})`,
-                    opacity: pos > 2 ? 0 : 1,
-                    zIndex: n - pos,
-                    transition: dragging && front ? "none" : "transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.4s",
-                  }}
-                  className={`absolute inset-0 flex flex-col rounded-[1.75rem] bg-white p-3 shadow-lift ring-1 ring-brand-100 ${front ? "cursor-grab active:cursor-grabbing" : ""}`}
-                >
-                  <div className="relative flex-1 overflow-hidden rounded-[1.25rem]">
-                    <Photo src={f.photo} alt={f.title} label={f.title} sizes="300px" />
-                  </div>
-                  <div className="px-2 pb-1.5 pt-3.5">
-                    <h3 className="text-[1.25rem] font-semibold leading-tight">{f.title}</h3>
-                    <p className="mt-0.5 text-[14px] leading-snug text-navy-700/80">{f.caption}</p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-
-          <button type="button" onClick={next} aria-label="Berikutnya" className="hidden size-12 shrink-0 place-items-center rounded-full bg-white ring-1 ring-brand-200 transition hover:bg-brand-600 hover:text-white active:scale-95 sm:grid">
-            <ChevronRight size={21} aria-hidden />
-          </button>
-        </div>
-        <p className="mt-4 text-center text-[13px] text-navy-700/60 sm:hidden">Geser kartu ke kiri atau kanan</p>
-
-        <div className="mt-8">
-          <Keamanan />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ---------- D. Carousel ---------- */
-function Carousel() {
-  return (
-    <div className={shell}>
-      <div className="mx-auto w-full max-w-[78rem]">
-        <h2 id="fasilitas-title" className="reveal text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem]">
-          Tempat belajar yang <span className="em-serif text-brand-600">aman dan nyaman</span>
-        </h2>
-        <div className="reveal mt-6 lg:mt-20">
-          <FasilitasCarousel />
-        </div>
-        <div className="reveal mt-6">
-          <Keamanan />
-        </div>
+              </li>
+            );
+          })}
+        </ul>
+        <Keamanan className="mt-8" />
       </div>
     </div>
   );

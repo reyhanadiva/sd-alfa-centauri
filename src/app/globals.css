@@ -215,3 +215,20 @@ html {
   animation-timing-function: linear;
   animation-fill-mode: both;
 }
+
+/* Galeri lengkung: kartu tengah tegak, tepi miring dan memudar */
+@keyframes arc-tilt {
+  0% { transform: perspective(900px) rotateY(-36deg) scale(0.86); opacity: 0.4; }
+  50% { transform: perspective(900px) rotateY(0deg) scale(1); opacity: 1; }
+  100% { transform: perspective(900px) rotateY(36deg) scale(0.86); opacity: 0.4; }
+}
+@supports (animation-timeline: view(inline)) {
+  .arc-card {
+    animation: arc-tilt linear both;
+    animation-timeline: view(inline);
+  }
+}
+
+/* Garis progres pada baris aktif daftar fasilitas */
+@keyframes bar-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.bar-fill { transform-origin: left; animation: bar-fill 5s linear both; }

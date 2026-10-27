@@ -58,3 +58,8 @@ lalu hapus tanda TODO di kode.
 - [ ] Mockup portal hanya ilustrasi; ganti dengan tangkapan layar asli bila portal sudah ada
 - [ ] Ekskul: daftar dari transkrip ("Menari" kemungkinan salah dengar); foto per kegiatan diisi lewat `photo` di `ekskul`
 - [ ] Fasilitas: 4 gaya eksperimen (Jam/Kipas/Geser/Carousel) dengan tombol melayang; pilih satu lalu hapus yang lain beserta tombolnya
+
+## Prestasi (semua placeholder)
+
+- [ ] Total prestasi (120+), jumlah per kategori, dan sorotan juara di `prestasi` (site.ts) adalah contoh. Isi dari sekolah (nama lomba, tingkat, tahun). Kategori (Akademik, Olahraga, Seni & Kreativitas, Tahfidz) juga usulan.
+- [ ] Fasilitas: 8 item (ruang kelas, perpustakaan, ruang kreativitas, tempat ibadah, lapangan, taman, UKS, kantin) adalah draf; samakan dengan kenyataan + minta fotonya.

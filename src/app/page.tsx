@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { WhyChoose } from "@/components/WhyChoose";
 import { Fasilitas } from "@/components/Fasilitas";
+import { Prestasi } from "@/components/Prestasi";
 import { Praktis } from "@/components/Praktis";
 import { Program } from "@/components/Program";
 import { Inklusi } from "@/components/Inklusi";
@@ -16,11 +17,12 @@ export default function Home() {
         <Hero />
         <About />
         <WhyChoose />
-        {/* Berikutnya: Praktis untuk Orang Tua, Prestasi, Galeri, dst. */}
+        {/* Berikutnya: Galeri, Testimoni, Berita, FAQ, Lokasi, CTA, Footer. */}
         <Program />
         <Fasilitas />
         <Inklusi />
         <Praktis />
+        <Prestasi />
         <div className="h-24" />
       </main>
     </>
