@@ -206,10 +206,10 @@ export const fasilitas: { title: string; caption: string; cat: (typeof fasilitas
 ];
 
 export const keamanan = [
-  { icon: "cctv", title: "CCTV", desc: "Area sekolah terpantau" },
-  { icon: "uks", title: "UKS", desc: "Pertolongan pertama di sekolah" },
-  { icon: "jemput", title: "Jemput aman", desc: "Penjemputan terkontrol" },
-  { icon: "shield", title: "Anti-bullying", desc: "Lingkungan yang saling menghargai" },
+  { icon: "cctv", title: "Pemantauan CCTV" },
+  { icon: "uks", title: "Unit Kesehatan Sekolah (UKS)" },
+  { icon: "jemput", title: "Sistem penjemputan siswa" },
+  { icon: "shield", title: "Program anti-bullying" },
 ] as const;
 
 // ---------- Praktis untuk Orang Tua ----------
@@ -232,4 +232,33 @@ export const prestasi = {
     { name: "Seni & Kreativitas", count: 30, items: [["Juara 1", "[Lomba seni], tingkat kota, 20XX"], ["Finalis", "[FLS2N], tingkat provinsi, 20XX"]] },
     { name: "Tahfidz", count: 20, items: [["Juara 2", "[Lomba tahfidz], tingkat kota, 20XX"], ["Lulus", "Munaqosyah juz [X], 20XX"]] },
   ],
+};
+
+// ---------- Berita ----------
+// TODO(data real): judul, tanggal, foto, tautan artikel. Semua contoh.
+export const berita = [
+  { cat: "Kegiatan", date: "DD Bulan 20XX", title: "[Judul berita utama: kegiatan siswa terbaru]", href: "#", photo: undefined as string | undefined },
+  { cat: "Prestasi", date: "DD Bulan 20XX", title: "[Judul berita: prestasi siswa]", href: "#", photo: undefined as string | undefined },
+  { cat: "Pengumuman", date: "DD Bulan 20XX", title: "[Judul pengumuman sekolah]", href: "#", photo: undefined as string | undefined },
+  { cat: "Parenting", date: "DD Bulan 20XX", title: "[Judul artikel untuk orang tua]", href: "#", photo: undefined as string | undefined },
+];
+
+// ---------- FAQ ----------
+// TODO(verifikasi): no. 1-4 dan 7 mengacu transkrip video; no. 5-6 jawaban umum (isi detail dari sekolah).
+export const faqs = [
+  { q: "Apakah SD Alfa Centauri menerima anak berkebutuhan khusus?", a: "Ya. Sebagai sekolah penyelenggara pendidikan inklusif, kami memiliki Learning Support Unit (LSU) di bawah pengawasan psikolog, dengan pendampingan individual untuk akademik dan perilaku serta layanan terapi." },
+  { q: "Kurikulum apa yang digunakan?", a: "Kurikulum nasional Kemendikbud yang disesuaikan dengan kebutuhan siswa, supaya tiap anak bisa berkembang sesuai bakat dan keunikannya." },
+  { q: "Bagaimana cara anak belajar di kelas?", a: "Pembelajaran berpusat pada siswa dan kolaboratif, memanfaatkan teknologi, serta dibarengi pembiasaan baik untuk menanamkan 7 karakter siswa." },
+  { q: "Apa saja ekstrakurikulernya?", a: "Sinematografi, marching band, musik, Pramuka, renang, futsal, robotik, menari, dan taekwondo." },
+  { q: "Kapan pendaftaran SPMB dibuka dan apa syaratnya?", a: "Jadwal dan syarat terbaru ada di bagian SPMB. Admin kami siap membantu lewat WhatsApp." },
+  { q: "Berapa biaya pendidikan?", a: "Rincian biaya diinformasikan oleh admin sesuai jenjang kelas dan program. Silakan tanyakan lewat WhatsApp." },
+  { q: "Apakah ada program tahfidz?", a: "Ada. Siswa mengikuti program Tahfidz dengan munaqosyah, serta shalat dhuha dan shalat wajib berjamaah." },
+];
+
+// ---------- Lokasi ----------
+export const lokasi = {
+  street: "Jl. Terate No. 10,",
+  city: "Kota Bandung",
+  mapEmbed: "https://www.google.com/maps?q=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung&output=embed",
+  mapLink: "https://www.google.com/maps/search/?api=1&query=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung",
 };

@@ -83,8 +83,7 @@ function Keamanan({ dark = false, className = "" }: { dark?: boolean; className?
     >
       {keamanan.map((k, i) => (
         <li key={k.title} className={`pr-4 ${i > 0 ? "lg:border-l lg:pl-5 " : ""}${dark ? "border-white/20" : "border-navy-900/10"}`}>
-          <p className={`text-[16px] font-semibold ${dark ? "text-white" : "text-navy-900"}`}>{k.title}</p>
-          <p className={`mt-0.5 text-[13.5px] leading-snug ${dark ? "text-white/70" : "text-navy-700/80"}`}>{k.desc}</p>
+          <p className={`text-[16px] font-semibold leading-snug ${dark ? "text-white" : "text-navy-900"}`}>{k.title}</p>
         </li>
       ))}
     </ul>
@@ -179,19 +178,17 @@ function Split() {
 /* ---------- B. Daftar bernomor ---------- */
 function Daftar() {
   const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
+  // Selalu berjalan: 5 detik per fasilitas (garis progres di baris aktif), tidak berhenti karena hover.
   useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setTimeout(() => setI((x) => (x + 1) % N), 5000);
     return () => clearTimeout(t);
-  }, [i, paused]);
+  }, [i]);
   const f = fasilitas[i];
 
   return (
     <div
       className="relative isolate overflow-hidden text-white lg:h-[calc(100svh-5rem)] lg:min-h-[44rem]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       <div className="absolute inset-0 -z-20"><Stack i={i} /></div>
       <div aria-hidden className="absolute inset-0 -z-10 bg-navy-900/55" />
@@ -221,7 +218,7 @@ function Daftar() {
               >
                 <span className={`font-display text-[1.6rem] font-semibold leading-none tabular-nums ${k === i ? "text-brand-600" : "text-white/55"}`}>{pad(k + 1)}</span>
                 <span className="text-[16px] font-semibold">{x.title}</span>
-                {k === i && !paused && <span key={i} className="bar-fill absolute inset-x-0 bottom-0 h-0.5 bg-brand-600" />}
+                {k === i && <span key={i} className="bar-fill absolute inset-x-0 bottom-0 h-0.5 bg-brand-600" />}
               </button>
             </li>
           ))}
@@ -286,6 +283,14 @@ function Lengkung() {
 /* ---------- D. Kipas ---------- */
 function Kipas() {
   const mid = (N - 1) / 2;
+  const [zoom, setZoom] = useState<number | null>(null);
+  useEffect(() => {
+    if (zoom === null) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setZoom(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [zoom]);
+  const z = zoom === null ? null : fasilitas[zoom];
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50 to-white px-5 py-14 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6">
       <div className="mx-auto w-full max-w-[78rem] [--u:2.6rem] sm:[--u:5.2rem] lg:[--u:7.6rem]">
@@ -302,17 +307,41 @@ function Kipas() {
                 style={{ "--d": d, zIndex: 20 - Math.round(Math.abs(d) * 2) } as React.CSSProperties}
                 className="group absolute left-1/2 top-0 -ml-[4.5rem] h-full w-[9rem] translate-x-[calc(var(--d)*var(--u))] translate-y-[calc(var(--d)*var(--d)*0.45rem)] rotate-[calc(var(--d)*4.5deg)] transition duration-500 ease-out hover:z-50 hover:-translate-y-5 hover:rotate-0 hover:scale-105 sm:-ml-[5.5rem] sm:w-[11rem] lg:-ml-[6.5rem] lg:w-[13rem]"
               >
-                <div className="relative isolate size-full overflow-hidden rounded-[1.4rem] shadow-lift ring-4 ring-white">
+                <button
+                  type="button"
+                  onClick={() => setZoom(k)}
+                  aria-label={`Perbesar: ${x.title}`}
+                  className="relative isolate block size-full cursor-zoom-in overflow-hidden rounded-[1.4rem] text-left shadow-lift ring-4 ring-white"
+                >
                   <Photo src={x.photo} alt={x.title} label={x.title} sizes="208px" className="-z-20" />
                   <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
                   <span className="absolute inset-x-3 bottom-3 text-[14px] font-semibold leading-tight text-white sm:text-[15px]">{x.title}</span>
-                </div>
+                </button>
               </li>
             );
           })}
         </ul>
         <Keamanan className="mt-8" />
       </div>
+
+      {z && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={z.title}
+          onClick={() => setZoom(null)}
+          className="fixed inset-0 z-[70] grid cursor-zoom-out place-items-center bg-navy-900/75 p-5 backdrop-blur-sm"
+        >
+          <div className="zoom-in relative isolate aspect-[4/5] w-[min(26rem,88vw)] max-h-[85svh] overflow-hidden rounded-[2rem] text-white shadow-lift ring-4 ring-white">
+            <Photo src={z.photo} alt={z.title} label={z.title} sizes="420px" className="-z-20" />
+            <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/90 via-navy-900/10 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-6">
+              <h3 className="text-3xl font-semibold !text-white">{z.title}</h3>
+              <p className="mt-1.5 text-[16px] text-white/85">{z.caption}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -63,3 +63,10 @@ lalu hapus tanda TODO di kode.
 
 - [ ] Total prestasi (120+), jumlah per kategori, dan sorotan juara di `prestasi` (site.ts) adalah contoh. Isi dari sekolah (nama lomba, tingkat, tahun). Kategori (Akademik, Olahraga, Seni & Kreativitas, Tahfidz) juga usulan.
 - [ ] Fasilitas: 8 item (ruang kelas, perpustakaan, ruang kreativitas, tempat ibadah, lapangan, taman, UKS, kantin) adalah draf; samakan dengan kenyataan + minta fotonya.
+
+## Berita, FAQ, Lokasi
+
+- [ ] Berita: judul, kategori, tanggal, foto, tautan di `berita` (site.ts) semua contoh. Halaman artikel belum ada.
+- [ ] FAQ: no. 1-4 dan 7 mengacu transkrip video; no. 5-6 (jadwal/syarat SPMB, biaya) jawaban umum, isi detailnya. Tambah pertanyaan nyata yang sering masuk ke admin.
+- [ ] Peta: memakai embed Google Maps berdasarkan nama + alamat. Pastikan pin tepat; kalau meleset, ganti `mapEmbed` dengan link "Share > Embed" dari lokasi sebenarnya.
+- [ ] Keamanan: judul saja (CCTV, UKS, sistem penjemputan, anti-bullying). Pastikan keempatnya benar ada, dan jelaskan sistem penjemputan bila perlu.
