@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { ArrowRight, BadgeCheck, Play, Sparkles } from "lucide-react";
-import { spmb } from "@/lib/site";
+import { ArrowRight, BadgeCheck, Check, Play, Sparkles } from "lucide-react";
+import { heroHighlights, spmb } from "@/lib/site";
 import { Plus, Ring, Squiggle, Star } from "./Doodles";
 
 export function Hero() {
@@ -25,7 +25,7 @@ export function Hero() {
 
       {/* Doodle aksen */}
       <Star className="absolute left-[6%] top-24 -z-10 hidden size-7 rotate-[-12deg] text-brand-400/60 md:block" />
-      <Squiggle className="absolute bottom-40 left-[4%] -z-10 hidden w-28 text-brand-300 lg:block" />
+      <Squiggle className="absolute bottom-44 left-[47%] -z-10 hidden w-24 text-brand-300 lg:block" />
       <Plus className="absolute right-[7%] top-28 -z-10 hidden size-6 text-brand-400/60 md:block" />
       <Ring className="absolute bottom-48 right-[44%] -z-10 hidden size-6 text-brand-300 lg:block" />
 
@@ -85,6 +85,20 @@ export function Hero() {
               Lihat Video Profil
             </a>
           </div>
+
+          <ul
+            className="animate-fade-up mt-8 flex flex-wrap gap-x-6 gap-y-2.5 text-[15px] font-semibold text-navy-700"
+            style={{ animationDelay: "320ms" }}
+          >
+            {heroHighlights.map((t) => (
+              <li key={t} className="inline-flex items-center gap-2">
+                <span className="grid size-5 place-items-center rounded-full bg-brand-600 text-white">
+                  <Check size={12} strokeWidth={3.5} aria-hidden />
+                </span>
+                {t}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Visual */}

@@ -20,6 +20,8 @@ npm run lint
 
 ## Data placeholder yang perlu diganti
 
+Daftar lengkap yang harus diverifikasi ada di [`DATA-CHECKLIST.md`](./DATA-CHECKLIST.md).
+
 - Tanggal penutupan SPMB dan gelombang: `spmb` di `src/lib/site.ts`
 - URL Portal Orang Tua / Portal Guru: `src/components/TopBar.tsx`
 - Tombol ID/EN baru berupa tampilan, terjemahan belum dipasang

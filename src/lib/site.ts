@@ -62,3 +62,51 @@ export const nav: NavItem[] = [
   { label: "Berita", href: "#berita" },
   { label: "SPMB", href: "#spmb" },
 ];
+
+// Chip di hero. Sengaja tidak mengulang "Terakreditasi A" / "Sejak 2009" (sudah ada di stiker foto).
+export const heroHighlights = [
+  "Kurikulum Nasional + Gakko Tosho",
+  "Sekolah Inklusi (LSU)",
+  "Tahfidz & Munaqosyah",
+];
+
+const FOUNDED = 2009;
+
+// null = data belum ada, tampil "XXX+" sampai diisi. Jangan isi angka karangan.
+export type Stat = {
+  label: string;
+  note?: string;
+  text?: string; // ditampilkan apa adanya
+  count?: number | null; // dianimasikan count-up
+  suffix?: string;
+};
+
+export const stats: Stat[] = [
+  { text: "A", label: "Terakreditasi", note: "BAN-S/M" },
+  { count: new Date().getFullYear() - FOUNDED, suffix: "+", label: "Tahun berpengalaman", note: `Sejak ${FOUNDED}` },
+  { count: 7, label: "Pilar karakter", note: "Dari Jujur sampai Bermanfaat" },
+  // TODO(data real): jumlah siswa dari sekolah
+  { count: null, suffix: "+", label: "Siswa aktif", note: "Data menyusul" },
+];
+
+// TODO(verifikasi dengan sekolah): poin 3 dan alur 3 langkah belum dikonfirmasi.
+export const inklusi = {
+  points: [
+    "Pengawasan Psikolog Profesional",
+    "Program Pendampingan Individual (PPI)",
+    "Layanan Terapi Terintegrasi",
+  ],
+  steps: [
+    { title: "Asesmen", desc: "Psikolog dan guru memahami kebutuhan belajar anak." },
+    { title: "Rencana pendampingan", desc: "Program disusun khusus sesuai hasil asesmen." },
+    { title: "Evaluasi bersama orang tua", desc: "Perkembangan ditinjau berkala bersama keluarga." },
+  ],
+  activities: [
+    "Menyusun Manik-manik",
+    "Yoga",
+    "Puzzle",
+    "Latihan Keseimbangan",
+    "Menggambar",
+    "Mengancing",
+  ],
+};

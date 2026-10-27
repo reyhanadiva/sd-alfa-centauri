@@ -70,22 +70,24 @@ html {
   scroll-padding-top: 5.5rem;
 }
 
-body {
-  background: #ffffff;
-  color: var(--color-navy-800);
-  font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
+@layer base {
+  body {
+    background: #ffffff;
+    color: var(--color-navy-800);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
-  color: var(--color-navy-900);
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    color: var(--color-navy-900);
+  }
 }
 
 /* Highlighter di bawah kata kunci judul */
@@ -119,5 +121,29 @@ h4 {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* Highlighter versi putih untuk latar biru */
+.hl-white {
+  background-image: linear-gradient(
+    to top,
+    rgb(255 255 255 / 0.28) 0,
+    rgb(255 255 255 / 0.28) 34%,
+    transparent 34%
+  );
+  background-repeat: no-repeat;
+  padding: 0 0.12em;
+  margin: 0 -0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Muncul halus saat masuk layar (CSS murni; browser tanpa dukungan tetap menampilkan konten biasa) */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
   }
 }
