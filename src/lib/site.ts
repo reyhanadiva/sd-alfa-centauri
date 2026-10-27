@@ -63,31 +63,9 @@ export const nav: NavItem[] = [
   { label: "SPMB", href: "#spmb" },
 ];
 
-// Chip di hero. Sengaja tidak mengulang "Terakreditasi A" / "Sejak 2009" (sudah ada di stiker foto).
-export const heroHighlights = [
-  "Kurikulum Nasional + Gakko Tosho",
-  "Pendidikan Karakter 7 Pilar",
-  "Tahfidz & Munaqosyah",
-];
-
 const FOUNDED = 2009;
 
-// null = data belum ada, tampil "XXX+" sampai diisi. Jangan isi angka karangan.
-export type Stat = {
-  label: string;
-  note?: string;
-  text?: string; // ditampilkan apa adanya
-  count?: number | null; // dianimasikan count-up
-  suffix?: string;
-};
-
-export const stats: Stat[] = [
-  { text: "A", label: "Terakreditasi", note: "BAN-S/M" },
-  { count: new Date().getFullYear() - FOUNDED, suffix: "+", label: "Tahun berpengalaman", note: `Sejak ${FOUNDED}` },
-  { count: 7, label: "Pilar karakter", note: "Dari Jujur sampai Bermanfaat" },
-  // TODO(data real): jumlah siswa dari sekolah
-  { count: null, suffix: "+", label: "Siswa aktif", note: "Data menyusul" },
-];
+export const yearsActive = new Date().getFullYear() - FOUNDED;
 
 // TODO(verifikasi dengan sekolah): poin 3 dan alur 3 langkah belum dikonfirmasi.
 export const inklusi = {
@@ -97,9 +75,9 @@ export const inklusi = {
     "Layanan Terapi Terintegrasi",
   ],
   steps: [
-    { title: "Asesmen", desc: "Psikolog dan guru memahami kebutuhan belajar anak." },
-    { title: "Rencana pendampingan", desc: "Program disusun khusus sesuai hasil asesmen." },
-    { title: "Evaluasi bersama orang tua", desc: "Perkembangan ditinjau berkala bersama keluarga." },
+    { title: "Asesmen", desc: "" },
+    { title: "Rencana", desc: "" },
+    { title: "Evaluasi bersama orang tua", desc: "" },
   ],
   activities: [
     "Menyusun Manik-manik",
@@ -116,7 +94,8 @@ export const inklusi = {
 // Isi `mp4` (file di /public/video) ATAU `youtubeId`. Kosong semua = tampil poster saja.
 export const profileVideo: { mp4?: string; youtubeId?: string; poster: string; title: string } = {
   mp4: undefined,
-  youtubeId: undefined,
+  // Video lama (diunggah 26 Sep 2022). Ganti bila ada versi terbaru.
+  youtubeId: "FFhuIIKqQnQ",
   poster: "/images/gedung-sd.jpg",
   title: "Video profil SD Alfa Centauri",
 };
@@ -140,18 +119,23 @@ export const unggulanPills = [
 // Tanpa logo SSC. Isi `href` kalau sudah ada tautan internal yang dimaksud.
 export const ssc = { name: "Sony Sugema College (SSC)", href: undefined as string | undefined };
 
-// ---------- 7 Pilar Karakter ----------
-// TODO(verifikasi dengan sekolah): arti dan perilaku di bawah ini DRAF, belum dari sekolah.
+// ---------- 7 Pilar Karakter (tampil sebagai pills saja) ----------
 
-export const pilar = [
-  { name: "Jujur", meaning: "Berkata dan bertindak sesuai kebenaran.", behaviors: ["Berani mengakui kesalahan", "Mengerjakan tugas dengan usaha sendiri"] },
-  { name: "Bersih & Rapi", meaning: "Menjaga diri dan lingkungan tetap nyaman.", behaviors: ["Merapikan perlengkapan sendiri", "Menjaga kebersihan kelas"] },
-  { name: "Mandiri", meaning: "Percaya diri mengurus kebutuhannya sendiri.", behaviors: ["Menyiapkan perlengkapan sekolah sendiri", "Mencoba dulu sebelum meminta bantuan"] },
-  { name: "Disiplin", meaning: "Taat pada waktu dan aturan bersama.", behaviors: ["Hadir tepat waktu", "Menyelesaikan tugas sesuai jadwal"] },
-  { name: "Tangguh", meaning: "Tidak mudah menyerah saat menghadapi kesulitan.", behaviors: ["Mau mencoba lagi setelah gagal", "Tetap berusaha saat tugas terasa sulit"] },
-  { name: "Sopan & Santun", meaning: "Menghormati orang lain dalam kata dan sikap.", behaviors: ["Menyapa dan mengucap salam", "Berbicara santun kepada guru dan teman"] },
-  { name: "Bermanfaat", meaning: "Hadir untuk menolong dan memberi kebaikan.", behaviors: ["Membantu teman yang kesulitan", "Peduli pada lingkungan sekitar"] },
+export const pilarNames = [
+  "Jujur",
+  "Bersih & Rapi",
+  "Mandiri",
+  "Disiplin",
+  "Tangguh",
+  "Sopan & Santun",
+  "Bermanfaat",
 ];
 
 export const bintangKembar =
   "Dua bintang yang saling melambangkan keseimbangan tujuan kami: mengantarkan ananda meraih kesuksesan di dunia dan akhirat.";
+
+// TODO: isi URL portal yang sebenarnya
+export const portals = [
+  { label: "Portal Orang Tua", href: "#" },
+  { label: "Portal Guru", href: "#" },
+];

@@ -10,7 +10,7 @@ import { profileVideo } from "@/lib/site";
 // - youtubeId: iframe dimuat hanya saat terlihat (hemat bandwidth), autoplay muted loop.
 // - keduanya kosong: tampil poster dengan tombol putar (belum ada video).
 // "Reduce motion": tidak autoplay, pengunjung menekan putar sendiri.
-export function VideoProfile() {
+export function VideoProfile({ className = "" }: { className?: string }) {
   const { mp4, youtubeId, poster, title } = profileVideo;
   const boxRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -61,7 +61,7 @@ export function VideoProfile() {
   return (
     <div
       ref={boxRef}
-      className="relative aspect-video overflow-hidden rounded-[1.75rem] bg-navy-900 shadow-lift ring-1 ring-brand-100 sm:rounded-[2.25rem]"
+      className={`relative aspect-video overflow-hidden rounded-[1.75rem] bg-navy-900 shadow-lift ring-1 ring-brand-100 sm:rounded-[2.25rem] ${className}`}
     >
       {mp4 ? (
         <>

@@ -16,8 +16,9 @@ lalu hapus tanda TODO di kode.
 - [ ] **Link Portal Orang Tua dan Portal Guru** (`src/components/TopBar.tsx`, masih `#`)
 - [ ] **Nomor telepon, WhatsApp, email**: diambil dari website lama, pastikan masih aktif
 
-- [ ] **7 Pilar Karakter**: arti dan perilaku tiap pilar adalah DRAF dariku (`pilar` di `src/lib/site.ts`), bukan dari sekolah. Minta versi resmi.
-- [ ] **Video profil**: isi `profileVideo` di `src/lib/site.ts` (mp4 di `/public/video` atau `youtubeId`). Kosong = tampil poster "Video profil menyusul"
+- [ ] **7 Pilar Karakter**: sekarang hanya pills (nama saja), tidak ada penjabaran. Pastikan 7 nama sudah benar.
+- [ ] **Video profil**: sementara memakai YouTube FFhuIIKqQnQ (diunggah 26 Sep 2022, kemungkinan sudah usang). Ganti `profileVideo` di `src/lib/site.ts` bila ada versi baru. Pastikan video boleh di-embed.
+- [ ] **Isi video**: transcript belum terbaca. Cocokkan klaim/fakta di video dengan website setelah transcript ada.
 - [ ] **Tautan SSC**: isi `ssc.href` kalau ada tautan internal yang dimaksud (sekarang teks biasa tanpa tautan)
 - [ ] **Scan sertifikat akreditasi**: masih placeholder di dialog "Lihat sertifikat"
 - [ ] Teks "Didirikan 2009 oleh Sony Sugema (alm.)": diambil dari website lama, pastikan masih akurat
