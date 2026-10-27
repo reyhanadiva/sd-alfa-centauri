@@ -1,5 +1,5 @@
 import {
-  BookMarked, BookOpenText, Bot, Brain, Calculator, Clapperboard, Compass, Drum, Gem, Goal, HeartPulse,
+  BookMarked, BookOpenText, CarFront, Cctv, ShieldCheck, Stethoscope, Bot, Brain, Calculator, Clapperboard, Compass, Drum, Gem, Goal, HeartPulse,
   Lightbulb, Medal, MoonStar, Music, Palette, PartyPopper, PersonStanding, Presentation,
   Puzzle, Rocket, Scale, Shirt, Sparkles, Sun, Tent, Trophy, UserRound, Users, Waves,
   type LucideIcon,
@@ -14,6 +14,7 @@ const map: Record<string, LucideIcon> = {
   reflect: Compass, parents: Users, palette: Palette, expo: Presentation, trip: Rocket,
   film: Clapperboard, drum: Drum, music: Music, tent: Tent, swim: Waves, goal: Goal, bot: Bot,
   dance: PartyPopper, medal: Medal,
+  cctv: Cctv, uks: Stethoscope, jemput: CarFront, shield: ShieldCheck,
 };
 
 export function Icon({ name, size = 20, className = "" }: { name: string; size?: number; className?: string }) {

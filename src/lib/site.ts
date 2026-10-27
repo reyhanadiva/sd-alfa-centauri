@@ -87,6 +87,8 @@ export const lsuActivities = [
 export const ranah = [
   {
     key: "Taqwa",
+    photo: undefined as string | undefined,
+    photoLabel: "Tahfidz dan shalat berjamaah",
     tagline: "Iman yang tumbuh lewat kebiasaan.",
     items: [
       { icon: "quran", title: "Tahfidz & Munaqosyah" },
@@ -96,6 +98,8 @@ export const ranah = [
   },
   {
     key: "Cerdas",
+    photo: "/images/siswa-membaca.jpg" as string | undefined,
+    photoLabel: "Siswa belajar dan membaca",
     tagline: "Numerasi, literasi, dan teknologi.",
     items: [
       { icon: "book", title: "Gakko Tosho", desc: "Budaya literasi" },
@@ -107,6 +111,8 @@ export const ranah = [
   },
   {
     key: "Kreatif",
+    photo: undefined as string | undefined,
+    photoLabel: "Pekan Kreativitas atau Expo",
     tagline: "Ruang untuk berkarya dan tampil.",
     items: [
       { icon: "reflect", title: "Pekan Refleksi" },
@@ -148,13 +154,7 @@ export const links = {
 };
 
 // Dua poin ringkas di bawah video. Sumber: website lama + transkrip video profil (auto-generated, verifikasi).
-export const about = {
-  founded: { label: "Berdiri 12 Juli 2009" },
-  star: {
-    label: "Bintang kembar Alfa Centauri",
-    desc: "Seperti dua bintang yang saling menyinari, sekolah dan orang tua bermitra mengantarkan ananda meraih kesuksesan di dunia dan akhirat.",
-  },
-};
+export const about = { founded: { label: "Berdiri 12 Juli 2009" } };
 
 // ---------- Mengapa Memilih ----------
 
@@ -190,3 +190,20 @@ export const portals = [
   { label: "Portal Orang Tua", href: "#" },
   { label: "Portal Guru", href: "#" },
 ];
+
+// ---------- Fasilitas & Keamanan ----------
+// TODO(verifikasi): daftar fasilitas dan keamanan di bawah masih draf, cocokkan dengan website lama.
+export const fasilitas: { title: string; caption: string; photo?: string }[] = [
+  { title: "Gedung & ruang kelas", caption: "Nyaman dan tertata untuk belajar sehari-hari.", photo: "/images/gedung-sd.jpg" },
+  { title: "Perpustakaan", caption: "Sudut baca untuk budaya literasi." },
+  { title: "Tempat ibadah", caption: "Shalat dhuha dan berjamaah di sekolah." },
+  { title: "Area bermain & olahraga", caption: "Ruang bergerak untuk futsal dan senam." },
+  { title: "Ruang penunjang", caption: "Ruang kreativitas dan kegiatan khusus." },
+];
+
+export const keamanan = [
+  { icon: "cctv", title: "CCTV", desc: "Area sekolah terpantau" },
+  { icon: "uks", title: "UKS", desc: "Pertolongan pertama di sekolah" },
+  { icon: "jemput", title: "Jemput aman", desc: "Penjemputan terkontrol" },
+  { icon: "shield", title: "Anti-bullying", desc: "Lingkungan yang saling menghargai" },
+] as const;

@@ -44,3 +44,10 @@ lalu hapus tanda TODO di kode.
 - [ ] Foto stock di strip LSU masih **Unsplash hotlink** (`stock` di `src/lib/site.ts`). Isinya belum bisa saya lihat langsung; cek semuanya, dan ganti dengan foto asli sekolah (tanpa wajah anak LSU kecuali izin orang tua). Kalau gagal dimuat, otomatis jadi placeholder.
 - [ ] Foto asli yang sudah dipakai: `gedung-sd.jpg` (hero), `siswa-membaca.jpg` (bento Program Unggulan). Foto siswa itu tampak siswa SMP; ganti dengan siswa SD bila ada.
 - [ ] Banner "Tahun Ajaran 2022/2023" di kiri bawah foto gedung sudah usang; minta foto baru atau crop.
+
+## Fasilitas, Program, Keamanan (draf)
+
+- [ ] **Daftar fasilitas** di `fasilitas` (site.ts) adalah draf saya (gedung, perpustakaan, tempat ibadah, area bermain, ruang penunjang). Samakan dengan fasilitas sebenarnya + minta fotonya.
+- [ ] **Keamanan**: CCTV, UKS, jemput aman, anti-bullying (deskripsi singkat buatan saya; pastikan benar-benar ada)
+- [ ] **Program per ranah**: nama program dari transkrip + salinan Mas Reyhan. Kalimat tagline per tab ("Iman yang tumbuh lewat kebiasaan", dst.) dan deskripsi pendek (Surala, Reading Challenge) adalah tulisan saya.
+- [ ] Foto tab Taqwa dan Kreatif masih placeholder; tab Cerdas memakai foto siswa membaca.

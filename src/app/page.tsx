@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { WhyChoose } from "@/components/WhyChoose";
+import { Fasilitas } from "@/components/Fasilitas";
 import { Program } from "@/components/Program";
 import { Inklusi } from "@/components/Inklusi";
 
@@ -14,9 +15,9 @@ export default function Home() {
         <Hero />
         <About />
         <WhyChoose />
-        {/* Berikutnya: Fasilitas + Keamanan.
-            Inklusi nanti dipindah ke bawah Fasilitas & Keamanan; sementara di sini sampai section itu dibuat. */}
+        {/* Berikutnya: Praktis untuk Orang Tua, Prestasi, Galeri, dst. */}
         <Program />
+        <Fasilitas />
         <Inklusi />
         <div className="h-24" />
       </main>

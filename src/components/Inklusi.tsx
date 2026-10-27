@@ -79,7 +79,7 @@ export function Inklusi() {
                 <li
                   key={i}
                   aria-hidden={i >= lsuActivities.length ? true : undefined}
-                  className="flex h-[8.5rem] w-[12.5rem] shrink-0 flex-col justify-between rounded-3xl bg-white/[0.07] p-5 text-left ring-1 ring-white/15"
+                  className="flex h-[8.5rem] w-[12.5rem] shrink-0 flex-col items-center justify-center gap-3 rounded-3xl bg-white/[0.07] p-5 text-center ring-1 ring-white/15"
                 >
                   <span className="grid size-11 place-items-center rounded-full bg-white text-brand-600">
                     <Icon name={a.icon} size={21} />

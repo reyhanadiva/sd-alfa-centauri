@@ -3,12 +3,15 @@
 import { useState } from "react";
 import { ekskul, ranah } from "@/lib/site";
 import { Icon } from "./icons";
+import { Photo } from "./Photo";
 
 // Explorer program: tiga ranah (Taqwa, Cerdas, Kreatif) sebagai tab di kiri,
 // ekstrakurikuler sebagai kisi ikon di kanan. Satu layar, tanpa paragraf panjang.
 export function Program() {
-  const [active, setActive] = useState(0);
+  const [state, setState] = useState({ active: 0, dir: 1 });
+  const { active, dir } = state;
   const r = ranah[active];
+  const select = (i: number) => setState((s) => (i === s.active ? s : { active: i, dir: i > s.active ? 1 : -1 }));
 
   return (
     <section
@@ -28,7 +31,17 @@ export function Program() {
         <div className="mt-8 grid gap-3.5 lg:mt-9 lg:h-[min(31rem,calc(100svh-16rem))] lg:grid-cols-[1.45fr_1fr]">
           {/* Tab ranah */}
           <div className="reveal flex flex-col rounded-[2rem] bg-brand-50 p-6 ring-1 ring-brand-100 sm:p-7">
-            <div role="tablist" aria-label="Ranah program" className="flex w-fit gap-1 rounded-full bg-white p-1 ring-1 ring-brand-100">
+            {/* Tab dengan indikator yang bergeser */}
+            <div
+              role="tablist"
+              aria-label="Ranah program"
+              className="relative grid w-fit grid-cols-3 rounded-full bg-white p-1 ring-1 ring-brand-100"
+            >
+              <span
+                aria-hidden
+                className="absolute inset-y-1 left-1 w-[calc((100%-0.5rem)/3)] rounded-full bg-brand-600 shadow-md shadow-brand-600/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                style={{ transform: `translateX(${active * 100}%)` }}
+              />
               {ranah.map((x, i) => (
                 <button
                   key={x.key}
@@ -37,9 +50,9 @@ export function Program() {
                   id={`tab-${x.key}`}
                   aria-selected={active === i}
                   aria-controls="panel-ranah"
-                  onClick={() => setActive(i)}
-                  className={`rounded-full px-5 py-2 text-[15px] font-bold transition ${
-                    active === i ? "bg-brand-600 text-white" : "text-navy-700 hover:bg-brand-50"
+                  onClick={() => select(i)}
+                  className={`relative z-10 w-28 rounded-full py-2 text-[15px] font-bold transition-colors duration-300 ${
+                    active === i ? "text-white" : "text-navy-700 hover:text-brand-700"
                   }`}
                 >
                   {x.key}
@@ -47,30 +60,47 @@ export function Program() {
               ))}
             </div>
 
-            <div id="panel-ranah" role="tabpanel" aria-labelledby={`tab-${r.key}`} className="mt-6 flex flex-1 flex-col">
-              <p className="em-serif text-[2rem] leading-tight text-navy-900 sm:text-[2.4rem]">{r.tagline}</p>
-              <ul className="mt-5 grid flex-1 content-center gap-3 sm:grid-cols-2">
-                {r.items.map((it) => (
-                  <li key={it.title} className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 ring-1 ring-brand-100">
-                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-100 text-brand-600">
-                      <Icon name={it.icon} size={19} />
-                    </span>
-                    <span className="leading-tight">
-                      <span className="block text-[15px] font-semibold text-navy-900">{it.title}</span>
-                      {"desc" in it && it.desc && (
-                        <span className="mt-0.5 block text-[13px] text-navy-700/75">{it.desc}</span>
-                      )}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+            <div
+              key={r.key}
+              id="panel-ranah"
+              role="tabpanel"
+              aria-labelledby={`tab-${r.key}`}
+              className="mt-6 flex flex-1 flex-col gap-5 sm:flex-row"
+            >
+              <div className={`flex flex-1 flex-col ${dir > 0 ? "slide-r" : "slide-l"}`}>
+                <p className="em-serif text-[2rem] leading-tight text-navy-900 sm:text-[2.2rem]">{r.tagline}</p>
+                <ul className="mt-5 grid flex-1 content-center gap-2.5">
+                  {r.items.map((it) => (
+                    <li key={it.title} className="flex items-center gap-3 rounded-2xl bg-white px-4 py-2.5 ring-1 ring-brand-100">
+                      <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-100 text-brand-600">
+                        <Icon name={it.icon} size={18} />
+                      </span>
+                      <span className="leading-tight">
+                        <span className="block text-[15px] font-semibold text-navy-900">{it.title}</span>
+                        {"desc" in it && it.desc && (
+                          <span className="mt-0.5 block text-[13px] text-navy-700/75">{it.desc}</span>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="fade-in relative min-h-[14rem] overflow-hidden rounded-3xl sm:min-h-0 sm:w-[38%]">
+                <Photo
+                  src={r.photo}
+                  alt={r.photoLabel}
+                  label={r.photoLabel}
+                  sizes="(min-width: 1024px) 280px, 90vw"
+                />
+              </div>
             </div>
           </div>
 
           {/* Ekskul */}
           <div id="ekskul" className="reveal flex flex-col rounded-[2rem] bg-navy-900 p-6 text-white sm:p-7">
             <h3 className="text-2xl font-semibold !text-white">Ekstrakurikuler</h3>
-            <p className="mt-1 text-[15px] text-white/65">Pilih sesuai minat ananda.</p>
+            <p className="mt-1 text-[15px] text-white/65">Beragam kegiatan sesuai minat ananda.</p>
             <ul className="mt-5 grid flex-1 grid-cols-3 gap-2.5">
               {ekskul.map((e) => (
                 <li

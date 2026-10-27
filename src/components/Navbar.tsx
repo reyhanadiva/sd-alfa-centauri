@@ -59,8 +59,8 @@ export function Navbar() {
           hidden && !open ? "-translate-y-full" : "translate-y-0"
         } ${
           solid
-            ? "border-b border-white/60 bg-white/60 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.45)] backdrop-blur-2xl backdrop-saturate-[1.8]"
-            : "border-b border-white/15 bg-white/[0.06] backdrop-blur-xl backdrop-saturate-150"
+            ? "border-b border-brand-100/70 bg-white/80 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.4)] backdrop-blur-xl backdrop-saturate-150"
+            : "border-b border-transparent bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between gap-3 px-5 sm:px-8">

@@ -45,16 +45,16 @@ export function About() {
               <div>
                 <p className="text-[17px] font-bold text-navy-900">{about.founded.label}</p>
                 <p className="mt-1 text-[15px] leading-snug text-navy-700">
-                  Di bawah naungan{" "}
+                  Di bawah naungan
+                  <br />
                   <a
                     href={links.yayasan}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-600"
+                    className="whitespace-nowrap font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-600"
                   >
                     Yayasan Taqwa Cerdas Kreatif
                   </a>
-                  .
                 </p>
               </div>
             </div>
@@ -65,8 +65,13 @@ export function About() {
                 <Star className="absolute left-9 top-0 size-10 rotate-6 text-white" />
               </div>
               <div>
-                <p className="text-[17px] font-bold text-white">{about.star.label}</p>
-                <p className="mt-1 text-[15px] leading-snug text-white/80">{about.star.desc}</p>
+                <p className="text-[17px] font-bold leading-snug text-white">
+                  Bintang kembar <span className="whitespace-nowrap">Alfa Centauri</span>
+                </p>
+                <p className="mt-1 text-[15px] leading-snug text-white/80">
+                  Sekolah dan orang tua bermitra, saling menyinari untuk mengantar ananda sukses di{" "}
+                  <strong className="font-bold text-white">dunia dan akhirat</strong>.
+                </p>
               </div>
             </div>
           </div>
