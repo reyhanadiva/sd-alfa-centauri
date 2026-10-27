@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ekskul, ranah } from "@/lib/site";
+import { ranah } from "@/lib/site";
+import { EkskulPanel } from "./EkskulPanel";
 import { Icon } from "./icons";
 import { Photo } from "./Photo";
 
@@ -97,24 +98,7 @@ export function Program() {
             </div>
           </div>
 
-          {/* Ekskul */}
-          <div id="ekskul" className="reveal flex flex-col rounded-[2rem] bg-navy-900 p-6 text-white sm:p-7">
-            <h3 className="text-2xl font-semibold !text-white">Ekstrakurikuler</h3>
-            <p className="mt-1 text-[15px] text-white/65">Beragam kegiatan sesuai minat ananda.</p>
-            <ul className="mt-5 grid flex-1 grid-cols-3 gap-2.5">
-              {ekskul.map((e) => (
-                <li
-                  key={e.label}
-                  className="flex flex-col items-center justify-center gap-2 rounded-2xl bg-white/[0.07] p-2 py-4 text-center ring-1 ring-white/15 transition hover:bg-white/15"
-                >
-                  <span className="grid size-10 place-items-center rounded-full bg-white text-brand-600">
-                    <Icon name={e.icon} size={19} />
-                  </span>
-                  <span className="text-[13px] font-semibold leading-tight">{e.label}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <EkskulPanel />
         </div>
       </div>
     </section>

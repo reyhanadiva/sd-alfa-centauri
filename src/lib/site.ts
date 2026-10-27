@@ -125,7 +125,7 @@ export const ranah = [
 ] as const;
 
 // Dari transkrip; "menari" kemungkinan terdengar sebagai "menarik" (verifikasi).
-export const ekskul = [
+export const ekskul: { icon: string; label: string; photo?: string }[] = [
   { icon: "film", label: "Sinematografi" },
   { icon: "drum", label: "Marching Band" },
   { icon: "music", label: "Musik" },
@@ -135,7 +135,7 @@ export const ekskul = [
   { icon: "bot", label: "Robotik" },
   { icon: "dance", label: "Menari" },
   { icon: "medal", label: "Taekwondo" },
-] as const;
+];
 
 
 // ---------- Tentang Kami ----------
@@ -207,3 +207,12 @@ export const keamanan = [
   { icon: "jemput", title: "Jemput aman", desc: "Penjemputan terkontrol" },
   { icon: "shield", title: "Anti-bullying", desc: "Lingkungan yang saling menghargai" },
 ] as const;
+
+// ---------- Praktis untuk Orang Tua ----------
+// TODO(data real): semua nilai di bawah placeholder, isi dari sekolah.
+export const praktis = {
+  jam: { value: "XX.XX – XX.XX", note: "Senin – Jumat (WIB)" },
+  jemput: { value: "XX.XX", note: "Area antar-jemput dan aturannya" },
+  katering: { value: "Menu harian", note: "Info penyedia dan biaya" },
+  seragam: { value: "Seragam sekolah", note: "Ketentuan hari dan atribut" },
+};

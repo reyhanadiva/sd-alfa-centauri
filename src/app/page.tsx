@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { WhyChoose } from "@/components/WhyChoose";
 import { Fasilitas } from "@/components/Fasilitas";
+import { Praktis } from "@/components/Praktis";
 import { Program } from "@/components/Program";
 import { Inklusi } from "@/components/Inklusi";
 
@@ -19,6 +20,7 @@ export default function Home() {
         <Program />
         <Fasilitas />
         <Inklusi />
+        <Praktis />
         <div className="h-24" />
       </main>
     </>

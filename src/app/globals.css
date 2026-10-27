@@ -204,3 +204,14 @@ html {
 .slide-r { animation: slide-r 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .slide-l { animation: slide-l 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .fade-in { animation: fade-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Busur jarum jam di showcase Fasilitas */
+@keyframes ring-sweep {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+.ring-sweep {
+  animation-name: ring-sweep;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}

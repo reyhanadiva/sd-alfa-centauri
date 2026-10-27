@@ -51,3 +51,10 @@ lalu hapus tanda TODO di kode.
 - [ ] **Keamanan**: CCTV, UKS, jemput aman, anti-bullying (deskripsi singkat buatan saya; pastikan benar-benar ada)
 - [ ] **Program per ranah**: nama program dari transkrip + salinan Mas Reyhan. Kalimat tagline per tab ("Iman yang tumbuh lewat kebiasaan", dst.) dan deskripsi pendek (Surala, Reading Challenge) adalah tulisan saya.
 - [ ] Foto tab Taqwa dan Kreatif masih placeholder; tab Cerdas memakai foto siswa membaca.
+
+## Praktis untuk Orang Tua (semua placeholder)
+
+- [ ] Jam sekolah, jam dan aturan antar-jemput, info katering (penyedia, biaya), ketentuan seragam: `praktis` di `src/lib/site.ts` masih "XX.XX"/teks umum
+- [ ] Mockup portal hanya ilustrasi; ganti dengan tangkapan layar asli bila portal sudah ada
+- [ ] Ekskul: daftar dari transkrip ("Menari" kemungkinan salah dengar); foto per kegiatan diisi lewat `photo` di `ekskul`
+- [ ] Fasilitas: 4 gaya eksperimen (Jam/Kipas/Geser/Carousel) dengan tombol melayang; pilih satu lalu hapus yang lain beserta tombolnya

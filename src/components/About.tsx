@@ -69,8 +69,8 @@ export function About() {
                   Bintang kembar <span className="whitespace-nowrap">Alfa Centauri</span>
                 </p>
                 <p className="mt-1 text-[15px] leading-snug text-white/80">
-                  Sekolah dan orang tua bermitra, saling menyinari untuk mengantar ananda sukses di{" "}
-                  <strong className="font-bold text-white">dunia dan akhirat</strong>.
+                  Dua bintang melambangkan keseimbangan tujuan kami: mengantar ananda sukses di{" "}
+                  <span className="font-bold text-white">dunia &amp; akhirat</span>.
                 </p>
               </div>
             </div>
