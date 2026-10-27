@@ -16,6 +16,12 @@ lalu hapus tanda TODO di kode.
 - [ ] **Link Portal Orang Tua dan Portal Guru** (`src/components/TopBar.tsx`, masih `#`)
 - [ ] **Nomor telepon, WhatsApp, email**: diambil dari website lama, pastikan masih aktif
 
+- [ ] **7 Pilar Karakter**: arti dan perilaku tiap pilar adalah DRAF dariku (`pilar` di `src/lib/site.ts`), bukan dari sekolah. Minta versi resmi.
+- [ ] **Video profil**: isi `profileVideo` di `src/lib/site.ts` (mp4 di `/public/video` atau `youtubeId`). Kosong = tampil poster "Video profil menyusul"
+- [ ] **Tautan SSC**: isi `ssc.href` kalau ada tautan internal yang dimaksud (sekarang teks biasa tanpa tautan)
+- [ ] **Scan sertifikat akreditasi**: masih placeholder di dialog "Lihat sertifikat"
+- [ ] Teks "Didirikan 2009 oleh Sony Sugema (alm.)": diambil dari website lama, pastikan masih akurat
+
 ## Konten yang masih placeholder
 
 - [ ] Semua foto (slot `Photo` berlabel "Foto: ..."): ganti dengan foto asli

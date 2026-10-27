@@ -66,7 +66,7 @@ export const nav: NavItem[] = [
 // Chip di hero. Sengaja tidak mengulang "Terakreditasi A" / "Sejak 2009" (sudah ada di stiker foto).
 export const heroHighlights = [
   "Kurikulum Nasional + Gakko Tosho",
-  "Sekolah Inklusi (LSU)",
+  "Pendidikan Karakter 7 Pilar",
   "Tahfidz & Munaqosyah",
 ];
 
@@ -110,3 +110,48 @@ export const inklusi = {
     "Mengancing",
   ],
 };
+
+// ---------- Tentang Kami ----------
+
+// Isi `mp4` (file di /public/video) ATAU `youtubeId`. Kosong semua = tampil poster saja.
+export const profileVideo: { mp4?: string; youtubeId?: string; poster: string; title: string } = {
+  mp4: undefined,
+  youtubeId: undefined,
+  poster: "/images/gedung-sd.jpg",
+  title: "Video profil SD Alfa Centauri",
+};
+
+export const about = {
+  founding:
+    "Didirikan pada tahun 2009 oleh Sony Sugema (alm.), SD Alfa Centauri berdedikasi menjawab tantangan pendidikan berkualitas sejak usia dini dengan memadukan sains dan spiritualitas.",
+};
+
+// ---------- Mengapa Memilih ----------
+
+export const unggulanPills = [
+  "Tahfidz & Munaqosyah",
+  "Pembinaan FLS2N",
+  "Reading Challenge",
+  "Fieldtrip Edukatif",
+  "Parents Day",
+  "Lomba & Olimpiade",
+];
+
+// Tanpa logo SSC. Isi `href` kalau sudah ada tautan internal yang dimaksud.
+export const ssc = { name: "Sony Sugema College (SSC)", href: undefined as string | undefined };
+
+// ---------- 7 Pilar Karakter ----------
+// TODO(verifikasi dengan sekolah): arti dan perilaku di bawah ini DRAF, belum dari sekolah.
+
+export const pilar = [
+  { name: "Jujur", meaning: "Berkata dan bertindak sesuai kebenaran.", behaviors: ["Berani mengakui kesalahan", "Mengerjakan tugas dengan usaha sendiri"] },
+  { name: "Bersih & Rapi", meaning: "Menjaga diri dan lingkungan tetap nyaman.", behaviors: ["Merapikan perlengkapan sendiri", "Menjaga kebersihan kelas"] },
+  { name: "Mandiri", meaning: "Percaya diri mengurus kebutuhannya sendiri.", behaviors: ["Menyiapkan perlengkapan sekolah sendiri", "Mencoba dulu sebelum meminta bantuan"] },
+  { name: "Disiplin", meaning: "Taat pada waktu dan aturan bersama.", behaviors: ["Hadir tepat waktu", "Menyelesaikan tugas sesuai jadwal"] },
+  { name: "Tangguh", meaning: "Tidak mudah menyerah saat menghadapi kesulitan.", behaviors: ["Mau mencoba lagi setelah gagal", "Tetap berusaha saat tugas terasa sulit"] },
+  { name: "Sopan & Santun", meaning: "Menghormati orang lain dalam kata dan sikap.", behaviors: ["Menyapa dan mengucap salam", "Berbicara santun kepada guru dan teman"] },
+  { name: "Bermanfaat", meaning: "Hadir untuk menolong dan memberi kebaikan.", behaviors: ["Membantu teman yang kesulitan", "Peduli pada lingkungan sekitar"] },
+];
+
+export const bintangKembar =
+  "Dua bintang yang saling melambangkan keseimbangan tujuan kami: mengantarkan ananda meraih kesuksesan di dunia dan akhirat.";

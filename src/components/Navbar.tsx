@@ -24,92 +24,103 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/80 shadow-[0_8px_30px_-16px_rgb(15_42_92/0.35)] backdrop-blur-xl"
-          : "bg-white"
-      }`}
-    >
-      <div
-        className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 transition-all duration-300 sm:px-8 ${
-          scrolled ? "h-16" : "h-20"
+    <>
+      <header
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-white/80 shadow-[0_8px_30px_-16px_rgb(15_42_92/0.35)] backdrop-blur-xl"
+            : "bg-white"
         }`}
       >
-        <a href="#" aria-label="SD Alfa Centauri, ke beranda" className="shrink-0">
-          <Image
-            src="/images/logo-horizontal.png"
-            alt="SD Alfa Centauri"
-            width={1200}
-            height={232}
-            priority
-            className={`w-auto transition-all duration-300 ${scrolled ? "h-9" : "h-11"}`}
-          />
-        </a>
-
-        {/* Desktop */}
-        <nav aria-label="Menu utama" className="hidden items-center gap-1 lg:flex">
-          {nav.map((item) => (
-            <div key={item.label} className="group relative">
-              <a
-                href={item.href}
-                className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-[15px] font-semibold text-navy-800 transition hover:bg-brand-50 hover:text-brand-700"
-              >
-                {item.label}
-                {item.children && (
-                  <ChevronDown
-                    size={15}
-                    aria-hidden
-                    className="transition group-hover:rotate-180 group-focus-within:rotate-180"
-                  />
-                )}
-              </a>
-
-              {item.children && (
-                <div className="invisible absolute left-0 top-full w-72 translate-y-2 pt-3 opacity-0 transition duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <ul className="rounded-2xl border border-brand-100 bg-white p-2 shadow-lift">
-                    {item.children.map((c) => (
-                      <li key={c.label}>
-                        <a
-                          href={c.href}
-                          className="block rounded-xl px-4 py-2.5 transition hover:bg-brand-50"
-                        >
-                          <span className="block text-[15px] font-semibold text-navy-900">
-                            {c.label}
-                          </span>
-                          {c.desc && (
-                            <span className="block text-[13px] text-navy-700/70">{c.desc}</span>
-                          )}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
+        <div
+          className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 transition-all duration-300 sm:px-8 ${
+            scrolled ? "h-16" : "h-20"
+          }`}
+        >
           <a
-            href={spmb.href}
-            className="hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-700 sm:inline-flex"
+            href="#"
+            aria-label="SD Alfa Centauri, ke beranda"
+            className="shrink-0"
           >
-            <Send size={16} aria-hidden /> Daftar SPMB
+            <Image
+              src="/images/logo-horizontal.png"
+              alt="SD Alfa Centauri"
+              width={1200}
+              height={232}
+              priority
+              className={`w-auto transition-all duration-300 ${scrolled ? "h-9" : "h-11"}`}
+            />
           </a>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-label="Buka menu"
-            aria-expanded={open}
-            className="grid size-11 place-items-center rounded-full bg-brand-50 text-navy-800 lg:hidden"
-          >
-            <Menu size={22} aria-hidden />
-          </button>
-        </div>
-      </div>
 
-      {/* Mobile panel */}
+          {/* Desktop */}
+          <nav
+            aria-label="Menu utama"
+            className="hidden items-center gap-1 lg:flex"
+          >
+            {nav.map((item) => (
+              <div key={item.label} className="group relative">
+                <a
+                  href={item.href}
+                  className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-[15px] font-semibold text-navy-800 transition hover:bg-brand-50 hover:text-brand-700"
+                >
+                  {item.label}
+                  {item.children && (
+                    <ChevronDown
+                      size={15}
+                      aria-hidden
+                      className="transition group-hover:rotate-180 group-focus-within:rotate-180"
+                    />
+                  )}
+                </a>
+
+                {item.children && (
+                  <div className="invisible absolute left-0 top-full w-72 translate-y-2 pt-3 opacity-0 transition duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                    <ul className="rounded-2xl border border-brand-100 bg-white p-2 shadow-lift">
+                      {item.children.map((c) => (
+                        <li key={c.label}>
+                          <a
+                            href={c.href}
+                            className="block rounded-xl px-4 py-2.5 transition hover:bg-brand-50"
+                          >
+                            <span className="block text-[15px] font-semibold text-navy-900">
+                              {c.label}
+                            </span>
+                            {c.desc && (
+                              <span className="block text-[13px] text-navy-700/70">
+                                {c.desc}
+                              </span>
+                            )}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <a
+              href={spmb.href}
+              className="hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-700 sm:inline-flex"
+            >
+              <Send size={16} aria-hidden /> Daftar SPMB
+            </a>
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label="Buka menu"
+              aria-expanded={open}
+              className="grid size-11 place-items-center rounded-full bg-brand-50 text-navy-800 lg:hidden"
+            >
+              <Menu size={22} aria-hidden />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Panel menu ponsel: di LUAR <header> karena backdrop-filter pada header membuat elemen fixed ikut ukuran header */}
       <div
         className={`fixed inset-0 z-[60] lg:hidden ${open ? "visible" : "invisible"}`}
         aria-hidden={!open}
@@ -143,7 +154,10 @@ export function Navbar() {
             </button>
           </div>
 
-          <nav aria-label="Menu seluler" className="flex-1 overflow-y-auto px-5 pb-6">
+          <nav
+            aria-label="Menu seluler"
+            className="flex-1 overflow-y-auto px-5 pb-6"
+          >
             <ul className="divide-y divide-brand-100">
               {nav.map((item) => (
                 <li key={item.label}>
@@ -196,6 +210,6 @@ export function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

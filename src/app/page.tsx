@@ -3,6 +3,9 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { SpmbStatusBar } from "@/components/SpmbStatusBar";
 import { StatBar } from "@/components/StatBar";
+import { About } from "@/components/About";
+import { WhyChoose } from "@/components/WhyChoose";
+import { Pilar } from "@/components/Pilar";
 import { Inklusi } from "@/components/Inklusi";
 
 export default function Home() {
@@ -14,8 +17,13 @@ export default function Home() {
         <Hero />
         <SpmbStatusBar />
         <StatBar />
+        <About />
+        <WhyChoose />
+        <Pilar />
+        {/* Berikutnya: Program + Ekskul, Fasilitas + Keamanan.
+            Inklusi sengaja di bawahnya (setelah Fasilitas & Keamanan) supaya tidak ada 3 blok berat berurutan.
+            Sementara ditaruh di sini sampai section di atas selesai dibuat. */}
         <Inklusi />
-        {/* Berikutnya: Mengapa Memilih (bento), Tentang + 7 Pilar, Program, dst. */}
         <div className="h-24" />
       </main>
     </>
