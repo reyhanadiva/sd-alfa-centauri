@@ -36,7 +36,7 @@ export function Hero() {
             School In The World
           </h1>
           <p className="animate-fade-up mt-4 text-lg text-white/85 sm:text-xl" style={{ animationDelay: "100ms" }}>
-            Menumbuhkan anak yang bertakwa, cerdas, dan kreatif.
+            Menumbuhkan anak yang <strong className="font-semibold text-white">Taqwa</strong>, <strong className="font-semibold text-white">Cerdas</strong>, dan <strong className="font-semibold text-white">Kreatif</strong>.
           </p>
           <div className="animate-fade-up mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "200ms" }}>
             <a

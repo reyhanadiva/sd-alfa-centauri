@@ -265,3 +265,5 @@ html {
 .shoot { animation: shoot var(--dur, 11s) ease-out var(--delay, 0s) infinite; }
 .halo { animation: halo 2.4s ease-out infinite; }
 .glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
+@keyframes sway { 0%, 100% { transform: translateX(-1.2rem); } 50% { transform: translateX(1.2rem); } }
+.sway { animation: sway 14s ease-in-out infinite; }

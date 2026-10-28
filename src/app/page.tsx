@@ -2,7 +2,10 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { WhyChoose } from "@/components/WhyChoose";
-import { FasilitasDaftar, FasilitasKipas } from "@/components/Fasilitas";
+import { FasilitasDaftar } from "@/components/Fasilitas";
+import { Galeri } from "@/components/Galeri";
+import { Testimoni } from "@/components/Testimoni";
+import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Closing } from "@/components/Closing";
 import { Berita } from "@/components/Berita";
 import { Faq } from "@/components/Faq";
@@ -22,17 +25,17 @@ export default function Home() {
         <WhyChoose />
         <Program />
         <FasilitasDaftar />
-        {/* Gaya alternatif (Kipas): tinggal pilih salah satu, atau pakai untuk Galeri */}
-        <FasilitasKipas />
         <Inklusi />
         {/* Praktis (info cepat orang tua) dikeluarkan dulu; komponen masih ada di Praktis.tsx */}
         <Prestasi />
-        {/* Galeri dan Testimoni menyusul (dilewati dulu) */}
+        <Galeri />
+        <Testimoni />
         <Berita />
         <Faq />
         <Lokasi />
       </main>
       <Closing />
+      <MobileCtaBar />
     </>
   );
 }

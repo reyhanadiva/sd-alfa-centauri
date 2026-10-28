@@ -1,16 +1,24 @@
 import Image from "next/image";
 import { ArrowUp, ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { jaringan, lokasi, site, spmb, thisYear, waLink } from "@/lib/site";
-import { BinaryStar, Clouds, SchoolSilhouette, ShootingStars, Twinkles } from "./Sky";
+import { BinaryStar, Cloud, Clouds, ShootingStars, Twinkles } from "./Sky";
+
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-brand-300">
+      <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" />
+    </svg>
+  );
+}
 
 const jelajah = [
   ["Tentang", "#tentang"], ["Program", "#program"], ["Fasilitas", "#fasilitas"],
   ["Berita", "#berita"], ["FAQ", "#faq"], ["Lokasi", "#lokasi"],
 ];
 
-// Penutup satu adegan: langit malam (CTA) → bukit dengan siluet sekolah → footer di atas warna bukit
+// Penutup satu adegan: langit malam (CTA) → bukit → footer di atas warna bukit
 // yang sama, jadi tanpa sambungan. Elemen bergerak: bintang berkedip dan jatuh, awan, bintang kembar
-// mengorbit, jendela sekolah menyala, kunang-kunang. Reduce-motion dimatikan lewat CSS global.
+// mengorbit, awan menggantung di bukit. Reduce-motion dimatikan lewat CSS global.
 export function Closing() {
   return (
     <div className="relative isolate overflow-hidden rounded-t-[3rem] bg-gradient-to-b from-navy-800 via-navy-900 to-navy-900 text-white sm:rounded-t-[4.5rem]">
@@ -20,7 +28,7 @@ export function Closing() {
           <div aria-hidden className="absolute -top-40 left-1/2 h-[34rem] w-[60rem] -translate-x-1/2 rounded-full bg-brand-600/35 blur-[120px]" />
           <Twinkles color="text-white" />
           <ShootingStars />
-          <Clouds color="text-white/[0.07]" />
+          <Clouds />
         </div>
 
         <div className="relative mx-auto flex max-w-3xl flex-col items-center">
@@ -60,20 +68,13 @@ export function Closing() {
         <svg viewBox="0 0 1440 260" preserveAspectRatio="none" className="absolute inset-0 size-full">
           <path d="M0 120C200 60 380 70 560 110s360 70 560 20 240-40 320-20V260H0Z" fill="#173a7a" />
         </svg>
-        <div className="absolute bottom-[30%] left-[54%] size-[18rem] rounded-full bg-brand-500/30 blur-3xl sm:size-[26rem] lg:left-[58%]" />
-        <SchoolSilhouette className="absolute bottom-[36%] left-[54%] w-[13rem] sm:w-[21rem] lg:left-[58%]" />
+        {/* Awan menggantung di punggung bukit, bergoyang pelan */}
+        <div className="sway absolute bottom-[42%] left-[8%] w-56 opacity-20 sm:w-80"><Cloud /></div>
+        <div className="sway absolute bottom-[38%] right-[6%] w-48 opacity-[0.16] sm:w-72" style={{ animationDelay: "-6s" }}><Cloud /></div>
         <svg viewBox="0 0 1440 260" preserveAspectRatio="none" className="absolute inset-0 size-full">
           <path d="M0 160c220-60 460-40 700 10s520 40 740-20V260H0Z" fill="#0f2a5c" />
           <path d="M0 215c260-40 560-30 820 0s400 25 620-5V260H0Z" fill="#0a1c40" />
         </svg>
-        {/* Kunang-kunang */}
-        {[["12%", "62%"], ["26%", "74%"], ["44%", "68%"], ["71%", "78%"], ["86%", "66%"]].map(([l, t], i) => (
-          <span
-            key={i}
-            className="twinkle absolute size-1.5 rounded-full bg-brand-200 shadow-[0_0_10px_3px_rgba(166,200,255,0.8)]"
-            style={{ left: l, top: t, "--dur": `${3 + i * 0.6}s`, "--delay": `${-i}s` } as React.CSSProperties}
-          />
-        ))}
       </div>
 
       {/* ---------- Footer ---------- */}
@@ -83,8 +84,9 @@ export function Closing() {
             <div>
               <Image src="/images/logo-horizontal-white.png" alt="SD Alfa Centauri" width={220} height={56} className="h-12 w-auto" />
               <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-white/70">
-                Sekolah dasar Islam inklusif di Bandung, terakreditasi A. {site.tagline}.
+                Sekolah dasar Islam inklusif di Bandung, terakreditasi A.
               </p>
+              <p className="mt-3 max-w-xs text-[15px] font-semibold leading-snug text-brand-200">{site.tagline}</p>
             </div>
 
             <nav aria-label="Jelajahi">
@@ -102,6 +104,7 @@ export function Closing() {
                 <li className="flex gap-3"><MapPin size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-300" /><a href={lokasi.mapLink} target="_blank" rel="noopener noreferrer" className="hover:text-white">{site.address}</a></li>
                 <li className="flex gap-3"><Phone size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-300" /><a href={site.phoneHref} className="hover:text-white">{site.phone}</a></li>
                 <li className="flex gap-3"><MessageCircle size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-300" /><a href={waLink()} target="_blank" rel="noopener noreferrer" className="hover:text-white">{site.whatsappDisplay} (WhatsApp)</a></li>
+                <li className="flex gap-3"><InstagramIcon /><a href={site.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-white">{site.instagramHandle}</a></li>
                 <li className="flex gap-3"><Mail size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-300" /><a href={`mailto:${site.email}`} className="break-all hover:text-white">{site.email}</a></li>
               </ul>
             </div>

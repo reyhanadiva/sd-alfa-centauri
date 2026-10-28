@@ -9,6 +9,8 @@ export const site = {
   whatsapp: "6281223862294",
   whatsappDisplay: "0812-2386-2294",
   address: "Jl. Terate No. 10, Kota Bandung",
+  instagram: "https://www.instagram.com/sdalfacentauri_official/",
+  instagramHandle: "@sdalfacentauri_official",
 };
 
 export const waLink = (text = "Halo SD Alfa Centauri, saya ingin bertanya tentang SPMB.") =>
@@ -159,7 +161,7 @@ export const jaringan = [
   { label: "SMP Alfa Centauri", href: "https://smpalfacentauri.sch.id/" },
   { label: "SMA Alfa Centauri", href: "https://smaalfacentauri.sch.id/" },
   { label: "English Now", href: "http://englishnow.co.id/" },
-  { label: "LCDU", href: "https://lcdu.org/" },
+  { label: "LCDU (Language Course for Da'wah dan Ummah)", href: "https://lcdu.org/" },
 ];
 
 // Dua poin ringkas di bawah video. Sumber: website lama + transkrip video profil (auto-generated, verifikasi).
@@ -272,3 +274,25 @@ export const lokasi = {
   mapEmbed: "https://www.google.com/maps?q=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung&output=embed",
   mapLink: "https://www.google.com/maps/search/?api=1&query=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung",
 };
+
+// ---------- Galeri Kegiatan ----------
+// Nama kegiatan dari website lama. TODO(foto): hanya "Reading Challenge" memakai foto asli yang ada; sisanya placeholder.
+export const galeri: { title: string; caption: string; photo?: string }[] = [
+  { title: "Reading Challenge", caption: "Siswa menamatkan buku bersama.", photo: "/images/siswa-membaca.jpg" },
+  { title: "River Clean Up", caption: "Belajar peduli lingkungan lewat aksi nyata." },
+  { title: "Parents Day", caption: "Hari kebersamaan sekolah dan orang tua." },
+  { title: "Munaqosyah", caption: "Ujian hafalan Al-Qur'an siswa." },
+  { title: "Fieldtrip", caption: "Belajar langsung di luar kelas." },
+  { title: "Pekan Kreativitas", caption: "Karya dan ide ananda tampil." },
+  { title: "Expo", caption: "Pameran hasil belajar siswa." },
+  { title: "Olimpiade", caption: "Menguji kemampuan lewat kompetisi." },
+];
+
+// ---------- Testimoni ----------
+// CONTOH: kutipan di bawah hanya isian agar tampilan terbayang, BUKAN testimoni asli. Ganti dengan testimoni
+// orang tua yang sudah memberi izin, lalu hapus `contoh` di komponen.
+export const testimoni = [
+  { quote: "Anak saya jadi lebih percaya diri dan senang bercerita tentang sekolahnya setiap pulang.", name: "[Nama], orang tua siswa", note: "Kelas 3" },
+  { quote: "Guru-gurunya sabar dan terbuka berkomunikasi. Kami merasa dilibatkan dalam perkembangan ananda.", name: "[Nama], orang tua siswa", note: "Kelas 5" },
+  { quote: "Pembiasaan ibadah dan karakter berjalan beriringan dengan pelajaran. Itu yang kami cari.", name: "[Nama], orang tua siswa", note: "Kelas 1" },
+];

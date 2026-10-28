@@ -1,29 +1,41 @@
+import { useId } from "react";
 import { Star } from "./Doodles";
 
 // Dekorasi langit bergerak untuk CTA dan footer. Semua aria-hidden; reduce-motion dimatikan lewat CSS global.
+// Awan satu gumpalan dengan tepi membulat dan gradasi lembut (putih ke biru muda), bukan lingkaran tumpuk.
 export function Cloud({ className = "" }: { className?: string }) {
+  const id = `cg${useId().replace(/:/g, "")}`;
   return (
-    <svg viewBox="0 0 120 52" aria-hidden className={className} fill="currentColor">
-      <circle cx="34" cy="32" r="18" />
-      <circle cx="62" cy="22" r="22" />
-      <circle cx="92" cy="32" r="16" />
-      <rect x="16" y="32" width="92" height="18" rx="9" />
+    <svg viewBox="0 0 220 96" aria-hidden className={className}>
+      <defs>
+        <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fff" stopOpacity="0.95" />
+          <stop offset="1" stopColor="#cfe2ff" stopOpacity="0.55" />
+        </linearGradient>
+      </defs>
+      <path
+        fill={`url(#${id})`}
+        d="M40 86C14 86 6 58 30 52c-4-26 30-38 50-20C90 8 134 6 146 34c24-12 56 4 46 28 18 4 20 24-2 24Z"
+      />
     </svg>
   );
 }
 
 const CLOUDS = [
-  { top: "12%", w: "w-24", dur: "70s", delay: "-10s", o: "opacity-70" },
-  { top: "34%", w: "w-36", dur: "95s", delay: "-55s", o: "opacity-90" },
-  { top: "60%", w: "w-20", dur: "80s", delay: "-30s", o: "opacity-60" },
+  { top: "9%", w: "w-28", dur: "85s", delay: "-20s", o: "opacity-[0.16]" },
+  { top: "30%", w: "w-48", dur: "120s", delay: "-70s", o: "opacity-[0.12]" },
+  { top: "52%", w: "w-24", dur: "95s", delay: "-45s", o: "opacity-[0.14]" },
+  { top: "70%", w: "w-40", dur: "140s", delay: "-100s", o: "opacity-[0.1]" },
 ];
 
-export function Clouds({ color = "text-white" }: { color?: string }) {
+// `color` dipertahankan agar pemanggil lama tetap jalan; warna kini dari gradasi awan dan opacity per lapisan.
+export function Clouds({ color: _color }: { color?: string } = {}) {
+  void _color;
   return (
     <>
       {CLOUDS.map((c, i) => (
         <div key={i} aria-hidden className="cloud-drift absolute left-0" style={{ top: c.top, "--dur": c.dur, "--delay": c.delay } as React.CSSProperties}>
-          <Cloud className={`${c.w} ${color} ${c.o}`} />
+          <Cloud className={`${c.w} ${c.o}`} />
         </div>
       ))}
     </>
@@ -91,29 +103,5 @@ export function BinaryStar({ className = "" }: { className?: string }) {
         <Star className="absolute bottom-0 left-1/2 size-[22%] -translate-x-1/2 translate-y-1/4 text-brand-300 drop-shadow-[0_0_10px_rgba(111,162,255,0.9)]" />
       </div>
     </div>
-  );
-}
-
-// Siluet gedung sekolah dengan jendela menyala; dipakai di bukit footer.
-export function SchoolSilhouette({ className = "" }: { className?: string }) {
-  const win = (x: number, y: number, k: number) => (
-    <rect key={`${x}-${y}`} x={x} y={y} width="9" height="12" rx="1.5" fill="#cfe2ff" className="twinkle" style={{ "--dur": `${3 + (k % 3)}s`, "--delay": `${-k * 0.7}s` } as React.CSSProperties} />
-  );
-  const row1 = [40, 60, 80, 205, 225, 245];
-  const row2 = [40, 60, 80, 205, 225, 245];
-  return (
-    <svg viewBox="0 -14 300 144" aria-hidden className={className} fill="#0a1c40">
-      <rect x="20" y="58" width="260" height="72" />
-      <rect x="116" y="34" width="68" height="96" />
-      <polygon points="112,34 150,10 188,34" />
-      <rect x="149" y="-6" width="2" height="18" />
-      <polygon points="151,-6 168,0 151,6" fill="#6fa2ff" />
-      <path d="M138 130V96a12 12 0 0 1 24 0v34Z" fill="#173a7a" />
-      {row1.map((x, k) => win(x, 74, k))}
-      {row2.map((x, k) => win(x, 100, k + 3))}
-      {win(133, 50, 7)}{win(158, 50, 8)}
-      <circle cx="8" cy="112" r="16" /><rect x="6" y="112" width="4" height="18" />
-      <circle cx="294" cy="110" r="18" /><rect x="292" y="110" width="4" height="20" />
-    </svg>
   );
 }

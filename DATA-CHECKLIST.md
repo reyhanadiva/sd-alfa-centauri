@@ -51,7 +51,7 @@ lalu hapus tanda TODO di kode.
 - [ ] Tambahkan fasilitas lain yang benar-benar ada (mis. perpustakaan, hanya muncul sebagai menu di website lama tanpa keterangan) + keterangan singkat.
 - [ ] Baris "Di setiap kelas: Proyektor, AC, CCTV, Internet 24 jam" (`perKelas`): konfirmasi TV interaktif juga di setiap kelas atau tidak.
 - [ ] **Foto fasilitas**: semua kartu placeholder berlabel; minta foto asli tiap fasilitas.
-- [ ] Fasilitas tampil dalam 2 gaya (Daftar dan Kipas) berurutan di page.tsx; pilih satu atau pakai Kipas di tempat lain (mis. Galeri).
+- [x] Fasilitas memakai gaya Daftar. Gaya Kipas dipindah jadi Galeri Kegiatan.
 - [ ] **Program per ranah**: nama program dari transkrip + salinan Mas Reyhan. Kalimat tagline per tab ("Iman yang tumbuh lewat kebiasaan", dst.) dan deskripsi pendek (Surala, Reading Challenge) adalah tulisan saya.
 - [ ] Foto tab Taqwa dan Kreatif masih placeholder; tab Cerdas memakai foto siswa membaca.
 - [ ] Ekskul: daftar dari transkrip ("Menari" kemungkinan salah dengar); foto per kegiatan diisi lewat `photo` di `ekskul`
@@ -78,3 +78,10 @@ Komponen `Praktis.tsx` dan data `infoCepat` masih ada tapi tidak ditampilkan. Pa
 - [ ] Footer/CTA kini satu adegan (Closing.tsx): siluet sekolah hanya ilustrasi generik, bukan gambar gedung asli.
 - [ ] Footer: deskripsi singkat adalah tulisan saya; tautan jaringan dari Mas Reyhan (Yayasan, TK, SMP, SMA, English Now, LCDU). Instagram/sosmed belum ada, tambahkan bila ada.
 - [ ] CTA penutup: tombol Daftar SPMB membuka WhatsApp (belum ada halaman pendaftaran). Tahun ajaran 2026/2027 masih placeholder.
+
+## Galeri, Testimoni, penutup
+
+- [ ] Galeri Kegiatan: nama kegiatan dari website lama; hanya Reading Challenge memakai foto asli. Minta foto kegiatan lain (dan izin memuat wajah anak).
+- [ ] Testimoni: CONTOH, bukan testimoni asli (ada label "Contoh isi" di halaman). Ganti dengan kutipan nyata yang sudah diizinkan, lalu hapus label.
+- [ ] LCDU di footer ditulis "Language Course for Da'wah dan Ummah" sesuai halaman lcdu.org; konfirmasi nama yang dipakai.
+- [ ] Instagram footer: @sdalfacentauri_official (dari Mas Reyhan).
