@@ -1,6 +1,7 @@
 import { prestasi } from "@/lib/site";
 import { CountUp } from "./CountUp";
 import { Star } from "./Doodles";
+import { SnapRail } from "./SnapRail";
 
 // Total prestasi (angka besar) + sorotan per kategori. Tanpa tombol: halaman prestasi lengkap belum ada.
 // Semua angka/nama lomba masih placeholder (lihat `prestasi` di site.ts).
@@ -30,9 +31,9 @@ export function Prestasi() {
             </div>
           </div>
 
-          <div className="grid gap-3.5 sm:grid-cols-2">
+          <SnapRail label="Prestasi per kategori" basis="86%" className="sm:grid sm:grid-cols-2">
             {prestasi.categories.map((c, i) => (
-              <article key={c.name} className={`reveal flex flex-col rounded-[2rem] p-6 ${tones[i]}`}>
+              <article key={c.name} className={`flex flex-col rounded-[2rem] p-6 ${tones[i]}`}>
                 <div className="flex items-baseline justify-between gap-3">
                   <h3 className="text-xl font-semibold">{c.name}</h3>
                   <p className="font-display text-[1.9rem] font-semibold leading-none tracking-[-0.03em] text-brand-600">{c.count}</p>
@@ -47,7 +48,7 @@ export function Prestasi() {
                 </ul>
               </article>
             ))}
-          </div>
+          </SnapRail>
         </div>
       </div>
     </section>

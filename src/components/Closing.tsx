@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUp, ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { jaringan, lokasi, site, spmb, thisYear, waLink } from "@/lib/site";
 import { BinaryStar, Cloud, Clouds, ShootingStars, Twinkles } from "./Sky";
 
@@ -126,9 +126,6 @@ export function Closing() {
 
           <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/15 pt-5 text-[13.5px] text-white/55">
             <p>© {thisYear} {site.name}. Seluruh hak cipta dilindungi.</p>
-            <a href="#hero" className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-semibold text-white/80 ring-1 ring-white/25 transition hover:bg-white/10 hover:text-white">
-              Kembali ke atas <ArrowUp size={14} aria-hidden />
-            </a>
           </div>
         </div>
       </footer>

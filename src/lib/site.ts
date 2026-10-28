@@ -289,10 +289,14 @@ export const galeri: { title: string; caption: string; photo?: string }[] = [
 ];
 
 // ---------- Testimoni ----------
-// CONTOH: kutipan di bawah hanya isian agar tampilan terbayang, BUKAN testimoni asli. Ganti dengan testimoni
-// orang tua yang sudah memberi izin, lalu hapus `contoh` di komponen.
-export const testimoni = [
-  { quote: "Anak saya jadi lebih percaya diri dan senang bercerita tentang sekolahnya setiap pulang.", name: "[Nama], orang tua siswa", note: "Kelas 3" },
-  { quote: "Guru-gurunya sabar dan terbuka berkomunikasi. Kami merasa dilibatkan dalam perkembangan ananda.", name: "[Nama], orang tua siswa", note: "Kelas 5" },
-  { quote: "Pembiasaan ibadah dan karakter berjalan beriringan dengan pelajaran. Itu yang kami cari.", name: "[Nama], orang tua siswa", note: "Kelas 1" },
+// CONTOH: nama, profesi/jabatan, dan kutipan hanya isian agar tampilan terbayang, BUKAN testimoni asli.
+// Ganti dengan testimoni orang tua yang sudah memberi izin. `persona` = profesi/jabatan/status (tampil sebagai pil).
+// `photo`: path foto orang tua (mis. "/images/testimoni/bu-sari.jpg", persegi 600x600), kosong = inisial.
+export const testimoni: { quote: string; name: string; persona: string; note: string; photo?: string }[] = [
+  { quote: "Anak saya jadi lebih percaya diri dan senang bercerita tentang sekolahnya setiap pulang.", name: "[Nama]", persona: "Dokter spesialis anak", note: "Orang tua siswa kelas 3" },
+  { quote: "Guru-gurunya sabar dan terbuka berkomunikasi. Kami merasa dilibatkan dalam perkembangan ananda.", name: "[Nama]", persona: "Dosen perguruan tinggi", note: "Orang tua siswa kelas 5" },
+  { quote: "Pembiasaan ibadah dan karakter berjalan beriringan dengan pelajaran. Itu yang kami cari.", name: "[Nama]", persona: "Pengusaha", note: "Orang tua siswa kelas 1" },
+  { quote: "Anak kami berkebutuhan khusus, dan pendampingannya membuat ia berkembang dengan caranya sendiri.", name: "[Nama]", persona: "Ibu rumah tangga", note: "Orang tua siswa kelas 2" },
+  { quote: "Sekolah yang menyeimbangkan prestasi dan akhlak. Anak berangkat dengan senang setiap pagi.", name: "[Nama]", persona: "Pejabat pemerintah daerah", note: "Orang tua siswa kelas 4" },
+  { quote: "Informasi dari sekolah jelas dan cepat, jadi kami yang bekerja tetap tenang memantau ananda.", name: "[Nama]", persona: "Karyawan swasta", note: "Orang tua siswa kelas 6" },
 ];

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Phone, Send, X } from "lucide-react";
 import { nav, portals, site, spmb } from "@/lib/site";
 import { LangToggle } from "./LangToggle";
@@ -11,6 +11,7 @@ export function Navbar() {
   const [solid, setSolid] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  const bar = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let last = window.scrollY;
@@ -22,11 +23,15 @@ export function Navbar() {
       const hero = document.getElementById("hero");
       const heroEnd = hero ? hero.offsetTop + hero.offsetHeight - 96 : 80;
       setSolid(y > heroEnd);
+      // garis progres baca halaman (tanpa render ulang)
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
       const delta = y - last;
       if (Math.abs(delta) > 4) {
         // Baru sembunyi setelah scroll turun cukup jauh (±350px); naik sedikit saja langsung muncul.
         down = delta > 0 ? down + delta : 0;
-        setHidden(delta > 0 && down > 350 && y > 200);
+        // Navbar tetap menggantung sepanjang hero; baru boleh sembunyi setelah hero lewat.
+        setHidden(delta > 0 && down > 350 && y > heroEnd);
         last = y;
       }
       if (y < 40) setHidden(false);
@@ -53,6 +58,7 @@ export function Navbar() {
 
   return (
     <>
+      <div ref={bar} aria-hidden className="fixed inset-x-0 top-0 z-[55] h-[3px] origin-left scale-x-0 bg-brand-500" />
       {/* Transparan di atas hero (teks putih), solid setelah melewati hero. Sembunyi saat scroll turun. */}
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,box-shadow,border-color] duration-300 ${

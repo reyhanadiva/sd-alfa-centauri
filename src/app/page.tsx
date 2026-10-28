@@ -4,8 +4,10 @@ import { About } from "@/components/About";
 import { WhyChoose } from "@/components/WhyChoose";
 import { FasilitasDaftar } from "@/components/Fasilitas";
 import { Galeri } from "@/components/Galeri";
+import { AskWidget } from "@/components/AskWidget";
+import { Angka } from "@/components/Angka";
+import { Jenjang } from "@/components/Jenjang";
 import { Testimoni } from "@/components/Testimoni";
-import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Closing } from "@/components/Closing";
 import { Berita } from "@/components/Berita";
 import { Faq } from "@/components/Faq";
@@ -23,6 +25,7 @@ export default function Home() {
         <Hero />
         <About />
         <WhyChoose />
+        <Angka />
         <Program />
         <FasilitasDaftar />
         <Inklusi />
@@ -30,12 +33,13 @@ export default function Home() {
         <Prestasi />
         <Galeri />
         <Testimoni />
+        <Jenjang />
         <Berita />
         <Faq />
         <Lokasi />
       </main>
       <Closing />
-      <MobileCtaBar />
+      <AskWidget />
     </>
   );
 }

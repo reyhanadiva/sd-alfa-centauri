@@ -3,6 +3,7 @@ import { ssc, unggulanPills, waLink } from "@/lib/site";
 import { ExpandChips } from "./ExpandChips";
 import { CertificateDialog } from "./CertificateDialog";
 import { Photo } from "./Photo";
+import { SnapRail } from "./SnapRail";
 
 // Tiga alasan (Akreditasi A, Program Unggulan Terpadu, Kemitraan SSC) + satu kartu tanya admin.
 // Tiap kartu sengaja beda gaya: huruf raksasa, foto latar, tipografi di atas navy, kartu bergaya form.
@@ -22,9 +23,10 @@ export function WhyChoose() {
           Mengapa memilih <span className="em-serif text-brand-600">SD Alfa Centauri?</span>
         </h2>
 
-        <div className="mt-8 grid gap-3.5 sm:grid-cols-2 lg:mt-9 lg:h-[min(34rem,calc(100svh-17rem))] lg:grid-cols-12 lg:grid-rows-2">
+        <div className="mt-8 lg:mt-9">
+        <SnapRail label="Alasan memilih" className="sm:grid sm:grid-cols-2 lg:h-[min(34rem,calc(100svh-17rem))] lg:grid-cols-12 lg:grid-rows-2">
           {/* 1. Akreditasi: huruf raksasa */}
-          <article className="reveal relative flex min-h-[22rem] flex-col overflow-hidden rounded-[2rem] bg-brand-100 p-7 sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:min-h-0">
+          <article className="relative flex min-h-[22rem] flex-col overflow-hidden rounded-[2rem] bg-brand-100 p-7 sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:min-h-0">
             <h3 className="text-2xl font-semibold">Terakreditasi A</h3>
             <p className="mt-1.5 max-w-[17rem] text-[16px] leading-snug text-navy-700">
               Standar mutu pendidikan yang diakui BAN-S/M.
@@ -41,7 +43,7 @@ export function WhyChoose() {
           </article>
 
           {/* 2. Program unggulan: foto sebagai latar */}
-          <article className="reveal relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[2rem] p-7 text-white sm:col-span-2 lg:col-span-8 lg:min-h-0">
+          <article className="relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[2rem] p-7 text-white sm:col-span-2 lg:col-span-8 lg:min-h-0">
             <Photo
               src="/images/siswa-membaca.jpg"
               alt="Siswa SD Alfa Centauri membaca buku di luar kelas"
@@ -58,7 +60,7 @@ export function WhyChoose() {
           </article>
 
           {/* 3. Kemitraan SSC: tipografi di atas navy */}
-          <article className="reveal relative flex min-h-[15rem] flex-col overflow-hidden rounded-[2rem] bg-navy-900 p-7 text-white lg:col-span-5 lg:min-h-0">
+          <article className="relative flex min-h-[15rem] flex-col overflow-hidden rounded-[2rem] bg-navy-900 p-7 text-white lg:col-span-5 lg:min-h-0">
             <p
               aria-hidden
               className="pointer-events-none absolute -bottom-6 -right-3 select-none font-display text-[8.5rem] font-semibold leading-none tracking-[-0.07em] text-white/[0.07]"
@@ -84,7 +86,7 @@ export function WhyChoose() {
             href={waLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="reveal group relative flex min-h-[10rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-brand-600 p-6 text-white transition hover:bg-brand-700 sm:col-span-2 lg:col-span-3 lg:min-h-0"
+            className="group relative flex min-h-[10rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-brand-600 p-6 text-white transition hover:bg-brand-700 sm:col-span-2 lg:col-span-3 lg:min-h-0"
           >
             <span className="grid size-11 place-items-center rounded-full bg-white/15 ring-1 ring-white/30">
               <MessageCircle size={21} aria-hidden />
@@ -96,6 +98,7 @@ export function WhyChoose() {
               </p>
             </div>
           </a>
+        </SnapRail>
         </div>
       </div>
     </section>

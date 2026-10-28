@@ -267,3 +267,9 @@ html {
 .glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
 @keyframes sway { 0%, 100% { transform: translateX(-1.2rem); } 50% { transform: translateX(1.2rem); } }
 .sway { animation: sway 14s ease-in-out infinite; }
+
+/* Cincin progres melingkar (testimoni) */
+@keyframes ring-dash { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.ring-dash { stroke-dasharray: 1; animation: ring-dash 6s linear forwards; }
+@keyframes dash-run { to { stroke-dashoffset: -12; } }
+.dash-run { animation: dash-run 1.2s linear infinite; }

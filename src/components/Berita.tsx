@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { berita } from "@/lib/site";
 import { Photo } from "./Photo";
+import { SnapRail } from "./SnapRail";
 
 const pastel = ["bg-brand-100", "bg-[#e3f4ff]", "bg-[#e6f9f0]", "bg-[#fff1e6]"];
 
@@ -27,11 +28,12 @@ export function Berita() {
           </a>
         </div>
 
-        <ul className="mt-8 grid gap-3.5 sm:grid-cols-2 lg:mt-9 lg:h-[min(28rem,calc(100svh-19rem))] lg:grid-cols-5">
+        <div className="mt-8 lg:mt-9">
+        <SnapRail label="Berita terbaru" basis="80%" className="sm:grid sm:grid-cols-2 lg:h-[min(28rem,calc(100svh-19rem))] lg:grid-cols-5">
           {berita.map((b, i) => {
             const feat = i === 0;
             return (
-              <li key={b.title} className={`reveal ${feat ? "sm:col-span-2 lg:col-span-2" : ""}`}>
+              <div key={b.title} className={feat ? "sm:col-span-2 lg:col-span-2" : ""}>
                 <a
                   href={b.href}
                   className={`group flex h-full min-h-[22rem] flex-col rounded-[2rem] p-5 transition hover:-translate-y-1 hover:shadow-lift lg:min-h-0 ${feat ? "bg-navy-900 text-white" : pastel[i % pastel.length]}`}
@@ -52,10 +54,11 @@ export function Berita() {
                     <Photo src={b.photo} alt="" label="Foto berita" sizes="(min-width:1024px) 460px, 94vw" className="transition duration-700 group-hover:scale-105" />
                   </div>
                 </a>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </SnapRail>
+        </div>
       </div>
     </section>
   );

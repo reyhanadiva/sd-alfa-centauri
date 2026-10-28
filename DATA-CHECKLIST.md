@@ -82,6 +82,8 @@ Komponen `Praktis.tsx` dan data `infoCepat` masih ada tapi tidak ditampilkan. Pa
 ## Galeri, Testimoni, penutup
 
 - [ ] Galeri Kegiatan: nama kegiatan dari website lama; hanya Reading Challenge memakai foto asli. Minta foto kegiatan lain (dan izin memuat wajah anak).
-- [ ] Testimoni: CONTOH, bukan testimoni asli (ada label "Contoh isi" di halaman). Ganti dengan kutipan nyata yang sudah diizinkan, lalu hapus label.
+- [ ] Testimoni: 6 CONTOH (nama "[Nama]", profesi/jabatan, kutipan semuanya isian, label "contoh" sudah dihapus dari halaman). Ganti dengan testimoni nyata + foto + persetujuan tertulis. Foto: simpan persegi/portrait 4:5 di public/images/testimoni/, isi `photo`.
+- [ ] Asisten "Tanya Alfa" (kanan bawah): jawabannya dari `faqs` (site.ts) dan fasilitas; ikut berubah bila FAQ diisi data asli. Bukan AI, tanpa backend.
+- [ ] Section Angka (tahun, ranah, ekskul, pilar) dan Jenjang (TK-SD-SMP-SMA) memakai data yang ada; cek kebenaran klaim jenjang.
 - [ ] LCDU di footer ditulis "Language Course for Da'wah dan Ummah" sesuai halaman lcdu.org; konfirmasi nama yang dipakai.
 - [ ] Instagram footer: @sdalfacentauri_official (dari Mas Reyhan).

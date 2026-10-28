@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { galeri } from "@/lib/site";
+import { Maximize2 } from "lucide-react";
 import { Photo } from "./Photo";
+import { SnapRail } from "./SnapRail";
 
 // Galeri kegiatan: kartu mengipas di bawah judul besar; klik untuk memperbesar. Isi: `galeri` di site.ts.
 const N = galeri.length;
@@ -24,7 +26,7 @@ export function Galeri() {
           Galeri <span className="em-serif text-brand-600">kegiatan</span>
         </h2>
 
-        <ul aria-label="Galeri kegiatan" className="relative mx-auto mt-6 mb-16 h-[min(17rem,32svh)] sm:mb-24">
+        <ul aria-label="Galeri kegiatan" className="relative mx-auto mt-6 mb-16 hidden sm:block h-[min(17rem,32svh)] sm:mb-24">
           {galeri.map((x, k) => {
             const d = k - mid;
             return (
@@ -47,7 +49,25 @@ export function Galeri() {
             );
           })}
         </ul>
-        <p className="mt-8 text-center text-[15px] text-navy-700/80">Klik foto untuk memperbesar.</p>
+        {/* Ponsel: geser satu per satu (kipas hanya untuk layar lebar) */}
+        <div className="mt-8 sm:hidden">
+          <SnapRail label="Galeri kegiatan" basis="72%">
+            {galeri.map((x, k) => (
+              <button
+                key={x.title}
+                type="button"
+                onClick={() => setZoom(k)}
+                aria-label={`Perbesar: ${x.title}`}
+                className="relative isolate block aspect-[4/5] overflow-hidden rounded-[1.75rem] text-left shadow-lift ring-4 ring-white"
+              >
+                <Photo src={x.photo} alt={x.title} label={x.title} sizes="70vw" className="-z-20" />
+                <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
+                <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-navy-900"><Maximize2 size={15} aria-hidden /></span>
+                <span className="absolute inset-x-4 bottom-4 text-lg font-semibold leading-tight text-white">{x.title}</span>
+              </button>
+            ))}
+          </SnapRail>
+        </div>
       </div>
 
       {z && (
