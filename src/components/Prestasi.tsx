@@ -31,7 +31,7 @@ export function Prestasi() {
             </div>
           </div>
 
-          <SnapRail label="Prestasi per kategori" basis="86%" className="sm:grid sm:grid-cols-2">
+          <SnapRail label="Prestasi per kategori" basis="86%" wrapperClassName="lg:h-full" className="sm:grid sm:grid-cols-2 lg:h-full lg:grid-rows-2">
             {prestasi.categories.map((c, i) => (
               <article key={c.name} className={`flex flex-col rounded-[2rem] p-6 ${tones[i]}`}>
                 <div className="flex items-baseline justify-between gap-3">

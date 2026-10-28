@@ -5,8 +5,6 @@ import { WhyChoose } from "@/components/WhyChoose";
 import { FasilitasDaftar } from "@/components/Fasilitas";
 import { Galeri } from "@/components/Galeri";
 import { AskWidget } from "@/components/AskWidget";
-import { Angka } from "@/components/Angka";
-import { Jenjang } from "@/components/Jenjang";
 import { Testimoni } from "@/components/Testimoni";
 import { Closing } from "@/components/Closing";
 import { Berita } from "@/components/Berita";
@@ -25,7 +23,6 @@ export default function Home() {
         <Hero />
         <About />
         <WhyChoose />
-        <Angka />
         <Program />
         <FasilitasDaftar />
         <Inklusi />
@@ -33,7 +30,6 @@ export default function Home() {
         <Prestasi />
         <Galeri />
         <Testimoni />
-        <Jenjang />
         <Berita />
         <Faq />
         <Lokasi />

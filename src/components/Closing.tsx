@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Download, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { jaringan, lokasi, site, spmb, thisYear, waLink } from "@/lib/site";
 import { BinaryStar, Cloud, Clouds, ShootingStars, Twinkles } from "./Sky";
 
@@ -33,10 +33,7 @@ export function Closing() {
 
         <div className="relative mx-auto flex max-w-3xl flex-col items-center">
           <BinaryStar className="size-28 sm:size-36" />
-          <p className="mt-9 rounded-full bg-white/10 px-4 py-1.5 text-[13px] font-semibold ring-1 ring-white/25 backdrop-blur">
-            SPMB {spmb.academicYear}
-          </p>
-          <h2 id="cta-title" className="mt-5 text-[2.6rem] font-semibold leading-[1.02] !text-white sm:text-6xl lg:text-[4.4rem]">
+          <h2 id="cta-title" className="mt-9 text-[2.6rem] font-semibold leading-[1.02] !text-white sm:text-6xl lg:text-[4.4rem]">
             Siap bertumbuh bersama <span className="em-serif text-brand-300">Alfa Centauri?</span>
           </h2>
           <p className="mt-5 max-w-xl text-[18px] leading-relaxed text-white/80">
@@ -60,6 +57,13 @@ export function Closing() {
               <MessageCircle size={19} aria-hidden /> Tanya admin
             </a>
           </div>
+          <a
+            href={site.brosurHref || waLink("Halo SD Alfa Centauri, saya ingin meminta brosur.")}
+            {...(site.brosurHref ? { download: true } : { target: "_blank", rel: "noopener noreferrer" })}
+            className="mt-6 inline-flex items-center gap-2 text-[15.5px] font-semibold text-brand-200 underline decoration-brand-300/50 underline-offset-4 transition hover:text-white"
+          >
+            <Download size={17} aria-hidden /> {site.brosurHref ? "Unduh brosur" : "Minta brosur lewat WhatsApp"}
+          </a>
         </div>
       </section>
 
@@ -79,26 +83,26 @@ export function Closing() {
 
       {/* ---------- Footer ---------- */}
       <footer className="bg-navy-900">
-        <div className="mx-auto w-full max-w-[78rem] px-5 pb-8 pt-4 sm:px-8">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.7fr_1.1fr_1fr] lg:gap-12">
-            <div>
+        <div className="mx-auto w-full max-w-[78rem] px-5 pb-20 pt-4 sm:px-8 sm:pb-8">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-[1.4fr_0.7fr_1.1fr_1fr] lg:gap-12">
+            <div className="col-span-2 lg:col-span-1">
               <Image src="/images/logo-horizontal-white.png" alt="SD Alfa Centauri" width={220} height={56} className="h-12 w-auto" />
               <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-white/70">
-                Sekolah dasar Islam inklusif di Bandung, terakreditasi A.
+                Sekolah dasar inklusif di Bandung, terakreditasi A.
               </p>
               <p className="mt-3 max-w-xs text-[15px] font-semibold leading-snug text-brand-200">{site.tagline}</p>
             </div>
 
-            <nav aria-label="Jelajahi">
+            <nav aria-label="Jelajahi" className="order-3 lg:order-none">
               <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] !text-white/55">Jelajahi</h3>
-              <ul className="mt-4 space-y-2.5 text-[15px]">
+              <ul className="mt-3 space-y-2 text-[15px] lg:mt-4 lg:space-y-2.5">
                 {jelajah.map(([l, h]) => (
                   <li key={h}><a href={h} className="text-white/80 hover:text-white">{l}</a></li>
                 ))}
               </ul>
             </nav>
 
-            <div>
+            <div className="order-2 col-span-2 lg:order-none lg:col-span-1">
               <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] !text-white/55">Kunjungi kami</h3>
               <ul className="mt-4 space-y-3.5 text-[15px] text-white/80">
                 <li className="flex gap-3"><MapPin size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-300" /><a href={lokasi.mapLink} target="_blank" rel="noopener noreferrer" className="hover:text-white">{site.address}</a></li>
@@ -109,9 +113,9 @@ export function Closing() {
               </ul>
             </div>
 
-            <div>
+            <div className="order-4 lg:order-none">
               <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] !text-white/55">Jaringan pendidikan</h3>
-              <ul className="mt-4 space-y-2.5 text-[15px]">
+              <ul className="mt-3 space-y-2 text-[15px] lg:mt-4 lg:space-y-2.5">
                 {jaringan.map((j) => (
                   <li key={j.href}>
                     <a href={j.href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1.5 text-white/80 hover:text-white">
@@ -124,7 +128,7 @@ export function Closing() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/15 pt-5 text-[13.5px] text-white/55">
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-white/15 pt-5 text-[13.5px] text-white/55">
             <p>© {thisYear} {site.name}. Seluruh hak cipta dilindungi.</p>
           </div>
         </div>

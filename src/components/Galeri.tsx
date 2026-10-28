@@ -12,6 +12,7 @@ const N = galeri.length;
 export function Galeri() {
   const mid = (N - 1) / 2;
   const [zoom, setZoom] = useState<number | null>(null);
+  const [focus, setFocus] = useState(Math.floor(mid)); // kartu yang sedang di-hover/fokus, judulnya tampil di bawah kipas
   useEffect(() => {
     if (zoom === null) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setZoom(null);
@@ -26,12 +27,14 @@ export function Galeri() {
           Galeri <span className="em-serif text-brand-600">kegiatan</span>
         </h2>
 
-        <ul aria-label="Galeri kegiatan" className="relative mx-auto mt-6 mb-16 hidden sm:block h-[min(17rem,32svh)] sm:mb-24">
+        <ul aria-label="Galeri kegiatan" className="relative mx-auto mt-6 hidden h-[min(17rem,32svh)] sm:mb-10 sm:block">
           {galeri.map((x, k) => {
             const d = k - mid;
             return (
               <li
                 key={x.title}
+                onMouseEnter={() => setFocus(k)}
+                onFocus={() => setFocus(k)}
                 style={{ "--d": d, zIndex: 20 - Math.round(Math.abs(d) * 2) } as React.CSSProperties}
                 className="group absolute left-1/2 top-0 -ml-[4.5rem] h-full w-[9rem] translate-x-[calc(var(--d)*var(--u))] translate-y-[calc(var(--d)*var(--d)*0.45rem)] rotate-[calc(var(--d)*4.5deg)] transition duration-500 ease-out hover:z-50 hover:-translate-y-5 hover:rotate-0 hover:scale-105 sm:-ml-[5.5rem] sm:w-[11rem] lg:-ml-[6.5rem] lg:w-[13rem]"
               >
@@ -43,12 +46,17 @@ export function Galeri() {
                 >
                   <Photo src={x.photo} alt={x.title} label={x.title} sizes="208px" className="-z-20" />
                   <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
-                  <span className="absolute inset-x-3 bottom-3 text-[14px] font-semibold leading-tight text-white sm:text-[15px]">{x.title}</span>
                 </button>
               </li>
             );
           })}
         </ul>
+        {/* Judul kartu yang sedang disorot: kartu saling menimpa, jadi judul ditaruh di bawah kipas */}
+        <div aria-live="polite" className="hidden text-center sm:block">
+          <p key={focus} className="fade-in text-2xl font-semibold text-navy-900">{galeri[focus].title}</p>
+          <p className="mt-1 text-[16px] text-navy-700">{galeri[focus].caption}</p>
+        </div>
+
         {/* Ponsel: geser satu per satu (kipas hanya untuk layar lebar) */}
         <div className="mt-8 sm:hidden">
           <SnapRail label="Galeri kegiatan" basis="72%">

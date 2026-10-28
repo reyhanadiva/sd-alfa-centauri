@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fasilitas, perKelas } from "@/lib/site";
 import { Photo } from "./Photo";
 
@@ -11,9 +11,9 @@ import { Photo } from "./Photo";
 const pad = (n: number) => String(n).padStart(2, "0");
 const N = fasilitas.length;
 
-const H2 = ({ className = "", light = false }: { className?: string; light?: boolean }) => (
-  <h2 id="fasilitas-title" className={`text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem] ${light ? "!text-white" : ""} ${className}`}>
-    Ruang belajar yang{" "}
+const H2 = ({ className = "", light = false, id = "fasilitas-title" }: { className?: string; light?: boolean; id?: string }) => (
+  <h2 id={id} className={`text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem] ${light ? "!text-white" : ""} ${className}`}>
+    Fasilitas yang{" "}
     <span className={`em-serif ${light ? "text-brand-200" : "text-brand-600"}`}>lengkap</span>
   </h2>
 );
@@ -56,12 +56,49 @@ export function FasilitasDaftar() {
   }, [i]);
   const f = fasilitas[i];
 
+  // Ponsel: chip aktif digulir ke tengah barisnya (tanpa menggulir halaman)
+  const chips = useRef<HTMLUListElement>(null);
+  useEffect(() => {
+    const row = chips.current;
+    const el = row?.children[i] as HTMLElement | undefined;
+    if (row && el) row.scrollTo({ left: el.offsetLeft - (row.clientWidth - el.offsetWidth) / 2, behavior: "smooth" });
+  }, [i]);
+
   return (
-    <section
-      id="fasilitas"
-      aria-labelledby="fasilitas-title"
-      className="relative isolate overflow-hidden text-white lg:h-[calc(100svh-5rem)] lg:min-h-[44rem]"
-    >
+    <section id="fasilitas" aria-labelledby="fasilitas-title">
+      {/* ---------- Ponsel: foto di atas (terlihat penuh), pilihan fasilitas di bawahnya ---------- */}
+      <div className="px-5 py-14 sm:px-8 lg:hidden">
+        <H2 id="fasilitas-title-m" />
+        <div className="relative isolate mt-7 aspect-[4/3] overflow-hidden rounded-[2rem] text-white shadow-lift">
+          <Stack i={i} sizes="94vw" />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-navy-900/10" />
+          <p key={`m${i}`} className="fade-in absolute left-5 top-4 font-display text-5xl font-semibold leading-none text-white/80">{pad(i + 1)}</p>
+          <div key={`t${i}`} className="fade-in absolute inset-x-5 bottom-4">
+            <h3 className="text-2xl font-semibold !text-white">{f.title}</h3>
+            {f.caption && <p className="mt-1 text-[15px] leading-snug text-white/85">{f.caption}</p>}
+          </div>
+        </div>
+        <ul ref={chips} aria-label="Daftar fasilitas" className="-mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {fasilitas.map((x, k) => (
+            <li key={x.title} className="shrink-0">
+              <button
+                type="button"
+                onClick={() => setI(k)}
+                aria-current={k === i}
+                className={`relative flex items-center gap-2 overflow-hidden rounded-full px-4 py-2.5 text-[15px] font-semibold transition-colors duration-300 ${k === i ? "bg-navy-900 text-white" : "bg-brand-50 text-navy-800 ring-1 ring-brand-100"}`}
+              >
+                <span className={`tabular-nums ${k === i ? "text-brand-300" : "text-brand-600"}`}>{pad(k + 1)}</span>
+                {x.title}
+                {k === i && <span key={i} className="bar-fill absolute inset-x-0 bottom-0 h-0.5 bg-brand-400" />}
+              </button>
+            </li>
+          ))}
+        </ul>
+        <PerKelas className="mt-6" />
+      </div>
+
+      {/* ---------- Layar lebar: latar foto penuh + daftar bernomor ---------- */}
+      <div className="relative isolate hidden overflow-hidden text-white lg:block lg:h-[calc(100svh-5rem)] lg:min-h-[44rem]">
       <div className="absolute inset-0 -z-20"><Stack i={i} /></div>
       <div aria-hidden className="absolute inset-0 -z-10 bg-navy-900/55" />
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900/80 via-navy-900/20 to-navy-900/30" />
@@ -73,7 +110,7 @@ export function FasilitasDaftar() {
             <p key={`n${i}`} className="fade-in font-display text-[6rem] font-semibold leading-none tracking-[-0.05em] text-white/35 sm:text-[8rem]">{pad(i + 1)}</p>
             <div key={i} className="fade-in">
               <h3 className="mt-1 text-3xl font-semibold !text-white sm:text-4xl">{f.title}</h3>
-              <p className="mt-1.5 max-w-sm text-[16px] text-white/80">{f.caption}</p>
+              {f.caption && <p className="mt-1.5 max-w-sm text-[16px] text-white/80">{f.caption}</p>}
             </div>
             <PerKelas dark className="mt-7 max-w-2xl" />
           </div>
@@ -95,6 +132,7 @@ export function FasilitasDaftar() {
             </li>
           ))}
         </ul>
+      </div>
       </div>
     </section>
   );

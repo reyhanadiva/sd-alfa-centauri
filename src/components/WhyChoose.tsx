@@ -2,6 +2,7 @@ import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { ssc, unggulanPills, waLink } from "@/lib/site";
 import { ExpandChips } from "./ExpandChips";
 import { CertificateDialog } from "./CertificateDialog";
+import { Angka } from "./Angka";
 import { Photo } from "./Photo";
 import { SnapRail } from "./SnapRail";
 
@@ -13,7 +14,7 @@ export function WhyChoose() {
     <section
       id="mengapa"
       aria-labelledby="mengapa-title"
-      className="px-5 py-16 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6"
+      className="px-5 py-16 sm:px-8 lg:py-20"
     >
       <div className="mx-auto w-full max-w-[78rem]">
         <h2
@@ -100,6 +101,7 @@ export function WhyChoose() {
           </a>
         </SnapRail>
         </div>
+        <Angka />
       </div>
     </section>
   );

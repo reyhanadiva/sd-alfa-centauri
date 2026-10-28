@@ -1,5 +1,6 @@
 import { lsuActivities, lsuPoints } from "@/lib/site";
 import { Star } from "./Doodles";
+import { ActivityRail } from "./ActivityRail";
 import { Icon } from "./icons";
 
 // Tepi atas/bawah melengkung (bukan kotak) supaya peralihan antar section terasa mengalir.
@@ -19,10 +20,8 @@ function Curve({ edge }: { edge: "top" | "bottom" }) {
 }
 
 // Program Pendidikan Inklusif (LSU): gelap dan ringkas. Judul jelas ini program, tiga poin layanan,
-// lalu aktivitas pendampingan yang bergerak pelan sendiri. Tanpa tombol, tanpa foto anak.
+// lalu aktivitas pendampingan yang bergerak pelan sendiri dan bisa digeser. Tanpa tombol, tanpa foto anak.
 export function Inklusi() {
-  const loop = [...lsuActivities, ...lsuActivities];
-
   return (
     <section
       id="inklusi"
@@ -73,22 +72,7 @@ export function Inklusi() {
           <p className="mb-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/50">
             Kegiatan pendampingan
           </p>
-          <div className="marquee-wrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-            <ul className="marquee flex w-max gap-4">
-              {loop.map((a, i) => (
-                <li
-                  key={i}
-                  aria-hidden={i >= lsuActivities.length ? true : undefined}
-                  className="flex h-[8.5rem] w-[12.5rem] shrink-0 flex-col items-center justify-center gap-3 rounded-3xl bg-white/[0.07] p-5 text-center ring-1 ring-white/15"
-                >
-                  <span className="grid size-11 place-items-center rounded-full bg-white text-brand-600">
-                    <Icon name={a.icon} size={21} />
-                  </span>
-                  <span className="text-[16px] font-semibold leading-snug text-white">{a.label}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ActivityRail items={lsuActivities} />
         </div>
       </div>
     </section>

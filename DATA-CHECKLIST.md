@@ -87,3 +87,13 @@ Komponen `Praktis.tsx` dan data `infoCepat` masih ada tapi tidak ditampilkan. Pa
 - [ ] Section Angka (tahun, ranah, ekskul, pilar) dan Jenjang (TK-SD-SMP-SMA) memakai data yang ada; cek kebenaran klaim jenjang.
 - [ ] LCDU di footer ditulis "Language Course for Da'wah dan Ummah" sesuai halaman lcdu.org; konfirmasi nama yang dipakai.
 - [ ] Instagram footer: @sdalfacentauri_official (dari Mas Reyhan).
+
+## Putaran 7 (foto stok, asisten, angka)
+
+- [ ] **Foto stok Pexels** (26 foto: ekskul, ranah Taqwa/Kreatif, fasilitas, galeri) di `site.ts` lewat `px(id)`. Hanya penampung agar tampilan terbayang; ID diambil dari URL halaman Pexels (lisensi bebas pakai), tapi saya tidak bisa melihat gambarnya langsung. Sebagian kurang cocok (Proyektor = orang dewasa presentasi; Taekwondo = karate; Parents Day dan River Clean Up kurang pas; Marching Band pemainnya kemungkinan dewasa). Ganti semuanya dengan foto asli sekolah (izin wajah anak).
+- [ ] Subtitle tiap poin Program (mis. "Dibiasakan bersama di sekolah") adalah rumusan saya; cocokkan dengan kegiatan sebenarnya.
+- [ ] Angka di bawah "Mengapa memilih": hanya "17 tahun" yang pasti; siswa aktif, guru, alumni masih "XX+".
+- [ ] "Bukan SD Islam": kata "Islam" dihapus dari footer dan judul tab browser. Deskripsi meta di layout.tsx masih menyebut "integrasi nilai keislaman" (dari website lama): putuskan dipakai atau tidak. Cek juga bagian lain yang menyebut keislaman (Tahfidz, shalat, mushola adalah fakta program, bukan label sekolah).
+- [ ] Brosur: `site.brosurHref` kosong, tombol di CTA/asisten sementara meminta brosur via WhatsApp. Isi path PDF bila sudah ada.
+- [ ] Asisten "Bintang": basis pengetahuan (`kb` di AskWidget.tsx) hanya berisi fakta yang ada di data. Tambahkan entri saat ada data baru (jam sekolah, seragam, antar-jemput, katering, UKS belum ada datanya).
+- [x] Section "Jenjang" dihapus; tautan unit tetap di footer.

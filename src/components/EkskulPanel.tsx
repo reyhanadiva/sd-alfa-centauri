@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Image as ImageIcon, LayoutGrid } from "lucide-react";
 import { ekskul } from "@/lib/site";
 import { Icon } from "./icons";
@@ -12,6 +12,21 @@ export function EkskulPanel() {
   const [mode, setMode] = useState<"grid" | "foto">("grid");
   const [idx, setIdx] = useState(0);
   const rail = useRef<HTMLUListElement>(null);
+  const jump = useRef<number | null>(null); // indeks tujuan saat pindah dari Kisi ke Foto
+
+  // Klik item di tampilan Kisi: pindah ke Foto dan langsung ke kegiatan itu.
+  const open = (i: number) => {
+    jump.current = i;
+    setIdx(i);
+    setMode("foto");
+  };
+  useEffect(() => {
+    const el = rail.current;
+    if (mode === "foto" && el && jump.current !== null) {
+      el.scrollTo({ left: jump.current * el.clientWidth, behavior: "instant" });
+      jump.current = null;
+    }
+  }, [mode]);
 
   const go = (i: number) => {
     const el = rail.current;
@@ -31,7 +46,12 @@ export function EkskulPanel() {
           <h3 className="text-2xl font-semibold !text-white">Ekstrakurikuler</h3>
           <p className="mt-1 text-[15px] text-white/65">Beragam kegiatan sesuai minat ananda.</p>
         </div>
-        <div role="group" aria-label="Tampilan" className="flex shrink-0 rounded-full bg-white/10 p-1">
+        <div role="group" aria-label="Tampilan" className="relative flex shrink-0 rounded-full bg-white/10 p-1">
+          <span
+            aria-hidden
+            className="absolute inset-y-1 left-1 w-9 rounded-full bg-white shadow transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{ transform: `translateX(${mode === "grid" ? 0 : 100}%)` }}
+          />
           {(
             [
               ["grid", "Kisi", LayoutGrid],
@@ -44,8 +64,8 @@ export function EkskulPanel() {
               onClick={() => setMode(m)}
               aria-pressed={mode === m}
               aria-label={`Tampilan ${label}`}
-              className={`grid size-9 place-items-center rounded-full transition ${
-                mode === m ? "bg-white text-navy-900" : "text-white/70 hover:text-white"
+              className={`relative z-10 grid size-9 place-items-center rounded-full transition-colors duration-300 ${
+                mode === m ? "text-navy-900" : "text-white/70 hover:text-white"
               }`}
             >
               <I size={16} aria-hidden />
@@ -56,15 +76,19 @@ export function EkskulPanel() {
 
       {mode === "grid" ? (
         <ul key="grid" className="fade-in mt-5 grid flex-1 grid-cols-3 gap-2.5">
-          {ekskul.map((e) => (
-            <li
-              key={e.label}
-              className="flex flex-col items-center justify-center gap-2 rounded-2xl bg-white/[0.07] p-2 py-4 text-center ring-1 ring-white/15 transition hover:bg-white/15"
-            >
-              <span className="grid size-10 place-items-center rounded-full bg-white text-brand-600">
-                <Icon name={e.icon} size={19} />
-              </span>
-              <span className="text-[13px] font-semibold leading-tight">{e.label}</span>
+          {ekskul.map((e, i) => (
+            <li key={e.label} className="flex">
+              <button
+                type="button"
+                onClick={() => open(i)}
+                aria-label={`Lihat foto ${e.label}`}
+                className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white/[0.07] p-2 py-4 text-center ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:bg-white/15 active:scale-95"
+              >
+                <span className="grid size-10 place-items-center rounded-full bg-white text-brand-600">
+                  <Icon name={e.icon} size={19} />
+                </span>
+                <span className="text-[13px] font-semibold leading-tight">{e.label}</span>
+              </button>
             </li>
           ))}
         </ul>

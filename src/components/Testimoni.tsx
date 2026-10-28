@@ -54,10 +54,11 @@ export function Testimoni() {
           </div>
 
           <figure key={i} className="fade-in text-center lg:text-left">
-            <span className="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-[13px] font-bold text-brand-700 ring-1 ring-brand-100">{t.persona}</span>
-            <blockquote className="em-serif mt-4 text-[1.7rem] leading-[1.25] text-navy-900 sm:text-[2.1rem] lg:min-h-[10.5rem]">“{t.quote}”</blockquote>
-            <figcaption className="mt-4 text-[16px] font-semibold text-navy-900">
-              {t.name} <span className="font-normal text-navy-700/70">· {t.note}</span>
+            <blockquote className="em-serif text-[1.7rem] leading-[1.25] text-navy-900 sm:text-[2.1rem] lg:min-h-[10.5rem]">“{t.quote}”</blockquote>
+            <figcaption className="mt-4 leading-snug">
+              <span className="block text-[17px] font-semibold text-navy-900">{t.name}</span>
+              <span className="block text-[15px] text-navy-700">{t.persona}</span>
+              <span className="block text-[14px] text-navy-700/65">{t.note}</span>
             </figcaption>
           </figure>
         </div>

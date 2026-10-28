@@ -10,11 +10,13 @@ export function SnapRail({
   className = "",
   basis = "84%",
   label,
+  wrapperClassName = "",
 }: {
   children: React.ReactNode;
   className?: string;
   basis?: string;
   label: string;
+  wrapperClassName?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [idx, setIdx] = useState(0);
@@ -28,7 +30,7 @@ export function SnapRail({
   };
 
   return (
-    <div className="reveal min-w-0">
+    <div className={`reveal min-w-0 ${wrapperClassName}`}>
       <div
         ref={ref}
         onScroll={onScroll}

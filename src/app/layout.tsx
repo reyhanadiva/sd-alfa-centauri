@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SD Alfa Centauri Bandung | Sekolah Dasar Islam Inklusif & Berkarakter",
+  title: "SD Alfa Centauri Bandung | Sekolah Dasar Inklusif & Berkarakter",
   description:
     "SD Alfa Centauri, Bandung. Terakreditasi A. Mencetak generasi Bertakwa, Cerdas, dan Kreatif dengan pendampingan inklusi, pendidikan karakter, dan integrasi nilai keislaman dengan sains teknologi.",
   openGraph: {

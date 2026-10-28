@@ -11,7 +11,13 @@ export const site = {
   address: "Jl. Terate No. 10, Kota Bandung",
   instagram: "https://www.instagram.com/sdalfacentauri_official/",
   instagramHandle: "@sdalfacentauri_official",
+  // TODO: isi dengan path/URL PDF brosur (mis. "/brosur-sd-alfa-centauri.pdf"). Kosong = tombol meminta brosur lewat WhatsApp.
+  brosurHref: "" as string,
 };
+
+// Foto stok Pexels (lisensi bebas pakai), dimuat langsung dari CDN. HANYA penampung sementara agar tampilan terbayang:
+// ganti dengan foto asli sekolah. Kalau gagal dimuat, komponen Photo menampilkan placeholder berlabel.
+const px = (id: number) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=900`;
 
 export const waLink = (text = "Halo SD Alfa Centauri, saya ingin bertanya tentang SPMB.") =>
   `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
@@ -88,13 +94,13 @@ export const lsuActivities = [
 export const ranah = [
   {
     key: "Taqwa",
-    photo: undefined as string | undefined,
+    photo: px(11842681) as string | undefined,
     photoLabel: "Tahfidz dan shalat berjamaah",
     tagline: "Iman yang tumbuh lewat kebiasaan.",
     items: [
-      { icon: "quran", title: "Tahfidz & Munaqosyah" },
-      { icon: "sun", title: "Shalat Dhuha" },
-      { icon: "masjid", title: "Shalat wajib berjamaah" },
+      { icon: "quran", title: "Tahfidz & Munaqosyah", desc: "Menghafal Al-Qur'an, diuji lewat munaqosyah" },
+      { icon: "sun", title: "Shalat Dhuha", desc: "Dibiasakan bersama di sekolah" },
+      { icon: "masjid", title: "Shalat wajib berjamaah", desc: "Dilaksanakan berjamaah di sekolah" },
     ],
   },
   {
@@ -106,36 +112,36 @@ export const ranah = [
       { icon: "book", title: "Gakko Tosho", desc: "Budaya literasi" },
       { icon: "calc", title: "Surala", desc: "Belajar matematika lewat e-learning" },
       { icon: "read", title: "Reading Challenge", desc: "Tantangan membaca berkala" },
-      { icon: "project", title: "Project Based Learning" },
-      { icon: "trophy", title: "Pembinaan FLS2N & Olimpiade" },
+      { icon: "project", title: "Project Based Learning", desc: "Belajar lewat proyek nyata" },
+      { icon: "trophy", title: "Pembinaan FLS2N & Olimpiade", desc: "Bimbingan menuju lomba dan olimpiade" },
     ],
   },
   {
     key: "Kreatif",
-    photo: undefined as string | undefined,
+    photo: px(8612990) as string | undefined,
     photoLabel: "Pekan Kreativitas atau Expo",
     tagline: "Ruang untuk berkarya dan tampil.",
     items: [
-      { icon: "reflect", title: "Pekan Refleksi" },
-      { icon: "parents", title: "Parents Day" },
-      { icon: "palette", title: "Pekan Kreativitas" },
-      { icon: "expo", title: "Expo" },
-      { icon: "trip", title: "Fieldtrip Edukatif" },
+      { icon: "reflect", title: "Pekan Refleksi", desc: "Waktu merefleksikan perjalanan belajar" },
+      { icon: "parents", title: "Parents Day", desc: "Hari kebersamaan sekolah dan orang tua" },
+      { icon: "palette", title: "Pekan Kreativitas", desc: "Pekan untuk berkarya dan berekspresi" },
+      { icon: "expo", title: "Expo", desc: "Memamerkan hasil belajar siswa" },
+      { icon: "trip", title: "Fieldtrip Edukatif", desc: "Belajar langsung di luar kelas" },
     ],
   },
 ] as const;
 
 // Dari transkrip; "menari" kemungkinan terdengar sebagai "menarik" (verifikasi).
 export const ekskul: { icon: string; label: string; photo?: string }[] = [
-  { icon: "film", label: "Sinematografi" },
-  { icon: "drum", label: "Marching Band" },
-  { icon: "music", label: "Musik" },
-  { icon: "tent", label: "Pramuka" },
-  { icon: "swim", label: "Renang" },
-  { icon: "goal", label: "Futsal" },
-  { icon: "bot", label: "Robotik" },
-  { icon: "dance", label: "Menari" },
-  { icon: "medal", label: "Taekwondo" },
+  { icon: "film", label: "Sinematografi", photo: px(18918155) },
+  { icon: "drum", label: "Marching Band", photo: px(4720175) },
+  { icon: "music", label: "Musik", photo: px(9643921) },
+  { icon: "tent", label: "Pramuka", photo: px(9302795) },
+  { icon: "swim", label: "Renang", photo: px(12615996) },
+  { icon: "goal", label: "Futsal", photo: px(8813564) },
+  { icon: "bot", label: "Robotik", photo: px(7868892) },
+  { icon: "dance", label: "Menari", photo: px(35300570) },
+  { icon: "medal", label: "Taekwondo", photo: px(7045594) },
 ];
 
 
@@ -207,15 +213,15 @@ export const portals = [
 // Tidak ada di website lama, jadi TIDAK dicantumkan: UKS, antar-jemput, seragam, katering, lapangan, taman, kantin.
 // Perpustakaan hanya muncul sebagai tautan menu di website lama (tanpa keterangan), jadi belum dimasukkan.
 // TODO(foto): semua kartu masih placeholder berlabel. Ganti dengan foto asli tiap fasilitas.
-export const fasilitas: { title: string; caption: string; photo?: string }[] = [
-  { title: "Internet 24 jam", caption: "Tersedia di ruang kelas." },
-  { title: "Proyektor", caption: "Ada di setiap kelas." },
-  { title: "TV interaktif", caption: "Media belajar interaktif di kelas." },
-  { title: "AC", caption: "Ada di setiap kelas." },
-  { title: "CCTV", caption: "Terpasang di setiap kelas." },
-  { title: "Ruang multimedia", caption: "Ruang khusus untuk belajar berbasis multimedia." },
-  { title: "Mushola", caption: "Tempat shalat di lingkungan sekolah." },
-  { title: "Portal Orang Tua", caption: "Memantau perkembangan akademik dan karakter ananda." },
+export const fasilitas: { title: string; caption?: string; photo?: string }[] = [
+  { title: "Internet 24 jam", photo: px(11025019) },
+  { title: "Proyektor", photo: px(15225230) },
+  { title: "TV interaktif", photo: px(8141591) },
+  { title: "AC", photo: px(8617956) },
+  { title: "CCTV", photo: px(13156207) },
+  { title: "Ruang multimedia", photo: px(5621945) },
+  { title: "Mushola", photo: px(29832037) },
+  { title: "Portal Orang Tua", caption: "Memantau perkembangan akademik dan karakter ananda.", photo: px(4624908) },
 ];
 
 // Ringkasan di bawah judul Fasilitas: hanya yang tertulis "tiap kelas" di website lama.
@@ -279,13 +285,13 @@ export const lokasi = {
 // Nama kegiatan dari website lama. TODO(foto): hanya "Reading Challenge" memakai foto asli yang ada; sisanya placeholder.
 export const galeri: { title: string; caption: string; photo?: string }[] = [
   { title: "Reading Challenge", caption: "Siswa menamatkan buku bersama.", photo: "/images/siswa-membaca.jpg" },
-  { title: "River Clean Up", caption: "Belajar peduli lingkungan lewat aksi nyata." },
-  { title: "Parents Day", caption: "Hari kebersamaan sekolah dan orang tua." },
-  { title: "Munaqosyah", caption: "Ujian hafalan Al-Qur'an siswa." },
-  { title: "Fieldtrip", caption: "Belajar langsung di luar kelas." },
-  { title: "Pekan Kreativitas", caption: "Karya dan ide ananda tampil." },
-  { title: "Expo", caption: "Pameran hasil belajar siswa." },
-  { title: "Olimpiade", caption: "Menguji kemampuan lewat kompetisi." },
+  { title: "River Clean Up", caption: "Belajar peduli lingkungan lewat aksi nyata.", photo: px(7656985) },
+  { title: "Parents Day", caption: "Hari kebersamaan sekolah dan orang tua.", photo: px(4261270) },
+  { title: "Munaqosyah", caption: "Ujian hafalan Al-Qur'an siswa.", photo: px(11929254) },
+  { title: "Fieldtrip", caption: "Belajar langsung di luar kelas.", photo: px(34251808) },
+  { title: "Pekan Kreativitas", caption: "Karya dan ide ananda tampil.", photo: px(8612992) },
+  { title: "Expo", caption: "Pameran hasil belajar siswa.", photo: px(7868885) },
+  { title: "Olimpiade", caption: "Menguji kemampuan lewat kompetisi.", photo: px(19520596) },
 ];
 
 // ---------- Testimoni ----------

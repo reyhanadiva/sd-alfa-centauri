@@ -70,9 +70,9 @@ export function Program() {
             >
               <div className={`flex flex-1 flex-col ${dir > 0 ? "slide-r" : "slide-l"}`}>
                 <p className="em-serif text-[2rem] leading-tight text-navy-900 sm:text-[2.2rem]">{r.tagline}</p>
-                <ul className="mt-5 grid flex-1 content-center gap-2.5">
+                <ul className="mt-4 grid flex-1 content-center gap-2">
                   {r.items.map((it) => (
-                    <li key={it.title} className="flex items-center gap-3 rounded-2xl bg-white px-4 py-2.5 ring-1 ring-brand-100">
+                    <li key={it.title} className="flex items-center gap-3 rounded-2xl bg-white px-4 py-2 ring-1 ring-brand-100">
                       <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-100 text-brand-600">
                         <Icon name={it.icon} size={18} />
                       </span>
