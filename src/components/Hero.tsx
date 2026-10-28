@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { spmb } from "@/lib/site";
 import { CertificateDialog } from "./CertificateDialog";
 
@@ -36,7 +36,7 @@ export function Hero() {
             School In The World
           </h1>
           <p className="animate-fade-up mt-4 text-lg text-white/85 sm:text-xl" style={{ animationDelay: "100ms" }}>
-            Sekolah Dasar Islam di Bandung.
+            Menumbuhkan anak yang bertakwa, cerdas, dan kreatif.
           </p>
           <div className="animate-fade-up mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "200ms" }}>
             <a
@@ -45,12 +45,6 @@ export function Hero() {
             >
               Daftar SPMB
               <ArrowRight size={17} aria-hidden className="transition group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#profil"
-              className="inline-flex items-center gap-2 rounded-full border border-white/45 px-5 py-3 text-[15px] font-bold text-white backdrop-blur-sm transition hover:bg-white/15"
-            >
-              <Play size={13} fill="currentColor" aria-hidden /> Video profil
             </a>
           </div>
         </div>

@@ -51,10 +51,9 @@ export const nav: NavItem[] = [
   },
   {
     label: "Info Orang Tua",
-    href: "#info-orang-tua",
+    href: "#fasilitas",
     children: [
       { label: "Fasilitas", href: "#fasilitas", desc: "Ruang belajar dan penunjang" },
-      { label: "Portal & Layanan", href: "#info-orang-tua", desc: "Akses cepat orang tua" },
       { label: "FAQ", href: "#faq", desc: "Pertanyaan umum" },
     ],
   },
@@ -248,10 +247,10 @@ export const prestasi = {
 // MOCKUP: judul, tanggal, dan kategori di bawah hanya contoh agar tampilan terbayang. Foto memakai 3 foto asli
 // yang tersedia (dipotong dari foto gedung dan siswa membaca), belum foto liputan. Ganti semuanya dengan berita asli.
 export const berita = [
-  { cat: "Kegiatan", date: "12 Okt 2026", title: "Reading Challenge: siswa berlomba menamatkan buku bulan ini", href: "#", photo: "/images/berita-baca.jpg" },
-  { cat: "Pengumuman", date: "5 Okt 2026", title: "Pendaftaran SPMB 2026/2027 resmi dibuka", href: "#", photo: "/images/berita-papan.jpg" },
-  { cat: "Lingkungan", date: "28 Sep 2026", title: "River Clean Up: belajar peduli lingkungan lewat aksi nyata", href: "#", photo: "/images/berita-halaman.jpg" },
-  { cat: "Parenting", date: "20 Sep 2026", title: "Tips mendampingi anak belajar di rumah agar tetap menyenangkan", href: "#", photo: "/images/gedung-sd.jpg" },
+  { cat: "Kegiatan", date: "12 Okt 2026", title: "Reading Challenge: siswa berlomba menamatkan buku bulan ini", excerpt: "Siswa saling menantang diri menamatkan buku, ditemani guru dan perpustakaan kelas.", href: "#", photo: "/images/berita-baca.jpg" },
+  { cat: "Pengumuman", date: "5 Okt 2026", title: "Pendaftaran SPMB 2026/2027 resmi dibuka", excerpt: "Jadwal, syarat, dan cara mendaftar kini bisa ditanyakan langsung ke admin.", href: "#", photo: "/images/berita-papan.jpg" },
+  { cat: "Lingkungan", date: "28 Sep 2026", title: "River Clean Up: belajar peduli lingkungan lewat aksi nyata", excerpt: "Siswa terjun langsung merawat sungai dan belajar menjaga lingkungan sekitar.", href: "#", photo: "/images/berita-halaman.jpg" },
+  { cat: "Parenting", date: "20 Sep 2026", title: "Tips mendampingi anak belajar di rumah agar tetap menyenangkan", excerpt: "Cara sederhana menjaga semangat belajar ananda di rumah tanpa tekanan.", href: "#", photo: "/images/gedung-sd.jpg" },
 ];
 
 // ---------- FAQ ----------

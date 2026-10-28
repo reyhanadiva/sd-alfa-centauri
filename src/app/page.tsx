@@ -3,13 +3,11 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { WhyChoose } from "@/components/WhyChoose";
 import { FasilitasDaftar, FasilitasKipas } from "@/components/Fasilitas";
-import { Cta } from "@/components/Cta";
-import { Footer } from "@/components/Footer";
+import { Closing } from "@/components/Closing";
 import { Berita } from "@/components/Berita";
 import { Faq } from "@/components/Faq";
 import { Lokasi } from "@/components/Lokasi";
 import { Prestasi } from "@/components/Prestasi";
-import { Praktis } from "@/components/Praktis";
 import { Program } from "@/components/Program";
 import { Inklusi } from "@/components/Inklusi";
 
@@ -27,15 +25,14 @@ export default function Home() {
         {/* Gaya alternatif (Kipas): tinggal pilih salah satu, atau pakai untuk Galeri */}
         <FasilitasKipas />
         <Inklusi />
-        <Praktis />
+        {/* Praktis (info cepat orang tua) dikeluarkan dulu; komponen masih ada di Praktis.tsx */}
         <Prestasi />
         {/* Galeri dan Testimoni menyusul (dilewati dulu) */}
         <Berita />
         <Faq />
         <Lokasi />
-        <Cta />
       </main>
-      <Footer />
+      <Closing />
     </>
   );
 }

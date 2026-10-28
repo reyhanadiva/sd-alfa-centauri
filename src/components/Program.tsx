@@ -31,12 +31,12 @@ export function Program() {
 
         <div className="mt-8 grid gap-3.5 lg:mt-9 lg:h-[min(31rem,calc(100svh-16rem))] lg:grid-cols-[1.45fr_1fr]">
           {/* Tab ranah */}
-          <div className="reveal flex flex-col rounded-[2rem] bg-brand-50 p-6 ring-1 ring-brand-100 sm:p-7">
+          <div className="reveal flex min-w-0 flex-col rounded-[2rem] bg-brand-50 p-6 ring-1 ring-brand-100 sm:p-7">
             {/* Tab dengan indikator yang bergeser */}
             <div
               role="tablist"
               aria-label="Ranah program"
-              className="relative grid w-fit grid-cols-3 rounded-full bg-white p-1 ring-1 ring-brand-100"
+              className="relative grid w-full max-w-sm grid-cols-3 rounded-full bg-white p-1 ring-1 ring-brand-100"
             >
               <span
                 aria-hidden
@@ -52,7 +52,7 @@ export function Program() {
                   aria-selected={active === i}
                   aria-controls="panel-ranah"
                   onClick={() => select(i)}
-                  className={`relative z-10 w-28 rounded-full py-2 text-[15px] font-bold transition-colors duration-300 ${
+                  className={`relative z-10 rounded-full px-2 py-2 text-[15px] font-bold transition-colors duration-300 ${
                     active === i ? "text-white" : "text-navy-700 hover:text-brand-700"
                   }`}
                 >

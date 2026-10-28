@@ -249,3 +249,19 @@ html {
 .twinkle { animation: twinkle var(--dur, 3s) ease-in-out var(--delay, 0s) infinite; }
 .plane-fly { animation: plane-fly 26s ease-in-out infinite; }
 .orbit { animation: orbit var(--dur, 24s) linear infinite; }
+
+/* Langit malam: bintang jatuh, halo tombol */
+@keyframes shoot {
+  0% { transform: translate(0, 0) rotate(-24deg); opacity: 0; }
+  3% { opacity: 1; }
+  13% { transform: translate(-46vw, 20vw) rotate(-24deg); opacity: 0; }
+  100% { transform: translate(-46vw, 20vw) rotate(-24deg); opacity: 0; }
+}
+@keyframes halo {
+  0% { box-shadow: 0 0 0 0 rgb(255 255 255 / 0.55); }
+  70%, 100% { box-shadow: 0 0 0 22px rgb(255 255 255 / 0); }
+}
+@keyframes glow-pulse { 0%, 100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 0.95; transform: scale(1.12); } }
+.shoot { animation: shoot var(--dur, 11s) ease-out var(--delay, 0s) infinite; }
+.halo { animation: halo 2.4s ease-out infinite; }
+.glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }

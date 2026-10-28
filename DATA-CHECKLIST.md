@@ -56,7 +56,9 @@ lalu hapus tanda TODO di kode.
 - [ ] Foto tab Taqwa dan Kreatif masih placeholder; tab Cerdas memakai foto siswa membaca.
 - [ ] Ekskul: daftar dari transkrip ("Menari" kemungkinan salah dengar); foto per kegiatan diisi lewat `photo` di `ekskul`
 
-## Info Orang Tua (akses cepat)
+## Info Orang Tua (akses cepat) — DIKELUARKAN dari page
+
+Komponen `Praktis.tsx` dan data `infoCepat` masih ada tapi tidak ditampilkan. Pakai lagi bila sudah ada portal/kalender, atau sebarkan ke section lain.
 
 - [ ] Kartu Portal Orang Tua dan Kalender akademik: isi `href` asli (sekarang "#"). Kalender akademik ada di website lama, tautannya belum diketahui.
 - [x] Jam sekolah, antar-jemput, katering, seragam, UKS: dihapus karena tidak ada di data. Tambahkan lagi bila sekolah memberi datanya.
@@ -70,6 +72,9 @@ lalu hapus tanda TODO di kode.
 - [ ] Berita: MOCKUP. Judul, kategori, tanggal di `berita` (site.ts) hanya contoh (topik mengacu program di website lama); foto memakai potongan foto gedung dan siswa membaca. Ganti dengan berita dan foto liputan asli. Halaman artikel belum ada.
 - [ ] FAQ: no. 1-4 dan 7 mengacu transkrip video; no. 5-6 (jadwal/syarat SPMB, biaya) jawaban umum, isi detailnya. Tambah pertanyaan nyata yang sering masuk ke admin.
 - [ ] Peta: memakai embed Google Maps berdasarkan nama + alamat. Pastikan pin tepat; kalau meleset, ganti `mapEmbed` dengan link "Share > Embed" dari lokasi sebenarnya.
+- [ ] Berita: kartu pertama (Sorotan) memakai `excerpt` mockup.
+- [ ] Hero: subtitle "Menumbuhkan anak yang bertakwa, cerdas, dan kreatif." adalah tulisan saya; ganti bila punya tagline resmi.
 - [ ] FAQ "Tanya admin" hanya membuka WhatsApp dengan pesan template (tanpa backend).
+- [ ] Footer/CTA kini satu adegan (Closing.tsx): siluet sekolah hanya ilustrasi generik, bukan gambar gedung asli.
 - [ ] Footer: deskripsi singkat adalah tulisan saya; tautan jaringan dari Mas Reyhan (Yayasan, TK, SMP, SMA, English Now, LCDU). Instagram/sosmed belum ada, tambahkan bila ada.
 - [ ] CTA penutup: tombol Daftar SPMB membuka WhatsApp (belum ada halaman pendaftaran). Tahun ajaran 2026/2027 masih placeholder.

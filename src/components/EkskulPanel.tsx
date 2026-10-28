@@ -1,18 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import { Image as ImageIcon, LayoutGrid } from "lucide-react";
+import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Image as ImageIcon, LayoutGrid } from "lucide-react";
 import { ekskul } from "@/lib/site";
 import { Icon } from "./icons";
 import { Photo } from "./Photo";
 
-// Ekstrakurikuler dengan dua tampilan: kisi ikon, atau kartu foto + teks di bawahnya (geser).
+// Ekstrakurikuler dengan dua tampilan: kisi ikon, atau satu foto besar per kegiatan yang bisa digeser.
 // Foto: isi `photo` di `ekskul` (site.ts) per kegiatan.
 export function EkskulPanel() {
   const [mode, setMode] = useState<"grid" | "foto">("grid");
+  const [idx, setIdx] = useState(0);
+  const rail = useRef<HTMLUListElement>(null);
+
+  const go = (i: number) => {
+    const el = rail.current;
+    if (!el) return;
+    const n = (i + ekskul.length) % ekskul.length;
+    el.scrollTo({ left: n * el.clientWidth, behavior: "smooth" });
+  };
+  const onScroll = () => {
+    const el = rail.current;
+    if (el) setIdx(Math.round(el.scrollLeft / el.clientWidth));
+  };
 
   return (
-    <div id="ekskul" className="reveal flex flex-col rounded-[2rem] bg-navy-900 p-6 text-white sm:p-7">
+    <div id="ekskul" className="reveal flex min-h-0 min-w-0 flex-col overflow-hidden rounded-[2rem] bg-navy-900 p-6 text-white sm:p-7">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="text-2xl font-semibold !text-white">Ekstrakurikuler</h3>
@@ -56,20 +69,32 @@ export function EkskulPanel() {
           ))}
         </ul>
       ) : (
-        <ul
-          key="foto"
-          aria-label="Ekstrakurikuler"
-          className="fade-in mt-5 flex min-h-[16rem] flex-1 snap-x snap-mandatory gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {ekskul.map((e) => (
-            <li key={e.label} className="flex w-[9.25rem] shrink-0 snap-start flex-col gap-2.5">
-              <div className="relative flex-1 overflow-hidden rounded-2xl ring-1 ring-white/15">
-                <Photo src={e.photo} alt={e.label} label={e.label} sizes="150px" />
-              </div>
-              <p className="text-[14px] font-semibold leading-tight">{e.label}</p>
-            </li>
-          ))}
-        </ul>
+        <div key="foto" className="fade-in relative mt-5 h-[20rem] min-h-0 lg:h-auto lg:flex-1">
+          {/* Satu foto per geser, selebar kotak */}
+          <ul
+            ref={rail}
+            onScroll={onScroll}
+            aria-label="Ekstrakurikuler"
+            className="flex size-full snap-x snap-mandatory overflow-x-auto rounded-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {ekskul.map((e) => (
+              <li key={e.label} className="relative isolate size-full shrink-0 snap-center">
+                <Photo src={e.photo} alt={e.label} label={e.label} sizes="(min-width:1024px) 460px, 90vw" className="-z-20" />
+                <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent" />
+                <p className="absolute bottom-4 left-4 rounded-full bg-navy-900/65 px-4 py-1.5 text-lg font-semibold backdrop-blur">{e.label}</p>
+              </li>
+            ))}
+          </ul>
+          <button type="button" onClick={() => go(idx - 1)} aria-label="Sebelumnya" className="absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
+            <ChevronLeft size={20} aria-hidden />
+          </button>
+          <button type="button" onClick={() => go(idx + 1)} aria-label="Berikutnya" className="absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
+            <ChevronRight size={20} aria-hidden />
+          </button>
+          <p className="absolute bottom-4 right-4 rounded-full bg-navy-900/70 px-3 py-1 text-[12.5px] font-semibold tabular-nums backdrop-blur">
+            {idx + 1} / {ekskul.length}
+          </p>
+        </div>
       )}
     </div>
   );

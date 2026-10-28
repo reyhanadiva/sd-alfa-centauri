@@ -58,3 +58,62 @@ export function PaperPlane({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+// Bintang jatuh: garis tipis yang melintas diagonal secara berkala.
+export function ShootingStars() {
+  const items = [
+    { top: "6%", left: "88%", dur: "12s", delay: "1s" },
+    { top: "22%", left: "70%", dur: "15s", delay: "6s" },
+    { top: "4%", left: "55%", dur: "18s", delay: "10s" },
+  ];
+  return (
+    <>
+      {items.map((s, i) => (
+        <span
+          key={i}
+          aria-hidden
+          className="shoot absolute h-[2px] w-28 rounded-full bg-gradient-to-r from-white via-white/50 to-transparent"
+          style={{ top: s.top, left: s.left, "--dur": s.dur, "--delay": s.delay } as React.CSSProperties}
+        />
+      ))}
+    </>
+  );
+}
+
+// Bintang kembar: dua bintang berbeda ukuran saling mengitari dalam cahaya lembut.
+export function BinaryStar({ className = "" }: { className?: string }) {
+  return (
+    <div aria-hidden className={`relative ${className}`}>
+      <div className="glow-pulse absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgb(111_162_255/0.6),transparent_65%)] blur-md" />
+      <div className="absolute inset-3 rounded-full border border-dashed border-white/30" />
+      <div className="orbit absolute inset-0" style={{ "--dur": "14s" } as React.CSSProperties}>
+        <Star className="absolute left-1/2 top-0 size-[38%] -translate-x-1/2 -translate-y-1/4 text-white drop-shadow-[0_0_14px_rgba(255,255,255,0.9)]" />
+        <Star className="absolute bottom-0 left-1/2 size-[22%] -translate-x-1/2 translate-y-1/4 text-brand-300 drop-shadow-[0_0_10px_rgba(111,162,255,0.9)]" />
+      </div>
+    </div>
+  );
+}
+
+// Siluet gedung sekolah dengan jendela menyala; dipakai di bukit footer.
+export function SchoolSilhouette({ className = "" }: { className?: string }) {
+  const win = (x: number, y: number, k: number) => (
+    <rect key={`${x}-${y}`} x={x} y={y} width="9" height="12" rx="1.5" fill="#cfe2ff" className="twinkle" style={{ "--dur": `${3 + (k % 3)}s`, "--delay": `${-k * 0.7}s` } as React.CSSProperties} />
+  );
+  const row1 = [40, 60, 80, 205, 225, 245];
+  const row2 = [40, 60, 80, 205, 225, 245];
+  return (
+    <svg viewBox="0 -14 300 144" aria-hidden className={className} fill="#0a1c40">
+      <rect x="20" y="58" width="260" height="72" />
+      <rect x="116" y="34" width="68" height="96" />
+      <polygon points="112,34 150,10 188,34" />
+      <rect x="149" y="-6" width="2" height="18" />
+      <polygon points="151,-6 168,0 151,6" fill="#6fa2ff" />
+      <path d="M138 130V96a12 12 0 0 1 24 0v34Z" fill="#173a7a" />
+      {row1.map((x, k) => win(x, 74, k))}
+      {row2.map((x, k) => win(x, 100, k + 3))}
+      {win(133, 50, 7)}{win(158, 50, 8)}
+      <circle cx="8" cy="112" r="16" /><rect x="6" y="112" width="4" height="18" />
+      <circle cx="294" cy="110" r="18" /><rect x="292" y="110" width="4" height="20" />
+    </svg>
+  );
+}
