@@ -45,28 +45,31 @@ lalu hapus tanda TODO di kode.
 - [ ] Foto asli yang sudah dipakai: `gedung-sd.jpg` (hero), `siswa-membaca.jpg` (bento Program Unggulan). Foto siswa itu tampak siswa SMP; ganti dengan siswa SD bila ada.
 - [ ] Banner "Tahun Ajaran 2022/2023" di kiri bawah foto gedung sudah usang; minta foto baru atau crop.
 
-## Fasilitas, Program, Keamanan (draf)
+## Fasilitas, Program
 
-- [ ] **Daftar fasilitas** di `fasilitas` (site.ts) adalah draf saya (gedung, perpustakaan, tempat ibadah, area bermain, ruang penunjang). Samakan dengan fasilitas sebenarnya + minta fotonya.
-- [ ] **Keamanan**: CCTV, UKS, jemput aman, anti-bullying (deskripsi singkat buatan saya; pastikan benar-benar ada)
+- [x] **Daftar fasilitas** sudah dikoreksi: hanya yang tertulis di website lama (internet 24 jam, proyektor, TV interaktif, AC, CCTV, ruang multimedia, mushola, Portal Orang Tua). Draf awal saya (perpustakaan, ruang kreativitas, lapangan, taman, UKS, kantin) dihapus karena tidak ada di data.
+- [ ] Tambahkan fasilitas lain yang benar-benar ada (mis. perpustakaan, hanya muncul sebagai menu di website lama tanpa keterangan) + keterangan singkat.
+- [ ] Baris "Di setiap kelas: Proyektor, AC, CCTV, Internet 24 jam" (`perKelas`): konfirmasi TV interaktif juga di setiap kelas atau tidak.
+- [ ] **Foto fasilitas**: semua kartu placeholder berlabel; minta foto asli tiap fasilitas.
+- [ ] Fasilitas tampil dalam 2 gaya (Daftar dan Kipas) berurutan di page.tsx; pilih satu atau pakai Kipas di tempat lain (mis. Galeri).
 - [ ] **Program per ranah**: nama program dari transkrip + salinan Mas Reyhan. Kalimat tagline per tab ("Iman yang tumbuh lewat kebiasaan", dst.) dan deskripsi pendek (Surala, Reading Challenge) adalah tulisan saya.
 - [ ] Foto tab Taqwa dan Kreatif masih placeholder; tab Cerdas memakai foto siswa membaca.
-
-## Praktis untuk Orang Tua (semua placeholder)
-
-- [ ] Jam sekolah, jam dan aturan antar-jemput, info katering (penyedia, biaya), ketentuan seragam: `praktis` di `src/lib/site.ts` masih "XX.XX"/teks umum
-- [ ] Mockup portal hanya ilustrasi; ganti dengan tangkapan layar asli bila portal sudah ada
 - [ ] Ekskul: daftar dari transkrip ("Menari" kemungkinan salah dengar); foto per kegiatan diisi lewat `photo` di `ekskul`
-- [ ] Fasilitas: 4 gaya eksperimen (Jam/Kipas/Geser/Carousel) dengan tombol melayang; pilih satu lalu hapus yang lain beserta tombolnya
+
+## Info Orang Tua (akses cepat)
+
+- [ ] Kartu Portal Orang Tua dan Kalender akademik: isi `href` asli (sekarang "#"). Kalender akademik ada di website lama, tautannya belum diketahui.
+- [x] Jam sekolah, antar-jemput, katering, seragam, UKS: dihapus karena tidak ada di data. Tambahkan lagi bila sekolah memberi datanya.
 
 ## Prestasi (semua placeholder)
 
 - [ ] Total prestasi (120+), jumlah per kategori, dan sorotan juara di `prestasi` (site.ts) adalah contoh. Isi dari sekolah (nama lomba, tingkat, tahun). Kategori (Akademik, Olahraga, Seni & Kreativitas, Tahfidz) juga usulan.
-- [ ] Fasilitas: 8 item (ruang kelas, perpustakaan, ruang kreativitas, tempat ibadah, lapangan, taman, UKS, kantin) adalah draf; samakan dengan kenyataan + minta fotonya.
 
 ## Berita, FAQ, Lokasi
 
-- [ ] Berita: judul, kategori, tanggal, foto, tautan di `berita` (site.ts) semua contoh. Halaman artikel belum ada.
+- [ ] Berita: MOCKUP. Judul, kategori, tanggal di `berita` (site.ts) hanya contoh (topik mengacu program di website lama); foto memakai potongan foto gedung dan siswa membaca. Ganti dengan berita dan foto liputan asli. Halaman artikel belum ada.
 - [ ] FAQ: no. 1-4 dan 7 mengacu transkrip video; no. 5-6 (jadwal/syarat SPMB, biaya) jawaban umum, isi detailnya. Tambah pertanyaan nyata yang sering masuk ke admin.
 - [ ] Peta: memakai embed Google Maps berdasarkan nama + alamat. Pastikan pin tepat; kalau meleset, ganti `mapEmbed` dengan link "Share > Embed" dari lokasi sebenarnya.
-- [ ] Keamanan: judul saja (CCTV, UKS, sistem penjemputan, anti-bullying). Pastikan keempatnya benar ada, dan jelaskan sistem penjemputan bila perlu.
+- [ ] FAQ "Tanya admin" hanya membuka WhatsApp dengan pesan template (tanpa backend).
+- [ ] Footer: deskripsi singkat adalah tulisan saya; tautan jaringan dari Mas Reyhan (Yayasan, TK, SMP, SMA, English Now, LCDU). Instagram/sosmed belum ada, tambahkan bila ada.
+- [ ] CTA penutup: tombol Daftar SPMB membuka WhatsApp (belum ada halaman pendaftaran). Tahun ajaran 2026/2027 masih placeholder.

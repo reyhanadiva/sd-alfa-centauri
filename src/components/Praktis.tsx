@@ -1,80 +1,61 @@
-import { ArrowUpRight } from "lucide-react";
-import { portals, praktis } from "@/lib/site";
-import { Plus, Star } from "./Doodles";
+import { ArrowUpRight, CalendarDays, ClipboardList, LayoutDashboard, MapPin, MessageCircle, Phone, type LucideIcon } from "lucide-react";
+import { infoCepat, lokasi, site, waLink } from "@/lib/site";
+import { Photo } from "./Photo";
 
-// Info harian orang tua, bentuk bento. Nilai asli: lihat `praktis` di site.ts (masih placeholder).
+const icons: Record<string, LucideIcon> = {
+  portal: LayoutDashboard, kalender: CalendarDays, spmb: ClipboardList, wa: MessageCircle, telp: Phone, map: MapPin,
+};
+
+const resolve = (href: string) =>
+  href === "wa" ? waLink("Halo SD Alfa Centauri, saya ingin bertanya.") : href === "tel" ? site.phoneHref : href === "map" ? lokasi.mapLink : href;
+
+// Akses cepat untuk orang tua: semua kartu adalah tautan, isinya hanya hal yang memang ada
+// (portal, kalender, SPMB, kontak). Tidak ada data jam, jemput, atau seragam karena belum ada datanya.
 export function Praktis() {
-  const portal = portals[0];
   return (
     <section
       id="info-orang-tua"
       aria-labelledby="praktis-title"
       className="px-5 py-16 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6"
     >
-      <div className="mx-auto w-full max-w-[78rem]">
-        <h2 id="praktis-title" className="reveal text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.2rem]">
-          Praktis untuk <span className="em-serif text-brand-600">orang tua</span>
-        </h2>
-
-        <div className="mt-8 grid gap-3.5 sm:grid-cols-2 lg:mt-9 lg:h-[min(32rem,calc(100svh-17rem))] lg:grid-cols-12 lg:grid-rows-2">
-          {/* Jam sekolah: angka besar */}
-          <article className="reveal flex min-h-[13rem] flex-col justify-between rounded-[2rem] bg-brand-100 p-7 lg:col-span-5 lg:min-h-0">
-            <h3 className="text-xl font-semibold">Jam sekolah</h3>
-            <div>
-              <p className="font-display text-[2.6rem] font-semibold leading-none tracking-[-0.04em] text-brand-600 sm:text-[3.2rem]">
-                {praktis.jam.value}
-              </p>
-              <p className="mt-2 text-[16px] text-navy-700">{praktis.jam.note}</p>
-            </div>
-          </article>
-
-          {/* Antar-jemput: gelap */}
-          <article className="reveal relative flex min-h-[13rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-navy-900 p-7 text-white lg:col-span-3 lg:min-h-0">
-            <Star className="absolute -right-6 -top-6 size-32 rotate-12 text-white/[0.06]" />
-            <h3 className="relative text-xl font-semibold !text-white">Antar-jemput</h3>
-            <p className="relative text-[16px] leading-snug text-white/75">{praktis.jemput.note}</p>
-          </article>
-
-          {/* Portal: kartu tinggi dengan mockup layar */}
-          <article className="reveal relative flex min-h-[26rem] flex-col overflow-hidden rounded-[2rem] bg-gradient-to-b from-brand-500 to-brand-700 p-7 text-white sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:min-h-0">
-            <h3 className="text-2xl font-semibold !text-white">Portal Orang Tua</h3>
-            <p className="mt-1 max-w-[16rem] text-[16px] leading-snug text-white/85">Satu pintu masuk informasi sekolah.</p>
-            <a
-              href={portal.href}
-              className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[14px] font-bold text-navy-900 transition hover:-translate-y-0.5 hover:bg-brand-50"
-            >
-              Buka portal <ArrowUpRight size={15} aria-hidden />
-            </a>
-            {/* Mockup layar sederhana (bukan fitur nyata) */}
-            <div aria-hidden className="absolute -bottom-10 left-1/2 w-[15rem] -translate-x-1/2 rotate-[-4deg] rounded-[2rem] bg-white p-3 shadow-lift">
-              <div className="h-[13rem] space-y-2.5 rounded-[1.5rem] bg-brand-50 p-4">
-                <div className="h-3 w-1/2 rounded-full bg-brand-300" />
-                <div className="h-14 rounded-2xl bg-white shadow-sm" />
-                <div className="h-14 rounded-2xl bg-white shadow-sm" />
-                <div className="h-3 w-2/3 rounded-full bg-brand-200" />
-              </div>
-            </div>
-          </article>
-
-          {/* Katering */}
-          <article className="reveal relative flex min-h-[13rem] flex-col justify-between rounded-[2rem] bg-white p-7 ring-1 ring-brand-100 shadow-soft lg:col-span-4 lg:min-h-0">
-            <Plus className="absolute right-6 top-6 size-5 text-brand-300" />
-            <h3 className="text-xl font-semibold">Katering</h3>
-            <div>
-              <p className="text-[1.6rem] font-semibold leading-tight tracking-[-0.02em]">{praktis.katering.value}</p>
-              <p className="mt-1 text-[16px] text-navy-700">{praktis.katering.note}</p>
-            </div>
-          </article>
-
-          {/* Seragam */}
-          <article className="reveal flex min-h-[13rem] flex-col justify-between rounded-[2rem] bg-brand-50 p-7 ring-1 ring-brand-100 lg:col-span-4 lg:min-h-0">
-            <h3 className="text-xl font-semibold">Seragam</h3>
-            <div>
-              <p className="text-[1.6rem] font-semibold leading-tight tracking-[-0.02em]">{praktis.seragam.value}</p>
-              <p className="mt-1 text-[16px] text-navy-700">{praktis.seragam.note}</p>
-            </div>
-          </article>
+      <div className="mx-auto grid w-full max-w-[78rem] gap-8 lg:h-[min(32rem,calc(100svh-9rem))] lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
+        <div className="reveal relative isolate flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[2rem] p-7 text-white sm:p-9">
+          <Photo src="/images/gedung-sd.jpg" alt="Gedung SD Alfa Centauri" label="Gedung sekolah" sizes="(min-width:1024px) 480px, 94vw" className="-z-20 object-[30%_50%]" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-navy-900/25 to-navy-900/35" />
+          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/80">Info orang tua</p>
+          <div>
+            <h2 id="praktis-title" className="text-4xl font-semibold leading-[1.05] !text-white sm:text-5xl">
+              Butuh sesuatu? <span className="em-serif text-brand-200">Mulai dari sini</span>
+            </h2>
+            <p className="mt-3 max-w-sm text-[16px] text-white/85">Portal, jadwal, pendaftaran, dan kontak sekolah dalam satu tempat.</p>
+          </div>
         </div>
+
+        <ul className="grid content-center gap-x-8 sm:grid-cols-2">
+          {infoCepat.map((c) => {
+            const C = icons[c.icon];
+            const href = resolve(c.href);
+            const ext = href.startsWith("http");
+            return (
+              <li key={c.title} className="reveal border-b border-navy-900/10 last:border-b-0 sm:[&:nth-last-child(2)]:border-b-0">
+                <a
+                  href={href}
+                  {...(ext ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="group flex items-center gap-4 py-5"
+                >
+                  <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-brand-100 text-brand-600 transition group-hover:bg-brand-600 group-hover:text-white">
+                    <C size={22} aria-hidden />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[17px] font-semibold leading-snug text-navy-900">{c.title}</span>
+                    <span className="mt-0.5 block text-[14px] leading-snug text-navy-700/80">{c.desc}</span>
+                  </span>
+                  <ArrowUpRight size={18} aria-hidden className="shrink-0 text-navy-700/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-600" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

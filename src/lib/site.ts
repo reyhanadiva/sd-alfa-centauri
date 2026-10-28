@@ -54,8 +54,7 @@ export const nav: NavItem[] = [
     href: "#info-orang-tua",
     children: [
       { label: "Fasilitas", href: "#fasilitas", desc: "Ruang belajar dan penunjang" },
-      { label: "Keamanan & Kesehatan", href: "#keamanan", desc: "Jemput, UKS, CCTV" },
-      { label: "Layanan Harian", href: "#info-orang-tua", desc: "Jam sekolah, katering, dll." },
+      { label: "Portal & Layanan", href: "#info-orang-tua", desc: "Akses cepat orang tua" },
       { label: "FAQ", href: "#faq", desc: "Pertanyaan umum" },
     ],
   },
@@ -66,6 +65,7 @@ export const nav: NavItem[] = [
 const FOUNDED = 2009;
 
 export const yearsActive = new Date().getFullYear() - FOUNDED;
+export const thisYear = new Date().getFullYear();
 
 // Program Pendidikan Inklusif (LSU). Sumber: website lama + transkrip video. Verifikasi dengan sekolah.
 export const lsuPoints = [
@@ -153,6 +153,16 @@ export const links = {
   yayasan: "https://alfacentauri.sch.id/yayasan/",
 };
 
+// Jaringan unit pendidikan (dari pengelola situs). Dipakai di footer.
+export const jaringan = [
+  { label: "Yayasan Alfa Centauri", href: "https://alfacentauri.sch.id/yayasan/" },
+  { label: "TK Alfa Centauri", href: "https://alfacentauri.sch.id/tk/" },
+  { label: "SMP Alfa Centauri", href: "https://smpalfacentauri.sch.id/" },
+  { label: "SMA Alfa Centauri", href: "https://smaalfacentauri.sch.id/" },
+  { label: "English Now", href: "http://englishnow.co.id/" },
+  { label: "LCDU", href: "https://lcdu.org/" },
+];
+
 // Dua poin ringkas di bawah video. Sumber: website lama + transkrip video profil (auto-generated, verifikasi).
 export const about = { founded: { label: "Berdiri 12 Juli 2009" } };
 
@@ -191,35 +201,35 @@ export const portals = [
   { label: "Portal Guru", href: "#" },
 ];
 
-// ---------- Fasilitas & Keamanan ----------
-// TODO(verifikasi): daftar fasilitas dan keamanan di bawah masih draf, cocokkan dengan website lama.
-export const fasilitasTabs = ["Semua", "Belajar", "Ibadah & Olahraga", "Lingkungan"] as const;
-export const fasilitas: { title: string; caption: string; cat: (typeof fasilitasTabs)[number]; photo?: string }[] = [
-  { title: "Ruang kelas", caption: "Nyaman dan tertata untuk belajar sehari-hari.", cat: "Belajar", photo: "/images/gedung-sd.jpg" },
-  { title: "Perpustakaan", caption: "Sudut baca untuk budaya literasi.", cat: "Belajar" },
-  { title: "Ruang kreativitas", caption: "Tempat berkarya dan kegiatan khusus.", cat: "Belajar" },
-  { title: "Tempat ibadah", caption: "Shalat dhuha dan berjamaah di sekolah.", cat: "Ibadah & Olahraga" },
-  { title: "Lapangan olahraga", caption: "Ruang bergerak untuk futsal dan senam.", cat: "Ibadah & Olahraga" },
-  { title: "Taman hijau", caption: "Lingkungan asri yang menenangkan.", cat: "Lingkungan" },
-  { title: "UKS", caption: "Pertolongan pertama dan pemantauan kesehatan.", cat: "Lingkungan" },
-  { title: "Kantin sehat", caption: "Tempat makan yang bersih dan tertata.", cat: "Lingkungan" },
+// ---------- Fasilitas ----------
+// Sumber: bagian "Fasilitas" di website lama (sdalfacentauri.sch.id). Hanya yang tertulis di sana.
+// Tidak ada di website lama, jadi TIDAK dicantumkan: UKS, antar-jemput, seragam, katering, lapangan, taman, kantin.
+// Perpustakaan hanya muncul sebagai tautan menu di website lama (tanpa keterangan), jadi belum dimasukkan.
+// TODO(foto): semua kartu masih placeholder berlabel. Ganti dengan foto asli tiap fasilitas.
+export const fasilitas: { title: string; caption: string; photo?: string }[] = [
+  { title: "Internet 24 jam", caption: "Tersedia di ruang kelas." },
+  { title: "Proyektor", caption: "Ada di setiap kelas." },
+  { title: "TV interaktif", caption: "Media belajar interaktif di kelas." },
+  { title: "AC", caption: "Ada di setiap kelas." },
+  { title: "CCTV", caption: "Terpasang di setiap kelas." },
+  { title: "Ruang multimedia", caption: "Ruang khusus untuk belajar berbasis multimedia." },
+  { title: "Mushola", caption: "Tempat shalat di lingkungan sekolah." },
+  { title: "Portal Orang Tua", caption: "Memantau perkembangan akademik dan karakter ananda." },
 ];
 
-export const keamanan = [
-  { icon: "cctv", title: "Pemantauan CCTV" },
-  { icon: "uks", title: "Unit Kesehatan Sekolah (UKS)" },
-  { icon: "jemput", title: "Sistem penjemputan siswa" },
-  { icon: "shield", title: "Program anti-bullying" },
-] as const;
+// Ringkasan di bawah judul Fasilitas: hanya yang tertulis "tiap kelas" di website lama.
+export const perKelas = ["Proyektor", "AC", "CCTV", "Internet 24 jam"];
 
-// ---------- Praktis untuk Orang Tua ----------
-// TODO(data real): semua nilai di bawah placeholder, isi dari sekolah.
-export const praktis = {
-  jam: { value: "XX.XX – XX.XX", note: "Senin – Jumat (WIB)" },
-  jemput: { value: "XX.XX", note: "Area antar-jemput dan aturannya" },
-  katering: { value: "Menu harian", note: "Info penyedia dan biaya" },
-  seragam: { value: "Seragam sekolah", note: "Ketentuan hari dan atribut" },
-};
+// ---------- Info Cepat Orang Tua ----------
+// Semua kartu adalah tautan. Isi href asli: portal, kalender akademik (ada di website lama, tautannya belum diketahui).
+export const infoCepat = [
+  { icon: "portal", title: "Portal Orang Tua", desc: "Pantau perkembangan akademik dan karakter ananda.", href: portals[0].href },
+  { icon: "kalender", title: "Kalender akademik", desc: "Jadwal kegiatan dan hari penting sekolah.", href: "#" },
+  { icon: "spmb", title: "Info pendaftaran (SPMB)", desc: "Jadwal, syarat, dan cara mendaftar.", href: "#spmb" },
+  { icon: "wa", title: "Tanya admin", desc: "Chat WhatsApp, kami bantu jawab.", href: "wa" },
+  { icon: "telp", title: "Telepon sekolah", desc: "Hubungi kami di jam kerja.", href: "tel" },
+  { icon: "map", title: "Petunjuk arah", desc: "Buka lokasi sekolah di Google Maps.", href: "map" },
+] as const;
 
 // ---------- Prestasi ----------
 // TODO(data real): semua angka dan nama lomba di bawah placeholder. Isi dari sekolah.
@@ -235,12 +245,13 @@ export const prestasi = {
 };
 
 // ---------- Berita ----------
-// TODO(data real): judul, tanggal, foto, tautan artikel. Semua contoh.
+// MOCKUP: judul, tanggal, dan kategori di bawah hanya contoh agar tampilan terbayang. Foto memakai 3 foto asli
+// yang tersedia (dipotong dari foto gedung dan siswa membaca), belum foto liputan. Ganti semuanya dengan berita asli.
 export const berita = [
-  { cat: "Kegiatan", date: "DD Bulan 20XX", title: "[Judul berita utama: kegiatan siswa terbaru]", href: "#", photo: undefined as string | undefined },
-  { cat: "Prestasi", date: "DD Bulan 20XX", title: "[Judul berita: prestasi siswa]", href: "#", photo: undefined as string | undefined },
-  { cat: "Pengumuman", date: "DD Bulan 20XX", title: "[Judul pengumuman sekolah]", href: "#", photo: undefined as string | undefined },
-  { cat: "Parenting", date: "DD Bulan 20XX", title: "[Judul artikel untuk orang tua]", href: "#", photo: undefined as string | undefined },
+  { cat: "Kegiatan", date: "12 Okt 2026", title: "Reading Challenge: siswa berlomba menamatkan buku bulan ini", href: "#", photo: "/images/berita-baca.jpg" },
+  { cat: "Pengumuman", date: "5 Okt 2026", title: "Pendaftaran SPMB 2026/2027 resmi dibuka", href: "#", photo: "/images/berita-papan.jpg" },
+  { cat: "Lingkungan", date: "28 Sep 2026", title: "River Clean Up: belajar peduli lingkungan lewat aksi nyata", href: "#", photo: "/images/berita-halaman.jpg" },
+  { cat: "Parenting", date: "20 Sep 2026", title: "Tips mendampingi anak belajar di rumah agar tetap menyenangkan", href: "#", photo: "/images/gedung-sd.jpg" },
 ];
 
 // ---------- FAQ ----------

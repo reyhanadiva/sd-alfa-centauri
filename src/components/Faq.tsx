@@ -1,17 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUp, Minus, Plus } from "lucide-react";
+import { MessageCircle, Minus, Plus } from "lucide-react";
 import { faqs, waLink } from "@/lib/site";
 import { Photo } from "./Photo";
 
 const pad = (n: number) => String(n + 1).padStart(2, "0");
 
-// FAQ: foto + kartu "tanya admin" di kiri (ketik pertanyaan lanjutan, lanjut ke WhatsApp),
+// FAQ: foto + tombol "tanya admin" di kiri (membuka WhatsApp dengan pesan template; tanpa backend),
 // daftar bernomor di kanan (satu terbuka, transisi tinggi halus).
 export function Faq() {
   const [open, setOpen] = useState(0);
-  const [q, setQ] = useState("");
 
   return (
     <section
@@ -28,30 +27,18 @@ export function Faq() {
           {/* Kiri: foto + tanya admin */}
           <div className="reveal relative isolate min-h-[22rem] overflow-hidden rounded-[2rem]">
             <Photo src="/images/siswa-membaca.jpg" alt="Siswa SD Alfa Centauri membaca bersama" label="Suasana kelas" sizes="(min-width:1024px) 480px, 94vw" className="-z-10 object-[30%_40%]" />
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const t = q.trim();
-                window.open(waLink(t ? `Halo SD Alfa Centauri, saya ingin bertanya: ${t}` : undefined), "_blank", "noopener,noreferrer");
-              }}
-              className="absolute inset-x-3 bottom-3 rounded-[1.5rem] bg-white p-4 shadow-lift"
-            >
+            <div className="absolute inset-x-3 bottom-3 rounded-[1.5rem] bg-white p-5 shadow-lift">
               <p className="text-[17px] font-semibold leading-snug text-navy-900">Belum ketemu jawabannya?</p>
-              <p className="mt-0.5 text-[14px] text-navy-700/80">Tulis pertanyaanmu, kami lanjutkan lewat WhatsApp.</p>
-              <label htmlFor="faq-q" className="sr-only">Pertanyaan untuk admin</label>
-              <div className="mt-3 flex items-center gap-2 rounded-full bg-brand-50 p-1.5 pl-4 ring-1 ring-brand-100 focus-within:ring-2 focus-within:ring-brand-500">
-                <input
-                  id="faq-q"
-                  value={q}
-                  onChange={(e) => setQ(e.target.value)}
-                  placeholder="Contoh: apakah ada kelas percobaan?"
-                  className="min-w-0 flex-1 bg-transparent text-[14.5px] text-navy-900 outline-none placeholder:text-navy-700/45"
-                />
-                <button type="submit" aria-label="Kirim lewat WhatsApp" className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-600 text-white transition hover:bg-brand-700 active:scale-95">
-                  <ArrowUp size={18} aria-hidden />
-                </button>
-              </div>
-            </form>
+              <p className="mt-0.5 text-[14px] text-navy-700/80">Admin kami siap membantu lewat WhatsApp.</p>
+              <a
+                href={waLink("Halo SD Alfa Centauri, saya ingin bertanya tentang: ")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3.5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-5 py-3 text-[15px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-700"
+              >
+                <MessageCircle size={18} aria-hidden /> Tanya admin via WhatsApp
+              </a>
+            </div>
           </div>
 
           {/* Kanan: daftar bernomor */}

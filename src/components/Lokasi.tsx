@@ -20,20 +20,37 @@ export function Lokasi() {
             </h2>
             <p className="mt-4 text-[16px] text-navy-700">{site.name}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-[15px] font-semibold">
+          <div>
+            <ul className="divide-y divide-navy-900/10 border-y border-navy-900/10">
+              {[
+                { icon: Phone, label: "Telepon sekolah", value: site.phone, href: site.phoneHref, cta: "Telepon", ext: false },
+                { icon: MessageCircle, label: "WhatsApp admin", value: site.whatsappDisplay, href: waLink(), cta: "Chat", ext: true },
+              ].map((c) => (
+                <li key={c.label}>
+                  <a
+                    href={c.href}
+                    {...(c.ext ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="group flex items-center gap-4 py-3.5"
+                  >
+                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-100 text-brand-600">
+                      <c.icon size={18} aria-hidden />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[13px] text-navy-700/70">{c.label}</span>
+                      <span className="block text-[17px] font-semibold tabular-nums text-navy-900">{c.value}</span>
+                    </span>
+                    <span className="rounded-full bg-brand-50 px-3.5 py-1.5 text-[13px] font-bold text-brand-700 transition group-hover:bg-brand-600 group-hover:text-white">{c.cta}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
             <a
               href={lokasi.mapLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-navy-900 px-5 py-2.5 text-white transition hover:-translate-y-0.5 hover:bg-navy-700"
+              className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-navy-900 px-5 py-2.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-navy-700"
             >
               Petunjuk arah <ArrowUpRight size={16} aria-hidden />
-            </a>
-            <a href={site.phoneHref} className="inline-flex items-center gap-2 text-navy-800 hover:text-brand-600">
-              <Phone size={16} aria-hidden /> {site.phone}
-            </a>
-            <a href={waLink()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-navy-800 hover:text-brand-600">
-              <MessageCircle size={16} aria-hidden /> {site.whatsappDisplay}
             </a>
           </div>
         </div>

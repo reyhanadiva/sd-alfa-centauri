@@ -2,7 +2,9 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { WhyChoose } from "@/components/WhyChoose";
-import { Fasilitas } from "@/components/Fasilitas";
+import { FasilitasDaftar, FasilitasKipas } from "@/components/Fasilitas";
+import { Cta } from "@/components/Cta";
+import { Footer } from "@/components/Footer";
 import { Berita } from "@/components/Berita";
 import { Faq } from "@/components/Faq";
 import { Lokasi } from "@/components/Lokasi";
@@ -20,9 +22,10 @@ export default function Home() {
         <Hero />
         <About />
         <WhyChoose />
-        {/* Berikutnya: Galeri, Testimoni, CTA penutup, Footer. */}
         <Program />
-        <Fasilitas />
+        <FasilitasDaftar />
+        {/* Gaya alternatif (Kipas): tinggal pilih salah satu, atau pakai untuk Galeri */}
+        <FasilitasKipas />
         <Inklusi />
         <Praktis />
         <Prestasi />
@@ -30,8 +33,9 @@ export default function Home() {
         <Berita />
         <Faq />
         <Lokasi />
-        <div className="h-24" />
+        <Cta />
       </main>
+      <Footer />
     </>
   );
 }

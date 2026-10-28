@@ -3,9 +3,9 @@
 
 const STAR = "12,2 14.9,8.9 22.4,9.3 16.6,14.1 18.5,21.4 12,17.3 5.5,21.4 7.4,14.1 1.6,9.3 9.1,8.9";
 
-export function Star({ className = "", fill = "currentColor" }: { className?: string; fill?: string }) {
+export function Star({ className = "", fill = "currentColor", style }: { className?: string; fill?: string; style?: React.CSSProperties }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className={className}>
+    <svg viewBox="0 0 24 24" aria-hidden className={className} style={style}>
       <polygon points={STAR} fill={fill} strokeLinejoin="round" />
     </svg>
   );
