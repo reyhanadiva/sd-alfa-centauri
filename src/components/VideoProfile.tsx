@@ -4,14 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { profileVideo } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 
 // Video profil yang langsung berjalan (muted, loop) saat terlihat di layar, seperti website SMP.
 // - mp4: <video> autoplay, otomatis jeda saat keluar layar, ada tombol jeda dan suara.
 // - youtubeId: iframe dimuat hanya saat terlihat (hemat bandwidth), autoplay muted loop.
 // - keduanya kosong: tampil poster dengan tombol putar (belum ada video).
 // "Reduce motion": tidak autoplay, pengunjung menekan putar sendiri.
-export function VideoProfile({ className = "" }: { className?: string }) {
-  const { mp4, youtubeId, poster, title } = profileVideo;
+export function VideoProfile({ lang, className = "" }: { lang: Lang; className?: string }) {
+  const { mp4, youtubeId, poster } = profileVideo;
+  const { video: v18 } = getT(lang);
+  const title = v18.title;
   const boxRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [inView, setInView] = useState(false);
@@ -100,7 +103,7 @@ export function VideoProfile({ className = "" }: { className?: string }) {
             <button
               type="button"
               onClick={toggle}
-              aria-label={playing ? "Jeda video" : "Putar video"}
+              aria-label={playing ? v18.pause : v18.play}
               className="grid size-11 place-items-center rounded-full bg-navy-900/70 text-white backdrop-blur transition hover:bg-navy-900"
             >
               {playing ? <Pause size={18} aria-hidden /> : <Play size={18} aria-hidden />}
@@ -108,7 +111,7 @@ export function VideoProfile({ className = "" }: { className?: string }) {
             <button
               type="button"
               onClick={() => setMuted((m) => !m)}
-              aria-label={muted ? "Nyalakan suara" : "Matikan suara"}
+              aria-label={muted ? v18.unmute : v18.mute}
               className="grid size-11 place-items-center rounded-full bg-navy-900/70 text-white backdrop-blur transition hover:bg-navy-900"
             >
               {muted ? <VolumeX size={18} aria-hidden /> : <Volume2 size={18} aria-hidden />}
@@ -142,7 +145,7 @@ export function VideoProfile({ className = "" }: { className?: string }) {
           </div>
           {!youtubeId && (
             <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3.5 py-1 text-[12px] font-bold text-navy-800">
-              Video profil menyusul
+              {v18.soon}
             </span>
           )}
         </>

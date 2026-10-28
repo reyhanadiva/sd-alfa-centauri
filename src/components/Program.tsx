@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { ranah } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { EkskulPanel } from "./EkskulPanel";
 import { Icon } from "./icons";
 import { Photo } from "./Photo";
 
 // Explorer program: tiga ranah (Taqwa, Cerdas, Kreatif) sebagai tab di kiri,
 // ekstrakurikuler sebagai kisi ikon di kanan. Satu layar, tanpa paragraf panjang.
-export function Program() {
+export function Program({ lang }: { lang: Lang }) {
+  const { program } = getT(lang);
+  const { ranah } = program;
   const [state, setState] = useState({ active: 0, dir: 1 });
   const { active, dir } = state;
   const r = ranah[active];
@@ -25,8 +27,8 @@ export function Program() {
           id="program-title"
           className="reveal text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem]"
         >
-          Program yang menumbuhkan{" "}
-          <span className="em-serif text-brand-600">Taqwa, Cerdas, dan Kreatif</span>
+          {program.title[0]}
+          <span className="em-serif text-brand-600">{program.title[1]}</span>
         </h2>
 
         <div className="mt-8 grid gap-3.5 lg:mt-9 lg:h-[min(31rem,calc(100svh-16rem))] lg:grid-cols-[1.45fr_1fr]">
@@ -35,7 +37,7 @@ export function Program() {
             {/* Tab dengan indikator yang bergeser */}
             <div
               role="tablist"
-              aria-label="Ranah program"
+              aria-label={program.tabsAria}
               className="relative grid w-full max-w-sm grid-cols-3 rounded-full bg-white p-1 ring-1 ring-brand-100"
             >
               <span
@@ -98,7 +100,7 @@ export function Program() {
             </div>
           </div>
 
-          <EkskulPanel />
+          <EkskulPanel lang={lang} />
         </div>
       </div>
     </section>

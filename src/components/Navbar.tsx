@@ -3,10 +3,12 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Phone, Send, X } from "lucide-react";
-import { nav, portals, site, spmb } from "@/lib/site";
+import { site, spmb } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { LangToggle } from "./LangToggle";
 
-export function Navbar() {
+export function Navbar({ lang }: { lang: Lang }) {
+  const { nav, portals, ui } = getT(lang);
   // solid: sudah melewati hero. hidden: sedang scroll turun (muncul lagi saat scroll naik).
   const [solid, setSolid] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -70,7 +72,7 @@ export function Navbar() {
         }`}
       >
         <div className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between gap-3 px-5 sm:px-8">
-          <a href="#" aria-label="SD Alfa Centauri, ke beranda" className="shrink-0">
+          <a href="#" aria-label={ui.home} className="shrink-0">
             <Image
               src={solid ? "/images/logo-horizontal.png" : "/images/logo-horizontal-white.png"}
               alt="SD Alfa Centauri"
@@ -81,7 +83,7 @@ export function Navbar() {
             />
           </a>
 
-          <nav aria-label="Menu utama" className="hidden items-center lg:flex">
+          <nav aria-label={ui.mainMenu} className="hidden items-center lg:flex">
             {nav.map((item) => (
               <div key={item.label} className="group relative">
                 <a
@@ -126,7 +128,7 @@ export function Navbar() {
                   solid ? "text-navy-700 hover:bg-brand-50" : "text-white/90 hover:bg-white/15"
                 }`}
               >
-                Portal
+                {ui.portal}
                 <ChevronDown size={14} aria-hidden className="transition group-hover:rotate-180 group-focus-within:rotate-180" />
               </button>
               <div className="invisible absolute right-0 top-full w-52 translate-y-2 pt-3 opacity-0 transition duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
@@ -142,7 +144,7 @@ export function Navbar() {
               </div>
             </div>
 
-            <LangToggle className="hidden xl:flex" onDark={!solid} />
+            <LangToggle lang={lang} label={ui.language} className="hidden xl:flex" onDark={!solid} />
 
             <a
               href={spmb.href}
@@ -150,12 +152,12 @@ export function Navbar() {
                 solid ? "bg-brand-600 text-white hover:bg-brand-700" : "bg-white text-navy-900 hover:bg-brand-50"
               }`}
             >
-              <Send size={15} aria-hidden /> Daftar SPMB
+              <Send size={15} aria-hidden /> {ui.register}
             </a>
             <button
               type="button"
               onClick={() => setOpen(true)}
-              aria-label="Buka menu"
+              aria-label={ui.openMenu}
               aria-expanded={open}
               className={`grid size-11 place-items-center rounded-full transition lg:hidden ${
                 solid ? "bg-brand-50 text-navy-800" : "bg-white/15 text-white"
@@ -185,14 +187,14 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Tutup menu"
+              aria-label={ui.closeMenu}
               className="grid size-11 place-items-center rounded-full bg-brand-50"
             >
               <X size={22} aria-hidden />
             </button>
           </div>
 
-          <nav aria-label="Menu seluler" className="flex-1 overflow-y-auto px-5 pb-6">
+          <nav aria-label={ui.mobileMenu} className="flex-1 overflow-y-auto px-5 pb-6">
             <ul className="divide-y divide-brand-100">
               {nav.map((item) => (
                 <li key={item.label}>
@@ -224,7 +226,7 @@ export function Navbar() {
                 </li>
               ))}
               <li className="py-4">
-                <p className="text-sm font-semibold text-navy-700/70">Portal</p>
+                <p className="text-sm font-semibold text-navy-700/70">{ui.portal}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {portals.map((p) => (
                     <a key={p.label} href={p.href} className="rounded-full bg-brand-50 px-4 py-2 text-[15px] font-semibold text-brand-700">
@@ -241,14 +243,14 @@ export function Navbar() {
               <a href={site.phoneHref} className="inline-flex items-center gap-2 text-[15px] font-semibold text-navy-800">
                 <Phone size={16} aria-hidden /> {site.phone}
               </a>
-              <LangToggle />
+              <LangToggle lang={lang} label={ui.language} />
             </div>
             <a
               href={spmb.href}
               onClick={() => setOpen(false)}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 py-3.5 font-bold text-white"
             >
-              <Send size={18} aria-hidden /> Daftar SPMB Online
+              <Send size={18} aria-hidden /> {ui.registerOnline}
             </a>
           </div>
         </div>

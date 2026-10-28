@@ -6,7 +6,7 @@ import { Icon } from "./icons";
 // Kegiatan pendampingan: berjalan pelan sendiri, tapi bisa digeser/diseret kapan saja.
 // Berhenti saat disentuh, di-hover, atau difokus; lanjut 2,5 detik setelah pengguna berhenti.
 // Daftar digandakan agar putarannya tanpa putus. "Reduce motion": tidak otomatis, hanya bisa digeser.
-export function ActivityRail({ items }: { items: readonly { icon: string; label: string }[] }) {
+export function ActivityRail({ items, label }: { items: readonly { icon: string; label: string }[]; label: string }) {
   const ref = useRef<HTMLUListElement>(null);
   const loop = [...items, ...items];
 
@@ -69,7 +69,7 @@ export function ActivityRail({ items }: { items: readonly { icon: string; label:
 
   return (
     <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-      <ul ref={ref} aria-label="Kegiatan pendampingan" className="flex gap-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <ul ref={ref} aria-label={label} className="flex gap-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {loop.map((a, i) => (
           <li
             key={i}

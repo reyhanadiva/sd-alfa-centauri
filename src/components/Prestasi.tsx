@@ -1,4 +1,4 @@
-import { prestasi } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { CountUp } from "./CountUp";
 import { Star } from "./Doodles";
 import { SnapRail } from "./SnapRail";
@@ -7,7 +7,8 @@ import { SnapRail } from "./SnapRail";
 // Semua angka/nama lomba masih placeholder (lihat `prestasi` di site.ts).
 const tones = ["bg-brand-100", "bg-white ring-1 ring-brand-100 shadow-soft", "bg-brand-50 ring-1 ring-brand-100", "bg-brand-100"];
 
-export function Prestasi() {
+export function Prestasi({ lang }: { lang: Lang }) {
+  const { prestasi } = getT(lang);
   return (
     <section
       id="prestasi"
@@ -16,22 +17,22 @@ export function Prestasi() {
     >
       <div className="mx-auto w-full max-w-[78rem]">
         <h2 id="prestasi-title" className="reveal text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.2rem]">
-          Prestasi yang <span className="em-serif text-brand-600">membanggakan</span>
+          {prestasi.title[0]}<span className="em-serif text-brand-600">{prestasi.title[1]}</span>
         </h2>
 
         <div className="mt-8 grid gap-3.5 lg:mt-9 lg:h-[min(32rem,calc(100svh-17rem))] lg:grid-cols-[0.8fr_1.4fr]">
           <div className="reveal relative flex min-h-[18rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-navy-900 p-8 text-white">
             <Star className="absolute -right-10 -top-10 size-56 rotate-12 text-white/[0.06]" />
-            <p className="relative text-[17px] font-semibold text-white/75">Total prestasi</p>
+            <p className="relative text-[17px] font-semibold text-white/75">{prestasi.totalLabel}</p>
             <div className="relative">
               <p className="font-display text-[6rem] font-semibold leading-none tracking-[-0.05em] sm:text-[7.5rem]">
                 <CountUp to={prestasi.total} suffix="+" />
               </p>
-              <p className="mt-2 text-[17px] text-white/75">sejak {prestasi.since}, di tingkat kota hingga nasional</p>
+              <p className="mt-2 text-[17px] text-white/75">{prestasi.sinceText.replace("{y}", String(prestasi.since))}</p>
             </div>
           </div>
 
-          <SnapRail label="Prestasi per kategori" basis="86%" wrapperClassName="lg:h-full" className="sm:grid sm:grid-cols-2 lg:h-full lg:grid-rows-2">
+          <SnapRail label={prestasi.aria} basis="86%" wrapperClassName="lg:h-full" className="sm:grid sm:grid-cols-2 lg:h-full lg:grid-rows-2">
             {prestasi.categories.map((c, i) => (
               <article key={c.name} className={`flex flex-col rounded-[2rem] p-6 ${tones[i]}`}>
                 <div className="flex items-baseline justify-between gap-3">

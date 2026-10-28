@@ -1,4 +1,4 @@
-import { lsuActivities, lsuPoints } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { Star } from "./Doodles";
 import { ActivityRail } from "./ActivityRail";
 import { Icon } from "./icons";
@@ -21,7 +21,8 @@ function Curve({ edge }: { edge: "top" | "bottom" }) {
 
 // Program Pendidikan Inklusif (LSU): gelap dan ringkas. Judul jelas ini program, tiga poin layanan,
 // lalu aktivitas pendampingan yang bergerak pelan sendiri dan bisa digeser. Tanpa tombol, tanpa foto anak.
-export function Inklusi() {
+export function Inklusi({ lang }: { lang: Lang }) {
+  const { inklusi: k } = getT(lang);
   return (
     <section
       id="inklusi"
@@ -38,20 +39,20 @@ export function Inklusi() {
       <div className="flex flex-col items-center justify-center gap-8 py-16 text-center lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:gap-10 lg:py-8">
         <div className="px-5 sm:px-8">
           <p className="mx-auto w-fit rounded-full bg-white/10 px-4 py-1.5 text-[13px] font-semibold text-white/85 ring-1 ring-white/20">
-            Learning Support Unit (LSU)
+            {k.badge}
           </p>
           <h2
             id="inklusi-title"
             className="reveal mx-auto mt-5 max-w-5xl text-[2.6rem] font-semibold leading-[1.02] !text-white sm:text-6xl lg:text-[3.7rem]"
           >
-            Program Pendidikan <span className="em-serif text-brand-300">Inklusif</span>
+            {k.title[0]}<span className="em-serif text-brand-300">{k.title[1]}</span>
           </h2>
-          <p className="mt-3 text-lg text-white/70 sm:text-xl">Setiap anak belajar dengan caranya.</p>
+          <p className="mt-3 text-lg text-white/70 sm:text-xl">{k.sub}</p>
         </div>
 
         {/* Tiga poin layanan */}
         <ul className="reveal mx-auto grid w-full max-w-[72rem] gap-6 px-5 text-left sm:grid-cols-3 sm:gap-0 sm:px-8">
-          {lsuPoints.map((p, i) => (
+          {k.points.map((p, i) => (
             <li
               key={p.title}
               className={`flex items-start gap-3.5 sm:px-6 ${i > 0 ? "sm:border-l sm:border-white/15" : ""}`}
@@ -70,9 +71,9 @@ export function Inklusi() {
         {/* Aktivitas pendampingan: bergerak pelan, berhenti saat disentuh */}
         <div className="reveal w-full">
           <p className="mb-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/50">
-            Kegiatan pendampingan
+            {k.activitiesLabel}
           </p>
-          <ActivityRail items={lsuActivities} />
+          <ActivityRail items={k.activities} label={k.activitiesLabel} />
         </div>
       </div>
     </section>

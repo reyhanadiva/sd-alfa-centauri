@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { galeri } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { Maximize2 } from "lucide-react";
 import { Photo } from "./Photo";
 import { SnapRail } from "./SnapRail";
 
 // Galeri kegiatan: kartu mengipas di bawah judul besar; klik untuk memperbesar. Isi: `galeri` di site.ts.
-const N = galeri.length;
+const N = 8; // jumlah foto galeri (sama di semua bahasa)
 
-export function Galeri() {
+export function Galeri({ lang }: { lang: Lang }) {
+  const g = getT(lang).galeri;
+  const galeri = g.items;
   const mid = (N - 1) / 2;
   const [zoom, setZoom] = useState<number | null>(null);
   const [focus, setFocus] = useState(Math.floor(mid)); // kartu yang sedang di-hover/fokus, judulnya tampil di bawah kipas
@@ -24,10 +26,10 @@ export function Galeri() {
     <section id="galeri" aria-labelledby="galeri-title" className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50 to-white px-5 py-14 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6">
       <div className="mx-auto w-full max-w-[78rem] [--u:2.6rem] sm:[--u:5.2rem] lg:[--u:7.6rem]">
         <h2 id="galeri-title" className="text-center text-[clamp(3rem,8.5vw,7.25rem)] font-semibold leading-[0.95] tracking-[-0.045em]">
-          Galeri <span className="em-serif text-brand-600">kegiatan</span>
+          {g.title[0]}<span className="em-serif text-brand-600">{g.title[1]}</span>
         </h2>
 
-        <ul aria-label="Galeri kegiatan" className="relative mx-auto mt-6 hidden h-[min(17rem,32svh)] sm:mb-10 sm:block">
+        <ul aria-label={g.aria} className="relative mx-auto mt-6 hidden h-[min(17rem,32svh)] sm:mb-10 sm:block">
           {galeri.map((x, k) => {
             const d = k - mid;
             return (
@@ -41,7 +43,7 @@ export function Galeri() {
                 <button
                   type="button"
                   onClick={() => setZoom(k)}
-                  aria-label={`Perbesar: ${x.title}`}
+                  aria-label={g.zoom.replace("{x}", x.title)}
                   className="relative isolate block size-full cursor-zoom-in overflow-hidden rounded-[1.4rem] text-left shadow-lift ring-4 ring-white"
                 >
                   <Photo src={x.photo} alt={x.title} label={x.title} sizes="208px" className="-z-20" />
@@ -59,13 +61,13 @@ export function Galeri() {
 
         {/* Ponsel: geser satu per satu (kipas hanya untuk layar lebar) */}
         <div className="mt-8 sm:hidden">
-          <SnapRail label="Galeri kegiatan" basis="72%">
+          <SnapRail label={g.aria} basis="72%">
             {galeri.map((x, k) => (
               <button
                 key={x.title}
                 type="button"
                 onClick={() => setZoom(k)}
-                aria-label={`Perbesar: ${x.title}`}
+                aria-label={g.zoom.replace("{x}", x.title)}
                 className="relative isolate block aspect-[4/5] overflow-hidden rounded-[1.75rem] text-left shadow-lift ring-4 ring-white"
               >
                 <Photo src={x.photo} alt={x.title} label={x.title} sizes="70vw" className="-z-20" />

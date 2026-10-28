@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { fasilitas, perKelas } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 
 // Fasilitas: latar foto penuh + daftar bernomor.
@@ -9,30 +9,32 @@ import { Photo } from "./Photo";
 // Isi: lihat `fasilitas` di site.ts (hanya yang tertulis di website lama).
 
 const pad = (n: number) => String(n).padStart(2, "0");
-const N = fasilitas.length;
+const N = 8; // jumlah fasilitas (sama di semua bahasa)
 
-const H2 = ({ className = "", light = false, id = "fasilitas-title" }: { className?: string; light?: boolean; id?: string }) => (
+type F = ReturnType<typeof getT>["fasilitas"];
+
+const H2 = ({ f, className = "", light = false, id = "fasilitas-title" }: { f: F; className?: string; light?: boolean; id?: string }) => (
   <h2 id={id} className={`text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem] ${light ? "!text-white" : ""} ${className}`}>
-    Fasilitas yang{" "}
-    <span className={`em-serif ${light ? "text-brand-200" : "text-brand-600"}`}>lengkap</span>
+    {f.title[0]}
+    <span className={`em-serif ${light ? "text-brand-200" : "text-brand-600"}`}>{f.title[1]}</span>
   </h2>
 );
 
 /* Baris ringkas: hanya yang tertulis "tiap kelas" di website lama */
-function PerKelas({ dark = false, className = "" }: { dark?: boolean; className?: string }) {
+function PerKelas({ f, dark = false, className = "" }: { f: F; dark?: boolean; className?: string }) {
   return (
     <div className={`flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t pt-4 ${dark ? "border-white/25" : "border-navy-900/10"} ${className}`}>
-      <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${dark ? "text-white/60" : "text-navy-700/60"}`}>Di setiap kelas</p>
-      <p className={`text-[16px] font-semibold ${dark ? "text-white" : "text-navy-900"}`}>{perKelas.join("  ·  ")}</p>
+      <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${dark ? "text-white/60" : "text-navy-700/60"}`}>{f.perKelasLabel}</p>
+      <p className={`text-[16px] font-semibold ${dark ? "text-white" : "text-navy-900"}`}>{f.perKelas.join("  ·  ")}</p>
     </div>
   );
 }
 
 /* Tumpukan foto yang berganti dengan crossfade + zoom */
-function Stack({ i, sizes = "100vw" }: { i: number; sizes?: string }) {
+function Stack({ f, i, sizes = "100vw" }: { f: F; i: number; sizes?: string }) {
   return (
     <>
-      {fasilitas.map((x, k) => (
+      {f.items.map((x, k) => (
         <div
           key={x.title}
           aria-hidden={k !== i}
@@ -46,7 +48,9 @@ function Stack({ i, sizes = "100vw" }: { i: number; sizes?: string }) {
 }
 
 /* ---------- Daftar bernomor ---------- */
-export function FasilitasDaftar() {
+export function FasilitasDaftar({ lang }: { lang: Lang }) {
+  const fas = getT(lang).fasilitas;
+  const fasilitas = fas.items;
   const [i, setI] = useState(0);
   // Selalu berjalan: 5 detik per fasilitas (garis progres di baris aktif), tidak berhenti karena hover.
   useEffect(() => {
@@ -68,9 +72,9 @@ export function FasilitasDaftar() {
     <section id="fasilitas" aria-labelledby="fasilitas-title">
       {/* ---------- Ponsel: foto di atas (terlihat penuh), pilihan fasilitas di bawahnya ---------- */}
       <div className="px-5 py-14 sm:px-8 lg:hidden">
-        <H2 id="fasilitas-title-m" />
+        <H2 f={fas} id="fasilitas-title-m" />
         <div className="relative isolate mt-7 aspect-[4/3] overflow-hidden rounded-[2rem] text-white shadow-lift">
-          <Stack i={i} sizes="94vw" />
+          <Stack f={fas} i={i} sizes="94vw" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-navy-900/10" />
           <p key={`m${i}`} className="fade-in absolute left-5 top-4 font-display text-5xl font-semibold leading-none text-white/80">{pad(i + 1)}</p>
           <div key={`t${i}`} className="fade-in absolute inset-x-5 bottom-4">
@@ -78,7 +82,7 @@ export function FasilitasDaftar() {
             {f.caption && <p className="mt-1 text-[15px] leading-snug text-white/85">{f.caption}</p>}
           </div>
         </div>
-        <ul ref={chips} aria-label="Daftar fasilitas" className="-mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ul ref={chips} aria-label={fas.listAria} className="-mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {fasilitas.map((x, k) => (
             <li key={x.title} className="shrink-0">
               <button
@@ -94,29 +98,29 @@ export function FasilitasDaftar() {
             </li>
           ))}
         </ul>
-        <PerKelas className="mt-6" />
+        <PerKelas f={fas} className="mt-6" />
       </div>
 
       {/* ---------- Layar lebar: latar foto penuh + daftar bernomor ---------- */}
       <div className="relative isolate hidden overflow-hidden text-white lg:block lg:h-[calc(100svh-5rem)] lg:min-h-[44rem]">
-      <div className="absolute inset-0 -z-20"><Stack i={i} /></div>
+      <div className="absolute inset-0 -z-20"><Stack f={fas} i={i} /></div>
       <div aria-hidden className="absolute inset-0 -z-10 bg-navy-900/55" />
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900/80 via-navy-900/20 to-navy-900/30" />
 
       <div className="mx-auto grid h-full w-full max-w-[78rem] gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-6">
         <div className="flex h-full flex-col justify-between gap-8 lg:py-4">
-          <H2 light className="max-w-xl" />
+          <H2 f={fas} light className="max-w-xl" />
           <div>
             <p key={`n${i}`} className="fade-in font-display text-[6rem] font-semibold leading-none tracking-[-0.05em] text-white/35 sm:text-[8rem]">{pad(i + 1)}</p>
             <div key={i} className="fade-in">
               <h3 className="mt-1 text-3xl font-semibold !text-white sm:text-4xl">{f.title}</h3>
               {f.caption && <p className="mt-1.5 max-w-sm text-[16px] text-white/80">{f.caption}</p>}
             </div>
-            <PerKelas dark className="mt-7 max-w-2xl" />
+            <PerKelas f={fas} dark className="mt-7 max-w-2xl" />
           </div>
         </div>
 
-        <ul aria-label="Daftar fasilitas" className="grid gap-2">
+        <ul aria-label={fas.listAria} className="grid gap-2">
           {fasilitas.map((x, k) => (
             <li key={x.title}>
               <button

@@ -273,3 +273,10 @@ html {
 .ring-dash { stroke-dasharray: 1; animation: ring-dash 6s linear forwards; }
 @keyframes dash-run { to { stroke-dashoffset: -12; } }
 .dash-run { animation: dash-run 1.2s linear infinite; }
+
+/* Halo biru untuk tombol asisten di latar terang */
+@keyframes halo-brand {
+  0% { box-shadow: 0 0 0 0 rgb(72 132 254 / 0.45); }
+  70%, 100% { box-shadow: 0 0 0 18px rgb(72 132 254 / 0); }
+}
+.halo-brand { animation: halo-brand 2.8s ease-out infinite; }

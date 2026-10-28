@@ -1,10 +1,13 @@
-import { about, links } from "@/lib/site";
+import { links } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
+import { Rich } from "./Rich";
 import { Star } from "./Doodles";
 import { VideoProfile } from "./VideoProfile";
 
 // Satu layar di desktop: pernyataan visi (3 baris, kutipan visi selalu satu baris),
 // video besar di kiri, dua fakta singkat di kanan.
-export function About() {
+export function About({ lang }: { lang: Lang }) {
+  const { about } = getT(lang);
   return (
     <section
       id="tentang"
@@ -16,25 +19,25 @@ export function About() {
           id="tentang-title"
           className="reveal text-center text-[1.3rem] font-medium leading-snug tracking-[-0.02em] text-navy-700 sm:text-[1.55rem] lg:text-[1.65rem]"
         >
-          SD Alfa Centauri berkomitmen mewujudkan visi
+          {about.lead}
           <span className="em-serif my-1 block whitespace-nowrap text-[min(6.4vw,3.3rem)] leading-[1.1] tracking-[-0.02em] text-brand-600">
-            &lsquo;To Be The Finest School In The World&rsquo;
+            &lsquo;{about.quote}&rsquo;
           </span>
-          melalui misi membentuk generasi yang{" "}
+          {about.tail}{" "}
           <a
             href={links.yayasan}
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-navy-900 underline decoration-brand-400 decoration-2 underline-offset-[5px] transition hover:text-brand-600"
           >
-            Taqwa, Cerdas, dan Kreatif
+            {about.link}
           </a>
           .
         </h2>
 
         <div className="grid gap-4 lg:grid-cols-[1fr_17.5rem] lg:gap-5">
           <div id="profil" className="reveal">
-            <VideoProfile className="w-full" />
+            <VideoProfile lang={lang} className="w-full" />
           </div>
 
           <div className="reveal grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
@@ -43,9 +46,9 @@ export function About() {
                 2009
               </p>
               <div>
-                <p className="text-[17px] font-bold text-navy-900">{about.founded.label}</p>
+                <p className="text-[17px] font-bold text-navy-900">{about.founded}</p>
                 <p className="mt-1 text-[15px] leading-snug text-navy-700">
-                  Di bawah naungan
+                  {about.under}
                   <br />
                   <a
                     href={links.yayasan}
@@ -53,7 +56,7 @@ export function About() {
                     rel="noopener noreferrer"
                     className="whitespace-nowrap font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-600"
                   >
-                    Yayasan Taqwa Cerdas Kreatif
+                    {about.foundation}
                   </a>
                 </p>
               </div>
@@ -66,11 +69,10 @@ export function About() {
               </div>
               <div>
                 <p className="text-[17px] font-bold leading-snug text-white">
-                  Bintang kembar <span className="whitespace-nowrap">Alfa Centauri</span>
+                  {about.twinTitle}
                 </p>
                 <p className="mt-1 text-[15px] leading-snug text-white/80">
-                  Dua bintang melambangkan keseimbangan tujuan kami: mengantar ananda sukses di{" "}
-                  <span className="font-bold text-white">dunia &amp; akhirat</span>.
+                  <Rich text={about.twinText} strong="font-bold text-white" />
                 </p>
               </div>
             </div>

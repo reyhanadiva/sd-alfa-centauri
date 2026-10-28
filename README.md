@@ -13,7 +13,7 @@ npm run lint
 
 ## Struktur
 
-- `src/lib/site.ts`: data yang sering berubah (kontak, WhatsApp, jadwal SPMB, menu). **Ganti di sini.**
+- `src/lib/site.ts`: kontak, WhatsApp, tautan, brosur. `src/content/id.ts` + `en.ts`: semua teks per bahasa (`/` dan `/en`, bentuknya harus sama). **Ganti di sini.**
 - `src/components/`: komponen per section (`Navbar`, `Hero`, `About`, `WhyChoose`, `Inklusi`, ...).
 - `src/app/globals.css`: palet warna (biru dari logo), font, animasi.
 - `public/images/`: logo dan foto asli sekolah. Foto stock sementara (Unsplash, hotlink) diatur di `stock` dalam `site.ts`; ganti dengan foto asli lewat prop `src` pada `Photo`.

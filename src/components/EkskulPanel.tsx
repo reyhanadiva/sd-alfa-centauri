@@ -2,13 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Image as ImageIcon, LayoutGrid } from "lucide-react";
-import { ekskul } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { Icon } from "./icons";
 import { Photo } from "./Photo";
 
 // Ekstrakurikuler dengan dua tampilan: kisi ikon, atau satu foto besar per kegiatan yang bisa digeser.
 // Foto: isi `photo` di `ekskul` (site.ts) per kegiatan.
-export function EkskulPanel() {
+export function EkskulPanel({ lang }: { lang: Lang }) {
+  const { ekskul: ui } = getT(lang).program;
+  const ekskul = ui.items;
   const [mode, setMode] = useState<"grid" | "foto">("grid");
   const [idx, setIdx] = useState(0);
   const rail = useRef<HTMLUListElement>(null);
@@ -43,10 +45,10 @@ export function EkskulPanel() {
     <div id="ekskul" className="reveal flex min-h-0 min-w-0 flex-col overflow-hidden rounded-[2rem] bg-navy-900 p-6 text-white sm:p-7">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-2xl font-semibold !text-white">Ekstrakurikuler</h3>
-          <p className="mt-1 text-[15px] text-white/65">Beragam kegiatan sesuai minat ananda.</p>
+          <h3 className="text-2xl font-semibold !text-white">{ui.title}</h3>
+          <p className="mt-1 text-[15px] text-white/65">{ui.sub}</p>
         </div>
-        <div role="group" aria-label="Tampilan" className="relative flex shrink-0 rounded-full bg-white/10 p-1">
+        <div role="group" aria-label={ui.view} className="relative flex shrink-0 rounded-full bg-white/10 p-1">
           <span
             aria-hidden
             className="absolute inset-y-1 left-1 w-9 rounded-full bg-white shadow transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -54,8 +56,8 @@ export function EkskulPanel() {
           />
           {(
             [
-              ["grid", "Kisi", LayoutGrid],
-              ["foto", "Foto", ImageIcon],
+              ["grid", ui.grid, LayoutGrid],
+              ["foto", ui.photo, ImageIcon],
             ] as const
           ).map(([m, label, I]) => (
             <button
@@ -63,7 +65,7 @@ export function EkskulPanel() {
               type="button"
               onClick={() => setMode(m)}
               aria-pressed={mode === m}
-              aria-label={`Tampilan ${label}`}
+              aria-label={ui.viewLabel.replace("{x}", label)}
               className={`relative z-10 grid size-9 place-items-center rounded-full transition-colors duration-300 ${
                 mode === m ? "text-navy-900" : "text-white/70 hover:text-white"
               }`}
@@ -81,7 +83,7 @@ export function EkskulPanel() {
               <button
                 type="button"
                 onClick={() => open(i)}
-                aria-label={`Lihat foto ${e.label}`}
+                aria-label={ui.see.replace("{x}", e.label)}
                 className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white/[0.07] p-2 py-4 text-center ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:bg-white/15 active:scale-95"
               >
                 <span className="grid size-10 place-items-center rounded-full bg-white text-brand-600">
@@ -98,7 +100,7 @@ export function EkskulPanel() {
           <ul
             ref={rail}
             onScroll={onScroll}
-            aria-label="Ekstrakurikuler"
+            aria-label={ui.title}
             className="flex size-full snap-x snap-mandatory overflow-x-auto rounded-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {ekskul.map((e) => (
@@ -109,10 +111,10 @@ export function EkskulPanel() {
               </li>
             ))}
           </ul>
-          <button type="button" onClick={() => go(idx - 1)} aria-label="Sebelumnya" className="absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
+          <button type="button" onClick={() => go(idx - 1)} aria-label={ui.prev} className="absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
             <ChevronLeft size={20} aria-hidden />
           </button>
-          <button type="button" onClick={() => go(idx + 1)} aria-label="Berikutnya" className="absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
+          <button type="button" onClick={() => go(idx + 1)} aria-label={ui.next} className="absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
             <ChevronRight size={20} aria-hidden />
           </button>
           <p className="absolute bottom-4 right-4 rounded-full bg-navy-900/70 px-3 py-1 text-[12.5px] font-semibold tabular-nums backdrop-blur">

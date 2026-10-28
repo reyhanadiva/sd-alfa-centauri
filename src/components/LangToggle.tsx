@@ -1,23 +1,20 @@
-"use client";
+import type { Lang } from "@/lib/lang";
 
-import { useState } from "react";
-
-// Baru tampilan. Terjemahan EN belum dipasang; tombol hanya menyimpan pilihan di state.
-export function LangToggle({ className = "", onDark = false }: { className?: string; onDark?: boolean }) {
-  const [lang, setLang] = useState<"id" | "en">("id");
-
+// Pindah bahasa = pindah halaman: "/" (Indonesia) dan "/en" (English). Tanpa JS, ramah mesin pencari (hreflang).
+export function LangToggle({ lang, label, className = "", onDark = false }: { lang: Lang; label: string; className?: string; onDark?: boolean }) {
   return (
     <div
       role="group"
-      aria-label="Bahasa"
+      aria-label={label}
       className={`flex items-center rounded-full p-0.5 text-[12px] font-bold transition-colors ${onDark ? "bg-white/15" : "bg-brand-50"} ${className}`}
     >
       {(["id", "en"] as const).map((l) => (
-        <button
+        <a
           key={l}
-          type="button"
-          onClick={() => setLang(l)}
-          aria-pressed={lang === l}
+          href={l === "en" ? "/en" : "/"}
+          hrefLang={l}
+          lang={l}
+          aria-current={lang === l ? "true" : undefined}
           className={`rounded-full px-2.5 py-1 uppercase transition ${
             lang === l
               ? "bg-white text-navy-900 shadow-sm"
@@ -27,7 +24,7 @@ export function LangToggle({ className = "", onDark = false }: { className?: str
           }`}
         >
           {l}
-        </button>
+        </a>
       ))}
     </div>
   );

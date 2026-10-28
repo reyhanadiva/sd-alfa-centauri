@@ -97,3 +97,13 @@ Komponen `Praktis.tsx` dan data `infoCepat` masih ada tapi tidak ditampilkan. Pa
 - [ ] Brosur: `site.brosurHref` kosong, tombol di CTA/asisten sementara meminta brosur via WhatsApp. Isi path PDF bila sudah ada.
 - [ ] Asisten "Bintang": basis pengetahuan (`kb` di AskWidget.tsx) hanya berisi fakta yang ada di data. Tambahkan entri saat ada data baru (jam sekolah, seragam, antar-jemput, katering, UKS belum ada datanya).
 - [x] Section "Jenjang" dihapus; tautan unit tetap di footer.
+
+## Putaran 8 (versi English, brosur, asisten)
+
+- [ ] **Teks sekarang ada di `src/content/id.ts` dan `src/content/en.ts`** (bukan lagi di `site.ts`; `site.ts` hanya kontak, tautan, angka). Semua file dan data di checklist di atas yang menyebut `site.ts` untuk teks (berita, FAQ, prestasi, testimoni, fasilitas, galeri, portal) kini ada di file `content`. Satu entri = satu objek utuh (teks + foto + ikon), bentuk yang kelak mudah diisi dari panel admin.
+- [ ] **Terjemahan English adalah tulisan saya** (bukan penutur asli/sekolah). Minta guru bahasa Inggris atau tim English Now membaca ulang, terutama: hero ("Taqwa (devout), Cerdas (smart), Kreatif (creative)"), nama program, FAQ, dan deskripsi meta.
+- [ ] Toggle ID/EN di navbar pindah halaman: `/` (Indonesia) dan `/en` (English). Tautan hreflang sudah dipasang di metadata. Domain dasar: `NEXT_PUBLIC_SITE_URL` (default https://sdalfacentauri.sch.id); isi di Vercel bila domain berbeda.
+- [ ] **Brosur**: tombol CTA sekarang "Unduh brosur" langsung ke PDF. `public/brosur-sd-alfa-centauri.pdf` dan `-en.pdf` adalah placeholder; timpa dengan brosur asli (nama file sama, atau ubah `site.brosur`).
+- [ ] **Foto kosong**: foto Pexels kadang tidak termuat (blok jaringan/hotlink). Jalankan `npm run fetch-stock` di komputer berinternet untuk mengunduh semuanya ke `public/images/stock/` lalu commit; situs memakai berkas lokal lebih dulu. Itu pun hanya penampung: ganti dengan foto asli sekolah. Placeholder yang gagal termuat kini lebih rapi (label kegiatan di atas gradien).
+- [ ] Asisten: nama "Bintang" dihapus. Tombol kanan bawah memakai logo bintang dengan balon sapaan kecil ("Halo! Ada yang bisa kami bantu?" / "Hi! How can we help?"). Basis jawaban: `assistant.kb` di `src/content/*.ts`, bukan baca dari tampilan halaman.
+- [ ] Deskripsi meta (`meta.description` di id.ts) masih menyebut "integrasi nilai keislaman": pertahankan atau hapus? (sekolah bukan "SD Islam")

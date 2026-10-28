@@ -1,8 +1,10 @@
 import { ArrowUpRight, MessageCircle, Phone } from "lucide-react";
-import { lokasi, site, waLink } from "@/lib/site";
+import { lokasi, site } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 
 // Lokasi: alamat besar (baris pertama biru) di kiri, peta di kanan.
-export function Lokasi() {
+export function Lokasi({ lang }: { lang: Lang }) {
+  const t = getT(lang).lokasi;
   return (
     <section
       id="lokasi"
@@ -11,20 +13,20 @@ export function Lokasi() {
     >
       <div className="mx-auto grid w-full max-w-[78rem] overflow-hidden rounded-[2rem] bg-white shadow-lift ring-1 ring-brand-100 lg:h-[min(34rem,calc(100svh-9rem))] lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-between gap-8 p-7 sm:p-10">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-navy-700/60">Lokasi</p>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-navy-700/60">{t.label}</p>
           <div>
             <h2 id="lokasi-title" className="text-[2.4rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-5xl">
-              <span className="text-brand-600">{lokasi.street}</span>
+              <span className="text-brand-600">{t.street}</span>
               <br />
-              {lokasi.city}
+              {t.city}
             </h2>
             <p className="mt-4 text-[16px] text-navy-700">{site.name}</p>
           </div>
           <div>
             <ul className="divide-y divide-navy-900/10 border-y border-navy-900/10">
               {[
-                { icon: Phone, label: "Telepon sekolah", value: site.phone, href: site.phoneHref, cta: "Telepon", ext: false },
-                { icon: MessageCircle, label: "WhatsApp admin", value: site.whatsappDisplay, href: waLink(), cta: "Chat", ext: true },
+                { icon: Phone, label: t.phoneLabel, value: site.phone, href: site.phoneHref, cta: t.phoneCta, ext: false },
+                { icon: MessageCircle, label: t.waLabel, value: site.whatsappDisplay, href: t.waText, cta: t.waCta, ext: true },
               ].map((c) => (
                 <li key={c.label}>
                   <a
@@ -50,14 +52,14 @@ export function Lokasi() {
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-navy-900 px-5 py-2.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-navy-700"
             >
-              Petunjuk arah <ArrowUpRight size={16} aria-hidden />
+              {t.directions} <ArrowUpRight size={16} aria-hidden />
             </a>
           </div>
         </div>
 
         <div className="relative min-h-[20rem] bg-brand-50">
           <iframe
-            title="Peta lokasi SD Alfa Centauri"
+            title={t.mapTitle}
             src={lokasi.mapEmbed}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

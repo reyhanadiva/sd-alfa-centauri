@@ -2,10 +2,13 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { spmb } from "@/lib/site";
 import { CertificateDialog } from "./CertificateDialog";
+import { Rich } from "./Rich";
+import { getT, type Lang } from "@/lib/i18n";
 
 // Hero penuh layar tanpa kotak: foto gedung edge-to-edge, headline besar di kiri bawah,
 // dua chip kaca kecil di kanan bawah (akreditasi dan SPMB). Navbar transparan melayang di atasnya.
-export function Hero() {
+export function Hero({ lang }: { lang: Lang }) {
+  const { hero } = getT(lang);
   return (
     <section
       id="hero"
@@ -14,7 +17,7 @@ export function Hero() {
     >
       <Image
         src="/images/gedung-sd.jpg"
-        alt="Gedung SD Alfa Centauri di Jalan Terate No. 10, Bandung"
+        alt={hero.alt}
         fill
         priority
         sizes="100vw"
@@ -36,14 +39,14 @@ export function Hero() {
             School In The World
           </h1>
           <p className="animate-fade-up mt-4 text-lg text-white/85 sm:text-xl" style={{ animationDelay: "100ms" }}>
-            Menumbuhkan anak yang <strong className="font-semibold text-white">Taqwa</strong>, <strong className="font-semibold text-white">Cerdas</strong>, dan <strong className="font-semibold text-white">Kreatif</strong>.
+            <Rich text={hero.sub} />
           </p>
           <div className="animate-fade-up mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "200ms" }}>
             <a
               href={spmb.href}
               className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[15px] font-bold text-navy-900 transition hover:-translate-y-0.5 hover:bg-brand-50"
             >
-              Daftar SPMB
+              {hero.register}
               <ArrowRight size={17} aria-hidden className="transition group-hover:translate-x-1" />
             </a>
           </div>
@@ -54,8 +57,8 @@ export function Hero() {
           <div className="flex items-center gap-3.5 rounded-2xl bg-white/[0.13] px-4 py-3 ring-1 ring-white/25 backdrop-blur-xl">
             <span aria-hidden className="font-display text-[2.6rem] font-semibold leading-none">A</span>
             <div className="text-[13px] leading-snug">
-              <p className="font-bold">Terakreditasi BAN-S/M</p>
-              <CertificateDialog variant="link" />
+              <p className="font-bold">{hero.accredited}</p>
+              <CertificateDialog variant="link" lang={lang} />
             </div>
           </div>
         </div>

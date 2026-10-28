@@ -2,17 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { testimoni } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 
-const N = testimoni.length;
+const N = 6; // jumlah testimoni (sama di semua bahasa)
 const tint = ["bg-brand-100 text-brand-700", "bg-[#e6f9f0] text-[#13795b]", "bg-[#fff1e6] text-[#b4531a]"];
 const MS = 6000;
 
 // Testimoni orang tua: foto besar + kutipan + persona (profesi/jabatan) di kiri-kanan; berganti otomatis
 // tiap 6 detik, dengan cincin progres melingkar di avatar aktif. Bisa dipilih lewat avatar, panah, atau geser.
 // Isi masih CONTOH: lihat `testimoni` di site.ts (foto: isi `photo`).
-export function Testimoni() {
+export function Testimoni({ lang }: { lang: Lang }) {
+  const ui = getT(lang).testimoni;
+  const testimoni = ui.items;
   const [i, setI] = useState(0);
   const touch = useRef<number | null>(null);
   useEffect(() => {
@@ -41,15 +43,15 @@ export function Testimoni() {
       >
         <Quote aria-hidden size={240} strokeWidth={1} className="pointer-events-none absolute -right-6 -top-8 rotate-180 text-brand-200/60" />
         <h2 id="testimoni-title" className="reveal relative text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem]">
-          Kata <span className="em-serif text-brand-600">orang tua</span>
+          {ui.title[0]}<span className="em-serif text-brand-600">{ui.title[1]}</span>
         </h2>
 
         <div className="relative mt-8 grid items-center gap-7 lg:mt-10 lg:grid-cols-[18rem_1fr] lg:gap-12">
           <div key={`p${i}`} className="fade-in relative mx-auto aspect-[4/5] w-48 overflow-hidden rounded-[2rem] shadow-lift ring-4 ring-white sm:w-56 lg:w-full">
             {t.photo ? (
-              <Photo src={t.photo} alt={`Foto ${t.name}`} label="orang tua" sizes="288px" />
+              <Photo src={t.photo} alt={ui.photoAlt.replace("{x}", t.name)} label={ui.photoLabel} sizes="288px" />
             ) : (
-              <Photo alt="" label="orang tua" sizes="288px" />
+              <Photo alt="" label={ui.photoLabel} sizes="288px" />
             )}
           </div>
 
@@ -64,10 +66,10 @@ export function Testimoni() {
         </div>
 
         <div className="relative mt-8 flex items-center justify-center gap-3 sm:gap-4">
-          <button type="button" onClick={() => go(-1)} aria-label="Sebelumnya" className="hidden size-11 place-items-center rounded-full bg-white ring-1 ring-brand-100 transition hover:bg-brand-100 sm:grid">
+          <button type="button" onClick={() => go(-1)} aria-label={ui.prev} className="hidden size-11 place-items-center rounded-full bg-white ring-1 ring-brand-100 transition hover:bg-brand-100 sm:grid">
             <ChevronLeft size={20} aria-hidden />
           </button>
-          <ul className="flex items-center gap-2 sm:gap-3" aria-label="Pilih testimoni">
+          <ul className="flex items-center gap-2 sm:gap-3" aria-label={ui.pick}>
             {testimoni.map((x, k) => {
               const on = k === i;
               return (
@@ -75,7 +77,7 @@ export function Testimoni() {
                   <button
                     type="button"
                     onClick={() => setI(k)}
-                    aria-label={`Testimoni ${k + 1}: ${x.persona}`}
+                    aria-label={ui.item.replace("{n}", String(k + 1)).replace("{p}", x.persona)}
                     aria-current={on}
                     className={`relative grid size-11 place-items-center rounded-full transition sm:size-14 ${on ? "scale-105" : "opacity-65 hover:opacity-100"}`}
                   >
@@ -93,7 +95,7 @@ export function Testimoni() {
               );
             })}
           </ul>
-          <button type="button" onClick={() => go(1)} aria-label="Berikutnya" className="hidden size-11 place-items-center rounded-full bg-white ring-1 ring-brand-100 transition hover:bg-brand-100 sm:grid">
+          <button type="button" onClick={() => go(1)} aria-label={ui.next} className="hidden size-11 place-items-center rounded-full bg-white ring-1 ring-brand-100 transition hover:bg-brand-100 sm:grid">
             <ChevronRight size={20} aria-hidden />
           </button>
         </div>

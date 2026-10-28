@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { getT, type Lang } from "@/lib/i18n";
 
 // Beberapa chip + tombol "+N lainnya". Sisanya muncul dengan transisi halus (bukan tiba-tiba).
-export function ExpandChips({ items, visible = 3 }: { items: readonly string[]; visible?: number }) {
+export function ExpandChips({ items, lang, visible = 3 }: { items: readonly string[]; lang: Lang; visible?: number }) {
+  const { why } = getT(lang);
   const [open, setOpen] = useState(false);
   const rest = items.length - visible;
 
@@ -32,7 +34,7 @@ export function ExpandChips({ items, visible = 3 }: { items: readonly string[]; 
           aria-expanded={open}
           className="inline-flex cursor-pointer items-center gap-1 rounded-full bg-white px-3.5 py-1.5 text-[14px] font-bold text-navy-900 shadow-lg shadow-navy-900/20 transition hover:scale-105 hover:bg-brand-50 active:scale-95"
         >
-          {open ? "Tutup" : `+${rest} lainnya`}
+          {open ? why.close : why.more.replace("{n}", String(rest))}
           <ChevronDown size={15} aria-hidden className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
         </button>
       </li>

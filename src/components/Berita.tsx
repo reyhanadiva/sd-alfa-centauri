@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { berita } from "@/lib/site";
+import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 import { SnapRail } from "./SnapRail";
 
@@ -8,7 +8,8 @@ const pastel = ["bg-brand-100", "bg-[#e3f4ff]", "bg-[#e6f9f0]", "bg-[#fff1e6]"];
 // Berita: judul + pengantar + tautan "Semua berita" di satu baris; kartu pertama jadi sorotan
 // (dua kolom, foto besar, kutipan), tiga lainnya kartu pastel yang lebih ringkas.
 // Isi masih mockup, lihat `berita` di site.ts.
-export function Berita() {
+export function Berita({ lang }: { lang: Lang }) {
+  const berita = getT(lang).berita;
   return (
     <section
       id="berita"
@@ -19,18 +20,18 @@ export function Berita() {
         <div className="reveal flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
           <div>
             <h2 id="berita-title" className="text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.2rem]">
-              Berita <span className="em-serif text-brand-600">terbaru</span>
+              {berita.title[0]}<span className="em-serif text-brand-600">{berita.title[1]}</span>
             </h2>
-            <p className="mt-3 max-w-md text-[17px] text-navy-700">Kabar kegiatan, prestasi, dan pengumuman dari sekolah.</p>
+            <p className="mt-3 max-w-md text-[17px] text-navy-700">{berita.sub}</p>
           </div>
           <a href="#" className="inline-flex items-center gap-1.5 rounded-full bg-navy-900 px-5 py-2.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-navy-700">
-            Semua berita <ArrowUpRight size={16} aria-hidden />
+            {berita.all} <ArrowUpRight size={16} aria-hidden />
           </a>
         </div>
 
         <div className="mt-8 lg:mt-9">
-        <SnapRail label="Berita terbaru" basis="80%" className="sm:grid sm:grid-cols-2 lg:h-[min(28rem,calc(100svh-19rem))] lg:grid-cols-5">
-          {berita.map((b, i) => {
+        <SnapRail label={berita.aria} basis="80%" className="sm:grid sm:grid-cols-2 lg:h-[min(28rem,calc(100svh-19rem))] lg:grid-cols-5">
+          {berita.items.map((b, i) => {
             const feat = i === 0;
             return (
               <div key={b.title} className={feat ? "sm:col-span-2 lg:col-span-2" : ""}>
@@ -41,7 +42,7 @@ export function Berita() {
                   <p className="flex items-center gap-2 text-[12.5px] font-semibold">
                     <span className={`rounded-full px-3 py-1 ${feat ? "bg-brand-500 text-white" : "bg-white text-navy-900"}`}>{b.cat}</span>
                     <span className={feat ? "text-white/70" : "text-navy-700/80"}>{b.date}</span>
-                    {feat && <span className="ml-auto rounded-full bg-white/15 px-3 py-1 text-white">Sorotan</span>}
+                    {feat && <span className="ml-auto rounded-full bg-white/15 px-3 py-1 text-white">{berita.featured}</span>}
                   </p>
                   <div className="mt-4 flex items-start justify-between gap-3">
                     <h3 className={`font-semibold leading-snug ${feat ? "text-[1.6rem] !text-white" : "text-[1.1rem]"}`}>{b.title}</h3>
@@ -51,7 +52,7 @@ export function Berita() {
                   </div>
                   {feat && <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/75">{b.excerpt}</p>}
                   <div className="relative isolate mt-4 min-h-[9rem] flex-1 overflow-hidden rounded-[1.4rem]">
-                    <Photo src={b.photo} alt="" label="Foto berita" sizes="(min-width:1024px) 460px, 94vw" className="transition duration-700 group-hover:scale-105" />
+                    <Photo src={b.photo} alt="" label={berita.photoLabel} sizes="(min-width:1024px) 460px, 94vw" className="transition duration-700 group-hover:scale-105" />
                   </div>
                 </a>
               </div>

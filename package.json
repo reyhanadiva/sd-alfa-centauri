@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "fetch-stock": "node scripts/fetch-stock.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter-tight": "^5.3.0",
