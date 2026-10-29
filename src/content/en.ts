@@ -69,7 +69,8 @@ export const en: Content = {
   },
   cert: {
     open: "View certificate", title: "Accreditation Certificate A", aria: "Accreditation certificate", close: "Close",
-    alt: "Accreditation A certificate from BAN-S/M", label: "Accreditation certificate scan (BAN-S/M)",
+    alt: "Accreditation A certificate from BAN-S/M for SD Alfa Centauri", label: "Accreditation certificate (BAN-S/M)",
+    img: id.cert.img, info: "Accredited A (Excellent), score 95. Valid until 31 December 2028.",
   },
   about: {
     lead: "SD Alfa Centauri is committed to realizing the vision",
@@ -192,28 +193,27 @@ export const en: Content = {
       { title: "Creativity Week", caption: "Children's work and ideas on show." },
       { title: "Expo", caption: "An exhibition of student learning." },
       { title: "Olympiad", caption: "Testing abilities through competition." },
+      { title: "Character Habits", caption: "Becoming independent and tidy through daily habits." },
     ]),
   },
 
   testimoni: {
     title: ["What ", "parents say"], prev: "Previous", next: "Next", pick: "Choose a testimonial", item: "Testimonial {n}: {p}", photoAlt: "Photo of {x}", photoLabel: "parent",
     items: mix(id.testimoni.items, [
-      { quote: "My child has become more confident and loves telling us about school every day after class.", name: "[Name]", persona: "Pediatrician", note: "Parent of a Grade 3 student" },
-      { quote: "The teachers are patient and communicate openly. We feel involved in our child's progress.", name: "[Name]", persona: "University lecturer", note: "Parent of a Grade 5 student" },
-      { quote: "Worship habits and character grow hand in hand with academics. That is what we were looking for.", name: "[Name]", persona: "Entrepreneur", note: "Parent of a Grade 1 student" },
-      { quote: "Our child has special needs, and the support helps him grow in his own way.", name: "[Name]", persona: "Homemaker", note: "Parent of a Grade 2 student" },
-      { quote: "A school that balances achievement and good character. Our child goes happily every morning.", name: "[Name]", persona: "Local government official", note: "Parent of a Grade 4 student" },
-      { quote: "Information from the school is clear and quick, so working parents like us can stay at ease.", name: "[Name]", persona: "Private-sector employee", note: "Parent of a Grade 6 student" },
+      { quote: "We confidently chose SD Alfa Centauri as our daughter's first step in growing up. It offers many of the things we hoped for: character building, comprehensive religious education, quality teachers, close communication between teachers and parents, manners and good habits that are also practiced at home, and consistently well-directed motivation. SD Alfa Centauri made us feel we have found the right partner for our daughter's education.", persona: "Homemaker", note: "Parent of a Grade 1 student" },
+      { quote: "After researching schools, I fell in love with SD Alfa Centauri's mission: “Creating a safe and friendly school environment for all students, each with their own characteristics.” The school's experts, in this case the psychologists, and its teachers turned out to be people I know and whose work ethic I know well. That made me even more confident to collaborate with SD Alfa Centauri in educating my child.", persona: "Psychology academic, lecturer at UNJANI, Founder & BOC of sintesawellness.com", note: "Parent of a Grade 3 student" },
+      { quote: "Enrolling our child at Alfa Centauri was the right decision. The character development based on religious values, along with the family-like atmosphere, gives a comfortable place to grow, both academically and personally. We also deeply appreciate the supportive approach of the teachers and staff in educating and accompanying the children day to day. This environment is what makes the school a second home for our daughter.", persona: "Cardiologist", note: "Parent of a Grade 2 student" },
+      { quote: "Both of our children transferred in. The warm welcome from teachers, friends, and the rest of the school community makes them go to school every day full of enthusiasm. Besides showing good learning motivation and academic results, they also tend to bring peace and are willing to help friends who struggle with their studies.", persona: "Lecturer, Faculty of Mechanical and Aerospace Engineering (FTMD), ITB", note: "Parent of Grade 2, 5 & 6 students" },
     ]),
   },
 
   berita: {
     title: ["Latest ", "news"], sub: "Updates on activities, achievements, and announcements from the school.", all: "All news", featured: "Featured", aria: "Latest news", photoLabel: "News photo",
     items: mix(id.berita.items, [
-      { cat: "Activities", date: "12 Oct 2026", title: "Reading Challenge: students race to finish books this month", excerpt: "Students challenge each other to finish books, supported by teachers and the class library." },
+      { cat: "Character", date: "Sep 2026", title: "Character Ambassadors for Cleanliness and Tidiness: This Simple Habit Matters at School", excerpt: "Keeping things clean and tidy may look simple in daily life, but the school practices and appreciates it." },
+      { cat: "Character", date: "Sep 2026", title: "Discipline Character Ambassadors: Growing from Small Habits", excerpt: "Recognition for students who show disciplined character habits in their daily school life." },
+      { cat: "Activities", date: "Sep 2026", title: "SD Alfa Centauri Holds a Benchmarking Visit to SD Muhammadiyah Sapen and SDIT LHI", excerpt: "Part of our continuing effort to improve the quality of our educational programs." },
       { cat: "Announcement", date: "5 Oct 2026", title: "SPMB 2026/2027 admissions are now open", excerpt: "Schedule, requirements, and how to apply can now be asked directly to our admin team." },
-      { cat: "Environment", date: "28 Sep 2026", title: "River Clean Up: learning to care for the environment through action" , excerpt: "Students get hands-on caring for the river and learning to protect their surroundings." },
-      { cat: "Parenting", date: "20 Sep 2026", title: "Tips for helping your child study at home, joyfully", excerpt: "Simple ways to keep your child's love of learning alive at home, without pressure." },
     ]),
   },
 

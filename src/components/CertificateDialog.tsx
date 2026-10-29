@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { Award, X } from "lucide-react";
-import { Photo } from "./Photo";
 import { getT, type Lang } from "@/lib/i18n";
 
 export function CertificateDialog({ variant = "solid", lang }: { variant?: "solid" | "link" | "dark"; lang: Lang }) {
@@ -31,7 +31,7 @@ export function CertificateDialog({ variant = "solid", lang }: { variant?: "soli
         onClick={(e) => {
           if (e.target === ref.current) ref.current?.close();
         }}
-        className="m-auto w-[min(92vw,34rem)] rounded-3xl bg-white p-0 shadow-lift backdrop:bg-navy-900/60 backdrop:backdrop-blur-sm"
+        className="m-auto w-[min(94vw,52rem)] rounded-3xl bg-white p-0 shadow-lift backdrop:bg-navy-900/60 backdrop:backdrop-blur-sm"
       >
         <div className="flex items-center justify-between px-6 pt-5">
           <h3 className="font-display text-lg font-bold">{cert.title}</h3>
@@ -45,14 +45,10 @@ export function CertificateDialog({ variant = "solid", lang }: { variant?: "soli
           </button>
         </div>
         <div className="p-6">
-          {/* TODO: ganti dengan scan sertifikat BAN-S/M */}
-          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-brand-50 ring-1 ring-brand-100">
-            <Photo
-              alt={cert.alt}
-              label={cert.label}
-              sizes="34rem"
-            />
+          <div className="relative aspect-[1306/924] overflow-hidden rounded-2xl bg-brand-50 ring-1 ring-brand-100">
+            <Image src={cert.img} alt={cert.alt} fill sizes="52rem" className="object-contain" />
           </div>
+          <p className="mt-3 text-center text-[14.5px] text-navy-700">{cert.info}</p>
         </div>
       </dialog>
     </>

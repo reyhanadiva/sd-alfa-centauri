@@ -5,7 +5,6 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 
-const N = 6; // jumlah testimoni (sama di semua bahasa)
 const tint = ["bg-brand-100 text-brand-700", "bg-[#e6f9f0] text-[#13795b]", "bg-[#fff1e6] text-[#b4531a]"];
 const MS = 6000;
 
@@ -15,13 +14,14 @@ const MS = 6000;
 export function Testimoni({ lang }: { lang: Lang }) {
   const ui = getT(lang).testimoni;
   const testimoni = ui.items;
+  const N = testimoni.length;
   const [i, setI] = useState(0);
   const touch = useRef<number | null>(null);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setTimeout(() => setI((x) => (x + 1) % N), MS);
     return () => clearTimeout(t);
-  }, [i]);
+  }, [i, N]);
   const go = (d: number) => setI((x) => (x + d + N) % N);
   const t = testimoni[i];
 
@@ -56,7 +56,7 @@ export function Testimoni({ lang }: { lang: Lang }) {
           </div>
 
           <figure key={i} className="fade-in text-center lg:text-left">
-            <blockquote className="em-serif text-[1.7rem] leading-[1.25] text-navy-900 sm:text-[2.1rem] lg:min-h-[10.5rem]">“{t.quote}”</blockquote>
+            <blockquote className={`em-serif leading-[1.3] text-navy-900 lg:min-h-[10.5rem] ${t.quote.length > 260 ? "text-[1.12rem] sm:text-[1.3rem] lg:text-[1.4rem]" : "text-[1.7rem] sm:text-[2.1rem]"}`}>“{t.quote}”</blockquote>
             <figcaption className="mt-4 leading-snug">
               <span className="block text-[17px] font-semibold text-navy-900">{t.name}</span>
               <span className="block text-[15px] text-navy-700">{t.persona}</span>

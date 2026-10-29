@@ -69,7 +69,8 @@ export const id = {
   },
   cert: {
     open: "Lihat sertifikat", title: "Sertifikat Akreditasi A", aria: "Sertifikat akreditasi", close: "Tutup",
-    alt: "Sertifikat akreditasi A dari BAN-S/M", label: "Scan sertifikat akreditasi (BAN-S/M)",
+    alt: "Sertifikat akreditasi A dari BAN-S/M untuk SD Alfa Centauri", label: "Sertifikat akreditasi (BAN-S/M)",
+    img: "/images/sertifikat-akreditasi.jpg", info: "Terakreditasi A (Unggul), nilai 95. Berlaku sampai 31 Desember 2028.",
   },
   about: {
     lead: "SD Alfa Centauri berkomitmen mewujudkan visi",
@@ -115,7 +116,7 @@ export const id = {
           { icon: "sun", title: "Shalat Dhuha", desc: "Dibiasakan bersama di sekolah" },
           { icon: "masjid", title: "Shalat wajib berjamaah", desc: "Dilaksanakan berjamaah di sekolah" },
         ] },
-      { key: "Cerdas", photo: "/images/siswa-membaca.jpg" as string | undefined, photoLabel: "Siswa belajar dan membaca", tagline: "Numerasi, literasi, dan teknologi.",
+      { key: "Cerdas", photo: "/images/kelas-komputer.jpg" as string | undefined, photoLabel: "Siswa belajar dan membaca", tagline: "Numerasi, literasi, dan teknologi.",
         items: [
           { icon: "book", title: "Gakko Tosho", desc: "Budaya literasi" },
           { icon: "calc", title: "Surala", desc: "Belajar matematika lewat e-learning" },
@@ -123,7 +124,7 @@ export const id = {
           { icon: "project", title: "Project Based Learning", desc: "Belajar lewat proyek nyata" },
           { icon: "trophy", title: "Pembinaan FLS2N & Olimpiade", desc: "Bimbingan menuju lomba dan olimpiade" },
         ] },
-      { key: "Kreatif", photo: px(8612990) as string | undefined, photoLabel: "Pekan Kreativitas atau Expo", tagline: "Ruang untuk berkarya dan tampil.",
+      { key: "Kreatif", photo: "/images/pentas-siswa.jpg" as string | undefined, photoLabel: "Pekan Kreativitas atau Expo", tagline: "Ruang untuk berkarya dan tampil.",
         items: [
           { icon: "reflect", title: "Pekan Refleksi", desc: "Waktu merefleksikan perjalanan belajar" },
           { icon: "parents", title: "Parents Day", desc: "Hari kebersamaan sekolah dan orang tua" },
@@ -161,7 +162,7 @@ export const id = {
       { title: "TV interaktif", photo: px(8141591) },
       { title: "AC", photo: px(8617956) },
       { title: "CCTV", photo: px(13156207) },
-      { title: "Ruang multimedia", photo: px(5621945) },
+      { title: "Ruang multimedia", photo: "/images/kelas-komputer.jpg" },
       { title: "Mushola", photo: px(29832037) },
       { title: "Portal Orang Tua", caption: "Memantau perkembangan akademik dan karakter ananda.", photo: px(4624908) },
     ] as { title: string; caption?: string; photo?: string }[],
@@ -202,39 +203,40 @@ export const id = {
   galeri: {
     title: ["Galeri ", "kegiatan"], aria: "Galeri kegiatan", zoom: "Perbesar: {x}",
     items: [
-      { title: "Reading Challenge", caption: "Siswa menamatkan buku bersama.", photo: "/images/siswa-membaca.jpg" },
+      { title: "Reading Challenge", caption: "Siswa menamatkan buku bersama.", photo: "/images/perpustakaan.jpg" },
       { title: "River Clean Up", caption: "Belajar peduli lingkungan lewat aksi nyata.", photo: px(7656985) },
       { title: "Parents Day", caption: "Hari kebersamaan sekolah dan orang tua.", photo: px(4261270) },
       { title: "Munaqosyah", caption: "Ujian hafalan Al-Qur'an siswa.", photo: px(11929254) },
       { title: "Fieldtrip", caption: "Belajar langsung di luar kelas.", photo: px(34251808) },
-      { title: "Pekan Kreativitas", caption: "Karya dan ide ananda tampil.", photo: px(8612992) },
+      { title: "Pekan Kreativitas", caption: "Karya dan ide ananda tampil.", photo: "/images/pentas-siswa.jpg" },
       { title: "Expo", caption: "Pameran hasil belajar siswa.", photo: px(7868885) },
-      { title: "Olimpiade", caption: "Menguji kemampuan lewat kompetisi.", photo: px(19520596) },
+      { title: "Olimpiade", caption: "Menguji kemampuan lewat kompetisi.", photo: "/images/siswa-olahraga.jpg" },
+      { title: "Pembiasaan Karakter", caption: "Mandiri dan bersih lewat kebiasaan sehari-hari.", photo: "/images/pembiasaan-bersih.jpg" },
     ] as { title: string; caption: string; photo?: string }[],
   },
 
-  // CONTOH: nama, profesi, dan kutipan hanya isian agar tampilan terbayang, BUKAN testimoni asli.
+  // Testimoni asli dari orang tua (dikirim Mas Reyhan, 29 Okt 2026). Pastikan sudah ada izin tertulis untuk dimuat.
   // `photo`: foto orang tua (mis. "/images/testimoni/bu-sari.jpg", persegi 600x600), kosong = inisial.
   testimoni: {
     title: ["Kata ", "orang tua"], prev: "Sebelumnya", next: "Berikutnya", pick: "Pilih testimoni", item: "Testimoni {n}: {p}", photoAlt: "Foto {x}", photoLabel: "orang tua",
     items: [
-      { quote: "Anak saya jadi lebih percaya diri dan senang bercerita tentang sekolahnya setiap pulang.", name: "[Nama]", persona: "Dokter spesialis anak", note: "Orang tua siswa kelas 3" },
-      { quote: "Guru-gurunya sabar dan terbuka berkomunikasi. Kami merasa dilibatkan dalam perkembangan ananda.", name: "[Nama]", persona: "Dosen perguruan tinggi", note: "Orang tua siswa kelas 5" },
-      { quote: "Pembiasaan ibadah dan karakter berjalan beriringan dengan pelajaran. Itu yang kami cari.", name: "[Nama]", persona: "Pengusaha", note: "Orang tua siswa kelas 1" },
-      { quote: "Anak kami berkebutuhan khusus, dan pendampingannya membuat ia berkembang dengan caranya sendiri.", name: "[Nama]", persona: "Ibu rumah tangga", note: "Orang tua siswa kelas 2" },
-      { quote: "Sekolah yang menyeimbangkan prestasi dan akhlak. Anak berangkat dengan senang setiap pagi.", name: "[Nama]", persona: "Pejabat pemerintah daerah", note: "Orang tua siswa kelas 4" },
-      { quote: "Informasi dari sekolah jelas dan cepat, jadi kami yang bekerja tetap tenang memantau ananda.", name: "[Nama]", persona: "Karyawan swasta", note: "Orang tua siswa kelas 6" },
+      { quote: "Kami dengan yakin memilih SD Alfa Centauri sebagai langkah awal putri kami untuk bertumbuh. SD Alfa Centauri memiliki banyak poin yang kami harapkan, di antaranya pembentukan & penanaman karakter, pendidikan agama yang menyeluruh, tenaga pengajar yang berkualitas, komunikasi antara guru & orang tua yang intens, penerapan adab dan kebiasaan baik yang diterapkan juga di rumah, dan selalu mendapatkan motivasi yang terarah. SD Alfa Centauri membuat kami merasakan telah menemukan partner yang tepat untuk pendidikan putri kami.", name: "Arzhusinta Kumala Dewi", persona: "Ibu Rumah Tangga", note: "Orang tua siswa kelas 1", photo: "/images/testimoni/arzhusinta.jpg" },
+      // TODO(konfirmasi): kalimat "Tenaga ahli sekolah ..." terpotong di pesan asli; mohon cek teks lengkapnya.
+      { quote: "Hasil riset tentang sekolah, jatuh cinta sama misi SD Alfa Centauri: “Menciptakan suasana lingkungan sekolah yang aman dan ramah untuk seluruh siswa dengan karakteristiknya masing-masing”. Tenaga ahli sekolah, dalam hal ini psikolog, dan siapa saja gurunya, rupanya orang-orang yang saya kenal dan tahu persis etos kerjanya. Sehingga makin yakin untuk berkolaborasi dengan SD Alfa Centauri mendidik anak saya di sekolah ini.", name: "Dr. M. Zein Permana, S.Psi., M.Si.", persona: "Akademisi Psikologi, dosen UNJANI, Founder & BOC sintesawellness.com", note: "Orang tua siswa kelas 3", photo: "/images/testimoni/zein-permana.jpg" },
+      { quote: "Menyekolahkan di Alfa Centauri merupakan keputusan yang tepat. Pengembangan karakter berbasis nilai keagamaan yang diterapkan di sekolah, serta atmosfer kekeluargaan, memberikan kenyamanan untuk tumbuh dan berkembang, baik secara akademis maupun kepribadian. Kami juga sangat menghargai pendekatan para guru dan staf yang suportif dalam mendidik serta mendampingi keseharian. Lingkungan inilah yang menjadikan sekolah sebagai rumah kedua bagi putri kami.", name: "dr. Fathy Fathini, SpJP, FIHA", persona: "Dokter Spesialis Jantung", note: "Orang tua siswa kelas 2", photo: "/images/testimoni/fathy-fathini.jpg" },
+      // TODO(konfirmasi): kalimat terakhir pada pesan asli terpotong ("beberapa potensi yang tidak ..."); di sini dipotong sampai kalimat yang utuh.
+      { quote: "Kedua anak kami merupakan siswa pindahan. Penerimaan yang baik dari guru, teman, dan warga sekolah lainnya membuat anak kami berangkat ke sekolah setiap hari dengan penuh semangat. Selain menunjukkan motivasi belajar dan capaian akademik yang baik, mereka juga cenderung membawa kedamaian dan mau membantu teman yang kesulitan belajar.", name: "Muhamad Luthfi Imam Nurhakim, ST., M.T.", persona: "Dosen FTMD ITB", note: "Orang tua siswa kelas 2, 5 & 6", photo: "/images/testimoni/luthfi-imam.jpg" },
     ] as { quote: string; name: string; persona: string; note: string; photo?: string }[],
   },
 
-  // MOCKUP: judul, tanggal, kategori hanya contoh. Foto = 3 foto asli yang tersedia (dipotong), bukan liputan.
+  // MOCKUP: 3 berita pertama diambil dari judul di website lama (poster dipotong dari tangkapan layar, resolusi rendah); ringkasan dan tanggal saya tulis ulang. Ganti dengan berita asli + foto resolusi penuh.
   berita: {
     title: ["Berita ", "terbaru"], sub: "Kabar kegiatan, prestasi, dan pengumuman dari sekolah.", all: "Semua berita", featured: "Sorotan", aria: "Berita terbaru", photoLabel: "Foto berita",
     items: [
-      { cat: "Kegiatan", date: "12 Okt 2026", title: "Reading Challenge: siswa berlomba menamatkan buku bulan ini", excerpt: "Siswa saling menantang diri menamatkan buku, ditemani guru dan perpustakaan kelas.", href: "#", photo: "/images/berita-baca.jpg" },
+      { cat: "Karakter", date: "Sep 2026", title: "Duta Karakter Bersih dan Rapi: Ternyata, Hal Sederhana Ini Diperhatikan Sekolah", excerpt: "Menjaga kebersihan dan kerapian mungkin terlihat seperti hal sederhana dalam keseharian, tetapi dibiasakan dan diapresiasi sekolah.", href: "#", photo: "/images/berita-karakter-bersih.jpg" },
+      { cat: "Karakter", date: "Sep 2026", title: "Duta Karakter Disiplin: Tumbuh dari Kebiasaan Kecil", excerpt: "Apresiasi untuk siswa yang menunjukkan pembiasaan karakter disiplin dalam keseharian di sekolah.", href: "#", photo: "/images/berita-karakter-disiplin.jpg" },
+      { cat: "Kegiatan", date: "Sep 2026", title: "SD Alfa Centauri Laksanakan Studi Tiru ke SD Muhammadiyah Sapen dan SDIT LHI", excerpt: "Bagian dari upaya terus mengembangkan kualitas program pendidikan.", href: "#", photo: "/images/berita-studi-tiru.jpg" },
       { cat: "Pengumuman", date: "5 Okt 2026", title: "Pendaftaran SPMB 2026/2027 resmi dibuka", excerpt: "Jadwal, syarat, dan cara mendaftar kini bisa ditanyakan langsung ke admin.", href: "#", photo: "/images/berita-papan.jpg" },
-      { cat: "Lingkungan", date: "28 Sep 2026", title: "River Clean Up: belajar peduli lingkungan lewat aksi nyata", excerpt: "Siswa terjun langsung merawat sungai dan belajar menjaga lingkungan sekitar.", href: "#", photo: "/images/berita-halaman.jpg" },
-      { cat: "Parenting", date: "20 Sep 2026", title: "Tips mendampingi anak belajar di rumah agar tetap menyenangkan", excerpt: "Cara sederhana menjaga semangat belajar ananda di rumah tanpa tekanan.", href: "#", photo: "/images/gedung-sd.jpg" },
     ],
   },
 

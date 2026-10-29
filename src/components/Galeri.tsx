@@ -7,11 +7,10 @@ import { Photo } from "./Photo";
 import { SnapRail } from "./SnapRail";
 
 // Galeri kegiatan: kartu mengipas di bawah judul besar; klik untuk memperbesar. Isi: `galeri` di site.ts.
-const N = 8; // jumlah foto galeri (sama di semua bahasa)
-
 export function Galeri({ lang }: { lang: Lang }) {
   const g = getT(lang).galeri;
   const galeri = g.items;
+  const N = galeri.length;
   const mid = (N - 1) / 2;
   const [zoom, setZoom] = useState<number | null>(null);
   const [focus, setFocus] = useState(Math.floor(mid)); // kartu yang sedang di-hover/fokus, judulnya tampil di bawah kipas
