@@ -110,7 +110,7 @@ export const id = {
     title: ["Program yang menumbuhkan ", "Taqwa, Cerdas, dan Kreatif"],
     tabsAria: "Ranah program",
     ranah: [
-      { key: "Taqwa", photo: px(11842681) as string | undefined, photoLabel: "Tahfidz dan shalat berjamaah", tagline: "Iman yang tumbuh lewat kebiasaan.",
+      { key: "Taqwa", photo: "/images/munaqosyah.jpg" as string | undefined, photoLabel: "Tahfidz dan shalat berjamaah", tagline: "Iman yang tumbuh lewat kebiasaan.",
         items: [
           { icon: "quran", title: "Tahfidz & Munaqosyah", desc: "Menghafal Al-Qur'an, diuji lewat munaqosyah" },
           { icon: "sun", title: "Shalat Dhuha", desc: "Dibiasakan bersama di sekolah" },
@@ -144,7 +144,7 @@ export const id = {
         { icon: "swim", label: "Renang", photo: px(12615996) },
         { icon: "goal", label: "Futsal", photo: px(8813564) },
         { icon: "bot", label: "Robotik", photo: px(7868892) },
-        { icon: "dance", label: "Menari", photo: px(35300570) },
+        { icon: "dance", label: "Menari", photo: "/images/tari-fls2n.jpg" },
         { icon: "medal", label: "Taekwondo", photo: px(7045594) },
       ] as { icon: string; label: string; photo?: string }[],
     },
@@ -206,9 +206,9 @@ export const id = {
       { title: "Reading Challenge", caption: "Siswa menamatkan buku bersama.", photo: "/images/perpustakaan.jpg" },
       { title: "River Clean Up", caption: "Belajar peduli lingkungan lewat aksi nyata.", photo: px(7656985) },
       { title: "Parents Day", caption: "Hari kebersamaan sekolah dan orang tua.", photo: px(4261270) },
-      { title: "Munaqosyah", caption: "Ujian hafalan Al-Qur'an siswa.", photo: px(11929254) },
+      { title: "Munaqosyah", caption: "Ujian hafalan Al-Qur'an siswa.", photo: "/images/munaqosyah.jpg" },
       { title: "Fieldtrip", caption: "Belajar langsung di luar kelas.", photo: px(34251808) },
-      { title: "Pekan Kreativitas", caption: "Karya dan ide ananda tampil.", photo: "/images/pentas-siswa.jpg" },
+      { title: "Pekan Kreativitas", caption: "Karya dan ide ananda tampil.", photo: "/images/tari-fls2n.jpg" },
       { title: "Expo", caption: "Pameran hasil belajar siswa.", photo: px(7868885) },
       { title: "Olimpiade", caption: "Menguji kemampuan lewat kompetisi.", photo: "/images/siswa-olahraga.jpg" },
       { title: "Pembiasaan Karakter", caption: "Mandiri dan bersih lewat kebiasaan sehari-hari.", photo: "/images/pembiasaan-bersih.jpg" },
@@ -221,8 +221,7 @@ export const id = {
     title: ["Kata ", "orang tua"], prev: "Sebelumnya", next: "Berikutnya", pick: "Pilih testimoni", item: "Testimoni {n}: {p}", photoAlt: "Foto {x}", photoLabel: "orang tua",
     items: [
       { quote: "Kami dengan yakin memilih SD Alfa Centauri sebagai langkah awal putri kami untuk bertumbuh. SD Alfa Centauri memiliki banyak poin yang kami harapkan, di antaranya pembentukan & penanaman karakter, pendidikan agama yang menyeluruh, tenaga pengajar yang berkualitas, komunikasi antara guru & orang tua yang intens, penerapan adab dan kebiasaan baik yang diterapkan juga di rumah, dan selalu mendapatkan motivasi yang terarah. SD Alfa Centauri membuat kami merasakan telah menemukan partner yang tepat untuk pendidikan putri kami.", name: "Arzhusinta Kumala Dewi", persona: "Ibu Rumah Tangga", note: "Orang tua siswa kelas 1", photo: "/images/testimoni/arzhusinta.jpg" },
-      // TODO(konfirmasi): kalimat "Tenaga ahli sekolah ..." terpotong di pesan asli; mohon cek teks lengkapnya.
-      { quote: "Hasil riset tentang sekolah, jatuh cinta sama misi SD Alfa Centauri: “Menciptakan suasana lingkungan sekolah yang aman dan ramah untuk seluruh siswa dengan karakteristiknya masing-masing”. Tenaga ahli sekolah, dalam hal ini psikolog, dan siapa saja gurunya, rupanya orang-orang yang saya kenal dan tahu persis etos kerjanya. Sehingga makin yakin untuk berkolaborasi dengan SD Alfa Centauri mendidik anak saya di sekolah ini.", name: "Dr. M. Zein Permana, S.Psi., M.Si.", persona: "Akademisi Psikologi, dosen UNJANI, Founder & BOC sintesawellness.com", note: "Orang tua siswa kelas 3", photo: "/images/testimoni/zein-permana.jpg" },
+      { quote: "Hasil riset tentang sekolah, jatuh cinta sama Misi SD Alfa Centauri: “Menciptakan suasana lingkungan sekolah yang aman dan ramah untuk seluruh siswa dengan karakteristiknya masing-masing”. Tenaga ahli sekolah dalam hal ini Psikolog dan siapa saja gurunya, rupanya orang-orang yang saya kenal dan tahu persis etos kerja. Sehingga makin yakin untuk berkolaborasi dengan SD Alfa Centauri untuk mendidik anak saya di sekolah ini.", name: "Dr. M. Zein Permana, S.Psi., M.Si.", persona: "Akademisi Psikologi, dosen UNJANI, Founder & BOC sintesawellness.com", note: "Orang tua siswa kelas 3", photo: "/images/testimoni/zein-permana.jpg" },
       { quote: "Menyekolahkan di Alfa Centauri merupakan keputusan yang tepat. Pengembangan karakter berbasis nilai keagamaan yang diterapkan di sekolah, serta atmosfer kekeluargaan, memberikan kenyamanan untuk tumbuh dan berkembang, baik secara akademis maupun kepribadian. Kami juga sangat menghargai pendekatan para guru dan staf yang suportif dalam mendidik serta mendampingi keseharian. Lingkungan inilah yang menjadikan sekolah sebagai rumah kedua bagi putri kami.", name: "dr. Fathy Fathini, SpJP, FIHA", persona: "Dokter Spesialis Jantung", note: "Orang tua siswa kelas 2", photo: "/images/testimoni/fathy-fathini.jpg" },
       // TODO(konfirmasi): kalimat terakhir pada pesan asli terpotong ("beberapa potensi yang tidak ..."); di sini dipotong sampai kalimat yang utuh.
       { quote: "Kedua anak kami merupakan siswa pindahan. Penerimaan yang baik dari guru, teman, dan warga sekolah lainnya membuat anak kami berangkat ke sekolah setiap hari dengan penuh semangat. Selain menunjukkan motivasi belajar dan capaian akademik yang baik, mereka juga cenderung membawa kedamaian dan mau membantu teman yang kesulitan belajar.", name: "Muhamad Luthfi Imam Nurhakim, ST., M.T.", persona: "Dosen FTMD ITB", note: "Orang tua siswa kelas 2, 5 & 6", photo: "/images/testimoni/luthfi-imam.jpg" },
