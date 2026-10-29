@@ -115,3 +115,9 @@ Komponen `Praktis.tsx` dan data `infoCepat` masih ada tapi tidak ditampilkan. Pa
 - [ ] **Berita**: 3 berita pertama memakai judul dari website lama dan poster dipotong dari tangkapan layar (resolusi rendah, ±430px); ringkasan dan tanggal ("Sep 2026") saya tulis. Ganti dengan berita asli + foto resolusi penuh.
 - [ ] **Foto sekolah baru** menggantikan sebagian foto stok: kelas komputer (Ranah Cerdas, Ruang multimedia), pentas siswa (Ranah Kreatif, Pekan Kreativitas), perpustakaan (Reading Challenge), siswa olahraga (Olimpiade, pemetaan sementara), pembiasaan cuci piring (kartu galeri baru "Pembiasaan Karakter"). Pemetaan foto ke kegiatan adalah tebakan saya.
 - [ ] Foto munaqosyah dan prestasi belum teridentifikasi di lampiran; Munaqosyah di galeri masih foto stok. Prestasi belum memakai foto.
+
+## Putaran 10 (testimoni ringkas, asisten lebih terlihat)
+
+- [ ] Testimoni kini tampil ringkas: satu kalimat sorotan (kutipan langsung dari teks orang tua, dipotong/diringkas sedikit untuk Pak Zein dan Pak Luthfi) + 2-3 poin kunci (`tags`, tulisan saya) + tombol "Baca selengkapnya" yang membuka teks penuh. Mohon orang tua yang bersangkutan setuju dengan sorotan dan poinnya.
+- [ ] Sapaan asisten berupa pertanyaan pendek (id.ts/en.ts `assistant.bubbles`); muncul bergantian maks 4 kali dan berhenti bila ditutup/dibuka.
+- [ ] Teks kotak FAQ dibuat formal ("Anda"). Asisten masih memakai "kamu"; samakan bila perlu.

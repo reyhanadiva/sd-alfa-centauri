@@ -198,12 +198,12 @@ export const en: Content = {
   },
 
   testimoni: {
-    title: ["What ", "parents say"], prev: "Previous", next: "Next", pick: "Choose a testimonial", item: "Testimonial {n}: {p}", photoAlt: "Photo of {x}", photoLabel: "parent",
+    title: ["What ", "parents say"], readMore: "Read full testimonial", close: "Close", prev: "Previous", next: "Next", pick: "Choose a testimonial", item: "Testimonial {n}: {p}", photoAlt: "Photo of {x}", photoLabel: "parent",
     items: mix(id.testimoni.items, [
-      { quote: "We confidently chose SD Alfa Centauri as our daughter's first step in growing up. It offers many of the things we hoped for: character building, comprehensive religious education, quality teachers, close communication between teachers and parents, manners and good habits that are also practiced at home, and consistently well-directed motivation. SD Alfa Centauri made us feel we have found the right partner for our daughter's education.", persona: "Homemaker", note: "Parent of a Grade 1 student" },
-      { quote: "After researching schools, I fell in love with SD Alfa Centauri's mission: “Creating a safe and friendly school environment for all students, each with their own characteristics.” The school's experts, in this case the psychologists, and its teachers turned out to be people I know and whose work ethic I know well. That made me even more confident to collaborate with SD Alfa Centauri in educating my child.", persona: "Psychology academic, lecturer at UNJANI, Founder & BOC of sintesawellness.com", note: "Parent of a Grade 3 student" },
-      { quote: "Enrolling our child at Alfa Centauri was the right decision. The character development based on religious values, along with the family-like atmosphere, gives a comfortable place to grow, both academically and personally. We also deeply appreciate the supportive approach of the teachers and staff in educating and accompanying the children day to day. This environment is what makes the school a second home for our daughter.", persona: "Cardiologist", note: "Parent of a Grade 2 student" },
-      { quote: "Both of our children transferred in. The warm welcome from teachers, friends, and the rest of the school community makes them go to school every day full of enthusiasm. Besides showing good learning motivation and academic results, they also tend to bring peace and are willing to help friends who struggle with their studies.", persona: "Lecturer, Faculty of Mechanical and Aerospace Engineering (FTMD), ITB", note: "Parent of Grade 2, 5 & 6 students" },
+      { quote: "We confidently chose SD Alfa Centauri as our daughter's first step in growing up. It offers many of the things we hoped for: character building, comprehensive religious education, quality teachers, close communication between teachers and parents, manners and good habits that are also practiced at home, and consistently well-directed motivation. SD Alfa Centauri made us feel we have found the right partner for our daughter's education.", highlight: "SD Alfa Centauri made us feel we have found the right partner for our daughter's education.", tags: ["Character building", "Comprehensive religious education", "Teacher-parent communication"], persona: "Homemaker", note: "Parent of a Grade 1 student" },
+      { quote: "After researching schools, I fell in love with SD Alfa Centauri's mission: “Creating a safe and friendly school environment for all students, each with their own characteristics.” The school's experts, in this case the psychologists, and its teachers turned out to be people I know and whose work ethic I know well. That made me even more confident to collaborate with SD Alfa Centauri in educating my child.", highlight: "I fell in love with SD Alfa Centauri's mission: a safe and friendly school for every student, each with their own characteristics.", tags: ["Safe and friendly environment", "Qualified psychologists and teachers"], persona: "Psychology academic, lecturer at UNJANI, Founder & BOC of sintesawellness.com", note: "Parent of a Grade 3 student" },
+      { quote: "Enrolling our child at Alfa Centauri was the right decision. The character development based on religious values, along with the family-like atmosphere, gives a comfortable place to grow, both academically and personally. We also deeply appreciate the supportive approach of the teachers and staff in educating and accompanying the children day to day. This environment is what makes the school a second home for our daughter.", highlight: "This environment is what makes the school a second home for our daughter.", tags: ["Faith-based character development", "Family-like atmosphere", "Supportive teachers and staff"], persona: "Cardiologist", note: "Parent of a Grade 2 student" },
+      { quote: "Both of our children transferred in. The warm welcome from teachers, friends, and the rest of the school community makes them go to school every day full of enthusiasm. Besides showing good learning motivation and academic results, they also tend to bring peace and are willing to help friends who struggle with their studies.", highlight: "The warm welcome from teachers, friends, and the school community makes our children go to school full of enthusiasm.", tags: ["Welcoming to transfer students", "Learning motivation"], persona: "Lecturer, Faculty of Mechanical and Aerospace Engineering (FTMD), ITB", note: "Parent of Grade 2, 5 & 6 students" },
     ]),
   },
 
@@ -220,7 +220,7 @@ export const en: Content = {
   faq: {
     title: ["Frequently ", "asked questions"],
     photoAlt: "SD Alfa Centauri students reading together", photoLabel: "Classroom atmosphere",
-    noAnswer: "Didn't find your answer?", help: "Our admin team is happy to help via WhatsApp.", ask: "Ask admin on WhatsApp",
+    noAnswer: "Need further information?", help: "Our admin team is available to assist you via WhatsApp.", ask: "Contact admin via WhatsApp",
     askWa: wa("I would like to ask about: "),
     items: faqItems,
   },
@@ -247,7 +247,7 @@ export const en: Content = {
   assistant: {
     name: "SD Alfa Centauri Assistant",
     tagline: "We're here to answer your questions",
-    bubble: "Hi! How can we help?",
+    bubbles: ["Unsure about admissions?", "Having trouble finding information?", "Want to know about fees and programs?"],
     bubbleClose: "Dismiss greeting",
     fab: "Open the assistant, we can help answer",
     fabClose: "Close assistant",

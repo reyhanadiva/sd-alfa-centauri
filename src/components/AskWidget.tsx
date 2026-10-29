@@ -34,14 +34,21 @@ export function AskWidget({ lang }: { lang: Lang }) {
   const [typing, setTyping] = useState(false);
   // Balon sapaan kecil di atas logo: muncul setelah 3 detik, hilang sendiri setelah 11 detik, bisa ditutup.
   const [bubble, setBubble] = useState(false);
+  const [bi, setBi] = useState(0); // pertanyaan sapaan yang sedang tampil
+  const quiet = useRef(false); // true setelah pengunjung menutup sapaan atau membuka asisten: tidak muncul lagi
   const scroller = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const on = setTimeout(() => setBubble(true), 3000);
-    const off = setTimeout(() => setBubble(false), 14000);
-    return () => { clearTimeout(on); clearTimeout(off); };
+    // Sapaan: muncul 2,5 dtk setelah halaman terbuka (7 dtk), lalu tiap 40 dtk dengan pertanyaan berbeda (maks 4 kali).
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    for (let k = 0; k < 4; k++) {
+      const at = 2500 + k * 40000;
+      timers.push(setTimeout(() => { if (!quiet.current) { setBi(k); setBubble(true); } }, at));
+      timers.push(setTimeout(() => setBubble(false), at + 8000));
+    }
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   useEffect(() => {
@@ -75,6 +82,7 @@ export function AskWidget({ lang }: { lang: Lang }) {
   };
 
   const toggle = () => {
+    quiet.current = true;
     setBubble(false);
     setOpen((o) => !o);
     setTimeout(() => input.current?.focus(), 50);
@@ -86,7 +94,7 @@ export function AskWidget({ lang }: { lang: Lang }) {
         <div
           role="dialog"
           aria-label={a.dialog}
-          className="zoom-in fixed bottom-[6.25rem] right-4 z-[56] flex max-h-[min(34rem,calc(100svh-8.5rem))] w-[min(23rem,calc(100vw-2rem))] origin-bottom-right flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-lift ring-1 ring-brand-100 sm:right-6"
+          className="zoom-in fixed bottom-[7rem] right-4 z-[56] flex max-h-[min(34rem,calc(100svh-9.5rem))] w-[min(23rem,calc(100vw-2rem))] origin-bottom-right flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-lift ring-1 ring-brand-100 sm:right-6"
         >
           <div className="flex items-center gap-3 bg-navy-900 px-4 py-3.5 text-white">
             <span className="relative grid size-10 place-items-center rounded-full bg-white">
@@ -135,10 +143,10 @@ export function AskWidget({ lang }: { lang: Lang }) {
       {/* Logo sebagai asisten: tombol bulat berlogo bintang + balon ucapan kecil di atasnya */}
       <div className="fixed bottom-4 right-4 z-[56] sm:right-6">
         {bubble && !open && (
-          <div className="zoom-in absolute bottom-[calc(100%+0.65rem)] right-0 w-max max-w-[min(15rem,calc(100vw-2rem))] origin-bottom-right">
-            <div className="relative flex items-center gap-1 rounded-2xl rounded-br-md bg-white py-2 pl-4 pr-1.5 text-[14.5px] font-semibold leading-snug text-navy-900 shadow-lift ring-1 ring-brand-100">
-              <button type="button" onClick={toggle} className="text-left">{a.bubble}</button>
-              <button type="button" onClick={() => setBubble(false)} aria-label={a.bubbleClose} className="grid size-7 shrink-0 place-items-center rounded-full text-navy-700/60 transition hover:bg-brand-50 hover:text-navy-900">
+          <div key={bi} className="bubble-in absolute bottom-[calc(100%+0.8rem)] right-0 w-max max-w-[min(16rem,calc(100vw-2rem))] origin-bottom-right">
+            <div className="relative flex items-center gap-1 rounded-2xl rounded-br-md bg-white py-2.5 pl-4 pr-1.5 text-[15px] font-semibold leading-snug text-navy-900 shadow-lift ring-2 ring-brand-500/30">
+              <button type="button" onClick={toggle} className="text-left">{a.bubbles[bi % a.bubbles.length]}</button>
+              <button type="button" onClick={() => { quiet.current = true; setBubble(false); }} aria-label={a.bubbleClose} className="grid size-7 shrink-0 place-items-center rounded-full text-navy-700/60 transition hover:bg-brand-50 hover:text-navy-900">
                 <X size={14} aria-hidden />
               </button>
               <span aria-hidden className="absolute -bottom-1.5 right-6 size-3 rotate-45 bg-white ring-1 ring-brand-100 [clip-path:polygon(100%_0,100%_100%,0_100%)]" />
@@ -150,13 +158,13 @@ export function AskWidget({ lang }: { lang: Lang }) {
           onClick={toggle}
           aria-expanded={open}
           aria-label={open ? a.fabClose : a.fab}
-          className="group relative grid size-16 place-items-center rounded-full bg-white shadow-lift ring-1 ring-brand-100 transition hover:-translate-y-0.5 active:scale-95"
+          className="group relative grid size-[4.5rem] place-items-center rounded-full bg-white shadow-lift ring-[3px] ring-brand-500 transition hover:-translate-y-0.5 active:scale-95"
         >
           {!open && <span aria-hidden className="halo-brand absolute inset-0 rounded-full" />}
           {open ? (
             <X size={26} aria-hidden className="text-navy-900" />
           ) : (
-            <Image src="/images/logo-star.png" alt="" width={208} height={232} className="relative h-9 w-auto transition group-hover:rotate-6 group-hover:scale-110" />
+            <Image src="/images/logo-star.png" alt="" width={208} height={232} className="relative h-11 w-auto transition group-hover:rotate-6 group-hover:scale-110" />
           )}
         </button>
       </div>

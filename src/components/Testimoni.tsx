@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, X } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 
@@ -17,11 +17,13 @@ export function Testimoni({ lang }: { lang: Lang }) {
   const N = testimoni.length;
   const [i, setI] = useState(0);
   const touch = useRef<number | null>(null);
+  const dlg = useRef<HTMLDialogElement>(null);
+  const [reading, setReading] = useState(false); // dialog "baca selengkapnya" terbuka: jeda otomatis
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (reading || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setTimeout(() => setI((x) => (x + 1) % N), MS);
     return () => clearTimeout(t);
-  }, [i, N]);
+  }, [i, N, reading]);
   const go = (d: number) => setI((x) => (x + d + N) % N);
   const t = testimoni[i];
 
@@ -56,12 +58,27 @@ export function Testimoni({ lang }: { lang: Lang }) {
           </div>
 
           <figure key={i} className="fade-in text-center lg:text-left">
-            <blockquote className={`em-serif leading-[1.3] text-navy-900 lg:min-h-[10.5rem] ${t.quote.length > 260 ? "text-[1.12rem] sm:text-[1.3rem] lg:text-[1.4rem]" : "text-[1.7rem] sm:text-[2.1rem]"}`}>“{t.quote}”</blockquote>
+            <blockquote className="em-serif text-[1.6rem] leading-[1.25] text-navy-900 sm:text-[2rem] lg:min-h-[10.5rem]">“{t.highlight}”</blockquote>
+            <ul className="mt-4 flex flex-wrap justify-center gap-x-2 gap-y-1 text-[13.5px] font-semibold text-brand-700 lg:justify-start">
+              {t.tags.map((g, k) => (
+                <li key={g} className="flex items-center gap-2">
+                  {k > 0 && <span aria-hidden className="size-1 rounded-full bg-brand-400" />}
+                  {g}
+                </li>
+              ))}
+            </ul>
             <figcaption className="mt-4 leading-snug">
               <span className="block text-[17px] font-semibold text-navy-900">{t.name}</span>
               <span className="block text-[15px] text-navy-700">{t.persona}</span>
               <span className="block text-[14px] text-navy-700/65">{t.note}</span>
             </figcaption>
+            <button
+              type="button"
+              onClick={() => { setReading(true); dlg.current?.showModal(); }}
+              className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[14px] font-bold text-brand-700 ring-1 ring-brand-200 transition hover:-translate-y-0.5 hover:bg-brand-100"
+            >
+              {ui.readMore} <ChevronRight size={15} aria-hidden />
+            </button>
           </figure>
         </div>
 
@@ -100,6 +117,26 @@ export function Testimoni({ lang }: { lang: Lang }) {
           </button>
         </div>
       </div>
+
+      <dialog
+        ref={dlg}
+        aria-label={t.name}
+        onClose={() => setReading(false)}
+        onClick={(e) => { if (e.target === dlg.current) dlg.current?.close(); }}
+        className="pop-dialog m-auto w-[min(94vw,40rem)] rounded-3xl bg-white p-0 shadow-lift"
+      >
+        <div className="flex items-start justify-between gap-4 px-6 pt-5 sm:px-8 sm:pt-6">
+          <div className="leading-snug">
+            <p className="text-[17px] font-semibold text-navy-900">{t.name}</p>
+            <p className="text-[14.5px] text-navy-700">{t.persona}</p>
+            <p className="text-[13.5px] text-navy-700/65">{t.note}</p>
+          </div>
+          <button type="button" onClick={() => dlg.current?.close()} aria-label={ui.close} className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-50 text-navy-800 transition hover:bg-brand-100">
+            <X size={20} aria-hidden />
+          </button>
+        </div>
+        <p className="max-h-[60svh] overflow-y-auto px-6 pb-7 pt-4 text-[16.5px] leading-relaxed text-navy-800 sm:px-8">“{t.quote}”</p>
+      </dialog>
     </section>
   );
 }

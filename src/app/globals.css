@@ -276,7 +276,27 @@ html {
 
 /* Halo biru untuk tombol asisten di latar terang */
 @keyframes halo-brand {
-  0% { box-shadow: 0 0 0 0 rgb(72 132 254 / 0.45); }
-  70%, 100% { box-shadow: 0 0 0 18px rgb(72 132 254 / 0); }
+  0% { box-shadow: 0 0 0 0 rgb(72 132 254 / 0.6); }
+  70%, 100% { box-shadow: 0 0 0 24px rgb(72 132 254 / 0); }
 }
 .halo-brand { animation: halo-brand 2.8s ease-out infinite; }
+
+/* Bintang kembar: gerak tipis */
+@keyframes star-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(2px,-5px) scale(1.07); } }
+@keyframes star-b { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-3px,4px) scale(0.94); } }
+.star-a { animation: star-a 4.2s ease-in-out infinite; }
+.star-b { animation: star-b 5.1s ease-in-out -1.6s infinite; }
+
+/* Dialog dengan transisi halus (buka dan tutup) */
+.pop-dialog { opacity: 0; transform: translateY(18px) scale(0.95); transition: opacity .38s ease, transform .45s cubic-bezier(.22,1,.36,1), overlay .45s allow-discrete, display .45s allow-discrete; }
+.pop-dialog[open] { opacity: 1; transform: none; }
+@starting-style { .pop-dialog[open] { opacity: 0; transform: translateY(18px) scale(0.95); } }
+.pop-dialog::backdrop { background: rgb(15 42 92 / 0); backdrop-filter: blur(0); transition: background .4s ease, backdrop-filter .4s ease, overlay .45s allow-discrete, display .45s allow-discrete; }
+.pop-dialog[open]::backdrop { background: rgb(15 42 92 / 0.6); backdrop-filter: blur(4px); }
+@starting-style { .pop-dialog[open]::backdrop { background: rgb(15 42 92 / 0); backdrop-filter: blur(0); } }
+
+/* Tombol yang "ditekan" sebelum membuka dialog */
+@keyframes press { 0% { transform: scale(1); } 40% { transform: scale(0.93); } 100% { transform: scale(1.04); box-shadow: 0 0 0 10px rgb(15 42 92 / 0); } }
+.pressing { animation: press .24s ease-out; }
+@keyframes bubble-in { 0% { opacity: 0; transform: translateY(8px) scale(.92); } 100% { opacity: 1; transform: none; } }
+.bubble-in { animation: bubble-in .45s cubic-bezier(.22,1,.36,1) both; }

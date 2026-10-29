@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Award, X } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
@@ -8,19 +8,25 @@ import { getT, type Lang } from "@/lib/i18n";
 export function CertificateDialog({ variant = "solid", lang }: { variant?: "solid" | "link" | "dark"; lang: Lang }) {
   const { cert } = getT(lang);
   const ref = useRef<HTMLDialogElement>(null);
+  const [press, setPress] = useState(false);
+  // Tombol "ditekan" sebentar (0,24 dtk), baru dialog terbuka dengan transisi halus.
+  const openDialog = () => {
+    setPress(true);
+    setTimeout(() => { setPress(false); ref.current?.showModal(); }, 240);
+  };
 
   return (
     <>
       <button
         type="button"
-        onClick={() => ref.current?.showModal()}
-        className={
+        onClick={openDialog}
+        className={`${press ? "pressing " : ""}${
           variant === "link"
             ? "relative z-10 inline-flex items-center gap-1.5 text-[13px] font-bold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
             : variant === "dark"
               ? "inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-2.5 text-[14px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-navy-700"
               : "inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-bold text-brand-700 transition hover:-translate-y-0.5 hover:bg-brand-50"
-        }
+        }`}
       >
         <Award size={variant === "link" ? 14 : 17} aria-hidden /> {cert.open}
       </button>
@@ -31,7 +37,7 @@ export function CertificateDialog({ variant = "solid", lang }: { variant?: "soli
         onClick={(e) => {
           if (e.target === ref.current) ref.current?.close();
         }}
-        className="m-auto w-[min(94vw,52rem)] rounded-3xl bg-white p-0 shadow-lift backdrop:bg-navy-900/60 backdrop:backdrop-blur-sm"
+        className="pop-dialog m-auto w-[min(94vw,52rem)] rounded-3xl bg-white p-0 shadow-lift"
       >
         <div className="flex items-center justify-between px-6 pt-5">
           <h3 className="font-display text-lg font-bold">{cert.title}</h3>

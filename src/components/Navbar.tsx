@@ -67,7 +67,7 @@ export function Navbar({ lang }: { lang: Lang }) {
           hidden && !open ? "-translate-y-full" : "translate-y-0"
         } ${
           solid
-            ? "border-b border-brand-100/70 bg-white/80 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.4)] backdrop-blur-xl backdrop-saturate-150"
+            ? "border-b border-brand-100/70 bg-white/50 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.35)] backdrop-blur-2xl backdrop-saturate-150"
             : "border-b border-transparent bg-transparent"
         }`}
       >

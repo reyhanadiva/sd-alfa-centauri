@@ -64,8 +64,8 @@ export function About({ lang }: { lang: Lang }) {
 
             <div className="flex flex-col justify-between gap-3 rounded-[1.75rem] bg-navy-900 p-6 text-white">
               <div aria-hidden className="relative h-12 w-20">
-                <Star className="absolute left-0 top-3 size-8 -rotate-12 text-brand-300" />
-                <Star className="absolute left-9 top-0 size-10 rotate-6 text-white" />
+                <Star className="star-a absolute left-0 top-3 size-8 -rotate-12 text-brand-300" />
+                <Star className="star-b absolute left-9 top-0 size-10 rotate-6 text-white" />
               </div>
               <div>
                 <p className="text-[17px] font-bold leading-snug text-white">
