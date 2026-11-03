@@ -19,17 +19,20 @@ export function Navbar({ lang }: { lang: Lang }) {
 
   useEffect(() => {
     let last = window.scrollY;
-    let offset = 0; // seberapa jauh navbar sudah naik (px, 0 = terlihat penuh)
     let raf = 0;
-    let settle: ReturnType<typeof setTimeout> | undefined;
-    const apply = (animate: boolean) => {
+    let hiddenNow = false;
+    let down = 0; // jarak scroll turun berturut-turut sejak melewati hero
+    let up = 0; // jarak scroll naik berturut-turut
+    const apply = (hide: boolean) => {
       const h = head.current;
-      if (!h) return;
+      if (!h || hide === hiddenNow) return;
+      hiddenNow = hide;
       const H = h.offsetHeight + 8;
-      h.style.transition = animate ? "transform 650ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease, background-color 300ms, box-shadow 300ms, border-color 300ms" : "background-color 300ms, box-shadow 300ms, border-color 300ms";
-      h.style.transform = `translateY(${-offset}px)`;
-      h.style.opacity = String(1 - (offset / H) * 0.9);
-      h.style.pointerEvents = offset > H * 0.6 ? "none" : "";
+      // Hilang pelan (1,1 dtk), muncul lebih cepat (0,6 dtk)
+      h.style.transition = `transform ${hide ? 1100 : 600}ms cubic-bezier(0.45,0,0.2,1), opacity ${hide ? 900 : 500}ms ease, background-color 300ms, box-shadow 300ms, border-color 300ms`;
+      h.style.transform = `translateY(${hide ? -H : 0}px)`;
+      h.style.opacity = hide ? "0" : "1";
+      h.style.pointerEvents = hide ? "none" : "";
     };
     const update = () => {
       raf = 0;
@@ -42,14 +45,12 @@ export function Navbar({ lang }: { lang: Lang }) {
       if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
       const delta = y - last;
       last = y;
-      const H = (head.current?.offsetHeight ?? 72) + 8;
-      // Navbar tetap menggantung sepanjang hero; setelah itu ia naik ±1px tiap 3px scroll turun
-      // (butuh ±250px untuk hilang penuh) dan turun lagi saat scroll naik. Berhenti scroll: tuntaskan dengan transisi halus.
-      if (openRef.current || y <= heroEnd) offset = 0;
-      else offset = Math.min(H, Math.max(0, offset + delta * 0.33));
-      apply(false);
-      clearTimeout(settle);
-      settle = setTimeout(() => { offset = offset > H * 0.55 ? H : 0; apply(true); }, 140);
+      // Navbar menggantung: tetap diam sepanjang hero dan ±700px scroll turun setelahnya, baru perlahan naik dan hilang.
+      // Scroll naik ±80px sudah cukup untuk memunculkannya lagi.
+      if (delta > 0) { down += delta; up = 0; } else if (delta < 0) { up -= delta; down = 0; }
+      if (openRef.current || y <= heroEnd) { down = 0; apply(false); }
+      else if (down > 700) apply(true);
+      else if (up > 80) apply(false);
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -61,7 +62,6 @@ export function Navbar({ lang }: { lang: Lang }) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
-      clearTimeout(settle);
     };
   }, []);
 
