@@ -9,8 +9,8 @@
 .enf-overlay[data-audience=adult] .enf-card{border-radius:1.5rem;background:#FBF6EE;box-shadow:0 24px 60px -20px rgba(0,0,0,.35)}
 .enf-overlay[data-audience=adult] .enf-blob{background:var(--gold);opacity:.8}
 .enf-body{position:relative;z-index:1}
-.enf-eyebrow{margin:0 0 6px;font-family:"Kite One","Nunito",system-ui,sans-serif;font-size:20px;color:var(--c9)}
-.enf-h{margin:0 0 6px;font-family:"Lilita One","Nunito",system-ui,sans-serif;font-weight:400;font-size:clamp(2rem,6vw,2.6rem);line-height:1.05;color:var(--c9);padding-right:28px}
+.enf-eyebrow{margin:0 0 6px;font-family:"Plus Jakarta Sans","Nunito",system-ui,sans-serif;font-size:20px;color:var(--c9)}
+.enf-h{margin:0 0 6px;font-family:"Plus Jakarta Sans","Nunito",system-ui,sans-serif;font-weight:400;font-size:clamp(2rem,6vw,2.6rem);line-height:1.05;color:var(--c9);padding-right:28px}
 .enf-intro{margin:6px 0 0;font-size:.95rem;color:rgba(54,54,54,.8)}
 .enf-form{display:flex;flex-direction:column;gap:12px;margin-top:16px}
 .enf-field{display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -30,17 +30,17 @@ textarea.enf-in{resize:vertical;min-height:84px}
 .enf-err[hidden]{display:none}
 .enf-foot{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:4px}
 .enf-note{margin:0;font-size:.78rem;color:rgba(54,54,54,.7);flex:1 1 12rem}
-.enf-btn{display:inline-block;padding:12px 26px;border:0;border-radius:999px;background:var(--c9);color:#fff;font-family:"Lilita One","Nunito",system-ui,sans-serif;font-size:1.1rem;cursor:pointer;text-decoration:none;box-shadow:0 4px 0 #111b4d;transition:transform .08s}
+.enf-btn{display:inline-block;padding:12px 26px;border:0;border-radius:999px;background:var(--c9);color:#fff;font-family:"Plus Jakarta Sans","Nunito",system-ui,sans-serif;font-size:1.1rem;cursor:pointer;text-decoration:none;box-shadow:0 4px 0 #111b4d;transition:transform .08s}
 .enf-btn:hover{transform:translateY(1px)}
 .enf-btn:disabled{opacity:.6;cursor:wait}
 .enf-done{text-align:center;padding:12px 0 4px}
-.enf-h2{margin:0 0 8px;font-family:"Lilita One","Nunito",system-ui,sans-serif;font-size:1.9rem;color:var(--c9)}
+.enf-h2{margin:0 0 8px;font-family:"Plus Jakarta Sans","Nunito",system-ui,sans-serif;font-size:1.9rem;color:var(--c9)}
 .enf-p{margin:0 0 14px;font-size:1rem;line-height:1.5}
 /* langkah, baris, judul */
 .enf-step{display:flex;flex-direction:column;gap:12px}
 .enf-step[hidden],.enf-row[hidden],.enf-prog[hidden],.enf-btn[hidden]{display:none}
 .enf-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:12px}
-.enf-body .enf-lh{margin:6px 0 0;font-family:"Lilita One","Nunito",system-ui,sans-serif;font-weight:400;font-size:1.3rem;line-height:1.15;color:var(--c9)}
+.enf-body .enf-lh{margin:6px 0 0;font-family:"Plus Jakarta Sans","Nunito",system-ui,sans-serif;font-weight:400;font-size:1.3rem;line-height:1.15;color:var(--c9)}
 .enf-body h4.enf-lh{font-size:1.05rem}
 .enf-body .enf-lt{margin:0;font-size:.92rem;line-height:1.5;white-space:pre-line;color:rgba(54,54,54,.85)}
 .enf-body hr.enf-hr{width:100%;margin:4px 0;border:0;border-top:2px solid var(--mist);background:none;height:0}

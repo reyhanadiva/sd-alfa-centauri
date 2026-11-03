@@ -52,3 +52,4 @@ public/api/_storage/*
 .harness/
 site.zip
 *.zip
+.harness*/

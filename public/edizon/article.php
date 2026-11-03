@@ -102,6 +102,10 @@ page_head($art ? 'Edit artikel' : 'Artikel baru', $u, 'wide');
   <h1><?= $art ? 'Edit artikel' : 'Artikel baru' ?></h1>
   <a class="btn ghost" href="articles.php">Semua artikel</a>
 </div>
+<details class="card guide" open>
+  <summary><strong>Panduan SEO &amp; kepatuhan</strong> <small class="muted">(ditetapkan Super Admin; baca sebelum menerbitkan)</small></summary>
+  <div class="guide-text"><?= nl2br(h(seo_author_guide())) ?></div>
+</details>
 <p class="muted" id="last-saved"><?= $art ? 'Terakhir diubah: ' . h(fmt_time($art['updated_at'])) : 'Belum disimpan.' ?></p>
 <div id="errors" class="flash err" hidden></div>
 <div id="editor" aria-live="polite"><noscript>Aktifkan JavaScript untuk menggunakan editor ini.</noscript></div>

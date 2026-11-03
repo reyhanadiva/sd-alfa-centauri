@@ -81,9 +81,7 @@ function en_create_forms_tables(PDO $pdo): void
         UNIQUE KEY uq_sl_slug (slug)
     ) $opt");
     try {
-        if ((int) $pdo->query("SELECT COUNT(*) FROM forms WHERE slug = 'free-trial'")->fetchColumn() === 0 && !forms_seed_done($pdo)) {
-            forms_seed_trial($pdo);
-        }
+        // SD Alfa Centauri: tidak ada formulir bawaan (formulir "free-trial" milik English Now tidak dibuat). Buat sendiri di menu Formulir.
     } catch (Throwable $e) {
         error_log('forms seed: ' . $e->getMessage());
     }
@@ -1051,7 +1049,7 @@ const TRIAL_LINK_MODES = ['form', 'whatsapp', 'url'];
 
 function trial_link_default(): array
 {
-    return ['mode' => 'form', 'form' => 'free-trial', 'waMessage' => 'Halo English Now, saya ingin ikut free trial class.', 'url' => ''];
+    return ['mode' => 'form', 'form' => 'free-trial', 'waMessage' => 'Halo SD Alfa Centauri, saya ingin bertanya tentang SPMB.', 'url' => ''];
 }
 
 /** @return array{0: array, 1: string[]} */

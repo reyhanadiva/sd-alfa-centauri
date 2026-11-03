@@ -77,7 +77,7 @@ function art_open(string $title, string $desc, string $image, ?array $only, stri
     $v = '12';
     ?>
 <!doctype html>
-<html lang="id" data-audience="<?= h($default ?: 'kids') ?>"<?= $default ? ' data-default="' . h($default) . '"' : '' ?>>
+<html lang="id" data-audience="adult">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -107,7 +107,6 @@ function art_open(string $title, string $desc, string $image, ?array $only, stri
 <script src="/articles/articles.js?v=<?= $v ?>"></script>
 <script src="/forms/popup.js?v=<?= $v ?>" defer></script>
 <script src="/forms/popups.js?v=<?= $v ?>" defer></script>
-<script src="/quiz/quiz.js?v=<?= $v ?>" defer></script>
 </head>
 <body class="<?= h($bodyClass) ?>">
 <a class="skip" href="#main">Lewati ke isi</a>
@@ -125,37 +124,50 @@ function art_close(): void
 
 function art_header(?array $only): void
 {
-    $nav = art_seed_social()['nav'] ?? [];
-    // menu dari panel (Navbar, set Anak): bagian beranda -> "/#bagian"; kalau dokumen belum ada, memakai bawaan
-    try {
-        $nb = doc_get('navbar');
-        if (is_array($nb['kids']['links'] ?? null)) {
-            $nav = [];
-            foreach ($nb['kids']['links'] as $l) {
-                if (!empty($l['show']) && is_string($l['label'] ?? null) && is_string($l['href'] ?? null) && $l['href'] !== '') {
-                    $nav[] = ['label' => $l['label'], 'href' => $l['href']];
-                }
-            }
+    // menu dari panel (Navbar, Bahasa Indonesia); bagian beranda "#program" -> "/#program". Dokumen belum ada = isi bawaan.
+    $nav = [];
+    $nb = art_doc('navbar');
+    foreach ((array) ($nb['id']['nav'] ?? []) as $l) {
+        if (is_string($l['label'] ?? null) && is_string($l['href'] ?? null) && $l['href'] !== '') {
+            $nav[] = ['label' => $l['label'], 'href' => $l['href']];
         }
-    } catch (Throwable) {
     }
+    [$ctaLabel, $ctaHref] = art_cta();
     ?>
 <header class="top">
   <div class="top-in">
     <a class="logo" href="/" aria-label="<?= h(art_site()['name']) ?>, beranda"><img src="<?= h(art_site()['logoFull']) ?>" alt="<?= h(art_site()['name']) ?>" height="40"></a>
     <nav class="top-nav" aria-label="Navigasi utama">
-      <?php foreach ($nav as $l): $hr = (string) $l['href']; $hr = ($hr !== '' && ($hr[0] === '#' && !str_starts_with($hr, '#form:') && !str_starts_with($hr, '#popup:') && !str_starts_with($hr, '#quiz:') || ($hr[0] !== '/' && !preg_match('#^(https?:|\#)#', $hr)))) ? '/' . $hr : $hr; ?><a href="<?= h($hr) ?>"><?= h((string) $l['label']) ?></a><?php endforeach; ?>
-      <?php if (!array_filter($nav, static fn($l) => rtrim((string) $l['href'], '/') === '/articles')): ?><a href="/articles/" class="on">Artikel</a><?php endif; ?>
+      <?php foreach ($nav as $l): $hr = (string) $l['href']; $hr = ($hr[0] === '#' && !preg_match('/^#(form|popup|quiz):/', $hr)) ? '/' . $hr : $hr; ?><a href="<?= h($hr) ?>"><?= h((string) $l['label']) ?></a><?php endforeach; ?>
+      <a href="/articles/" class="on">Artikel</a>
     </nav>
     <div class="top-r">
-      <div class="aud" role="group" aria-label="Tampilan">
-        <button type="button" data-set="kids">Anak</button><button type="button" data-set="adult">Dewasa</button>
-      </div>
-      <a class="cta" href="<?= h(trial_link_href(art_site()['waNumber'])) ?>">Free Trial Class</a>
+      <a class="cta" href="<?= h($ctaHref) ?>"><?= h($ctaLabel) ?></a>
     </div>
   </div>
 </header>
 <?php
+}
+
+/** dokumen panel dengan cadangan isi bawaan (seed) */
+function art_doc(string $key): array
+{
+    $d = null;
+    try {
+        $d = doc_get($key);
+    } catch (Throwable) {
+    }
+    return is_array($d) ? $d : seed_doc($key);
+}
+
+/** tombol ajakan di kepala halaman: [tulisan, tujuan] */
+function art_cta(): array
+{
+    $nb = art_doc('navbar');
+    $label = (string) ($nb['id']['ui']['register'] ?? 'Daftar SPMB');
+    $wa = art_site()['waNumber'];
+    $href = $wa !== '' ? 'https://wa.me/' . $wa . '?text=' . rawurlencode('Halo ' . art_site()['name'] . ', saya ingin bertanya tentang SPMB.') : '/';
+    return [$label, $href];
 }
 
 /** identitas situs (Pengaturan di panel) dengan nilai bawaan */
@@ -163,7 +175,7 @@ function art_site(): array
 {
     static $d = null;
     if ($d === null) {
-        $d = ['name' => 'English Now', 'tagline' => '', 'waNumber' => '', 'logoFull' => '', 'logoWhite' => '', 'logoMark' => '', 'favicon' => ''];
+        $d = ['name' => 'SD Alfa Centauri', 'tagline' => '', 'waNumber' => '', 'logoFull' => '', 'logoWhite' => '', 'logoMark' => '', 'favicon' => ''];
         try {
             $stored = doc_get('site');
             if (is_array($stored)) {
@@ -176,11 +188,11 @@ function art_site(): array
         } catch (Throwable) {
         }
         if ($d['waNumber'] === '') {
-            $d['waNumber'] = (string) (art_seed_social()['wa'] ?? '');
+            $d['waNumber'] = (string) (seed_doc('site')['waNumber'] ?? '');
         }
-        $d['logoFull'] = $d['logoFull'] ?: '/brand/logo-full.png';
-        $d['logoWhite'] = $d['logoWhite'] ?: '/brand/logo-full-white.png';
-        $d['logoMark'] = $d['logoMark'] ?: '/brand/logo-mark.png';
+        $d['logoFull'] = $d['logoFull'] ?: '/images/logo-horizontal.png';
+        $d['logoWhite'] = $d['logoWhite'] ?: '/images/logo-horizontal-white.png';
+        $d['logoMark'] = $d['logoMark'] ?: '/images/logo-star.png';
         $d['favicon'] = $d['favicon'] ?: '/icon.png';
     }
     return $d;
@@ -198,70 +210,48 @@ function art_seed_social(): array
 
 function art_footer(): void
 {
-    $f = null;
-    try {
-        $f = doc_get('footer');
-    } catch (Throwable) {
-    }
-    $f = is_array($f) ? $f : seed_doc('footer');
-    $seed = art_seed_social();
-    $icons = $seed['icons'] ?? [];
-    $wa = 'https://wa.me/' . art_site()['waNumber'] . '?text=' . rawurlencode((string) ($f['waMessage'] ?? ''));
-    $labels = [];
-    foreach (EXPLORE_SECTIONS as $k => $v) {
-        $labels[is_array($v) ? (string) $v['id'] : (string) $k] = true;
-    }
+    $site = art_site();
+    $lok = art_doc('lokasi');
+    $cl = art_doc('closing');
+    $info = (array) ($lok['shared']['site'] ?? []);
+    $c = (array) ($cl['id']['closing'] ?? []);
+    $wa = $site['waNumber'] !== '' ? 'https://wa.me/' . $site['waNumber'] : '';
     ?>
 <footer class="foot">
   <div class="foot-in">
     <div class="foot-brand">
-      <img src="<?= h(art_site()['logoWhite']) ?>" alt="<?= h(art_site()['name']) ?>" height="40">
-      <p><?= h((string) ($f['blurb'] ?? '')) ?></p>
+      <img src="<?= h($site['logoWhite']) ?>" alt="<?= h($site['name']) ?>" height="40">
+      <p><?= h((string) ($c['about'] ?? $site['tagline'])) ?></p>
+      <?php if (!empty($info['instagram'])): ?>
       <ul class="social">
-        <?php foreach ((array) ($f['social'] ?? []) as $s):
-            $kind = (string) ($s['kind'] ?? '');
-            $url = (string) ($s['url'] ?? '');
-            if ($url === '') { continue; } ?>
-        <li><a href="<?= h($url) ?>" target="_blank" rel="noopener noreferrer" aria-label="<?= h((string) ($s['name'] ?? $kind)) ?>">
-          <?php if ($kind === 'custom' && ($s['icon'] ?? '') !== ''): ?><img src="<?= h((string) $s['icon']) ?>" alt="" width="20" height="20">
-          <?php elseif (isset($icons[$kind])): ?><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="<?= h((string) $icons[$kind]) ?>"/></svg>
-          <?php else: ?><span><?= h(mb_substr((string) ($s['name'] ?? '?'), 0, 2)) ?></span><?php endif; ?></a></li>
-        <?php endforeach; ?>
+        <li><a href="<?= h((string) $info['instagram']) ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8" fill="currentColor"/></svg></a></li>
       </ul>
+      <?php endif; ?>
     </div>
     <div>
-      <h2><?= h((string) ($f['programTitle'] ?? 'Program')) ?></h2>
+      <h2><?= h((string) ($c['explore'] ?? 'Jelajahi')) ?></h2>
       <ul>
-        <?php foreach ((array) ($f['program'] ?? []) as $p):
-            $aud = (string) ($p['audience'] ?? 'keep');
-            $q = $aud === 'kids' ? '?for=kids' : ($aud === 'adult' ? '?for=adult' : ''); ?>
-        <li><a href="/<?= $q ?>#biaya"><?= h((string) ($p['label'] ?? '')) ?></a></li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-    <div>
-      <h2><?= h((string) ($f['exploreTitle'] ?? 'Jelajahi')) ?></h2>
-      <ul>
-        <?php foreach ((array) ($f['explore'] ?? []) as $e):
-            $id = (string) ($e['id'] ?? '');
-            $lab = (string) ($e['label'] ?? '');
-            if ($lab === '' || !isset($labels[$id])) { continue; } ?>
-        <li><a href="/#<?= h($id) ?>"><?= h($lab) ?></a></li>
+        <?php foreach ((array) ($c['explorer'] ?? []) as $e):
+            $lab = (string) ($e[0] ?? '');
+            $hr = (string) ($e[1] ?? '');
+            if ($lab === '' || $hr === '') { continue; }
+            $hr = $hr[0] === '#' ? '/' . $hr : $hr; ?>
+        <li><a href="<?= h($hr) ?>"><?= h($lab) ?></a></li>
         <?php endforeach; ?>
         <li><a href="/articles/">Artikel</a></li>
       </ul>
     </div>
     <div>
-      <h2><?= h((string) ($f['contactTitle'] ?? 'Kontak')) ?></h2>
+      <h2><?= h((string) ($c['visit'] ?? 'Kontak')) ?></h2>
       <ul>
-        <li><a href="<?= h($wa) ?>" target="_blank" rel="noopener noreferrer"><?= h((string) ($f['waLabel'] ?? 'WhatsApp')) ?></a></li>
-        <?php if (($f['email'] ?? '') !== ''): ?><li><a href="mailto:<?= h((string) $f['email']) ?>"><?= h((string) $f['email']) ?></a></li><?php endif; ?>
-        <?php if (($f['addressLabel'] ?? '') !== ''): ?><li><?php if (($f['addressUrl'] ?? '') !== ''): ?><a href="<?= h((string) $f['addressUrl']) ?>" target="_blank" rel="noopener noreferrer"><?= h((string) $f['addressLabel']) ?></a><?php else: ?><?= h((string) $f['addressLabel']) ?><?php endif; ?></li><?php endif; ?>
-        <?php if (($f['hours'] ?? '') !== ''): ?><li><?= h((string) $f['hours']) ?></li><?php endif; ?>
+        <?php if (!empty($info['phone'])): ?><li><a href="<?= h((string) ($info['phoneHref'] ?? '#')) ?>"><?= h((string) $info['phone']) ?></a></li><?php endif; ?>
+        <?php if ($wa !== ''): ?><li><a href="<?= h($wa) ?>" target="_blank" rel="noopener noreferrer">WhatsApp <?= h((string) ($info['whatsappDisplay'] ?? '')) ?></a></li><?php endif; ?>
+        <?php if (!empty($info['email'])): ?><li><a href="mailto:<?= h((string) $info['email']) ?>"><?= h((string) $info['email']) ?></a></li><?php endif; ?>
+        <?php if (!empty($info['address'])): ?><li><?= h((string) $info['address']) ?></li><?php endif; ?>
       </ul>
     </div>
   </div>
-  <p class="copy">© <?= date('Y') ?> <?= h(art_site()['name']) ?></p>
+  <p class="copy">© <?= date('Y') ?> <?= h($site['name']) ?></p>
 </footer>
 <?php
 }

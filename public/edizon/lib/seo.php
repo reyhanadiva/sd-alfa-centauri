@@ -20,7 +20,7 @@ function seo_defaults(): array
     return [
         // aman secara bawaan: situs beta TIDAK boleh diindeks sampai dinyalakan saat produksi
         'allowIndexing' => false,
-        'aiSearch' => true, 'aiUser' => true, 'aiTraining' => true, 'summary' => '', 'links' => [],
+        'aiSearch' => true, 'aiUser' => true, 'aiTraining' => true, 'summary' => '', 'links' => [], 'authorGuide' => '',
         'sitemap' => ['home' => true, 'list' => true, 'articles' => true, 'forms' => []],
         'home' => ['title' => '', 'description' => '', 'keyword' => '', 'image' => '', 'canonical' => ''],
     ];
@@ -54,6 +54,29 @@ function seo_settings(): array
         $out[$k] = array_merge($def[$k], is_array($out[$k]) ? array_intersect_key($out[$k], $def[$k]) : []);
     }
     return $out;
+}
+
+/** panduan SEO & kepatuhan untuk penulis artikel: bawaan, dapat diganti Super Admin di menu SEO & AI */
+function seo_author_guide_default(): string
+{
+    return "SEO\n"
+        . "- Judul 30-60 huruf, memuat kata kunci fokus di awal. Meta deskripsi 120-160 huruf, berupa ringkasan yang mengajak membaca.\n"
+        . "- Isi satu kata kunci fokus per artikel dan pastikan tidak sama dengan artikel lain.\n"
+        . "- Beri deskripsi (teks alternatif) pada setiap gambar. Pakai subjudul (H2/H3) agar mudah dipindai.\n"
+        . "- Tautkan ke halaman sekolah yang relevan (program, SPMB, kontak) secukupnya.\n\n"
+        . "Kepatuhan dan etika\n"
+        . "- Foto siswa hanya dengan izin tertulis orang tua. Pakai inisial atau nama depan; jangan memuat data pribadi (alamat, telepon, nilai, kondisi kesehatan atau keluarga).\n"
+        . "- Tulis fakta yang bisa diverifikasi; sebut sumber untuk angka dan kutipan. Jangan mengklaim berlebihan (mis. \"terbaik\", \"pasti\") tanpa bukti.\n"
+        . "- Jika memakai bantuan AI untuk menulis, periksa ulang isinya dan cantumkan bila relevan.\n"
+        . "- Gunakan bahasa yang santun, sesuai nilai Taqwa, Cerdas, Kreatif. Hindari konten politik praktis atau yang menyinggung SARA.\n"
+        . "- Artikel yang diterbitkan sebaiknya ditinjau satu orang lagi (mis. Kepala Sekolah atau Humas senior) sebelum tayang.";
+}
+
+/** panduan yang tampil di editor artikel */
+function seo_author_guide(): string
+{
+    $g = trim((string) (seo_settings()['authorGuide'] ?? ''));
+    return $g !== '' ? $g : seo_author_guide_default();
 }
 
 /** apakah mesin pencari boleh mengindeks situs ini (false = semua halaman noindex dan robots.txt menolak) */
@@ -197,6 +220,7 @@ function validate_seo_settings(array $in): array
         ],
         'aiSearch' => !empty($in['aiSearch']), 'aiUser' => !empty($in['aiUser']), 'aiTraining' => !empty($in['aiTraining']),
         'summary' => clean_text($in['summary'] ?? '', 400), 'links' => $links,
+        'authorGuide' => clean_multiline($in['authorGuide'] ?? '', 4000),
     ], $errors];
 }
 

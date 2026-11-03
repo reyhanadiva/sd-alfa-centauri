@@ -100,8 +100,7 @@ img.ProseMirror-separator {
 
 /* Article editor styles. External file only: the panel policy allows no <style> tags and no style attributes.
    Classes use the ae- prefix. The canvas (.ae-cv) ignores the panel's own element styles, because panel.css styles bare h2/h3/input/select/label globally. */
-@font-face{font-family:"Plus Jakarta Sans";font-weight:400;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-weight:700;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-weight:200 800;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-wght-normal.woff2) format("woff2")}
 @font-face{font-family:"Lilita One";font-weight:400;font-display:swap;src:url(/fonts/lilita-one-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Kite One";font-weight:400;font-display:swap;src:url(/fonts/kite-one-latin-400-normal.woff2) format("woff2")}
 

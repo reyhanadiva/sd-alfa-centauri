@@ -100,10 +100,10 @@ page_head('Artikel', $u, 'wide');
 <?php if (is_admin($u)): ?>
 <div class="card">
   <strong>Artikel contoh (untuk uji coba)</strong>
-  <p class="muted">Membuat 10 artikel contoh berisi gambar, video, peta, kutipan, dan daftar. Dapat dihapus sekaligus tanpa menyentuh artikel asli.</p>
+  <p class="muted">Membuat 3 artikel contoh (parenting, inklusi, prestasi) untuk mencoba editor dan tampilan halaman artikel. Dapat dihapus sekaligus tanpa menyentuh artikel asli.</p>
   <form method="post" action="articles.php" class="inline">
     <input type="hidden" name="_csrf" value="<?= h(csrf_token()) ?>">
-    <button class="btn ghost" name="action" value="seed" type="submit">Buat 10 artikel contoh</button>
+    <button class="btn ghost" name="action" value="seed" type="submit">Buat artikel contoh</button>
   </form>
   <?php if ($hasSample): ?>
   <form method="post" action="articles.php" class="inline" data-confirm="Hapus <?= $hasSample ?> artikel contoh?">

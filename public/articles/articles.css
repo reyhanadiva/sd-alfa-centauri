@@ -1,12 +1,8 @@
 /* Halaman artikel. Dua tema mengikuti situs: Anak (ceria, tebal, membulat) dan Dewasa (rapi, tipis, hangat). */
-@font-face{font-family:"Plus Jakarta Sans";font-weight:400;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-weight:500;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-weight:600;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-weight:700;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-weight:800;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-800-normal.woff2) format("woff2")}
+
 @font-face{font-family:"Lilita One";font-weight:400;font-display:swap;src:url(/fonts/lilita-one-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Kite One";font-weight:400;font-display:swap;src:url(/fonts/kite-one-latin-400-normal.woff2) format("woff2")}
-
+@font-face{font-family:"Plus Jakarta Sans";font-weight:200 800;font-display:swap;src:url(/fonts/plus-jakarta-sans-latin-wght-normal.woff2) format("woff2")}
 :root{--cobalt:#405fda;--cobalt-700:#2f47b0;--cobalt-900:#1e2f78;--sky:#07a9f8;--sun:#fff275;--sun-600:#e3d24a;--mist:#ded9e2;--mist-50:#f7f5f9;--ink:#363636;--ivory:#fbf6ee;--gold:#f4c77b;--body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
 html[data-audience="kids"]{--bg:var(--mist-50);--fg:var(--ink);--head:var(--cobalt-900);--link:var(--cobalt);--card:#fff;--line:var(--cobalt-900);--muted:#5d5a66;--chip:var(--sun);--font-h:"Lilita One","Plus Jakarta Sans",sans-serif;--radius:22px}
 html[data-audience="adult"]{--bg:var(--ivory);--fg:#2b2b2b;--head:#14161f;--link:var(--cobalt-700);--card:#fff;--line:#e6dccb;--muted:#6b665c;--chip:#f3ead9;--font-h:var(--body);--radius:12px}
@@ -256,3 +252,15 @@ html[data-audience="adult"] .a-table tbody tr:nth-child(even) td{background:#fcf
 .art-full .prose{padding-left:var(--pad);padding-right:var(--pad)}
 .art-full .a-wide{margin-left:0;margin-right:0}
 .art-full .a-html{margin-left:calc(-1 * var(--pad));margin-right:calc(-1 * var(--pad))}
+
+/* === SD Alfa Centauri: satu tema (warna & huruf sekolah). Menimpa tema bawaan di atas. === */
+:root{--cobalt:#2f6bea;--cobalt-700:#2456c4;--cobalt-900:#0a1c40;--sky:#4884fe;--sun:#e4efff;--gold:#4884fe;--mist:#cfe2ff;--mist-50:#f3f8ff;--ink:#0f2a5c;--ivory:#f3f8ff}
+html[data-audience]{--bg:#f3f8ff;--fg:#0f2a5c;--head:#0a1c40;--link:#2f6bea;--card:#fff;--line:#cfe2ff;--muted:#4b5f86;--chip:#e4efff;--font-h:var(--body);--radius:18px}
+.aud{display:none!important}
+.card[data-aud]{display:block!important}
+.top{background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+html[data-audience="adult"] .cta{background:var(--cobalt)}html[data-audience="adult"] .cta:hover{background:var(--cobalt-700)}
+html[data-audience="adult"] .hero-list h1{font-weight:700;letter-spacing:-.035em;color:var(--cobalt-900)}
+html[data-audience="adult"] .top-nav a:hover,html[data-audience="adult"] .top-nav a.on{border-bottom-color:var(--sky)}
+.foot{background:var(--cobalt-900)}
+@media(min-width:821px){.foot-in{grid-template-columns:1.6fr 1fr 1.3fr}}

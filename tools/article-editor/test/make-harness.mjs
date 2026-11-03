@@ -68,6 +68,7 @@ function now_utc(): string { return gmdate('Y-m-d H:i:s'); }
 function fmt_time(?string $utc): string { return (string) $utc; }
 function audit($u, string $a, string $d = ''): void {}
 function seo_settings(): array { return ['aiSearch' => true]; }
+function seo_author_guide(): string { return 'Panduan uji'; }
 function db(): PDO
 {
     static $pdo = null;

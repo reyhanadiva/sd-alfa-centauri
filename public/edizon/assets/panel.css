@@ -204,3 +204,4 @@ pre.code{background:#f4f5f7;border:1px solid var(--line);border-radius:8px;paddi
 .strrow,.pairrow{display:flex;gap:8px;align-items:center;margin:0 0 6px}.pairrow input:first-child{flex:0 0 30%}
 .imgs-row{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}.thumb{display:flex;flex-direction:column;align-items:flex-start;gap:2px}.thumb img{width:92px;height:92px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
 .row-btns{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.guide{background:#f3f8ff;border-color:#cfe2ff}.guide summary{cursor:pointer}.guide-text{margin-top:10px;font-size:14px;line-height:1.6}

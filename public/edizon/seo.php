@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'home' => ['title' => (string) ($_POST['h_title'] ?? ''), 'description' => (string) ($_POST['h_description'] ?? ''), 'keyword' => (string) ($_POST['h_keyword'] ?? ''),
             'image' => (string) ($_POST['h_image'] ?? ''), 'canonical' => (string) ($_POST['h_canonical'] ?? '')],
         'aiSearch' => isset($_POST['aiSearch']), 'aiUser' => isset($_POST['aiUser']), 'aiTraining' => isset($_POST['aiTraining']),
-        'summary' => (string) ($_POST['summary'] ?? ''), 'links' => [],
+        'summary' => (string) ($_POST['summary'] ?? ''), 'links' => [], 'authorGuide' => (string) ($_POST['authorGuide'] ?? ''),
     ];
     foreach ((array) ($_POST['l_label'] ?? []) as $i => $label) {
         $in['links'][] = ['label' => (string) $label, 'url' => (string) ($_POST['l_url'][$i] ?? ''), 'desc' => (string) ($_POST['l_desc'][$i] ?? '')];
@@ -93,6 +93,11 @@ page_head('SEO & AI', $u, 'wide');
     <label class="chk"><input type="checkbox" name="aiSearch"<?= $s['aiSearch'] ? ' checked' : '' ?>> <span><strong>Pencarian AI</strong>: mengindeks untuk jawaban/pencarian AI (<?= h(implode(', ', $bots['search'])) ?>). Sangat memengaruhi apakah Anda bisa muncul sebagai sumber.</span></label>
     <label class="chk"><input type="checkbox" name="aiUser"<?= $s['aiUser'] ? ' checked' : '' ?>> <span><strong>Akses atas permintaan pengguna</strong>: saat seseorang meminta asisten membuka halaman Anda (<?= h(implode(', ', $bots['user'])) ?>).</span></label>
     <label class="chk"><input type="checkbox" name="aiTraining"<?= $s['aiTraining'] ? ' checked' : '' ?>> <span><strong>Pelatihan model AI</strong>: pengumpulan data untuk melatih model (<?= h(implode(', ', $bots['training'])) ?>). Tidak langsung menentukan kutipan, tetapi memengaruhi seberapa "kenal" model dengan merek Anda. Silakan blokir jika tidak berkenan.</span></label>
+  </div>
+  <div class="card">
+    <h2>Panduan SEO &amp; kepatuhan untuk penulis artikel</h2>
+    <p class="muted">Teks ini tampil di atas editor artikel untuk Super Admin dan Admin (Humas). Tulis aturan yang harus dipatuhi penulis. Kosong = memakai panduan bawaan di bawah.</p>
+    <label class="f"><span class="fl">Panduan</span><textarea name="authorGuide" rows="12" maxlength="4000" placeholder="<?= h(seo_author_guide_default()) ?>"><?= h($s['authorGuide']) ?></textarea></label>
   </div>
   <div class="card">
     <h2>Ringkasan untuk AI (llms.txt)</h2>

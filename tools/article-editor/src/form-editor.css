@@ -23,7 +23,7 @@
 
 /* steps */
 .fe-step{border:1px solid var(--line);border-radius:14px;padding:12px;margin:0 0 14px;background:#fcfcfe}
-.fe-step.is-cur{border-color:var(--brand);box-shadow:0 0 0 2px #e6f4f2}
+.fe-step.is-cur{border-color:var(--brand);box-shadow:0 0 0 2px #e8f0ff}
 .fe-step-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 10px}
 .fe-badge{background:var(--brand);color:#fff;border-radius:8px;padding:3px 10px;font-weight:700;font-size:13px;white-space:nowrap}
 .fe-stepname{flex:1;min-width:180px;width:auto;max-width:360px;margin:0}
@@ -37,7 +37,7 @@
 .fe-list:empty::before{content:attr(data-ph);color:var(--muted);font-size:13px;line-height:1.4;text-align:center;padding:0 12px}
 .fe-item{border:1px solid var(--line);border-radius:10px;background:#fff}
 .fe-item.is-bad{border-color:var(--danger);box-shadow:0 0 0 2px rgba(180,35,24,.15)}
-.fe-item.open{box-shadow:0 0 0 2px #e6f4f2;border-color:#b9ddd8}
+.fe-item.open{box-shadow:0 0 0 2px #e8f0ff;border-color:#b9ddd8}
 .fe-head{display:flex;gap:8px;align-items:center;padding:7px 10px;min-width:0}
 .fe-head .fe-grow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fe-ttl{font-weight:600}

@@ -7,7 +7,8 @@
   var q = null, s = null;
   try { q = new URLSearchParams(location.search).get('for'); } catch (e) { /* abaikan */ }
   try { s = localStorage.getItem(KEY); } catch (e) { /* abaikan */ }
-  var aud = valid(only) ? only : (valid(q) ? q : (valid(s) ? s : 'kids'));
+  // SD Alfa Centauri memakai satu tampilan saja (tema "adult" diberi warna sekolah); pemilih Anak/Dewasa dinonaktifkan
+  var aud = 'adult';
   de.setAttribute('data-audience', aud);
   if (!only && valid(q)) { try { localStorage.setItem(KEY, q); } catch (e) { /* abaikan */ } }
 
@@ -20,7 +21,6 @@
       var n = 0, hidden = 0;
       Array.prototype.forEach.call(g.children, function (c) {
         var auds = (c.getAttribute('data-aud') || '').split(' ');
-        if (auds.indexOf(aud) < 0) { c.classList.remove('over'); return; }
         n++;
         if (shown && n > shown) { c.classList.add('over'); hidden++; } else { c.classList.remove('over'); }
       });
