@@ -9,16 +9,28 @@ import { LangToggle } from "./LangToggle";
 
 export function Navbar({ lang }: { lang: Lang }) {
   const { nav, portals, ui } = getT(lang);
-  // solid: sudah melewati hero. hidden: sedang scroll turun (muncul lagi saat scroll naik).
+  // solid: sudah melewati hero. Navbar mengikuti gerak scroll (naik pelan saat scroll turun, turun lagi saat scroll naik).
   const [solid, setSolid] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const bar = useRef<HTMLDivElement>(null);
+  const head = useRef<HTMLElement>(null);
+  const openRef = useRef(false);
+  useEffect(() => { openRef.current = open; }, [open]);
 
   useEffect(() => {
     let last = window.scrollY;
-    let down = 0; // jarak scroll turun berturut-turut
+    let offset = 0; // seberapa jauh navbar sudah naik (px, 0 = terlihat penuh)
     let raf = 0;
+    let settle: ReturnType<typeof setTimeout> | undefined;
+    const apply = (animate: boolean) => {
+      const h = head.current;
+      if (!h) return;
+      const H = h.offsetHeight + 8;
+      h.style.transition = animate ? "transform 650ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease, background-color 300ms, box-shadow 300ms, border-color 300ms" : "background-color 300ms, box-shadow 300ms, border-color 300ms";
+      h.style.transform = `translateY(${-offset}px)`;
+      h.style.opacity = String(1 - (offset / H) * 0.9);
+      h.style.pointerEvents = offset > H * 0.6 ? "none" : "";
+    };
     const update = () => {
       raf = 0;
       const y = window.scrollY;
@@ -29,14 +41,15 @@ export function Navbar({ lang }: { lang: Lang }) {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
       const delta = y - last;
-      if (Math.abs(delta) > 4) {
-        // Baru sembunyi setelah scroll turun cukup jauh (±350px); naik sedikit saja langsung muncul.
-        down = delta > 0 ? down + delta : 0;
-        // Navbar tetap menggantung sepanjang hero; baru boleh sembunyi setelah hero lewat.
-        setHidden(delta > 0 && down > 350 && y > heroEnd);
-        last = y;
-      }
-      if (y < 40) setHidden(false);
+      last = y;
+      const H = (head.current?.offsetHeight ?? 72) + 8;
+      // Navbar tetap menggantung sepanjang hero; setelah itu ia naik ±1px tiap 3px scroll turun
+      // (butuh ±250px untuk hilang penuh) dan turun lagi saat scroll naik. Berhenti scroll: tuntaskan dengan transisi halus.
+      if (openRef.current || y <= heroEnd) offset = 0;
+      else offset = Math.min(H, Math.max(0, offset + delta * 0.33));
+      apply(false);
+      clearTimeout(settle);
+      settle = setTimeout(() => { offset = offset > H * 0.55 ? H : 0; apply(true); }, 140);
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -48,6 +61,7 @@ export function Navbar({ lang }: { lang: Lang }) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
+      clearTimeout(settle);
     };
   }, []);
 
@@ -63,9 +77,8 @@ export function Navbar({ lang }: { lang: Lang }) {
       <div ref={bar} aria-hidden className="fixed inset-x-0 top-0 z-[55] h-[3px] origin-left scale-x-0 bg-brand-500" />
       {/* Transparan di atas hero (teks putih), solid setelah melewati hero. Sembunyi saat scroll turun. */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,box-shadow,border-color] duration-300 ${
-          hidden && !open ? "-translate-y-full" : "translate-y-0"
-        } ${
+        ref={head}
+        className={`fixed inset-x-0 top-0 z-50 will-change-transform ${
           solid
             ? "border-b border-brand-100/70 bg-white/50 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.35)] backdrop-blur-2xl backdrop-saturate-150"
             : "border-b border-transparent bg-transparent"

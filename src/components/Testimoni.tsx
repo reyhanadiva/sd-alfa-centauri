@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Quote, X } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
+import { Rich } from "./Rich";
 
 const tint = ["bg-brand-100 text-brand-700", "bg-[#e6f9f0] text-[#13795b]", "bg-[#fff1e6] text-[#b4531a]"];
 const MS = 6000;
@@ -58,16 +59,10 @@ export function Testimoni({ lang }: { lang: Lang }) {
           </div>
 
           <figure key={i} className="fade-in text-center lg:text-left">
-            <blockquote className="em-serif text-[1.6rem] leading-[1.25] text-navy-900 sm:text-[2rem] lg:min-h-[10.5rem]">“{t.highlight}”</blockquote>
-            <ul className="mt-4 flex flex-wrap justify-center gap-x-2 gap-y-1 text-[13.5px] font-semibold text-brand-700 lg:justify-start">
-              {t.tags.map((g, k) => (
-                <li key={g} className="flex items-center gap-2">
-                  {k > 0 && <span aria-hidden className="size-1 rounded-full bg-brand-400" />}
-                  {g}
-                </li>
-              ))}
-            </ul>
-            <figcaption className="mt-4 leading-snug">
+            <blockquote className="text-[2rem] font-bold leading-[1.1] tracking-[-0.025em] text-navy-900 sm:text-[2.6rem] lg:min-h-[8.5rem] lg:text-[3rem]">
+              <Rich text={`“${t.highlight}”`} strong="text-brand-600" />
+            </blockquote>
+            <figcaption className="mt-5 leading-snug">
               <span className="block text-[17px] font-semibold text-navy-900">{t.name}</span>
               <span className="block text-[15px] text-navy-700">{t.persona}</span>
               <span className="block text-[14px] text-navy-700/65">{t.note}</span>

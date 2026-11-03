@@ -121,3 +121,9 @@ Komponen `Praktis.tsx` dan data `infoCepat` masih ada tapi tidak ditampilkan. Pa
 - [ ] Testimoni kini tampil ringkas: satu kalimat sorotan (kutipan langsung dari teks orang tua, dipotong/diringkas sedikit untuk Pak Zein dan Pak Luthfi) + 2-3 poin kunci (`tags`, tulisan saya) + tombol "Baca selengkapnya" yang membuka teks penuh. Mohon orang tua yang bersangkutan setuju dengan sorotan dan poinnya.
 - [ ] Sapaan asisten berupa pertanyaan pendek (id.ts/en.ts `assistant.bubbles`); muncul bergantian maks 4 kali dan berhenti bila ditutup/dibuka.
 - [ ] Teks kotak FAQ dibuat formal ("Anda"). Asisten masih memakai "kamu"; samakan bila perlu.
+
+## Putaran 11 (feedback UI)
+
+- [ ] Testimoni: kalimat sorotan kini dipotong pendek dari kalimat asli orang tua (mis. "Sekolah sebagai rumah kedua bagi putri kami"), dengan frasa kunci berwarna; bullet dihapus. Mohon konfirmasi masing-masing orang tua.
+- [ ] Galeri: tiap kegiatan bisa punya beberapa foto (`more` di `galeri` id.ts). Baru Reading Challenge dan Pekan Kreativitas yang punya lebih dari satu foto; tambahkan foto serupa lain agar tiap kartu jadi album yang bisa digeser.
+- [ ] Berita: judul mockup disamakan panjangnya; tanggal ("Sep/Okt 2026") hanya contoh.

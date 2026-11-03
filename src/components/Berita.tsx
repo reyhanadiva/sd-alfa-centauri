@@ -39,13 +39,13 @@ export function Berita({ lang }: { lang: Lang }) {
                   href={b.href}
                   className={`group flex h-full min-h-[22rem] flex-col rounded-[2rem] p-5 transition hover:-translate-y-1 hover:shadow-lift lg:min-h-0 ${feat ? "bg-navy-900 text-white" : pastel[i % pastel.length]}`}
                 >
-                  <p className="flex items-center gap-2 text-[12.5px] font-semibold">
+                  <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] font-semibold">
                     <span className={`rounded-full px-3 py-1 ${feat ? "bg-brand-500 text-white" : "bg-white text-navy-900"}`}>{b.cat}</span>
-                    <span className={feat ? "text-white/70" : "text-navy-700/80"}>{b.date}</span>
+                    <span className={`whitespace-nowrap ${feat ? "text-white/70" : "text-navy-700/80"}`}>{b.date}</span>
                     {feat && <span className="ml-auto rounded-full bg-white/15 px-3 py-1 text-white">{berita.featured}</span>}
                   </p>
                   <div className="mt-4 flex items-start justify-between gap-3">
-                    <h3 className={`font-semibold leading-snug ${feat ? "text-[1.6rem] !text-white" : "text-[1.1rem]"}`}>{b.title}</h3>
+                    <h3 className={`font-semibold leading-snug ${feat ? "text-[1.6rem] !text-white" : "line-clamp-3 h-[4.6rem] text-[1.1rem]"}`}>{b.title}</h3>
                     <span className={`grid size-9 shrink-0 place-items-center rounded-full transition group-hover:rotate-45 ${feat ? "bg-white text-navy-900" : "bg-white text-navy-900 group-hover:bg-navy-900 group-hover:text-white"}`}>
                       <ArrowUpRight size={17} aria-hidden />
                     </span>

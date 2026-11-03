@@ -73,7 +73,7 @@ export function FasilitasDaftar({ lang }: { lang: Lang }) {
       {/* ---------- Ponsel: foto di atas (terlihat penuh), pilihan fasilitas di bawahnya ---------- */}
       <div className="px-5 py-14 sm:px-8 lg:hidden">
         <H2 f={fas} id="fasilitas-title-m" />
-        <div className="relative isolate mt-7 aspect-[4/3] overflow-hidden rounded-[2rem] text-white shadow-lift">
+        <div className="relative isolate mt-7 aspect-[4/3] overflow-hidden rounded-[2rem] text-white shadow-lift sm:aspect-[16/9]">
           <Stack f={fas} i={i} sizes="94vw" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-navy-900/10" />
           <p key={`m${i}`} className="fade-in absolute left-5 top-4 font-display text-5xl font-semibold leading-none text-white/80">{pad(i + 1)}</p>
@@ -82,7 +82,7 @@ export function FasilitasDaftar({ lang }: { lang: Lang }) {
             {f.caption && <p className="mt-1 text-[15px] leading-snug text-white/85">{f.caption}</p>}
           </div>
         </div>
-        <ul ref={chips} aria-label={fas.listAria} className="-mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ul ref={chips} aria-label={fas.listAria} className="-mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
           {fasilitas.map((x, k) => (
             <li key={x.title} className="shrink-0">
               <button
@@ -107,11 +107,11 @@ export function FasilitasDaftar({ lang }: { lang: Lang }) {
       <div aria-hidden className="absolute inset-0 -z-10 bg-navy-900/55" />
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900/80 via-navy-900/20 to-navy-900/30" />
 
-      <div className="mx-auto grid h-full w-full max-w-[78rem] gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-6">
-        <div className="flex h-full flex-col justify-between gap-8 lg:py-4">
+      <div className="mx-auto grid h-full w-full max-w-[78rem] gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1fr_minmax(21rem,27rem)] lg:gap-14 lg:py-10">
+        <div className="flex h-full min-h-0 flex-col justify-between gap-8">
           <H2 f={fas} light className="max-w-xl" />
           <div>
-            <p key={`n${i}`} className="fade-in font-display text-[6rem] font-semibold leading-none tracking-[-0.05em] text-white/35 sm:text-[8rem]">{pad(i + 1)}</p>
+            <p key={`n${i}`} className="fade-in font-display text-[clamp(5rem,13vh,8.5rem)] font-semibold leading-none tracking-[-0.05em] text-white/35">{pad(i + 1)}</p>
             <div key={i} className="fade-in">
               <h3 className="mt-1 text-3xl font-semibold !text-white sm:text-4xl">{f.title}</h3>
               {f.caption && <p className="mt-1.5 max-w-sm text-[16px] text-white/80">{f.caption}</p>}
@@ -120,17 +120,17 @@ export function FasilitasDaftar({ lang }: { lang: Lang }) {
           </div>
         </div>
 
-        <ul aria-label={fas.listAria} className="grid gap-2">
+        <ul aria-label={fas.listAria} className="grid h-full min-h-0 grid-rows-8 gap-2">
           {fasilitas.map((x, k) => (
-            <li key={x.title}>
+            <li key={x.title} className="min-h-0">
               <button
                 type="button"
                 onClick={() => setI(k)}
                 aria-current={k === i}
-                className={`relative flex w-full items-center gap-4 overflow-hidden rounded-2xl px-4 py-2.5 text-left transition ${k === i ? "bg-white text-navy-900" : "bg-white/10 text-white ring-1 ring-white/15 backdrop-blur-md hover:bg-white/20"}`}
+                className={`relative flex size-full items-center gap-4 overflow-hidden rounded-2xl px-5 text-left transition ${k === i ? "bg-white text-navy-900" : "bg-white/10 text-white ring-1 ring-white/15 backdrop-blur-md hover:bg-white/20"}`}
               >
                 <span className={`font-display text-[1.6rem] font-semibold leading-none tabular-nums ${k === i ? "text-brand-600" : "text-white/55"}`}>{pad(k + 1)}</span>
-                <span className="text-[16px] font-semibold">{x.title}</span>
+                <span className="text-[clamp(1rem,2.1vh,1.2rem)] font-semibold">{x.title}</span>
                 {k === i && <span key={i} className="bar-fill absolute inset-x-0 bottom-0 h-0.5 bg-brand-600" />}
               </button>
             </li>

@@ -3,73 +3,113 @@
 import { useEffect, useRef } from "react";
 import { Icon } from "./icons";
 
-// Kegiatan pendampingan: berjalan pelan sendiri, tapi bisa digeser/diseret kapan saja.
-// Berhenti saat disentuh, di-hover, atau difokus; lanjut 2,5 detik setelah pengguna berhenti.
-// Daftar digandakan agar putarannya tanpa putus. "Reduce motion": tidak otomatis, hanya bisa digeser.
+const COPIES = 6; // daftar diulang agar putarannya tanpa ujung, bahkan di layar sangat lebar
+
+// Kegiatan pendampingan: berjalan pelan tanpa henti (loop tak berujung), bisa diseret dengan mouse atau digeser
+// dengan jari/trackpad. Tidak berhenti karena hover; hanya jeda saat disentuh/diseret dan lanjut ±1 detik kemudian.
+// "Reduce motion": tidak otomatis, tetap bisa digeser.
 export function ActivityRail({ items, label }: { items: readonly { icon: string; label: string }[]; label: string }) {
   const ref = useRef<HTMLUListElement>(null);
-  const loop = [...items, ...items];
+  const loop = Array.from({ length: COPIES }, () => items).flat();
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!el) return;
+    const setW = () => el.scrollWidth / COPIES; // lebar satu salinan daftar
+    const wrap = () => {
+      const w = setW();
+      if (el.scrollLeft >= 2 * w) el.scrollLeft -= w;
+      else if (el.scrollLeft < w) el.scrollLeft += w;
+    };
+    el.scrollLeft = setW();
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
-    let paused = false;
-    let resume: ReturnType<typeof setTimeout> | undefined;
     let last = performance.now();
     let pos = el.scrollLeft;
+    let holding = false; // jari/mouse sedang menekan
+    let touched = performance.now(); // terakhir kali pengguna berinteraksi
+
+    // Seret dengan mouse
+    let drag: { x: number; left: number; id: number } | null = null;
+    const down = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      drag = { x: e.clientX, left: el.scrollLeft, id: e.pointerId };
+      holding = true;
+      el.setPointerCapture(e.pointerId);
+      el.style.cursor = "grabbing";
+    };
+    const move = (e: PointerEvent) => {
+      if (!drag) return;
+      el.scrollLeft = drag.left - (e.clientX - drag.x);
+      wrap();
+      drag.left = el.scrollLeft + (e.clientX - drag.x); // pertahankan titik pegang setelah loncat
+      touched = performance.now();
+    };
+    const up = () => {
+      if (!drag) return;
+      try { el.releasePointerCapture(drag.id); } catch {}
+      drag = null;
+      holding = false;
+      el.style.cursor = "";
+      touched = performance.now();
+    };
+    // Sentuh / roda / trackpad
+    const hold = () => { holding = true; touched = performance.now(); };
+    const release = () => { holding = false; touched = performance.now(); };
+    const poke = () => { touched = performance.now(); };
+    const onScroll = () => {
+      wrap();
+      // geseran yang bukan dari kita (momentum, trackpad) juga dihitung sebagai interaksi
+      if (Math.abs(el.scrollLeft - pos) > 2) touched = performance.now();
+    };
 
     const tick = (t: number) => {
-      const dt = t - last;
+      const dt = Math.min(64, t - last);
       last = t;
-      if (!paused) {
-        pos += dt * 0.035; // piksel per milidetik (pelan)
-        const half = el.scrollWidth / 2;
-        if (pos >= half) pos -= half;
+      const idle = !holding && t - touched > 1000;
+      if (idle && !reduce) {
+        pos += dt * 0.04; // px per ms
         el.scrollLeft = pos;
+        wrap();
+        pos = el.scrollLeft;
       } else {
         pos = el.scrollLeft; // ikuti geseran pengguna
       }
       raf = requestAnimationFrame(tick);
     };
-    const pause = () => { paused = true; clearTimeout(resume); };
-    const later = () => { clearTimeout(resume); resume = setTimeout(() => { paused = false; last = performance.now(); }, 2500); };
-    const onScroll = () => {
-      // loncat mulus saat pengguna menggeser melewati ujung daftar ganda
-      const half = el.scrollWidth / 2;
-      if (el.scrollLeft >= half) el.scrollLeft -= half;
-      else if (el.scrollLeft <= 0 && paused) el.scrollLeft += half;
-    };
 
-    el.addEventListener("pointerdown", pause);
-    el.addEventListener("touchstart", pause, { passive: true });
-    el.addEventListener("wheel", () => { pause(); later(); }, { passive: true });
-    el.addEventListener("pointerenter", pause);
-    el.addEventListener("pointerleave", later);
-    el.addEventListener("touchend", later, { passive: true });
-    el.addEventListener("pointerup", later);
-    el.addEventListener("focusin", pause);
-    el.addEventListener("focusout", later);
+    el.addEventListener("pointerdown", down);
+    el.addEventListener("pointermove", move);
+    el.addEventListener("pointerup", up);
+    el.addEventListener("pointercancel", up);
+    el.addEventListener("touchstart", hold, { passive: true });
+    el.addEventListener("touchend", release, { passive: true });
+    el.addEventListener("touchcancel", release, { passive: true });
+    el.addEventListener("wheel", poke, { passive: true });
     el.addEventListener("scroll", onScroll, { passive: true });
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
-      clearTimeout(resume);
-      el.removeEventListener("pointerdown", pause);
-      el.removeEventListener("touchstart", pause);
-      el.removeEventListener("pointerenter", pause);
-      el.removeEventListener("pointerleave", later);
-      el.removeEventListener("touchend", later);
-      el.removeEventListener("pointerup", later);
-      el.removeEventListener("focusin", pause);
-      el.removeEventListener("focusout", later);
+      el.removeEventListener("pointerdown", down);
+      el.removeEventListener("pointermove", move);
+      el.removeEventListener("pointerup", up);
+      el.removeEventListener("pointercancel", up);
+      el.removeEventListener("touchstart", hold);
+      el.removeEventListener("touchend", release);
+      el.removeEventListener("touchcancel", release);
+      el.removeEventListener("wheel", poke);
       el.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   return (
     <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-      <ul ref={ref} aria-label={label} className="flex gap-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <ul
+        ref={ref}
+        aria-label={label}
+        className="flex cursor-grab select-none gap-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {loop.map((a, i) => (
           <li
             key={i}

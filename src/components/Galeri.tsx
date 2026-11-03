@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getT, type Lang } from "@/lib/i18n";
-import { Maximize2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { Photo } from "./Photo";
 import { SnapRail } from "./SnapRail";
 
@@ -14,13 +14,30 @@ export function Galeri({ lang }: { lang: Lang }) {
   const mid = (N - 1) / 2;
   const [zoom, setZoom] = useState<number | null>(null);
   const [focus, setFocus] = useState(Math.floor(mid)); // kartu yang sedang di-hover/fokus, judulnya tampil di bawah kipas
+  const [slide, setSlide] = useState(0); // foto ke-berapa dalam kegiatan yang dibuka
+  const rail = useRef<HTMLUListElement>(null);
+  const z = zoom === null ? null : galeri[zoom];
+  const album = z ? [z.photo, ...(z.more ?? [])] : [];
+  const open = (k: number) => { setSlide(0); setZoom(k); };
+  const goSlide = (n: number) => {
+    const el = rail.current;
+    if (!el || album.length < 2) return;
+    el.scrollTo({ left: ((n + album.length) % album.length) * el.clientWidth, behavior: "smooth" });
+  };
+  const slideRef = useRef(0);
+  useEffect(() => { slideRef.current = slide; }, [slide]);
+  const goRef = useRef(goSlide);
+  useEffect(() => { goRef.current = goSlide; });
   useEffect(() => {
     if (zoom === null) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setZoom(null);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setZoom(null);
+      else if (e.key === "ArrowRight") goRef.current(slideRef.current + 1);
+      else if (e.key === "ArrowLeft") goRef.current(slideRef.current - 1);
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [zoom]);
-  const z = zoom === null ? null : galeri[zoom];
   return (
     <section id="galeri" aria-labelledby="galeri-title" className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50 to-white px-5 py-14 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6">
       <div className="mx-auto w-full max-w-[78rem] [--u:2.6rem] sm:[--u:5.2rem] lg:[--u:7.6rem]">
@@ -37,13 +54,13 @@ export function Galeri({ lang }: { lang: Lang }) {
                 onMouseEnter={() => setFocus(k)}
                 onFocus={() => setFocus(k)}
                 style={{ "--d": d, zIndex: 20 - Math.round(Math.abs(d) * 2) } as React.CSSProperties}
-                className="group absolute left-1/2 top-0 -ml-[4.5rem] h-full w-[9rem] translate-x-[calc(var(--d)*var(--u))] translate-y-[calc(var(--d)*var(--d)*0.45rem)] rotate-[calc(var(--d)*4.5deg)] transition duration-500 ease-out hover:z-50 hover:-translate-y-5 hover:rotate-0 hover:scale-105 sm:-ml-[5.5rem] sm:w-[11rem] lg:-ml-[6.5rem] lg:w-[13rem]"
+                className="group absolute left-1/2 top-0 -ml-[4.5rem] h-full w-[9rem] translate-x-[calc(var(--d)*var(--u))] translate-y-[calc(var(--d)*var(--d)*0.45rem)] rotate-[calc(var(--d)*4.5deg)] hover:z-50 focus-within:z-50 sm:-ml-[5.5rem] sm:w-[11rem] lg:-ml-[6.5rem] lg:w-[13rem]"
               >
                 <button
                   type="button"
-                  onClick={() => setZoom(k)}
+                  onClick={() => open(k)}
                   aria-label={g.zoom.replace("{x}", x.title)}
-                  className="relative isolate block size-full cursor-zoom-in overflow-hidden rounded-[1.4rem] text-left shadow-lift ring-4 ring-white"
+                  className="relative isolate block size-full cursor-zoom-in overflow-hidden rounded-[1.4rem] text-left shadow-lift ring-4 ring-white transition duration-500 ease-out group-hover:-translate-y-5 group-hover:scale-105 group-hover:rotate-[calc(var(--d)*-4.5deg)] group-focus-within:-translate-y-5 group-focus-within:scale-105 group-focus-within:rotate-[calc(var(--d)*-4.5deg)]"
                 >
                   <Photo src={x.photo} alt={x.title} label={x.title} sizes="208px" className="-z-20" />
                   <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
@@ -65,7 +82,7 @@ export function Galeri({ lang }: { lang: Lang }) {
               <button
                 key={x.title}
                 type="button"
-                onClick={() => setZoom(k)}
+                onClick={() => open(k)}
                 aria-label={g.zoom.replace("{x}", x.title)}
                 className="relative isolate block aspect-[4/5] overflow-hidden rounded-[1.75rem] text-left shadow-lift ring-4 ring-white"
               >
@@ -85,14 +102,47 @@ export function Galeri({ lang }: { lang: Lang }) {
           aria-modal="true"
           aria-label={z.title}
           onClick={() => setZoom(null)}
-          className="fixed inset-0 z-[70] grid cursor-zoom-out place-items-center bg-navy-900/75 p-5 backdrop-blur-sm"
+          className="fixed inset-0 z-[70] grid place-items-center bg-navy-900/75 p-5 backdrop-blur-sm"
         >
-          <div className="zoom-in relative isolate aspect-[4/5] w-[min(26rem,88vw)] max-h-[85svh] overflow-hidden rounded-[2rem] text-white shadow-lift ring-4 ring-white">
-            <Photo src={z.photo} alt={z.title} label={z.title} sizes="420px" className="-z-20" />
-            <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/90 via-navy-900/10 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6">
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="zoom-in relative isolate aspect-[4/5] w-[min(26rem,88vw)] max-h-[85svh] overflow-hidden rounded-[2rem] text-white shadow-lift ring-4 ring-white"
+          >
+            {/* Satu kegiatan = satu rangkaian foto yang bisa digeser */}
+            <ul
+              ref={rail}
+              onScroll={(e) => setSlide(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}
+              className="flex size-full snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {album.map((ph, k) => (
+                <li key={k} className="relative size-full shrink-0 snap-center">
+                  <Photo src={ph} alt={z.title} label={z.title} sizes="420px" className="-z-20" />
+                </li>
+              ))}
+            </ul>
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/10 to-transparent" />
+            <button type="button" onClick={() => setZoom(null)} aria-label={g.close} className="absolute right-3 top-3 grid size-10 place-items-center rounded-full bg-white/90 text-navy-900 transition hover:bg-white">
+              <X size={18} aria-hidden />
+            </button>
+            {album.length > 1 && (
+              <>
+                <button type="button" onClick={() => goSlide(slide - 1)} aria-label={g.prev} className="absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
+                  <ChevronLeft size={20} aria-hidden />
+                </button>
+                <button type="button" onClick={() => goSlide(slide + 1)} aria-label={g.next} className="absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
+                  <ChevronRight size={20} aria-hidden />
+                </button>
+                <p className="absolute left-4 top-4 rounded-full bg-navy-900/70 px-3 py-1 text-[12.5px] font-semibold tabular-nums backdrop-blur">{slide + 1} / {album.length}</p>
+              </>
+            )}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6">
               <h3 className="text-3xl font-semibold !text-white">{z.title}</h3>
               <p className="mt-1.5 text-[16px] text-white/85">{z.caption}</p>
+              {album.length > 1 && (
+                <div aria-hidden className="mt-3 flex gap-1.5">
+                  {album.map((_, k) => <span key={k} className={`h-1.5 rounded-full transition-all duration-300 ${k === slide ? "w-5 bg-white" : "w-1.5 bg-white/50"}`} />)}
+                </div>
+              )}
             </div>
           </div>
         </div>
