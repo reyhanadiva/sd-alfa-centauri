@@ -13,7 +13,7 @@ if (!defined('EN_PANEL')) {
 mb_internal_encoding('UTF-8');
 date_default_timezone_set('UTC'); // semua waktu disimpan UTC, ditampilkan sebagai WIB
 
-const PANEL_VERSION = '2.5';
+const PANEL_VERSION = '2.5-sd.1';
 
 /**
  * Konfigurasi. Dicari di:

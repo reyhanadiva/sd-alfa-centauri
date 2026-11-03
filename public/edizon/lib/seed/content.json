@@ -7,5 +7,2378 @@
     "logoWhite": "",
     "logoMark": "",
     "favicon": ""
+  },
+  "seo": {
+    "id": {
+      "meta": {
+        "title": "SD Alfa Centauri Bandung | Sekolah Dasar Inklusif & Berkarakter",
+        "description": "SD Alfa Centauri, Bandung. Terakreditasi A. Mencetak generasi Taqwa, Cerdas, dan Kreatif dengan pendampingan inklusi, pendidikan karakter, dan integrasi nilai keislaman dengan sains teknologi.",
+        "ogTitle": "SD Alfa Centauri Bandung",
+        "ogDescription": "To Be The Finest School In The World."
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "SD Alfa Centauri Bandung | Inclusive Elementary School with Character",
+        "description": "SD Alfa Centauri, Bandung, Indonesia. Accredited A. Raising a generation that is Taqwa (devout), Cerdas (smart), and Kreatif (creative) through inclusive support, character education, and the integration of faith values with science and technology.",
+        "ogTitle": "SD Alfa Centauri Bandung",
+        "ogDescription": "To Be The Finest School In The World."
+      }
+    },
+    "shared": {}
+  },
+  "navbar": {
+    "id": {
+      "nav": [
+        {
+          "label": "Tentang",
+          "href": "#tentang",
+          "children": [
+            {
+              "label": "Profil Sekolah",
+              "href": "#tentang",
+              "desc": "Sejarah dan visi"
+            },
+            {
+              "label": "7 Pilar Karakter",
+              "href": "#pilar",
+              "desc": "Nilai yang kami tanamkan"
+            },
+            {
+              "label": "Akreditasi",
+              "href": "#akreditasi",
+              "desc": "Terakreditasi A"
+            }
+          ]
+        },
+        {
+          "label": "Program",
+          "href": "#program",
+          "children": [
+            {
+              "label": "Pendampingan Inklusi",
+              "href": "#inklusi",
+              "desc": "Learning Support Unit"
+            },
+            {
+              "label": "Gakko Tosho",
+              "href": "#program",
+              "desc": "Budaya literasi"
+            },
+            {
+              "label": "Tahfidz",
+              "href": "#program",
+              "desc": "Program hafalan Al-Qur'an"
+            },
+            {
+              "label": "Ekstrakurikuler",
+              "href": "#ekskul",
+              "desc": "Pilihan kegiatan siswa"
+            }
+          ]
+        },
+        {
+          "label": "Info Orang Tua",
+          "href": "#fasilitas",
+          "children": [
+            {
+              "label": "Fasilitas",
+              "href": "#fasilitas",
+              "desc": "Ruang belajar dan penunjang"
+            },
+            {
+              "label": "FAQ",
+              "href": "#faq",
+              "desc": "Pertanyaan umum"
+            }
+          ]
+        },
+        {
+          "label": "Berita",
+          "href": "#berita"
+        },
+        {
+          "label": "SPMB",
+          "href": "#spmb"
+        }
+      ],
+      "ui": {
+        "mainMenu": "Menu utama",
+        "openMenu": "Buka menu",
+        "closeMenu": "Tutup menu",
+        "mobileMenu": "Menu seluler",
+        "portal": "Portal",
+        "register": "Daftar SPMB",
+        "registerOnline": "Daftar SPMB Online",
+        "home": "SD Alfa Centauri, ke beranda",
+        "language": "Bahasa"
+      },
+      "portals": [
+        {
+          "label": "Portal Orang Tua",
+          "href": "#"
+        },
+        {
+          "label": "Portal Guru",
+          "href": "#"
+        }
+      ]
+    },
+    "en": {
+      "nav": [
+        {
+          "label": "About",
+          "href": "#tentang",
+          "children": [
+            {
+              "label": "School Profile",
+              "href": "#tentang",
+              "desc": "History and vision"
+            },
+            {
+              "label": "7 Character Pillars",
+              "href": "#pilar",
+              "desc": "Values we nurture"
+            },
+            {
+              "label": "Accreditation",
+              "href": "#akreditasi",
+              "desc": "Accredited A"
+            }
+          ]
+        },
+        {
+          "label": "Programs",
+          "href": "#program",
+          "children": [
+            {
+              "label": "Inclusive Support",
+              "href": "#inklusi",
+              "desc": "Learning Support Unit"
+            },
+            {
+              "label": "Gakko Tosho",
+              "href": "#program",
+              "desc": "Literacy culture"
+            },
+            {
+              "label": "Tahfidz",
+              "href": "#program",
+              "desc": "Qur'an memorization program"
+            },
+            {
+              "label": "Extracurriculars",
+              "href": "#ekskul",
+              "desc": "Activities students can join"
+            }
+          ]
+        },
+        {
+          "label": "For Parents",
+          "href": "#fasilitas",
+          "children": [
+            {
+              "label": "Facilities",
+              "href": "#fasilitas",
+              "desc": "Classrooms and support"
+            },
+            {
+              "label": "FAQ",
+              "href": "#faq",
+              "desc": "Common questions"
+            }
+          ]
+        },
+        {
+          "label": "News",
+          "href": "#berita"
+        },
+        {
+          "label": "Admissions",
+          "href": "#spmb"
+        }
+      ],
+      "ui": {
+        "mainMenu": "Main menu",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "mobileMenu": "Mobile menu",
+        "portal": "Portals",
+        "register": "Apply Now",
+        "registerOnline": "Apply Online",
+        "home": "SD Alfa Centauri, back to top",
+        "language": "Language"
+      },
+      "portals": [
+        {
+          "label": "Parent Portal",
+          "href": "#"
+        },
+        {
+          "label": "Teacher Portal",
+          "href": "#"
+        }
+      ]
+    },
+    "shared": {}
+  },
+  "hero": {
+    "id": {
+      "hero": {
+        "alt": "Gedung SD Alfa Centauri di Jalan Terate No. 10, Bandung",
+        "sub": "Menumbuhkan anak yang **Taqwa**, **Cerdas**, dan **Kreatif**.",
+        "register": "Daftar SPMB",
+        "accredited": "Terakreditasi BAN-S/M"
+      },
+      "cert": {
+        "open": "Lihat sertifikat",
+        "title": "Sertifikat Akreditasi A",
+        "aria": "Sertifikat akreditasi",
+        "close": "Tutup",
+        "alt": "Sertifikat akreditasi A dari BAN-S/M untuk SD Alfa Centauri",
+        "label": "Sertifikat akreditasi (BAN-S/M)",
+        "img": "/images/sertifikat-akreditasi.jpg",
+        "info": "Terakreditasi A (Unggul), nilai 95. Berlaku sampai 31 Desember 2028."
+      }
+    },
+    "en": {
+      "hero": {
+        "alt": "SD Alfa Centauri school building on Jalan Terate No. 10, Bandung",
+        "sub": "Raising children who are **Taqwa** (devout), **Cerdas** (smart), and **Kreatif** (creative).",
+        "register": "Apply Now",
+        "accredited": "Accredited by BAN-S/M"
+      },
+      "cert": {
+        "open": "View certificate",
+        "title": "Accreditation Certificate A",
+        "aria": "Accreditation certificate",
+        "close": "Close",
+        "alt": "Accreditation A certificate from BAN-S/M for SD Alfa Centauri",
+        "label": "Accreditation certificate (BAN-S/M)",
+        "img": "/images/sertifikat-akreditasi.jpg",
+        "info": "Accredited A (Excellent), score 95. Valid until 31 December 2028."
+      }
+    },
+    "shared": {
+      "cert": {
+        "img": "/images/sertifikat-akreditasi.jpg"
+      }
+    }
+  },
+  "about": {
+    "id": {
+      "about": {
+        "lead": "SD Alfa Centauri berkomitmen mewujudkan visi",
+        "quote": "To Be The Finest School In The World",
+        "tail": "melalui misi membentuk generasi yang",
+        "link": "Taqwa, Cerdas, dan Kreatif",
+        "founded": "Berdiri 12 Juli 2009",
+        "under": "Di bawah naungan",
+        "foundation": "Yayasan Taqwa Cerdas Kreatif",
+        "twinTitle": "Bintang kembar Alfa Centauri",
+        "twinText": "Dua bintang melambangkan keseimbangan tujuan kami: mengantar ananda sukses di **dunia & akhirat**."
+      }
+    },
+    "en": {
+      "about": {
+        "lead": "SD Alfa Centauri is committed to realizing the vision",
+        "quote": "To Be The Finest School In The World",
+        "tail": "through a mission of shaping a generation that is",
+        "link": "Taqwa, Cerdas, and Kreatif",
+        "founded": "Founded 12 July 2009",
+        "under": "Under the auspices of",
+        "foundation": "Taqwa Cerdas Kreatif Foundation",
+        "twinTitle": "The Alfa Centauri twin stars",
+        "twinText": "Two stars symbolize the balance of our goal: guiding children to succeed in **this world & the hereafter**."
+      }
+    },
+    "shared": {}
+  },
+  "why": {
+    "id": {
+      "why": {
+        "title": [
+          "Mengapa memilih ",
+          "SD Alfa Centauri?"
+        ],
+        "aria": "Alasan memilih",
+        "acc": {
+          "title": "Terakreditasi A",
+          "text": "Standar mutu pendidikan yang diakui BAN-S/M."
+        },
+        "prog": {
+          "title": "Program Unggulan Terpadu",
+          "text": "Mengembangkan potensi, minat, dan bakat setiap siswa.",
+          "alt": "Siswa SD Alfa Centauri membaca buku di luar kelas",
+          "label": "Kegiatan siswa",
+          "pills": [
+            "Tahfidz & Munaqosyah",
+            "Pembinaan FLS2N",
+            "Reading Challenge",
+            "Fieldtrip Edukatif",
+            "Parents Day",
+            "Lomba & Olimpiade"
+          ]
+        },
+        "bimbel": {
+          "title": "Kemitraan Bimbel",
+          "text": "Jam belajar tambahan bersama Sony Sugema College (SSC).",
+          "more": "Selengkapnya"
+        },
+        "ask": {
+          "title": "Bisa kami bantu?",
+          "cta": "Chat admin",
+          "wa": "https://wa.me/6281223862294?text=Halo%20SD%20Alfa%20Centauri%2C%20saya%20ingin%20bertanya%20tentang%20SPMB."
+        },
+        "more": "+{n} lainnya",
+        "close": "Tutup"
+      },
+      "stats": {
+        "aria": "Alfa Centauri dalam angka",
+        "labels": [
+          "tahun melayani pendidikan",
+          "siswa aktif",
+          "guru dan tenaga pendidik",
+          "alumni"
+        ],
+        "numbers": [
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    "en": {
+      "why": {
+        "title": [
+          "Why choose ",
+          "SD Alfa Centauri?"
+        ],
+        "aria": "Reasons to choose us",
+        "acc": {
+          "title": "Accredited A",
+          "text": "A quality standard recognized by BAN-S/M."
+        },
+        "prog": {
+          "title": "Integrated Flagship Programs",
+          "text": "Developing every student's potential, interests, and talents.",
+          "alt": "SD Alfa Centauri students reading a book outside the classroom",
+          "label": "Student activities",
+          "pills": [
+            "Tahfidz & Munaqosyah",
+            "FLS2N Coaching",
+            "Reading Challenge",
+            "Educational Fieldtrips",
+            "Parents Day",
+            "Contests & Olympiads"
+          ]
+        },
+        "bimbel": {
+          "title": "Tutoring Partnership",
+          "text": "Extra learning hours with Sony Sugema College (SSC).",
+          "more": "Learn more"
+        },
+        "ask": {
+          "title": "How can we help?",
+          "cta": "Chat with admin",
+          "wa": "https://wa.me/6281223862294?text=Hello%20SD%20Alfa%20Centauri%2C%20I%20would%20like%20to%20ask%20about%20admissions%20(SPMB)."
+        },
+        "more": "+{n} more",
+        "close": "Close"
+      },
+      "stats": {
+        "aria": "Alfa Centauri in numbers",
+        "labels": [
+          "years serving education",
+          "active students",
+          "teachers and staff",
+          "alumni"
+        ],
+        "numbers": [
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    "shared": {
+      "stats": {
+        "numbers": [
+          17,
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  },
+  "program": {
+    "id": {
+      "program": {
+        "title": [
+          "Program yang menumbuhkan ",
+          "Taqwa, Cerdas, dan Kreatif"
+        ],
+        "tabsAria": "Ranah program",
+        "ranah": [
+          {
+            "key": "Taqwa",
+            "photo": "/images/munaqosyah.jpg",
+            "photoLabel": "Tahfidz dan shalat berjamaah",
+            "tagline": "Iman yang tumbuh lewat kebiasaan.",
+            "items": [
+              {
+                "icon": "quran",
+                "title": "Tahfidz & Munaqosyah",
+                "desc": "Menghafal Al-Qur'an, diuji lewat munaqosyah"
+              },
+              {
+                "icon": "sun",
+                "title": "Shalat Dhuha",
+                "desc": "Dibiasakan bersama di sekolah"
+              },
+              {
+                "icon": "masjid",
+                "title": "Shalat wajib berjamaah",
+                "desc": "Dilaksanakan berjamaah di sekolah"
+              }
+            ]
+          },
+          {
+            "key": "Cerdas",
+            "photo": "/images/kelas-komputer.jpg",
+            "photoLabel": "Siswa belajar dan membaca",
+            "tagline": "Numerasi, literasi, dan teknologi.",
+            "items": [
+              {
+                "icon": "book",
+                "title": "Gakko Tosho",
+                "desc": "Budaya literasi"
+              },
+              {
+                "icon": "calc",
+                "title": "Surala",
+                "desc": "Belajar matematika lewat e-learning"
+              },
+              {
+                "icon": "read",
+                "title": "Reading Challenge",
+                "desc": "Tantangan membaca berkala"
+              },
+              {
+                "icon": "project",
+                "title": "Project Based Learning",
+                "desc": "Belajar lewat proyek nyata"
+              },
+              {
+                "icon": "trophy",
+                "title": "Pembinaan FLS2N & Olimpiade",
+                "desc": "Bimbingan menuju lomba dan olimpiade"
+              }
+            ]
+          },
+          {
+            "key": "Kreatif",
+            "photo": "/images/pentas-siswa.jpg",
+            "photoLabel": "Pekan Kreativitas atau Expo",
+            "tagline": "Ruang untuk berkarya dan tampil.",
+            "items": [
+              {
+                "icon": "reflect",
+                "title": "Pekan Refleksi",
+                "desc": "Waktu merefleksikan perjalanan belajar"
+              },
+              {
+                "icon": "parents",
+                "title": "Parents Day",
+                "desc": "Hari kebersamaan sekolah dan orang tua"
+              },
+              {
+                "icon": "palette",
+                "title": "Pekan Kreativitas",
+                "desc": "Pekan untuk berkarya dan berekspresi"
+              },
+              {
+                "icon": "expo",
+                "title": "Expo",
+                "desc": "Memamerkan hasil belajar siswa"
+              },
+              {
+                "icon": "trip",
+                "title": "Fieldtrip Edukatif",
+                "desc": "Belajar langsung di luar kelas"
+              }
+            ]
+          }
+        ],
+        "ekskul": {
+          "title": "Ekstrakurikuler",
+          "sub": "Beragam kegiatan sesuai minat ananda.",
+          "view": "Tampilan",
+          "viewLabel": "Tampilan {x}",
+          "grid": "Kisi",
+          "photo": "Foto",
+          "see": "Lihat foto {x}",
+          "prev": "Sebelumnya",
+          "next": "Berikutnya",
+          "items": [
+            {
+              "icon": "film",
+              "label": "Sinematografi",
+              "photo": "https://images.pexels.com/photos/18918155/pexels-photo-18918155.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "drum",
+              "label": "Marching Band",
+              "photo": "https://images.pexels.com/photos/4720175/pexels-photo-4720175.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "music",
+              "label": "Musik",
+              "photo": "https://images.pexels.com/photos/9643921/pexels-photo-9643921.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "tent",
+              "label": "Pramuka",
+              "photo": "https://images.pexels.com/photos/9302795/pexels-photo-9302795.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "swim",
+              "label": "Renang",
+              "photo": "https://images.pexels.com/photos/12615996/pexels-photo-12615996.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "goal",
+              "label": "Futsal",
+              "photo": "https://images.pexels.com/photos/8813564/pexels-photo-8813564.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "bot",
+              "label": "Robotik",
+              "photo": "https://images.pexels.com/photos/7868892/pexels-photo-7868892.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "dance",
+              "label": "Menari",
+              "photo": "/images/tari-fls2n.jpg"
+            },
+            {
+              "icon": "medal",
+              "label": "Taekwondo",
+              "photo": "https://images.pexels.com/photos/7045594/pexels-photo-7045594.jpeg?auto=compress&cs=tinysrgb&w=900"
+            }
+          ]
+        }
+      }
+    },
+    "en": {
+      "program": {
+        "title": [
+          "Programs that grow ",
+          "Taqwa, Cerdas, and Kreatif"
+        ],
+        "tabsAria": "Program domains",
+        "ranah": [
+          {
+            "key": "Taqwa",
+            "photo": "/images/munaqosyah.jpg",
+            "photoLabel": "Tahfidz and congregational prayer",
+            "tagline": "Faith that grows through habit.",
+            "items": [
+              {
+                "icon": "quran",
+                "title": "Tahfidz & Munaqosyah",
+                "desc": "Memorizing the Qur'an, assessed through munaqosyah"
+              },
+              {
+                "icon": "sun",
+                "title": "Dhuha Prayer",
+                "desc": "Practiced together at school"
+              },
+              {
+                "icon": "masjid",
+                "title": "Congregational prayers",
+                "desc": "Obligatory prayers performed together at school"
+              }
+            ]
+          },
+          {
+            "key": "Cerdas",
+            "photo": "/images/kelas-komputer.jpg",
+            "photoLabel": "Students learning and reading",
+            "tagline": "Numeracy, literacy, and technology.",
+            "items": [
+              {
+                "icon": "book",
+                "title": "Gakko Tosho",
+                "desc": "A culture of literacy"
+              },
+              {
+                "icon": "calc",
+                "title": "Surala",
+                "desc": "Learning math through e-learning"
+              },
+              {
+                "icon": "read",
+                "title": "Reading Challenge",
+                "desc": "Regular reading challenges"
+              },
+              {
+                "icon": "project",
+                "title": "Project Based Learning",
+                "desc": "Learning through real projects"
+              },
+              {
+                "icon": "trophy",
+                "title": "FLS2N & Olympiad Coaching",
+                "desc": "Guidance toward contests and olympiads"
+              }
+            ]
+          },
+          {
+            "key": "Kreatif",
+            "photo": "/images/pentas-siswa.jpg",
+            "photoLabel": "Creativity Week or Expo",
+            "tagline": "Room to create and perform.",
+            "items": [
+              {
+                "icon": "reflect",
+                "title": "Reflection Week",
+                "desc": "Time to reflect on the learning journey"
+              },
+              {
+                "icon": "parents",
+                "title": "Parents Day",
+                "desc": "A day for school and parents together"
+              },
+              {
+                "icon": "palette",
+                "title": "Creativity Week",
+                "desc": "A week to create and express"
+              },
+              {
+                "icon": "expo",
+                "title": "Expo",
+                "desc": "Showcasing student work"
+              },
+              {
+                "icon": "trip",
+                "title": "Educational Fieldtrips",
+                "desc": "Learning hands-on outside the classroom"
+              }
+            ]
+          }
+        ],
+        "ekskul": {
+          "title": "Extracurriculars",
+          "sub": "Many activities to match your child's interests.",
+          "view": "View",
+          "viewLabel": "{x} view",
+          "grid": "Grid",
+          "photo": "Photo",
+          "see": "See photo: {x}",
+          "prev": "Previous",
+          "next": "Next",
+          "items": [
+            {
+              "icon": "film",
+              "label": "Cinematography",
+              "photo": "https://images.pexels.com/photos/18918155/pexels-photo-18918155.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "drum",
+              "label": "Marching Band",
+              "photo": "https://images.pexels.com/photos/4720175/pexels-photo-4720175.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "music",
+              "label": "Music",
+              "photo": "https://images.pexels.com/photos/9643921/pexels-photo-9643921.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "tent",
+              "label": "Scouts",
+              "photo": "https://images.pexels.com/photos/9302795/pexels-photo-9302795.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "swim",
+              "label": "Swimming",
+              "photo": "https://images.pexels.com/photos/12615996/pexels-photo-12615996.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "goal",
+              "label": "Futsal",
+              "photo": "https://images.pexels.com/photos/8813564/pexels-photo-8813564.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "bot",
+              "label": "Robotics",
+              "photo": "https://images.pexels.com/photos/7868892/pexels-photo-7868892.jpeg?auto=compress&cs=tinysrgb&w=900"
+            },
+            {
+              "icon": "dance",
+              "label": "Dance",
+              "photo": "/images/tari-fls2n.jpg"
+            },
+            {
+              "icon": "medal",
+              "label": "Taekwondo",
+              "photo": "https://images.pexels.com/photos/7045594/pexels-photo-7045594.jpeg?auto=compress&cs=tinysrgb&w=900"
+            }
+          ]
+        }
+      }
+    },
+    "shared": {}
+  },
+  "fasilitas": {
+    "id": {
+      "fasilitas": {
+        "title": [
+          "Fasilitas yang ",
+          "lengkap"
+        ],
+        "perKelasLabel": "Di setiap kelas",
+        "perKelas": [
+          "Proyektor",
+          "AC",
+          "CCTV",
+          "Internet 24 jam"
+        ],
+        "listAria": "Daftar fasilitas",
+        "items": [
+          {
+            "title": "Internet 24 jam",
+            "photo": "https://images.pexels.com/photos/11025019/pexels-photo-11025019.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Proyektor",
+            "photo": "https://images.pexels.com/photos/15225230/pexels-photo-15225230.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "TV interaktif",
+            "photo": "https://images.pexels.com/photos/8141591/pexels-photo-8141591.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "AC",
+            "photo": "https://images.pexels.com/photos/8617956/pexels-photo-8617956.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "CCTV",
+            "photo": "https://images.pexels.com/photos/13156207/pexels-photo-13156207.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Ruang multimedia",
+            "photo": "/images/kelas-komputer.jpg"
+          },
+          {
+            "title": "Mushola",
+            "photo": "https://images.pexels.com/photos/29832037/pexels-photo-29832037.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Portal Orang Tua",
+            "caption": "Memantau perkembangan akademik dan karakter ananda.",
+            "photo": "https://images.pexels.com/photos/4624908/pexels-photo-4624908.jpeg?auto=compress&cs=tinysrgb&w=900"
+          }
+        ]
+      }
+    },
+    "en": {
+      "fasilitas": {
+        "title": [
+          "Complete ",
+          "facilities"
+        ],
+        "perKelasLabel": "In every classroom",
+        "perKelas": [
+          "Projector",
+          "Air conditioning",
+          "CCTV",
+          "24-hour internet"
+        ],
+        "listAria": "Facilities list",
+        "items": [
+          {
+            "title": "24-hour internet",
+            "photo": "https://images.pexels.com/photos/11025019/pexels-photo-11025019.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Projector",
+            "photo": "https://images.pexels.com/photos/15225230/pexels-photo-15225230.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Interactive TV",
+            "photo": "https://images.pexels.com/photos/8141591/pexels-photo-8141591.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Air conditioning",
+            "photo": "https://images.pexels.com/photos/8617956/pexels-photo-8617956.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "CCTV",
+            "photo": "https://images.pexels.com/photos/13156207/pexels-photo-13156207.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Multimedia room",
+            "photo": "/images/kelas-komputer.jpg"
+          },
+          {
+            "title": "Prayer room (Mushola)",
+            "photo": "https://images.pexels.com/photos/29832037/pexels-photo-29832037.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Parent Portal",
+            "caption": "Follow your child's academic and character progress.",
+            "photo": "https://images.pexels.com/photos/4624908/pexels-photo-4624908.jpeg?auto=compress&cs=tinysrgb&w=900"
+          }
+        ]
+      }
+    },
+    "shared": {}
+  },
+  "inklusi": {
+    "id": {
+      "inklusi": {
+        "badge": "Learning Support Unit (LSU)",
+        "title": [
+          "Program Pendidikan ",
+          "Inklusif"
+        ],
+        "sub": "Setiap anak belajar dengan caranya.",
+        "points": [
+          {
+            "icon": "psikolog",
+            "title": "Pengawasan Psikolog Profesional",
+            "desc": "Program dirancang dan dipantau tenaga ahli."
+          },
+          {
+            "icon": "ppi",
+            "title": "Program Pendampingan Individual (PPI)",
+            "desc": "Pendampingan akademik dan perilaku per anak."
+          },
+          {
+            "icon": "terapi",
+            "title": "Layanan Terapi Terintegrasi",
+            "desc": "Terpadu dengan kegiatan belajar."
+          }
+        ],
+        "activitiesLabel": "Kegiatan pendampingan",
+        "activities": [
+          {
+            "icon": "manik",
+            "label": "Menyusun Manik-manik"
+          },
+          {
+            "icon": "yoga",
+            "label": "Yoga"
+          },
+          {
+            "icon": "puzzle",
+            "label": "Puzzle"
+          },
+          {
+            "icon": "seimbang",
+            "label": "Latihan Keseimbangan"
+          },
+          {
+            "icon": "gambar",
+            "label": "Menggambar"
+          },
+          {
+            "icon": "kancing",
+            "label": "Mengancing"
+          }
+        ]
+      }
+    },
+    "en": {
+      "inklusi": {
+        "badge": "Learning Support Unit (LSU)",
+        "title": [
+          "Inclusive Education ",
+          "Program"
+        ],
+        "sub": "Every child learns in their own way.",
+        "points": [
+          {
+            "icon": "psikolog",
+            "title": "Professional Psychologist Supervision",
+            "desc": "Programs designed and monitored by experts."
+          },
+          {
+            "icon": "ppi",
+            "title": "Individual Support Program (PPI)",
+            "desc": "Academic and behavioral support for each child."
+          },
+          {
+            "icon": "terapi",
+            "title": "Integrated Therapy Services",
+            "desc": "Woven into everyday learning."
+          }
+        ],
+        "activitiesLabel": "Support activities",
+        "activities": [
+          {
+            "icon": "manik",
+            "label": "Bead Stringing"
+          },
+          {
+            "icon": "yoga",
+            "label": "Yoga"
+          },
+          {
+            "icon": "puzzle",
+            "label": "Puzzles"
+          },
+          {
+            "icon": "seimbang",
+            "label": "Balance Training"
+          },
+          {
+            "icon": "gambar",
+            "label": "Drawing"
+          },
+          {
+            "icon": "kancing",
+            "label": "Buttoning"
+          }
+        ]
+      }
+    },
+    "shared": {}
+  },
+  "prestasi": {
+    "id": {
+      "prestasi": {
+        "title": [
+          "Prestasi yang ",
+          "membanggakan"
+        ],
+        "totalLabel": "Total prestasi",
+        "sinceText": "sejak {y}, di tingkat kota hingga nasional",
+        "aria": "Prestasi per kategori",
+        "total": 120,
+        "since": 2009,
+        "categories": [
+          {
+            "name": "Akademik",
+            "count": 40,
+            "items": [
+              [
+                "Juara 1",
+                "[Nama lomba], tingkat kota, 20XX"
+              ],
+              [
+                "Juara 2",
+                "[Nama olimpiade], tingkat provinsi, 20XX"
+              ]
+            ]
+          },
+          {
+            "name": "Olahraga",
+            "count": 30,
+            "items": [
+              [
+                "Juara 1",
+                "[Cabang], tingkat kota, 20XX"
+              ],
+              [
+                "Juara 3",
+                "[Cabang], tingkat provinsi, 20XX"
+              ]
+            ]
+          },
+          {
+            "name": "Seni & Kreativitas",
+            "count": 30,
+            "items": [
+              [
+                "Juara 1",
+                "[Lomba seni], tingkat kota, 20XX"
+              ],
+              [
+                "Finalis",
+                "[FLS2N], tingkat provinsi, 20XX"
+              ]
+            ]
+          },
+          {
+            "name": "Tahfidz",
+            "count": 20,
+            "items": [
+              [
+                "Juara 2",
+                "[Lomba tahfidz], tingkat kota, 20XX"
+              ],
+              [
+                "Lulus",
+                "Munaqosyah juz [X], 20XX"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "en": {
+      "prestasi": {
+        "title": [
+          "Achievements to be ",
+          "proud of"
+        ],
+        "totalLabel": "Total achievements",
+        "sinceText": "since {y}, from city to national level",
+        "aria": "Achievements by category",
+        "total": 120,
+        "since": 2009,
+        "categories": [
+          {
+            "name": "Academics",
+            "count": 40,
+            "items": [
+              [
+                "1st place",
+                "[Contest name], city level, 20XX"
+              ],
+              [
+                "2nd place",
+                "[Olympiad name], provincial level, 20XX"
+              ]
+            ]
+          },
+          {
+            "name": "Sports",
+            "count": 30,
+            "items": [
+              [
+                "1st place",
+                "[Sport], city level, 20XX"
+              ],
+              [
+                "3rd place",
+                "[Sport], provincial level, 20XX"
+              ]
+            ]
+          },
+          {
+            "name": "Arts & Creativity",
+            "count": 30,
+            "items": [
+              [
+                "1st place",
+                "[Arts contest], city level, 20XX"
+              ],
+              [
+                "Finalist",
+                "[FLS2N], provincial level, 20XX"
+              ]
+            ]
+          },
+          {
+            "name": "Tahfidz",
+            "count": 20,
+            "items": [
+              [
+                "2nd place",
+                "[Tahfidz contest], city level, 20XX"
+              ],
+              [
+                "Passed",
+                "Munaqosyah juz [X], 20XX"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "shared": {
+      "prestasi": {
+        "total": 120,
+        "since": 2009
+      }
+    }
+  },
+  "galeri": {
+    "id": {
+      "galeri": {
+        "title": [
+          "Galeri ",
+          "kegiatan"
+        ],
+        "aria": "Galeri kegiatan",
+        "zoom": "Perbesar: {x}",
+        "close": "Tutup",
+        "prev": "Sebelumnya",
+        "next": "Berikutnya",
+        "items": [
+          {
+            "title": "Reading Challenge",
+            "caption": "Siswa menamatkan buku bersama.",
+            "photo": "/images/perpustakaan.jpg",
+            "more": [
+              "/images/siswa-membaca.jpg"
+            ]
+          },
+          {
+            "title": "River Clean Up",
+            "caption": "Belajar peduli lingkungan lewat aksi nyata.",
+            "photo": "https://images.pexels.com/photos/7656985/pexels-photo-7656985.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Parents Day",
+            "caption": "Hari kebersamaan sekolah dan orang tua.",
+            "photo": "https://images.pexels.com/photos/4261270/pexels-photo-4261270.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Munaqosyah",
+            "caption": "Ujian hafalan Al-Qur'an siswa.",
+            "photo": "/images/munaqosyah.jpg"
+          },
+          {
+            "title": "Fieldtrip",
+            "caption": "Belajar langsung di luar kelas.",
+            "photo": "https://images.pexels.com/photos/34251808/pexels-photo-34251808.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Pekan Kreativitas",
+            "caption": "Karya dan ide ananda tampil.",
+            "photo": "/images/tari-fls2n.jpg",
+            "more": [
+              "/images/pentas-siswa.jpg"
+            ]
+          },
+          {
+            "title": "Expo",
+            "caption": "Pameran hasil belajar siswa.",
+            "photo": "https://images.pexels.com/photos/7868885/pexels-photo-7868885.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Olimpiade",
+            "caption": "Menguji kemampuan lewat kompetisi.",
+            "photo": "/images/siswa-olahraga.jpg"
+          },
+          {
+            "title": "Pembiasaan Karakter",
+            "caption": "Mandiri dan bersih lewat kebiasaan sehari-hari.",
+            "photo": "/images/pembiasaan-bersih.jpg"
+          }
+        ]
+      }
+    },
+    "en": {
+      "galeri": {
+        "title": [
+          "Activity ",
+          "gallery"
+        ],
+        "aria": "Activity gallery",
+        "zoom": "Enlarge: {x}",
+        "close": "Close",
+        "prev": "Previous",
+        "next": "Next",
+        "items": [
+          {
+            "title": "Reading Challenge",
+            "caption": "Students finish books together.",
+            "photo": "/images/perpustakaan.jpg",
+            "more": [
+              "/images/siswa-membaca.jpg"
+            ]
+          },
+          {
+            "title": "River Clean Up",
+            "caption": "Learning to care for the environment through real action.",
+            "photo": "https://images.pexels.com/photos/7656985/pexels-photo-7656985.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Parents Day",
+            "caption": "A day of togetherness for school and parents.",
+            "photo": "https://images.pexels.com/photos/4261270/pexels-photo-4261270.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Munaqosyah",
+            "caption": "Students' Qur'an memorization exams.",
+            "photo": "/images/munaqosyah.jpg"
+          },
+          {
+            "title": "Fieldtrip",
+            "caption": "Learning hands-on outside the classroom.",
+            "photo": "https://images.pexels.com/photos/34251808/pexels-photo-34251808.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Creativity Week",
+            "caption": "Children's work and ideas on show.",
+            "photo": "/images/tari-fls2n.jpg",
+            "more": [
+              "/images/pentas-siswa.jpg"
+            ]
+          },
+          {
+            "title": "Expo",
+            "caption": "An exhibition of student learning.",
+            "photo": "https://images.pexels.com/photos/7868885/pexels-photo-7868885.jpeg?auto=compress&cs=tinysrgb&w=900"
+          },
+          {
+            "title": "Olympiad",
+            "caption": "Testing abilities through competition.",
+            "photo": "/images/siswa-olahraga.jpg"
+          },
+          {
+            "title": "Character Habits",
+            "caption": "Becoming independent and tidy through daily habits.",
+            "photo": "/images/pembiasaan-bersih.jpg"
+          }
+        ]
+      }
+    },
+    "shared": {}
+  },
+  "testimoni": {
+    "id": {
+      "testimoni": {
+        "title": [
+          "Kata ",
+          "orang tua"
+        ],
+        "readMore": "Baca selengkapnya",
+        "close": "Tutup",
+        "prev": "Sebelumnya",
+        "next": "Berikutnya",
+        "pick": "Pilih testimoni",
+        "item": "Testimoni {n}: {p}",
+        "photoAlt": "Foto {x}",
+        "photoLabel": "orang tua",
+        "items": [
+          {
+            "quote": "Kami dengan yakin memilih SD Alfa Centauri sebagai langkah awal putri kami untuk bertumbuh. SD Alfa Centauri memiliki banyak poin yang kami harapkan, di antaranya pembentukan & penanaman karakter, pendidikan agama yang menyeluruh, tenaga pengajar yang berkualitas, komunikasi antara guru & orang tua yang intens, penerapan adab dan kebiasaan baik yang diterapkan juga di rumah, dan selalu mendapatkan motivasi yang terarah. SD Alfa Centauri membuat kami merasakan telah menemukan partner yang tepat untuk pendidikan putri kami.",
+            "name": "Arzhusinta Kumala Dewi",
+            "highlight": "Menemukan **partner yang tepat** untuk pendidikan putri kami.",
+            "persona": "Ibu Rumah Tangga",
+            "note": "Orang tua siswa kelas 1",
+            "photo": "/images/testimoni/arzhusinta.jpg"
+          },
+          {
+            "quote": "Hasil riset tentang sekolah, jatuh cinta sama Misi SD Alfa Centauri: “Menciptakan suasana lingkungan sekolah yang aman dan ramah untuk seluruh siswa dengan karakteristiknya masing-masing”. Tenaga ahli sekolah dalam hal ini Psikolog dan siapa saja gurunya, rupanya orang-orang yang saya kenal dan tahu persis etos kerja. Sehingga makin yakin untuk berkolaborasi dengan SD Alfa Centauri untuk mendidik anak saya di sekolah ini.",
+            "name": "Dr. M. Zein Permana, S.Psi., M.Si.",
+            "highlight": "Jatuh cinta sama **Misi SD Alfa Centauri.**",
+            "persona": "Akademisi Psikologi, dosen UNJANI, Founder & BOC sintesawellness.com",
+            "note": "Orang tua siswa kelas 3",
+            "photo": "/images/testimoni/zein-permana.jpg"
+          },
+          {
+            "quote": "Menyekolahkan di Alfa Centauri merupakan keputusan yang tepat. Pengembangan karakter berbasis nilai keagamaan yang diterapkan di sekolah, serta atmosfer kekeluargaan, memberikan kenyamanan untuk tumbuh dan berkembang, baik secara akademis maupun kepribadian. Kami juga sangat menghargai pendekatan para guru dan staf yang suportif dalam mendidik serta mendampingi keseharian. Lingkungan inilah yang menjadikan sekolah sebagai rumah kedua bagi putri kami.",
+            "name": "dr. Fathy Fathini, SpJP, FIHA",
+            "highlight": "Sekolah sebagai **rumah kedua** bagi putri kami.",
+            "persona": "Dokter Spesialis Jantung",
+            "note": "Orang tua siswa kelas 2",
+            "photo": "/images/testimoni/fathy-fathini.jpg"
+          },
+          {
+            "quote": "Kedua anak kami merupakan siswa pindahan. Penerimaan yang baik dari guru, teman, dan warga sekolah lainnya membuat anak kami berangkat ke sekolah setiap hari dengan penuh semangat. Selain menunjukkan motivasi belajar dan capaian akademik yang baik, mereka juga cenderung membawa kedamaian dan mau membantu teman yang kesulitan belajar.",
+            "name": "Muhamad Luthfi Imam Nurhakim, ST., M.T.",
+            "highlight": "Berangkat ke sekolah **dengan penuh semangat.**",
+            "persona": "Dosen FTMD ITB",
+            "note": "Orang tua siswa kelas 2, 5 & 6",
+            "photo": "/images/testimoni/luthfi-imam.jpg"
+          }
+        ]
+      }
+    },
+    "en": {
+      "testimoni": {
+        "title": [
+          "What ",
+          "parents say"
+        ],
+        "readMore": "Read full testimonial",
+        "close": "Close",
+        "prev": "Previous",
+        "next": "Next",
+        "pick": "Choose a testimonial",
+        "item": "Testimonial {n}: {p}",
+        "photoAlt": "Photo of {x}",
+        "photoLabel": "parent",
+        "items": [
+          {
+            "quote": "We confidently chose SD Alfa Centauri as our daughter's first step in growing up. It offers many of the things we hoped for: character building, comprehensive religious education, quality teachers, close communication between teachers and parents, manners and good habits that are also practiced at home, and consistently well-directed motivation. SD Alfa Centauri made us feel we have found the right partner for our daughter's education.",
+            "name": "Arzhusinta Kumala Dewi",
+            "highlight": "Found the **right partner** for our daughter's education.",
+            "persona": "Homemaker",
+            "note": "Parent of a Grade 1 student",
+            "photo": "/images/testimoni/arzhusinta.jpg"
+          },
+          {
+            "quote": "After researching schools, I fell in love with SD Alfa Centauri's mission: “Creating a safe and friendly school environment for all students, each with their own characteristics.” The school's experts, in this case the psychologists, and its teachers turned out to be people I know and whose work ethic I know well. That made me even more confident to collaborate with SD Alfa Centauri in educating my child.",
+            "name": "Dr. M. Zein Permana, S.Psi., M.Si.",
+            "highlight": "Fell in love with **SD Alfa Centauri's mission.**",
+            "persona": "Psychology academic, lecturer at UNJANI, Founder & BOC of sintesawellness.com",
+            "note": "Parent of a Grade 3 student",
+            "photo": "/images/testimoni/zein-permana.jpg"
+          },
+          {
+            "quote": "Enrolling our child at Alfa Centauri was the right decision. The character development based on religious values, along with the family-like atmosphere, gives a comfortable place to grow, both academically and personally. We also deeply appreciate the supportive approach of the teachers and staff in educating and accompanying the children day to day. This environment is what makes the school a second home for our daughter.",
+            "name": "dr. Fathy Fathini, SpJP, FIHA",
+            "highlight": "The school as a **second home** for our daughter.",
+            "persona": "Cardiologist",
+            "note": "Parent of a Grade 2 student",
+            "photo": "/images/testimoni/fathy-fathini.jpg"
+          },
+          {
+            "quote": "Both of our children transferred in. The warm welcome from teachers, friends, and the rest of the school community makes them go to school every day full of enthusiasm. Besides showing good learning motivation and academic results, they also tend to bring peace and are willing to help friends who struggle with their studies.",
+            "name": "Muhamad Luthfi Imam Nurhakim, ST., M.T.",
+            "highlight": "Going to school **full of enthusiasm.**",
+            "persona": "Lecturer, Faculty of Mechanical and Aerospace Engineering (FTMD), ITB",
+            "note": "Parent of Grade 2, 5 & 6 students",
+            "photo": "/images/testimoni/luthfi-imam.jpg"
+          }
+        ]
+      }
+    },
+    "shared": {}
+  },
+  "berita": {
+    "id": {
+      "berita": {
+        "title": [
+          "Berita ",
+          "terbaru"
+        ],
+        "sub": "Kabar kegiatan, prestasi, dan pengumuman dari sekolah.",
+        "all": "Semua berita",
+        "featured": "Sorotan",
+        "aria": "Berita terbaru",
+        "photoLabel": "Foto berita",
+        "items": [
+          {
+            "cat": "Karakter",
+            "date": "Sep 2026",
+            "title": "Duta Karakter Bersih dan Rapi: Ternyata, Hal Sederhana Ini Diperhatikan Sekolah",
+            "excerpt": "Menjaga kebersihan dan kerapian mungkin terlihat seperti hal sederhana dalam keseharian, tetapi dibiasakan dan diapresiasi sekolah.",
+            "href": "#",
+            "photo": "/images/berita-karakter-bersih.jpg"
+          },
+          {
+            "cat": "Karakter",
+            "date": "Sep 2026",
+            "title": "Duta Karakter Disiplin: Tumbuh dari Kebiasaan Kecil",
+            "excerpt": "Apresiasi untuk siswa yang menunjukkan pembiasaan karakter disiplin dalam keseharian di sekolah.",
+            "href": "#",
+            "photo": "/images/berita-karakter-disiplin.jpg"
+          },
+          {
+            "cat": "Kegiatan",
+            "date": "Sep 2026",
+            "title": "Studi Tiru SD Alfa Centauri ke SD Muhammadiyah Sapen",
+            "excerpt": "Bagian dari upaya terus mengembangkan kualitas program pendidikan.",
+            "href": "#",
+            "photo": "/images/berita-studi-tiru.jpg"
+          },
+          {
+            "cat": "Pengumuman",
+            "date": "Okt 2026",
+            "title": "SPMB 2026/2027 Resmi Dibuka, Daftarkan Ananda Kini",
+            "excerpt": "Jadwal, syarat, dan cara mendaftar kini bisa ditanyakan langsung ke admin.",
+            "href": "#",
+            "photo": "/images/berita-papan.jpg"
+          }
+        ]
+      }
+    },
+    "en": {
+      "berita": {
+        "title": [
+          "Latest ",
+          "news"
+        ],
+        "sub": "Updates on activities, achievements, and announcements from the school.",
+        "all": "All news",
+        "featured": "Featured",
+        "aria": "Latest news",
+        "photoLabel": "News photo",
+        "items": [
+          {
+            "cat": "Character",
+            "date": "Sep 2026",
+            "title": "Character Ambassadors for Cleanliness and Tidiness: This Simple Habit Matters at School",
+            "excerpt": "Keeping things clean and tidy may look simple in daily life, but the school practices and appreciates it.",
+            "href": "#",
+            "photo": "/images/berita-karakter-bersih.jpg"
+          },
+          {
+            "cat": "Character",
+            "date": "Sep 2026",
+            "title": "Discipline Character Ambassadors: Growing from Small Habits",
+            "excerpt": "Recognition for students who show disciplined character habits in their daily school life.",
+            "href": "#",
+            "photo": "/images/berita-karakter-disiplin.jpg"
+          },
+          {
+            "cat": "Activities",
+            "date": "Sep 2026",
+            "title": "SD Alfa Centauri Benchmarking Visit to SD Muhammadiyah Sapen",
+            "excerpt": "Part of our continuing effort to improve the quality of our educational programs.",
+            "href": "#",
+            "photo": "/images/berita-studi-tiru.jpg"
+          },
+          {
+            "cat": "Announcement",
+            "date": "Oct 2026",
+            "title": "SPMB 2026/2027 Admissions Open, Enroll Your Child Now",
+            "excerpt": "Schedule, requirements, and how to apply can now be asked directly to our admin team.",
+            "href": "#",
+            "photo": "/images/berita-papan.jpg"
+          }
+        ]
+      }
+    },
+    "shared": {}
+  },
+  "faq": {
+    "id": {
+      "faq": {
+        "title": [
+          "Pertanyaan yang ",
+          "sering diajukan"
+        ],
+        "photoAlt": "Siswa SD Alfa Centauri membaca bersama",
+        "photoLabel": "Suasana kelas",
+        "noAnswer": "Membutuhkan informasi lebih lanjut?",
+        "help": "Tim admin kami siap membantu menjawab pertanyaan Anda melalui WhatsApp.",
+        "ask": "Hubungi admin via WhatsApp",
+        "askWa": "https://wa.me/6281223862294?text=Halo%20SD%20Alfa%20Centauri%2C%20saya%20ingin%20bertanya%20tentang%3A%20",
+        "items": [
+          {
+            "q": "Apakah SD Alfa Centauri menerima anak berkebutuhan khusus?",
+            "a": "Ya. Sebagai sekolah penyelenggara pendidikan inklusif, kami memiliki Learning Support Unit (LSU) di bawah pengawasan psikolog, dengan pendampingan individual untuk akademik dan perilaku serta layanan terapi."
+          },
+          {
+            "q": "Kurikulum apa yang digunakan?",
+            "a": "Kurikulum nasional Kemendikbud yang disesuaikan dengan kebutuhan siswa, supaya tiap anak bisa berkembang sesuai bakat dan keunikannya."
+          },
+          {
+            "q": "Bagaimana cara anak belajar di kelas?",
+            "a": "Pembelajaran berpusat pada siswa dan kolaboratif, memanfaatkan teknologi, serta dibarengi pembiasaan baik untuk menanamkan 7 karakter siswa."
+          },
+          {
+            "q": "Apa saja ekstrakurikulernya?",
+            "a": "Sinematografi, marching band, musik, Pramuka, renang, futsal, robotik, menari, dan taekwondo."
+          },
+          {
+            "q": "Kapan pendaftaran SPMB dibuka dan apa syaratnya?",
+            "a": "Jadwal dan syarat terbaru ada di bagian SPMB. Admin kami siap membantu lewat WhatsApp."
+          },
+          {
+            "q": "Berapa biaya pendidikan?",
+            "a": "Rincian biaya diinformasikan oleh admin sesuai jenjang kelas dan program. Silakan tanyakan lewat WhatsApp."
+          },
+          {
+            "q": "Apakah ada program tahfidz?",
+            "a": "Ada. Siswa mengikuti program Tahfidz dengan munaqosyah, serta shalat dhuha dan shalat wajib berjamaah."
+          }
+        ]
+      }
+    },
+    "en": {
+      "faq": {
+        "title": [
+          "Frequently ",
+          "asked questions"
+        ],
+        "photoAlt": "SD Alfa Centauri students reading together",
+        "photoLabel": "Classroom atmosphere",
+        "noAnswer": "Need further information?",
+        "help": "Our admin team is available to assist you via WhatsApp.",
+        "ask": "Contact admin via WhatsApp",
+        "askWa": "https://wa.me/6281223862294?text=Hello%20SD%20Alfa%20Centauri%2C%20I%20would%20like%20to%20ask%20about%3A%20",
+        "items": [
+          {
+            "q": "Does SD Alfa Centauri accept children with special needs?",
+            "a": "Yes. As an inclusive school, we run a Learning Support Unit (LSU) supervised by psychologists, with individual support for academics and behavior, plus integrated therapy services."
+          },
+          {
+            "q": "Which curriculum do you use?",
+            "a": "The national curriculum (Kemendikbud), adapted to students' needs so every child can grow according to their talents and uniqueness."
+          },
+          {
+            "q": "How do children learn in class?",
+            "a": "Learning is student-centered and collaborative, makes use of technology, and is paired with good daily habits to instill our 7 student characters."
+          },
+          {
+            "q": "What extracurriculars are offered?",
+            "a": "Cinematography, marching band, music, Scouts, swimming, futsal, robotics, dance, and taekwondo."
+          },
+          {
+            "q": "When does SPMB (admissions) open and what are the requirements?",
+            "a": "The latest schedule and requirements are in the admissions (SPMB) section. Our admin team is happy to help via WhatsApp."
+          },
+          {
+            "q": "How much is tuition?",
+            "a": "Fees are shared by our admin team based on grade level and program. Please ask via WhatsApp."
+          },
+          {
+            "q": "Is there a tahfidz program?",
+            "a": "Yes. Students join the Tahfidz (Qur'an memorization) program with munaqosyah assessments, along with Dhuha prayer and congregational obligatory prayers."
+          }
+        ]
+      }
+    },
+    "shared": {}
+  },
+  "lokasi": {
+    "id": {
+      "lokasi": {
+        "label": "Lokasi",
+        "street": "Jl. Terate No. 10,",
+        "city": "Kota Bandung",
+        "phoneLabel": "Telepon sekolah",
+        "phoneCta": "Telepon",
+        "waLabel": "WhatsApp admin",
+        "waCta": "Chat",
+        "waText": "https://wa.me/6281223862294?text=Halo%20SD%20Alfa%20Centauri%2C%20saya%20ingin%20bertanya%20tentang%20SPMB.",
+        "directions": "Petunjuk arah",
+        "mapTitle": "Peta lokasi SD Alfa Centauri"
+      }
+    },
+    "en": {
+      "lokasi": {
+        "label": "Location",
+        "street": "Jl. Terate No. 10,",
+        "city": "Bandung City",
+        "phoneLabel": "School phone",
+        "phoneCta": "Call",
+        "waLabel": "Admin WhatsApp",
+        "waCta": "Chat",
+        "waText": "https://wa.me/6281223862294?text=Hello%20SD%20Alfa%20Centauri%2C%20I%20would%20like%20to%20ask%20about%20admissions%20(SPMB).",
+        "directions": "Get directions",
+        "mapTitle": "SD Alfa Centauri location map"
+      }
+    },
+    "shared": {
+      "site": {
+        "phone": "022-7305453",
+        "phoneHref": "tel:+62227305453",
+        "whatsappDisplay": "0812-2386-2294",
+        "email": "info@sdalfacentauri.sch.id",
+        "address": "Jl. Terate No. 10, Kota Bandung",
+        "instagram": "https://www.instagram.com/sdalfacentauri_official/",
+        "instagramHandle": "@sdalfacentauri_official"
+      },
+      "lokasiMap": {
+        "mapEmbed": "https://www.google.com/maps?q=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung&output=embed",
+        "mapLink": "https://www.google.com/maps/search/?api=1&query=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung"
+      }
+    }
+  },
+  "closing": {
+    "id": {
+      "closing": {
+        "title": [
+          "Siap bertumbuh bersama ",
+          "Alfa Centauri?"
+        ],
+        "text": "Tanyakan jadwal, syarat, dan cara mendaftar. Admin kami siap membantu lewat WhatsApp.",
+        "register": "Daftar SPMB",
+        "registerWa": "https://wa.me/6281223862294?text=Halo%20SD%20Alfa%20Centauri%2C%20saya%20ingin%20mendaftar%20SPMB%202026%2F2027.",
+        "ask": "Tanya admin",
+        "askWa": "https://wa.me/6281223862294?text=Halo%20SD%20Alfa%20Centauri%2C%20saya%20ingin%20bertanya.",
+        "brosur": "Unduh brosur",
+        "about": "Sekolah dasar inklusif di Bandung, terakreditasi A.",
+        "explore": "Jelajahi",
+        "visit": "Kunjungi kami",
+        "network": "Jaringan pendidikan",
+        "explorer": [
+          [
+            "Tentang",
+            "#tentang"
+          ],
+          [
+            "Program",
+            "#program"
+          ],
+          [
+            "Fasilitas",
+            "#fasilitas"
+          ],
+          [
+            "Berita",
+            "#berita"
+          ],
+          [
+            "FAQ",
+            "#faq"
+          ],
+          [
+            "Lokasi",
+            "#lokasi"
+          ]
+        ],
+        "wa": "(WhatsApp)",
+        "rights": "Seluruh hak cipta dilindungi.",
+        "jaringan": [
+          {
+            "label": "Yayasan Alfa Centauri",
+            "href": "https://alfacentauri.sch.id/yayasan/"
+          },
+          {
+            "label": "TK Alfa Centauri",
+            "href": "https://alfacentauri.sch.id/tk/"
+          },
+          {
+            "label": "SMP Alfa Centauri",
+            "href": "https://smpalfacentauri.sch.id/"
+          },
+          {
+            "label": "SMA Alfa Centauri",
+            "href": "https://smaalfacentauri.sch.id/"
+          },
+          {
+            "label": "English Now",
+            "href": "http://englishnow.co.id/"
+          },
+          {
+            "label": "LCDU (Language Course for Da'wah dan Ummah)",
+            "href": "https://lcdu.org/"
+          }
+        ]
+      }
+    },
+    "en": {
+      "closing": {
+        "title": [
+          "Ready to grow with ",
+          "Alfa Centauri?"
+        ],
+        "text": "Ask about the schedule, requirements, and how to apply. Our admin team is happy to help via WhatsApp.",
+        "register": "Apply Now",
+        "registerWa": "https://wa.me/6281223862294?text=Hello%20SD%20Alfa%20Centauri%2C%20I%20would%20like%20to%20apply%20for%20SPMB%202026%2F2027.",
+        "ask": "Ask admin",
+        "askWa": "https://wa.me/6281223862294?text=Hello%20SD%20Alfa%20Centauri%2C%20I%20would%20like%20to%20ask%20a%20question.",
+        "brosur": "Download brochure",
+        "about": "An inclusive elementary school in Bandung, accredited A.",
+        "explore": "Explore",
+        "visit": "Visit us",
+        "network": "Education network",
+        "explorer": [
+          [
+            "About",
+            "#tentang"
+          ],
+          [
+            "Programs",
+            "#program"
+          ],
+          [
+            "Facilities",
+            "#fasilitas"
+          ],
+          [
+            "News",
+            "#berita"
+          ],
+          [
+            "FAQ",
+            "#faq"
+          ],
+          [
+            "Location",
+            "#lokasi"
+          ]
+        ],
+        "wa": "(WhatsApp)",
+        "rights": "All rights reserved.",
+        "jaringan": [
+          {
+            "label": "Yayasan Alfa Centauri",
+            "href": "https://alfacentauri.sch.id/yayasan/"
+          },
+          {
+            "label": "TK Alfa Centauri",
+            "href": "https://alfacentauri.sch.id/tk/"
+          },
+          {
+            "label": "SMP Alfa Centauri",
+            "href": "https://smpalfacentauri.sch.id/"
+          },
+          {
+            "label": "SMA Alfa Centauri",
+            "href": "https://smaalfacentauri.sch.id/"
+          },
+          {
+            "label": "English Now",
+            "href": "http://englishnow.co.id/"
+          },
+          {
+            "label": "LCDU (Language Course for Da'wah and Ummah)",
+            "href": "https://lcdu.org/"
+          }
+        ]
+      }
+    },
+    "shared": {
+      "site": {
+        "brosur": {
+          "id": "/brosur-sd-alfa-centauri.pdf",
+          "en": "/brosur-sd-alfa-centauri-en.pdf"
+        }
+      }
+    }
+  },
+  "assistant": {
+    "id": {
+      "assistant": {
+        "name": "Asisten SD Alfa Centauri",
+        "tagline": "Kami bantu jawab pertanyaanmu",
+        "bubbles": [
+          "Bingung soal pendaftaran?",
+          "Kesulitan menemukan informasi?",
+          "Ingin tahu biaya dan program?"
+        ],
+        "bubbleClose": "Tutup sapaan",
+        "fab": "Buka asisten, kami bisa bantu menjawab",
+        "fabClose": "Tutup asisten",
+        "close": "Tutup",
+        "dialog": "Asisten SD Alfa Centauri",
+        "greeting": "Halo! Kami siap membantu. Pilih topik di bawah atau tulis pertanyaanmu.",
+        "placeholder": "Tulis pertanyaan…",
+        "question": "Pertanyaan",
+        "send": "Kirim",
+        "typing": "Mengetik",
+        "fallback": "Maaf, kami belum punya jawaban untuk itu. Pilih topik di bawah, atau tanyakan langsung ke admin kami.",
+        "waLabel": "Lanjut ke admin (WhatsApp)",
+        "kb": [
+          {
+            "chip": "Cara daftar SPMB",
+            "keys": [
+              "daftar",
+              "spmb",
+              "syarat",
+              "pendaftaran",
+              "masuk sd",
+              "penerimaan"
+            ],
+            "text": "Jadwal dan syarat terbaru ada di bagian SPMB. Admin kami siap membantu lewat WhatsApp.",
+            "links": [
+              {
+                "label": "Lanjut ke admin (WhatsApp)",
+                "href": "https://wa.me/6281223862294?text=Halo%20SD%20Alfa%20Centauri%2C%20saya%20ingin%20bertanya%3A%20cara%20dan%20jadwal%20pendaftaran%20SPMB"
+              }
+            ]
+          },
+          {
+            "chip": "Biaya pendidikan",
+            "keys": [
+              "biaya",
+              "spp",
+              "uang",
+              "bayar",
+              "harga",
+              "tarif",
+              "gratis"
+            ],
+            "text": "Rincian biaya diinformasikan oleh admin sesuai jenjang kelas dan program. Silakan tanyakan lewat WhatsApp.",
+            "links": [
+              {
+                "label": "Lanjut ke admin (WhatsApp)",
+                "href": "https://wa.me/6281223862294?text=Halo%20SD%20Alfa%20Centauri%2C%20saya%20ingin%20bertanya%3A%20biaya%20pendidikan"
+              }
+            ]
+          },
+          {
+            "chip": "Anak berkebutuhan khusus",
+            "keys": [
+              "khusus",
+              "abk",
+              "inklusi",
+              "inklusif",
+              "lsu",
+              "psikolog",
+              "terapi",
+              "autis",
+              "adhd",
+              "disleksia"
+            ],
+            "text": "Ya. Sebagai sekolah penyelenggara pendidikan inklusif, kami memiliki Learning Support Unit (LSU) di bawah pengawasan psikolog, dengan pendampingan individual untuk akademik dan perilaku serta layanan terapi."
+          },
+          {
+            "chip": "Ekstrakurikuler",
+            "keys": [
+              "ekskul",
+              "ekstra",
+              "futsal",
+              "renang",
+              "pramuka",
+              "robotik",
+              "musik",
+              "marching",
+              "taekwondo",
+              "menari",
+              "sinematografi"
+            ],
+            "text": "Sinematografi, marching band, musik, Pramuka, renang, futsal, robotik, menari, dan taekwondo."
+          },
+          {
+            "chip": "Tahun berdiri",
+            "keys": [
+              "berdiri",
+              "didirikan",
+              "sejarah",
+              "tahun berapa",
+              "sejak kapan",
+              "dibuka tahun",
+              "usia sekolah",
+              "umur sekolah"
+            ],
+            "text": "SD Alfa Centauri berdiri pada 12 Juli 2009."
+          },
+          {
+            "keys": [
+              "akreditasi",
+              "terakreditasi",
+              "sertifikat",
+              "ban "
+            ],
+            "text": "SD Alfa Centauri terakreditasi A oleh BAN-S/M."
+          },
+          {
+            "keys": [
+              "motto",
+              "visi",
+              "slogan",
+              "tagline",
+              "finest"
+            ],
+            "text": "Motto kami: \"To Be The Finest School In The World\"."
+          },
+          {
+            "keys": [
+              "karakter",
+              "pilar",
+              "akhlak",
+              "adab"
+            ],
+            "text": "Kami menanamkan 7 karakter siswa: Jujur, Bersih & Rapi, Mandiri, Disiplin, Tangguh, Sopan & Santun, Bermanfaat."
+          },
+          {
+            "keys": [
+              "kurikulum",
+              "mapel",
+              "mata pelajaran"
+            ],
+            "text": "Kurikulum nasional Kemendikbud yang disesuaikan dengan kebutuhan siswa, supaya tiap anak bisa berkembang sesuai bakat dan keunikannya."
+          },
+          {
+            "keys": [
+              "cara belajar",
+              "metode",
+              "pembelajaran",
+              "belajar di kelas",
+              "student centered"
+            ],
+            "text": "Pembelajaran berpusat pada siswa dan kolaboratif, memanfaatkan teknologi, serta dibarengi pembiasaan baik untuk menanamkan 7 karakter siswa."
+          },
+          {
+            "keys": [
+              "tahfidz",
+              "quran",
+              "qur'an",
+              "hafal",
+              "hafalan",
+              "munaqosyah",
+              "dhuha",
+              "shalat",
+              "sholat"
+            ],
+            "text": "Ada. Siswa mengikuti program Tahfidz dengan munaqosyah, serta shalat dhuha dan shalat wajib berjamaah."
+          },
+          {
+            "keys": [
+              "gakko",
+              "tosho",
+              "surala",
+              "literasi",
+              "membaca",
+              "reading",
+              "matematika"
+            ],
+            "text": "Kami memiliki budaya literasi Gakko Tosho, Surala untuk belajar matematika lewat e-learning, dan Reading Challenge."
+          },
+          {
+            "keys": [
+              "bimbel",
+              "ssc",
+              "sony",
+              "les ",
+              "kelas 5",
+              "kelas lima"
+            ],
+            "text": "Tersedia bimbel kelas 5 bersama Sony Sugema College (SSC)."
+          },
+          {
+            "keys": [
+              "portal",
+              "rapor",
+              "raport",
+              "nilai anak",
+              "perkembangan anak"
+            ],
+            "text": "Portal Orang Tua memungkinkan orang tua memantau perkembangan akademik dan karakter ananda."
+          },
+          {
+            "chip": "Fasilitas",
+            "keys": [
+              "fasilitas",
+              "cctv",
+              "proyektor",
+              "internet",
+              "wifi",
+              "mushola",
+              "musholla",
+              "multimedia",
+              "ruang kelas",
+              "tv interaktif"
+            ],
+            "text": "Di setiap kelas ada proyektor, AC, CCTV, dan internet 24 jam. Tersedia juga TV interaktif, ruang multimedia, mushola, dan Portal Orang Tua."
+          },
+          {
+            "chip": "Lokasi sekolah",
+            "keys": [
+              "lokasi",
+              "alamat",
+              "dimana",
+              "di mana",
+              "maps",
+              "peta",
+              "arah",
+              "letak"
+            ],
+            "text": "SD Alfa Centauri berada di Jl. Terate No. 10, Kota Bandung.",
+            "links": [
+              {
+                "label": "Buka di Google Maps",
+                "href": "https://www.google.com/maps/search/?api=1&query=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung"
+              }
+            ]
+          },
+          {
+            "keys": [
+              "telepon",
+              "telpon",
+              "kontak",
+              "hubungi",
+              "nomor",
+              "email",
+              "whatsapp",
+              "nomer"
+            ],
+            "text": "Telepon sekolah 022-7305453, WhatsApp 0812-2386-2294, email info@sdalfacentauri.sch.id.",
+            "links": [
+              {
+                "label": "Chat WhatsApp",
+                "href": "https://wa.me/6281223862294?text=Halo%20SD%20Alfa%20Centauri%2C%20saya%20ingin%20bertanya%20tentang%20SPMB."
+              },
+              {
+                "label": "Telepon",
+                "href": "tel:+62227305453"
+              }
+            ]
+          },
+          {
+            "keys": [
+              "instagram",
+              "sosmed",
+              "media sosial",
+              "sosial media"
+            ],
+            "text": "Ikuti kami di Instagram @sdalfacentauri_official.",
+            "links": [
+              {
+                "label": "Buka Instagram",
+                "href": "https://www.instagram.com/sdalfacentauri_official/"
+              }
+            ]
+          },
+          {
+            "keys": [
+              "smp",
+              "sma",
+              "tk ",
+              "taman kanak",
+              "lanjut",
+              "jenjang",
+              "yayasan",
+              "english now",
+              "lcdu"
+            ],
+            "text": "Alfa Centauri juga memiliki TK, SMP, dan SMA. Daftar lengkapnya ada di bagian bawah halaman ini.",
+            "links": [
+              {
+                "label": "TK Alfa Centauri",
+                "href": "https://alfacentauri.sch.id/tk/"
+              },
+              {
+                "label": "SMP Alfa Centauri",
+                "href": "https://smpalfacentauri.sch.id/"
+              },
+              {
+                "label": "SMA Alfa Centauri",
+                "href": "https://smaalfacentauri.sch.id/"
+              }
+            ]
+          },
+          {
+            "chip": "Brosur",
+            "keys": [
+              "brosur",
+              "brochure",
+              "unduh",
+              "download",
+              "profil sekolah"
+            ],
+            "text": "Brosur sekolah bisa diunduh di sini.",
+            "links": [
+              {
+                "label": "Unduh brosur",
+                "href": "/brosur-sd-alfa-centauri.pdf"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "en": {
+      "assistant": {
+        "name": "SD Alfa Centauri Assistant",
+        "tagline": "We're here to answer your questions",
+        "bubbles": [
+          "Unsure about admissions?",
+          "Having trouble finding information?",
+          "Want to know about fees and programs?"
+        ],
+        "bubbleClose": "Dismiss greeting",
+        "fab": "Open the assistant, we can help answer",
+        "fabClose": "Close assistant",
+        "close": "Close",
+        "dialog": "SD Alfa Centauri assistant",
+        "greeting": "Hi! We're happy to help. Pick a topic below or type your question.",
+        "placeholder": "Type your question…",
+        "question": "Question",
+        "send": "Send",
+        "typing": "Typing",
+        "fallback": "Sorry, we don't have an answer for that yet. Pick a topic below, or ask our admin team directly.",
+        "waLabel": "Continue with admin (WhatsApp)",
+        "kb": [
+          {
+            "chip": "How to apply",
+            "keys": [
+              "apply",
+              "admission",
+              "admissions",
+              "enroll",
+              "enrol",
+              "register",
+              "registration",
+              "spmb",
+              "requirement",
+              "requirements",
+              "join"
+            ],
+            "text": "The latest schedule and requirements are in the admissions (SPMB) section. Our admin team is happy to help via WhatsApp.",
+            "links": [
+              {
+                "label": "Continue with admin (WhatsApp)",
+                "href": "https://wa.me/6281223862294?text=Hello%20SD%20Alfa%20Centauri%2C%20I%20would%20like%20to%20ask%3A%20how%20and%20when%20to%20apply%20for%20SPMB"
+              }
+            ]
+          },
+          {
+            "chip": "Tuition",
+            "keys": [
+              "fee",
+              "fees",
+              "tuition",
+              "cost",
+              "price",
+              "pay",
+              "payment",
+              "spp",
+              "free",
+              "how much"
+            ],
+            "text": "Fees are shared by our admin team based on grade level and program. Please ask via WhatsApp.",
+            "links": [
+              {
+                "label": "Continue with admin (WhatsApp)",
+                "href": "https://wa.me/6281223862294?text=Hello%20SD%20Alfa%20Centauri%2C%20I%20would%20like%20to%20ask%3A%20tuition%20fees"
+              }
+            ]
+          },
+          {
+            "chip": "Special needs",
+            "keys": [
+              "special need",
+              "special needs",
+              "inclusive",
+              "inclusion",
+              "lsu",
+              "psychologist",
+              "therapy",
+              "autism",
+              "autistic",
+              "adhd",
+              "dyslexia",
+              "disability"
+            ],
+            "text": "Yes. As an inclusive school, we run a Learning Support Unit (LSU) supervised by psychologists, with individual support for academics and behavior, plus integrated therapy services."
+          },
+          {
+            "chip": "Extracurriculars",
+            "keys": [
+              "extracurricular",
+              "extracurriculars",
+              "club",
+              "clubs",
+              "futsal",
+              "swimming",
+              "scout",
+              "scouts",
+              "robotics",
+              "music",
+              "marching",
+              "taekwondo",
+              "dance",
+              "cinematography",
+              "sports"
+            ],
+            "text": "Cinematography, marching band, music, Scouts, swimming, futsal, robotics, dance, and taekwondo."
+          },
+          {
+            "chip": "Founded",
+            "keys": [
+              "founded",
+              "established",
+              "history",
+              "when was",
+              "since when",
+              "how old",
+              "opened"
+            ],
+            "text": "SD Alfa Centauri was founded on 12 July 2009."
+          },
+          {
+            "keys": [
+              "accreditation",
+              "accredited",
+              "certificate",
+              "ban "
+            ],
+            "text": "SD Alfa Centauri is accredited A by BAN-S/M."
+          },
+          {
+            "keys": [
+              "motto",
+              "vision",
+              "slogan",
+              "tagline",
+              "finest"
+            ],
+            "text": "Our motto: \"To Be The Finest School In The World\"."
+          },
+          {
+            "keys": [
+              "character",
+              "pillar",
+              "pillars",
+              "values",
+              "manners"
+            ],
+            "text": "We nurture 7 student characters: Honest, Clean & Tidy, Independent, Disciplined, Resilient, Polite & Courteous, Useful to Others."
+          },
+          {
+            "keys": [
+              "curriculum",
+              "subjects"
+            ],
+            "text": "The national curriculum (Kemendikbud), adapted to students' needs so every child can grow according to their talents and uniqueness."
+          },
+          {
+            "keys": [
+              "teaching",
+              "method",
+              "learning style",
+              "how do children learn",
+              "student centered"
+            ],
+            "text": "Learning is student-centered and collaborative, makes use of technology, and is paired with good daily habits to instill our 7 student characters."
+          },
+          {
+            "keys": [
+              "tahfidz",
+              "quran",
+              "qur'an",
+              "memorize",
+              "memorization",
+              "munaqosyah",
+              "dhuha",
+              "prayer",
+              "pray"
+            ],
+            "text": "Yes. Students join the Tahfidz (Qur'an memorization) program with munaqosyah assessments, along with Dhuha prayer and congregational obligatory prayers."
+          },
+          {
+            "keys": [
+              "gakko",
+              "tosho",
+              "surala",
+              "literacy",
+              "reading",
+              "math",
+              "maths",
+              "mathematics"
+            ],
+            "text": "We have the Gakko Tosho literacy culture, Surala for learning math through e-learning, and the Reading Challenge."
+          },
+          {
+            "keys": [
+              "tutoring",
+              "ssc",
+              "sony",
+              "grade 5",
+              "extra lessons",
+              "extra class"
+            ],
+            "text": "Grade 5 tutoring is available with Sony Sugema College (SSC)."
+          },
+          {
+            "keys": [
+              "portal",
+              "report card",
+              "progress",
+              "grades"
+            ],
+            "text": "The Parent Portal lets parents follow their child's academic and character progress."
+          },
+          {
+            "chip": "Facilities",
+            "keys": [
+              "facility",
+              "facilities",
+              "cctv",
+              "projector",
+              "internet",
+              "wifi",
+              "prayer room",
+              "mushola",
+              "multimedia",
+              "classroom",
+              "interactive tv"
+            ],
+            "text": "Every classroom has a projector, air conditioning, CCTV, and 24-hour internet. We also have interactive TVs, a multimedia room, a prayer room, and the Parent Portal."
+          },
+          {
+            "chip": "Location",
+            "keys": [
+              "location",
+              "address",
+              "where",
+              "maps",
+              "map",
+              "directions",
+              "find you"
+            ],
+            "text": "SD Alfa Centauri is at Jl. Terate No. 10, Kota Bandung.",
+            "links": [
+              {
+                "label": "Open in Google Maps",
+                "href": "https://www.google.com/maps/search/?api=1&query=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung"
+              }
+            ]
+          },
+          {
+            "keys": [
+              "phone",
+              "call",
+              "contact",
+              "number",
+              "email",
+              "whatsapp"
+            ],
+            "text": "School phone 022-7305453, WhatsApp 0812-2386-2294, email info@sdalfacentauri.sch.id.",
+            "links": [
+              {
+                "label": "Chat on WhatsApp",
+                "href": "https://wa.me/6281223862294?text=Hello%20SD%20Alfa%20Centauri%2C%20I%20would%20like%20to%20ask%20a%20question."
+              },
+              {
+                "label": "Call",
+                "href": "tel:+62227305453"
+              }
+            ]
+          },
+          {
+            "keys": [
+              "instagram",
+              "social media",
+              "socials"
+            ],
+            "text": "Follow us on Instagram @sdalfacentauri_official.",
+            "links": [
+              {
+                "label": "Open Instagram",
+                "href": "https://www.instagram.com/sdalfacentauri_official/"
+              }
+            ]
+          },
+          {
+            "keys": [
+              "junior high",
+              "high school",
+              "kindergarten",
+              "smp",
+              "sma",
+              "tk ",
+              "foundation",
+              "yayasan",
+              "english now",
+              "lcdu",
+              "other schools"
+            ],
+            "text": "Alfa Centauri also runs a kindergarten, junior high, and senior high school. The full list is at the bottom of this page.",
+            "links": [
+              {
+                "label": "TK Alfa Centauri",
+                "href": "https://alfacentauri.sch.id/tk/"
+              },
+              {
+                "label": "SMP Alfa Centauri",
+                "href": "https://smpalfacentauri.sch.id/"
+              },
+              {
+                "label": "SMA Alfa Centauri",
+                "href": "https://smaalfacentauri.sch.id/"
+              }
+            ]
+          },
+          {
+            "chip": "Brochure",
+            "keys": [
+              "brochure",
+              "brosur",
+              "download",
+              "school profile",
+              "pdf"
+            ],
+            "text": "The school brochure can be downloaded here.",
+            "links": [
+              {
+                "label": "Download brochure",
+                "href": "/brosur-sd-alfa-centauri-en.pdf"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "shared": {}
   }
 }

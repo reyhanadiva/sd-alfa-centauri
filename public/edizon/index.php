@@ -15,8 +15,8 @@ page_head('Beranda', $u);
 <?php if (can_edit_content($u)):
     /* urutan kartu = urutan section di website */
     $tiles = [];
-    foreach (SECTION_PAGES as $file => $label) {
-        $tiles[] = [(string) (SECTION_KEYS[$file] ?? ''), $label, $file];
+    foreach (sections_titles() as $sk => $label) {
+        $tiles[] = [$sk, $label, 'section.php?s=' . $sk];
     }
     if (is_admin($u)) {
         $tiles[] = ['site', 'Pengaturan situs', 'settings.php'];

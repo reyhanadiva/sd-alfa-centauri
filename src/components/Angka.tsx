@@ -2,13 +2,12 @@ import { yearsActive } from "@/lib/site";
 import { CountUp } from "./CountUp";
 import { getT, type Lang } from "@/lib/i18n";
 
-// Angka sekolah, menempel di bawah "Mengapa memilih". `n: null` = belum ada data, tampil "XX+".
-// TODO(data real): isi jumlah siswa, guru, dan alumni dari sekolah; hanya tahun melayani yang sudah pasti (sejak 2009).
-const nums: (number | null)[] = [yearsActive, null, null, null];
+// Angka sekolah, menempel di bawah "Mengapa memilih". Angka diisi dari panel (stats.numbers); null = belum ada data, tampil "XX+".
+// Angka pertama yang kosong dihitung otomatis dari tahun berdiri (2009).
 
 export function Angka({ lang }: { lang: Lang }) {
   const { stats } = getT(lang);
-  const items = stats.labels.map((label, i) => ({ n: nums[i], label }));
+  const items = stats.labels.map((label, i) => ({ n: stats.numbers[i] ?? (i === 0 ? yearsActive : null), label }));
   return (
     <ul aria-label={stats.aria} className="mt-10 grid grid-cols-2 gap-y-7 border-t border-navy-900/10 pt-8 lg:grid-cols-4 lg:gap-y-0">
       {items.map((it, i) => (

@@ -6,12 +6,12 @@
 return [
     'db_host' => '127.0.0.1',
     'db_port' => 3306,
-    'db_name' => 'alfa_panel',
+    'db_name' => 'sd_alfa_panel',
     'db_user' => 'root',
     'db_pass' => '',
     'db_autocreate' => true,
     'storage_dir' => '',
     'setup_token' => 'tuliskan-kode-acak-minimal-16-karakter',
     'frame_secret' => 'tuliskan-kode-acak-minimal-32-karakter-ya-oke',
-    'site_url' => 'http://127.0.0.1:8080',
+    'site_url' => 'http://sd-alfa-centauri.localhost:8081',
 ];

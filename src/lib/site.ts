@@ -1,6 +1,11 @@
 // Satu tempat untuk data yang sering berubah. Ganti nilai di sini, bukan di komponen.
 
-export const site = {
+import { deepMerge, panelSite } from "./panel";
+
+// Nilai di bawah adalah BAWAAN; panel admin (Pengaturan Situs, Lokasi & Kontak, Penutup) menimpanya lewat panelSite().
+const P = panelSite();
+
+const siteBase = {
   name: "SD Alfa Centauri",
   tagline: "To Be The Finest School In The World",
   phone: "022-7305453",
@@ -14,6 +19,7 @@ export const site = {
   // Brosur PDF (placeholder; ganti file di /public dengan brosur asli, nama file boleh tetap sama).
   brosur: { id: "/brosur-sd-alfa-centauri.pdf", en: "/brosur-sd-alfa-centauri-en.pdf" },
 };
+export const site: typeof siteBase = deepMerge(siteBase, P.site);
 
 // Foto stok Pexels (lisensi bebas pakai), dimuat langsung dari CDN. HANYA penampung sementara agar tampilan terbayang:
 // ganti dengan foto asli sekolah. Kalau gagal dimuat, komponen Photo menampilkan placeholder berlabel.
@@ -42,10 +48,11 @@ export const profileVideo: { mp4?: string; youtubeId?: string; poster: string } 
   poster: "/images/gedung-sd.jpg",
 };
 
-export const lokasi = {
+const lokasiBase = {
   mapEmbed: "https://www.google.com/maps?q=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung&output=embed",
   mapLink: "https://www.google.com/maps/search/?api=1&query=SD+Alfa+Centauri+Jl.+Terate+No.+10+Bandung",
 };
+export const lokasi: typeof lokasiBase = deepMerge(lokasiBase, P.lokasiMap);
 
 // Tanpa logo SSC. Isi `href` kalau sudah ada tautan internal yang dimaksud.
 export const ssc = { name: "Sony Sugema College (SSC)", href: undefined as string | undefined };

@@ -11,13 +11,8 @@ if (!defined('EN_PANEL')) {
 }
 
 require_once __DIR__ . '/sanitize.php';
+require_once __DIR__ . '/sections.php';
 
-/** dokumen konten yang punya halaman editor: kunci => judul di panel (urutan = urutan di beranda). Diisi per section di Fase B. */
-const SECTION_TITLES = [];
-/** menu "Homepage content" di panel: berkas halaman => label (urutan = urutan di beranda). Diisi per section di Fase B. */
-const SECTION_PAGES = [];
-/** berkas halaman editor => kunci dokumen utamanya (untuk kartu "terakhir diubah" di Beranda) */
-const SECTION_KEYS = [];
 const SITE_TITLES = ['site' => 'Pengaturan situs'];
 
 /** ikon media sosial populer (dipakai editor Footer di Fase B). "custom" = ikon unggahan sendiri. */
@@ -33,13 +28,16 @@ function doc_validator(string $key): ?callable
     if ($key === 'site') {
         return 'validate_site';
     }
-    return null; // validator per section ditambahkan di Fase B
+    if (section_def($key) !== null) {
+        return static fn(array $d): array => validate_section($key, $d);
+    }
+    return null;
 }
 
 /** semua dokumen konten (untuk riwayat), urutan = urutan di website */
 function doc_titles_all(): array
 {
-    return SECTION_TITLES + SITE_TITLES;
+    return sections_titles() + SITE_TITLES;
 }
 
 /* ------------------------------------------------------------------ */

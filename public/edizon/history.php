@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require __DIR__ . '/lib/init.php';
 $u = require_content_editor();
-$docs = is_admin($u) ? doc_titles_all() : SECTION_TITLES; // dokumen 'site' (pengaturan situs) hanya untuk Super Admin
+$docs = is_admin($u) ? doc_titles_all() : sections_titles(); // dokumen 'site' (pengaturan situs) hanya untuk Super Admin
 $key = (string) ($_GET['doc'] ?? $_POST['doc'] ?? 'why.kids');
 if (!isset($docs[$key])) {
     $key = 'why.kids';

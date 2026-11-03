@@ -1,6 +1,6 @@
 <?php
 /**
- * Hanya untuk uji di komputer sendiri:  php -S 127.0.0.1:8080 -t public dev/router.php   (npm run panel)
+ * Hanya untuk uji di komputer sendiri:  php -S 127.0.0.1:8081 -t public dev/router.php   (npm run panel)
  * Menyajikan /uploads dan /data dari folder storage/ (di luar public/, supaya tidak ikut ter-commit).
  * Di hosting sebenarnya file ini tidak dipakai.
  */

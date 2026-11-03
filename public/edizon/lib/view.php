@@ -41,7 +41,7 @@ function page_head(string $title, ?array $user = null, string $bodyClass = ''): 
     <a href="index.php"<?= $self === 'index.php' ? ' class="on"' : '' ?>>Beranda</a>
     <?php if (can_edit_content($user)): ?>
     <span class="sec">Homepage content</span>
-    <?php foreach (SECTION_PAGES as $file => $label): ?><a href="<?= h($file) ?>"<?= $self === $file ? ' class="on"' : '' ?>><?= h($label) ?></a>
+    <?php foreach (sections_titles() as $sk => $label): ?><a href="section.php?s=<?= h($sk) ?>"<?= $self === 'section.php' && (string) ($_GET['s'] ?? '') === $sk ? ' class="on"' : '' ?>><?= h($label) ?></a>
     <?php endforeach; ?>
     <span class="sec">Make Content</span>
     <a href="articles.php"<?= in_array($self, ['articles.php', 'article.php'], true) ? ' class="on"' : '' ?>>Artikel</a>

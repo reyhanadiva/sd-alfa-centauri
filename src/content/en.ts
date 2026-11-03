@@ -104,6 +104,7 @@ export const en: Content = {
   stats: {
     aria: "Alfa Centauri in numbers",
     labels: ["years serving education", "active students", "teachers and staff", "alumni"],
+    numbers: [null, null, null, null] as (number | null)[],
   },
 
   program: {

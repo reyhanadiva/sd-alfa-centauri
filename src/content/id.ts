@@ -103,7 +103,9 @@ export const id = {
   },
   stats: {
     aria: "Alfa Centauri dalam angka",
-    labels: ["tahun melayani pendidikan", "siswa aktif", "guru dan tenaga pendidik", "alumni"], // TODO(data real): angka XX+
+    labels: ["tahun melayani pendidikan", "siswa aktif", "guru dan tenaga pendidik", "alumni"],
+    // null = belum ada data, tampil "XX+". Angka pertama kosong = otomatis (tahun sekarang dikurangi 2009). TODO(data real): isi dari sekolah.
+    numbers: [null, null, null, null] as (number | null)[],
   },
 
   program: {
