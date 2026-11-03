@@ -1,0 +1,15 @@
+/* ARTICLE TEMPLATE WIDTHS: the one place where the width of the article page is set.
+   Loaded by the public article pages (articles/_render.php) AND by the article editor in the panel (edizon/article.php),
+   so the editor's "Desktop" view always follows the real page.
+   To change a width: edit a number here, then raise $v in articles/_render.php and PANEL_VERSION in edizon/lib/bootstrap.php
+   so browsers fetch the new file. No rebuild is needed. Set widths here only; a width typed into another rule will not reach the editor.
+   Keep --wide at least as large as --col and at most --page.
+   Reading size: the body type grows from a 720 px screen (20 px Kids / 19 px Adult, see "desktop reading size" in articles.css). At the 760 px
+   column this gave about 76 characters per line; at 960 px a line holds about 95, which is long: if text-heavy articles feel tiring to read,
+   raise the two desktop sizes or lower --col (aim for 50 to 80 characters per line). Pop-ups and quiz results are never wider than this by default (520 px). */
+:root {
+  --col: 60rem;    /* width of the article TEXT: 960 px at the default font size (rem = 16 px); on a narrower screen it shrinks to the screen */
+  --wide: max(90vw, var(--col)); /* width of wide blocks: cards, video, embed, images set to "wider than the text", and the hero image: 90% of the screen, never narrower than the text */
+  --page: 72rem;   /* width of the page frame: header, article list, suggested articles, footer */
+  --pad: 20px;     /* side gutter of the article page on small screens */
+}

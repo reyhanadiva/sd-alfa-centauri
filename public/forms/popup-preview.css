@@ -1,0 +1,8 @@
+.enp-previewshell{margin:0;background:#e9e7ee;height:100vh;display:flex;flex-direction:column}
+.enp-previewshell .enf-previewbar{position:static;flex:0 0 auto}
+.enp-stage{flex:1 1 auto;display:flex;justify-content:center;align-items:stretch;padding:12px;min-height:0}
+.enp-stage iframe{border:0;background:#f7f5f9;width:100%;height:100%;border-radius:8px;box-shadow:0 8px 30px -10px rgba(0,0,0,.35)}
+.enp-stage.mobile iframe{width:390px;max-width:100%}
+.enp-previewbody{background:repeating-linear-gradient(45deg,#f7f5f9,#f7f5f9 14px,#f0edf4 14px,#f0edf4 28px)}
+
+html,.enp-previewbody{overflow:hidden}

@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# --- Panel admin (PHP/MySQL): SECRETS and real data, never commit ---
+en-config.php
+public/api/config.php
+storage/
+public/uploads/
+public/data/
+public/api/_storage/*
+!public/api/_storage/.htaccess
+!public/api/_storage/index.html
+.harness/
+site.zip
+*.zip

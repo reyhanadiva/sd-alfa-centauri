@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // panel admin (PHP + JS sendiri, bukan bagian dari aplikasi Next)
+    "tools/**",
+    "public/**",
+    "dev/**",
   ]),
 ]);
 

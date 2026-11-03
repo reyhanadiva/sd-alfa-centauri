@@ -1,0 +1,12 @@
+# Halaman artikel publik. /articles/ = daftar, /articles/judul-artikel = satu artikel.
+Options -Indexes
+<FilesMatch "^_">
+  Require all denied
+</FilesMatch>
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /articles/
+RewriteRule ^$ index.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([A-Za-z0-9][A-Za-z0-9-]*)/?$ view.php?slug=$1 [L,QSA]
+</IfModule>

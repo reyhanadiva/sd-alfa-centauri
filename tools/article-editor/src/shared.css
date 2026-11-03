@@ -1,0 +1,26 @@
+/* Shared by the article editor (edizon/assets/article-editor.css) and public pages (articles/articles.css).
+   build.mjs copies this block into both. Do not edit the copy inside articles.css by hand: it sits between the marker comments and is replaced on every build. */
+@font-face{font-family:"Nunito";font-weight:400;font-display:swap;src:url(/fonts/nunito-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Nunito";font-weight:700;font-display:swap;src:url(/fonts/nunito-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Poppins";font-weight:400;font-display:swap;src:url(/fonts/poppins-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Poppins";font-weight:700;font-display:swap;src:url(/fonts/poppins-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:400;font-display:swap;src:url(/fonts/montserrat-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:700;font-display:swap;src:url(/fonts/montserrat-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Fredoka";font-weight:400;font-display:swap;src:url(/fonts/fredoka-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Fredoka";font-weight:700;font-display:swap;src:url(/fonts/fredoka-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Lora";font-weight:400;font-display:swap;src:url(/fonts/lora-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Lora";font-weight:700;font-display:swap;src:url(/fonts/lora-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-weight:400;font-display:swap;src:url(/fonts/playfair-display-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-weight:700;font-display:swap;src:url(/fonts/playfair-display-latin-700-normal.woff2) format("woff2")}
+
+.fs-sm{font-size:.85em}.fs-lg{font-size:1.25em}.fs-xl{font-size:1.6em}.fs-display{font-size:2.3em;line-height:1.15}
+.ff-jakarta{font-family:"Plus Jakarta Sans",system-ui,sans-serif}
+.ff-lilita{font-family:"Lilita One","Plus Jakarta Sans",sans-serif;font-weight:400}
+.ff-kite{font-family:"Kite One","Plus Jakarta Sans",sans-serif;font-weight:400}
+.ff-nunito{font-family:"Nunito",system-ui,sans-serif}
+.ff-poppins{font-family:"Poppins",system-ui,sans-serif}
+.ff-montserrat{font-family:"Montserrat",system-ui,sans-serif}
+.ff-fredoka{font-family:"Fredoka",system-ui,sans-serif}
+.ff-lora{font-family:"Lora",Georgia,serif}
+.ff-playfair{font-family:"Playfair Display",Georgia,serif}
+.ta-center{text-align:center}.ta-right{text-align:right}.ta-justify{text-align:justify;hyphens:auto}

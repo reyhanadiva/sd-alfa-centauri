@@ -1,0 +1,181 @@
+/* Pop-up English Now (dibuat dari panel). Warna/ukuran utama diatur lewat JS (CSSOM). */
+.enp-overlay{position:fixed;inset:0;z-index:2147482000;display:flex;padding:16px;background:rgba(20,26,70,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;transition:opacity .2s ease;overflow:hidden;font-family:"Plus Jakarta Sans","Nunito","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.enp-overlay::-webkit-scrollbar,.enp-scroll::-webkit-scrollbar{display:none}
+.enp-overlay.enp-in{opacity:1}
+.enp-pos-center{align-items:center;justify-content:center}
+.enp-pos-br{align-items:flex-end;justify-content:flex-end}
+.enp-pos-bl{align-items:flex-end;justify-content:flex-start}
+.enp-overlay.enp-noover{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;pointer-events:none}
+.enp-box{--enp-accent:#1E2A78;--enp-on:#fff;position:relative;box-sizing:border-box;max-width:100%;overflow:hidden;pointer-events:auto;box-shadow:0 30px 70px -24px rgba(10,14,50,.6);transform:translateY(14px) scale(.98);transition:transform .24s cubic-bezier(.2,.8,.2,1);line-height:1.55}
+.enp-overlay[data-audience=kids] .enp-box{--enp-accent:#FFD84A;--enp-on:#1E2F78}
+.enp-in .enp-box{transform:none}
+.enp-scroll{box-sizing:border-box;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:contain}
+.enp-box *{box-sizing:border-box}
+.enp-x{position:absolute;top:10px;right:10px;z-index:5;width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.88);color:#1B2559;font:400 24px/1 system-ui,sans-serif;cursor:pointer;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18);padding:0 0 3px}
+.enp-x:hover{background:#fff}
+.enp-title{margin:0 0 8px;font-size:1.6rem;line-height:1.2;font-weight:700;letter-spacing:-.02em;padding-right:34px}
+.enp-overlay[data-audience=kids] .enp-title{font-family:"Lilita One","Plus Jakarta Sans",system-ui,sans-serif;font-weight:400;letter-spacing:0}
+.enp-sub{margin:0 0 12px;font-size:1.05rem;opacity:.78}
+.enp-p{margin:0 0 12px;font-size:.97rem}
+.enp-p a,.enp-callout a{color:inherit;text-decoration:underline}
+.enp-p>:first-child{margin-top:0}.enp-p>:last-child{margin-bottom:0}
+.enp-a-center{text-align:center;padding-right:0}.enp-a-right{text-align:right}
+.enp-title.enp-a-center{padding-left:34px}
+.enp-img{margin:0 0 14px}
+.enp-img img{display:block;width:100%;height:auto;border-radius:12px}
+.enp-img-small{max-width:55%}.enp-img-small.enp-a-center{margin-left:auto;margin-right:auto}.enp-img-small.enp-a-right{margin-left:auto}
+.enp-img-full{margin-left:calc(var(--enp-pad,0px)*-1);margin-right:calc(var(--enp-pad,0px)*-1)}
+.enp-img-full img{border-radius:0}
+.enp-scroll>.enp-img-full:first-child{margin-top:calc(var(--enp-pad,0px)*-1)}
+.enp-btnrow{margin:6px 0 12px}
+.enp-btnrow.enp-a-center{text-align:center}.enp-btnrow.enp-a-right{text-align:right}
+.enp-btn{display:inline-block;padding:12px 24px;border-radius:999px;font-weight:700;font-size:.97rem;text-decoration:none;cursor:pointer;line-height:1.2;text-align:center;transition:transform .15s,filter .15s}
+.enp-btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.enp-btn-solid{background:var(--enp-accent);color:var(--enp-on);box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.enp-btn-outline{background:transparent;color:inherit;border:2px solid var(--enp-accent);box-shadow:none}
+.enp-btn-full{display:block;width:100%}
+.enp-form{margin:0 0 12px}
+.enp-form .enf-page{max-width:100%}
+.enp-form .enf-h{font-size:1.4rem}
+.enp-list{margin:0 0 12px;padding-left:1.3rem}.enp-list li{margin:4px 0}
+.enp-quote{margin:0 0 12px;padding:6px 0 6px 14px;border-left:4px solid var(--enp-accent);font-style:italic}
+.enp-quote p{margin:0}.enp-quote cite{display:block;margin-top:4px;font-size:.85rem;font-style:normal;opacity:.7}
+.enp-video{position:relative;margin:0 0 14px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
+.enp-video iframe,.enp-video video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.enp-callout{margin:0 0 12px;padding:12px 14px;border-radius:12px;background:rgba(30,47,120,.08);font-size:.95rem}
+.enp-callout p{margin:0}.enp-callout strong{display:block;margin-bottom:2px}
+.enp-tone-tip{background:rgba(40,160,90,.12)}.enp-tone-warning{background:rgba(240,170,30,.18)}
+.enp-hr{border:0;border-top:1px solid currentColor;opacity:.18;margin:14px 0}
+@media(max-width:767px){
+  .enp-overlay{padding:10px}
+  .enp-pos-br,.enp-pos-bl{align-items:flex-end;justify-content:center}
+  .enp-title{font-size:1.35rem}
+  .enp-img-small{max-width:70%}
+}
+@media(prefers-reduced-motion:reduce){.enp-overlay,.enp-box,.enp-btn{transition:none}}
+.enp-box:focus,.enp-box:focus-visible{outline:none}
+
+/* tampilan tanpa batang gulir di mana pun (isi yang lebih tinggi dari layar tetap bisa digeser/digulir) */
+.enp-overlay,.enp-box,.enp-scroll,.enp-form,.enp-form *{scrollbar-width:none;-ms-overflow-style:none}
+.enp-overlay::-webkit-scrollbar,.enp-box::-webkit-scrollbar,.enp-scroll::-webkit-scrollbar,.enp-form *::-webkit-scrollbar{width:0;height:0;display:none}
+.enp-scroll{position:relative}
+.enp-scroll>*{position:relative;z-index:1}
+.enp-blob{display:none}
+/* Tema website: sama dengan pop-up formulir (hijau muda + bayangan biru untuk Anak, krem untuk Dewasa) */
+.enp-theme-site .enp-box{--enp-accent:#1E2F78;--enp-on:#fff;background:#F2F9EA;color:#363636;border-radius:2rem;box-shadow:0 10px 0 #1E2F78;font-family:"Nunito","Plus Jakarta Sans","Segoe UI",system-ui,sans-serif}
+.enp-theme-site .enp-scroll{border-radius:2rem;padding:28px 24px 24px}
+.enp-theme-site .enp-blob{display:block;position:absolute;z-index:0;top:-34px;right:-34px;width:96px;height:96px;border-radius:50%;background:#FFF275;pointer-events:none}
+.enp-theme-site .enp-title{color:#1E2F78;font-size:clamp(1.7rem,5vw,2.3rem);line-height:1.08}
+.enp-theme-site .enp-sub{color:#1E2F78;opacity:.8}
+.enp-theme-site .enp-x{background:transparent;box-shadow:none;color:#1E2F78;top:10px;right:14px;font-size:28px}
+.enp-theme-site .enp-x:hover{background:rgba(30,47,120,.08)}
+.enp-theme-site .enp-btn-solid{font-family:"Lilita One","Nunito",system-ui,sans-serif;font-weight:400;font-size:1.1rem;box-shadow:0 4px 0 #111B4D}
+.enp-theme-site .enp-btn-outline{color:#1E2F78;border-color:#1E2F78;font-family:"Lilita One","Nunito",system-ui,sans-serif;font-weight:400;font-size:1.1rem}
+.enp-theme-site[data-audience=adult] .enp-box{--enp-accent:#1A1A1A;background:#FBF6EE;border-radius:1.5rem;box-shadow:0 24px 60px -20px rgba(0,0,0,.35)}
+.enp-theme-site[data-audience=adult] .enp-scroll{border-radius:1.5rem}
+.enp-theme-site[data-audience=adult] .enp-blob{background:#F4C77B;opacity:.8}
+.enp-theme-site[data-audience=adult] .enp-title{font-family:inherit;font-weight:600;letter-spacing:-.04em}
+.enp-theme-site[data-audience=adult] .enp-btn-solid,.enp-theme-site[data-audience=adult] .enp-btn-outline{font-family:inherit;font-weight:600;box-shadow:none}
+.enp-theme-site[data-audience=adult] .enp-btn-outline{color:#1A1A1A;border-color:#1A1A1A}
+@media(max-width:480px){.enp-theme-site .enp-scroll{padding:24px 18px 20px}}
+.enp-theme-custom .enp-form{background:rgba(255,255,255,.95);color:#363636;border-radius:16px;padding:16px}
+
+/* ---- blok yang sama dengan artikel (teks kaya, gambar, video, embed, HTML, FAQ, kartu, tabel, kolom) di pop-up dan halaman hasil kuis ---- */
+.enp-h{margin:0 0 10px;line-height:1.2;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.enp-h2{font-size:1.6rem}.enp-h3{font-size:1.25rem}.enp-h4{font-size:1.05rem}
+.enp-overlay[data-audience=kids] .enp-h3,.enp-overlay[data-audience=kids] .enp-h4,.enp-overlay[data-audience=kids] .enp-card-t,.enp-overlay[data-audience=kids] .enp-faq-t{font-family:"Lilita One","Plus Jakarta Sans",system-ui,sans-serif;font-weight:400;letter-spacing:0}
+.enp-theme-site .enp-h,.enp-theme-site .enp-rich h2,.enp-theme-site .enp-rich h3,.enp-theme-site .enp-rich h4,.enp-theme-site .enp-faq-t,.enp-theme-site .enp-card-t{color:#1E2F78}
+.enp-rich{margin:0 0 12px;font-size:.97rem}
+.enp-rich>:first-child{margin-top:0}.enp-rich>:last-child{margin-bottom:0}
+.enp-rich p{margin:0 0 .7em}
+.enp-rich h2,.enp-rich h3,.enp-rich h4{margin:1em 0 .4em;line-height:1.2;font-weight:700}
+.enp-rich h2{font-size:1.35rem}.enp-rich h3{font-size:1.15rem}.enp-rich h4{font-size:1rem}
+.enp-rich ul,.enp-rich ol{margin:0 0 .7em;padding-left:1.3rem}.enp-rich li{margin:.2em 0}.enp-rich li>p{margin:0}.enp-rich li>ul,.enp-rich li>ol{margin:.2em 0}
+.enp-rich a{color:inherit;text-decoration:underline}
+.enp-rich .ta-center,.enp-rich .ta-right,.enp-rich .ta-justify{padding-right:0}
+.enp-fig{margin:0 0 14px}
+.enp-fig img{display:block;width:100%;height:auto;border-radius:12px}
+.enp-fig figcaption{margin-top:6px;text-align:center;font-size:.85rem;opacity:.75;line-height:1.4}
+.enp-fig .enp-video{margin-bottom:0}
+.enp-wide{margin-left:calc(var(--enp-pad,0px)*-1);margin-right:calc(var(--enp-pad,0px)*-1)}
+.enp-wide img{border-radius:0}
+.enp-scroll>.enp-wide:first-child{margin-top:calc(var(--enp-pad,0px)*-1)}
+.enp-ar-4-3 img,.enp-ar-1-1 img,.enp-ar-16-9 img,.enp-ar-3-4 img,.enp-ar-3-2 img{object-fit:cover}
+.enp-ar-4-3 img{aspect-ratio:4/3}.enp-ar-1-1 img{aspect-ratio:1/1}.enp-ar-16-9 img{aspect-ratio:16/9}.enp-ar-3-4 img{aspect-ratio:3/4}.enp-ar-3-2 img{aspect-ratio:3/2}
+.enp-embed{border-radius:12px;overflow:hidden;background:#fff}.enp-embed iframe{display:block;width:100%;height:100%;border:0}
+.enp-h-m{height:240px}.enp-h-l{height:340px}.enp-h-xl{height:480px}
+@media(max-width:620px){.enp-h-m{height:220px}.enp-h-l{height:300px}.enp-h-xl{height:400px}}
+.enp-html{margin:0 0 14px}
+.enp-hf{display:block;width:100%;border:0;background:transparent}
+.enp-hf-auto{height:160px}.enp-hf-m{height:240px}.enp-hf-l{height:340px}.enp-hf-xl{height:480px}
+.enp-hf-vh{height:calc(100vh - 64px);height:calc(100dvh - 64px);min-height:240px}
+.enp-callout p,.enp-quote p{white-space:pre-line}
+.enp-faq{margin:0 0 14px}
+.enp-faq-t{margin:0 0 6px;font-size:1.1rem;line-height:1.25}
+.enp-faq-item{border-bottom:1px solid rgba(0,0,0,.12)}
+.enp-faq-item summary{position:relative;cursor:pointer;padding:10px 26px 10px 0;font-weight:700;list-style:none}
+.enp-faq-item summary::-webkit-details-marker{display:none}
+.enp-faq-item summary::after{content:"+";position:absolute;right:2px;top:7px;font-size:1.3rem;line-height:1.3;font-weight:400}
+.enp-faq-item[open] summary::after{content:"\2013"}
+.enp-faq-item summary:focus-visible{outline:3px solid var(--enp-accent);outline-offset:2px}
+.enp-faq-item p{margin:0 0 10px;white-space:pre-line}
+.enp-cardsw,.enp-colsw{container-type:inline-size;margin:0 0 14px}
+.enp-cards{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+@container (min-width:26rem){.enp-cards-2,.enp-cards-3,.enp-cards-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container (min-width:38rem){.enp-cards-3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@container (min-width:48rem){.enp-cards-4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.enp-card{display:flex;flex-direction:column;min-width:0;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.75);border:1px solid rgba(0,0,0,.12)}
+.enp-theme-site[data-audience=kids] .enp-card{border:2px solid #1E2F78;box-shadow:0 4px 0 #1E2F78;background:#fff}
+.enp-card-img img{display:block;width:100%;height:auto;object-fit:cover;border-radius:0}
+.enp-card-body{display:flex;flex:1;flex-direction:column;gap:6px;padding:12px 14px 14px}
+.enp-card-t{margin:0;font-size:1.05rem;line-height:1.25}
+.enp-card-p{margin:0;font-size:.9rem;opacity:.85;white-space:pre-line}
+.enp-card-act{margin:auto 0 0;padding-top:6px}
+.enp-box .enp-btn-sm{display:block;padding:8px 14px;font-size:.9rem;white-space:normal}
+.enp-tablewrap{overflow-x:auto;margin:0 0 14px;border:1px solid rgba(0,0,0,.14);border-radius:12px;background:rgba(255,255,255,.75)}
+.enp-tablewrap:focus-visible{outline:3px solid var(--enp-accent);outline-offset:2px}
+.enp-table{width:100%;border-collapse:collapse;font-size:.9rem;line-height:1.45}
+.enp-table caption{padding:10px 12px 4px;text-align:left;font-weight:700}
+.enp-table th,.enp-table td{min-width:4.5rem;padding:8px 12px;vertical-align:top;overflow-wrap:anywhere;border-bottom:1px solid rgba(0,0,0,.1);text-align:left}
+.enp-table thead th{background:rgba(30,47,120,.08);font-weight:700;border-bottom:2px solid rgba(0,0,0,.15)}
+.enp-table tbody tr:last-child td{border-bottom:0}
+.enp-table .ta-center{text-align:center}.enp-table .ta-right{text-align:right}
+.enp-table a{color:inherit}
+.enp-cols{display:grid;grid-template-columns:minmax(0,1fr);gap:12px 18px}
+.enp-col{min-width:0}.enp-col>*{margin-top:0}.enp-col>:last-child{margin-bottom:0}
+@container (min-width:26rem){
+  .enp-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .enp-cols-2.enp-r-1-2{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+  .enp-cols-2.enp-r-2-1{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+}
+@container (min-width:34rem){.enp-cols-3{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
+
+/* teks kaya: ukuran, huruf, dan rata teks. Blok di antara penanda ini ditulis ulang oleh tools/article-editor/build.mjs; jangan diubah tangan. */
+/* article-rich:start */
+/* Shared by the article editor (edizon/assets/article-editor.css) and public pages (articles/articles.css).
+   build.mjs copies this block into both. Do not edit the copy inside articles.css by hand: it sits between the marker comments and is replaced on every build. */
+@font-face{font-family:"Nunito";font-weight:400;font-display:swap;src:url(/fonts/nunito-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Nunito";font-weight:700;font-display:swap;src:url(/fonts/nunito-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Poppins";font-weight:400;font-display:swap;src:url(/fonts/poppins-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Poppins";font-weight:700;font-display:swap;src:url(/fonts/poppins-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:400;font-display:swap;src:url(/fonts/montserrat-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:700;font-display:swap;src:url(/fonts/montserrat-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Fredoka";font-weight:400;font-display:swap;src:url(/fonts/fredoka-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Fredoka";font-weight:700;font-display:swap;src:url(/fonts/fredoka-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Lora";font-weight:400;font-display:swap;src:url(/fonts/lora-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Lora";font-weight:700;font-display:swap;src:url(/fonts/lora-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-weight:400;font-display:swap;src:url(/fonts/playfair-display-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-weight:700;font-display:swap;src:url(/fonts/playfair-display-latin-700-normal.woff2) format("woff2")}
+
+.fs-sm{font-size:.85em}.fs-lg{font-size:1.25em}.fs-xl{font-size:1.6em}.fs-display{font-size:2.3em;line-height:1.15}
+.ff-jakarta{font-family:"Plus Jakarta Sans",system-ui,sans-serif}
+.ff-lilita{font-family:"Lilita One","Plus Jakarta Sans",sans-serif;font-weight:400}
+.ff-kite{font-family:"Kite One","Plus Jakarta Sans",sans-serif;font-weight:400}
+.ff-nunito{font-family:"Nunito",system-ui,sans-serif}
+.ff-poppins{font-family:"Poppins",system-ui,sans-serif}
+.ff-montserrat{font-family:"Montserrat",system-ui,sans-serif}
+.ff-fredoka{font-family:"Fredoka",system-ui,sans-serif}
+.ff-lora{font-family:"Lora",Georgia,serif}
+.ff-playfair{font-family:"Playfair Display",Georgia,serif}
+.ta-center{text-align:center}.ta-right{text-align:right}.ta-justify{text-align:justify;hyphens:auto}
+/* article-rich:end */

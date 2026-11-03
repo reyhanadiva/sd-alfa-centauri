@@ -1,0 +1,35 @@
+{
+  "name": "article-editor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Article block editor (Phase 1, 2) and form editor (Phase 3): drag-and-drop shells for the panel. Builds into public/edizon/assets and public/fonts.",
+  "scripts": {
+    "build": "node build.mjs",
+    "harness": "node test/make-harness.mjs",
+    "test": "node test/run.js",
+    "test:php": "php test/php/run.php && php test/php/forms.php && php test/php/popups.php && php test/php/revisions.php && php test/php/templates.php",
+    "test:history": "node test/history-run.js",
+    "test:templates": "node test/templates-run.js",
+    "harness:forms": "node test/make-form-harness.mjs",
+    "test:forms": "node test/form-run.js && node test/form-editor-run.js",
+    "harness:pop": "node test/make-pop-harness.mjs",
+    "test:pop": "node test/pop-run.js",
+    "test:builders": "node test/builder-run.js",
+    "test:runtime": "node test/runtime-run.js"
+  },
+  "dependencies": {
+    "@fontsource/lora": "5.3.0",
+    "@fontsource/poppins": "5.3.0",
+    "@tiptap/core": "3.32.1",
+    "@tiptap/pm": "3.32.1",
+    "@tiptap/starter-kit": "3.32.1",
+    "sortablejs": "1.15.7",
+    "@fontsource/nunito": "5.3.0",
+    "@fontsource/montserrat": "5.3.0",
+    "@fontsource/fredoka": "5.3.0",
+    "@fontsource/playfair-display": "5.3.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
