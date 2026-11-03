@@ -36,7 +36,7 @@ function page_head(string $title, ?array $user = null, string $bodyClass = ''): 
 <?php if ($user): panel_shell(true); ?>
 <div class="shell">
 <aside class="side">
-  <a class="brand" href="index.php">Alfa Centauri <span>Panel</span></a>
+  <a class="brand" href="index.php">SD Alfa Centauri <span>Panel</span></a>
   <nav aria-label="Menu panel">
     <a href="index.php"<?= $self === 'index.php' ? ' class="on"' : '' ?>>Beranda</a>
     <?php if (can_edit_content($user)): ?>
