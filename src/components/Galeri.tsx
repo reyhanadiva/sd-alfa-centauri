@@ -106,7 +106,7 @@ export function Galeri({ lang }: { lang: Lang }) {
       <div aria-hidden className="pointer-events-none absolute -left-40 top-1/3 h-[30rem] w-[40rem] rounded-full bg-brand-600/20 blur-[120px]" />
       <div className="relative mx-auto grid w-full max-w-[80rem] gap-10 lg:grid-cols-[18rem_1fr] lg:gap-14">
         <div>
-          <h2 id="galeri-title" className="text-[clamp(3rem,10vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.03em] !text-white lg:sticky lg:top-28 lg:text-[5.25rem]">
+          <h2 id="galeri-title" className="text-[clamp(3rem,10vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.03em] !text-white lg:sticky lg:top-[calc(50svh-5rem)] lg:text-[5.25rem]">
             {g.title[0]}
             <span className="em-serif block text-gold-300">{g.title[1]}</span>
           </h2>
