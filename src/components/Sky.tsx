@@ -35,7 +35,7 @@ export function Clouds({ color: _color }: { color?: string } = {}) {
     <>
       {CLOUDS.map((c, i) => (
         <div key={i} aria-hidden className="cloud-drift absolute left-0" style={{ top: c.top, "--dur": c.dur, "--delay": c.delay } as React.CSSProperties}>
-          <Cloud className={`${c.w} ${c.o}`} />
+          <Cloud className={`${c.w} ${c.o} drop-shadow-[0_0_24px_rgba(166,200,255,0.35)]`} />
         </div>
       ))}
     </>
@@ -103,5 +103,48 @@ export function BinaryStar({ className = "" }: { className?: string }) {
         <Star className="absolute bottom-0 left-1/2 size-[22%] -translate-x-1/2 translate-y-1/4 text-brand-300 drop-shadow-[0_0_10px_rgba(111,162,255,0.9)]" />
       </div>
     </div>
+  );
+}
+
+// Debu bintang: titik-titik kecil berposisi tetap (pseudo-acak deterministik, sama di server dan browser).
+let seed = 7;
+const rnd = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
+const DUST = Array.from({ length: 70 }, () => {
+  const [x, y, s, d, o] = [rnd(), rnd(), rnd(), rnd(), rnd()];
+  return { x: +(x * 100).toFixed(2), y: +(y * 100).toFixed(2), s: 1 + Math.round(s * 1.6), d: +d.toFixed(3), o: +(0.2 + o * 0.55).toFixed(2) };
+});
+export function StarDust() {
+  return (
+    <>
+      {DUST.map((s, i) => (
+        <span
+          key={i}
+          aria-hidden
+          className={`absolute rounded-full bg-white ${i % 3 === 0 ? "twinkle" : ""}`}
+          style={{ left: `${s.x}%`, top: `${s.y}%`, width: s.s, height: s.s, opacity: s.o, "--dur": `${3 + s.d * 4}s`, "--delay": `${-s.d * 5}s` } as React.CSSProperties}
+        />
+      ))}
+    </>
+  );
+}
+
+// Awan yang menyeberang di punggung bukit, kecepatan dan tinggi berbeda.
+const CROSS = [
+  { b: "46%", w: "w-60 sm:w-96", dur: "62s", delay: "-8s", bob: "9s", o: "opacity-60", rest: "8vw" },
+  { b: "30%", w: "w-44 sm:w-72", dur: "84s", delay: "-50s", bob: "11s", o: "opacity-45", rest: "62vw" },
+  { b: "58%", w: "w-32 sm:w-52", dur: "104s", delay: "-30s", bob: "13s", o: "opacity-35", rest: "38vw" },
+  { b: "38%", w: "w-52 sm:w-80", dur: "73s", delay: "-66s", bob: "10s", o: "opacity-50", rest: "80vw" },
+];
+export function DriftingClouds() {
+  return (
+    <>
+      {CROSS.map((c, i) => (
+        <div key={i} aria-hidden className="cloud-cross absolute left-0" style={{ bottom: c.b, "--dur": c.dur, "--delay": c.delay, "--rest": c.rest } as React.CSSProperties}>
+          <div className="cloud-bob" style={{ "--bob": c.bob } as React.CSSProperties}>
+            <Cloud className={`${c.w} ${c.o} drop-shadow-[0_0_24px_rgba(166,200,255,0.35)]`} />
+          </div>
+        </div>
+      ))}
+    </>
   );
 }

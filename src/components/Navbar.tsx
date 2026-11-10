@@ -95,12 +95,12 @@ export function Navbar({ lang }: { lang: Lang }) {
         <div className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between gap-3 px-5 sm:px-8">
           <a href="#" aria-label={ui.home} className="shrink-0">
             <Image
-              src={solid ? "/images/logo-horizontal.png" : "/images/logo-horizontal-white.png"}
+              src={solid ? "/images/logo-star.png" : "/images/logo-star-white.png"}
               alt="SD Alfa Centauri"
-              width={1200}
+              width={208}
               height={232}
               priority
-              className="h-9 w-auto"
+              className="h-10 w-auto transition-transform duration-500 hover:rotate-[72deg]"
             />
           </a>
 
@@ -170,7 +170,7 @@ export function Navbar({ lang }: { lang: Lang }) {
             <a
               href={spmb.href}
               className={`hidden items-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-[15px] font-bold transition sm:inline-flex ${
-                solid ? "bg-brand-600 text-white hover:bg-brand-700" : "bg-white text-navy-900 hover:bg-brand-50"
+                "btn-gold"
               }`}
             >
               <Send size={15} aria-hidden /> {ui.register}
@@ -269,7 +269,7 @@ export function Navbar({ lang }: { lang: Lang }) {
             <a
               href={spmb.href}
               onClick={() => setOpen(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 py-3.5 font-bold text-white"
+              className="btn-gold flex w-full items-center justify-center gap-2 rounded-full py-3.5 font-bold"
             >
               <Send size={18} aria-hidden /> {ui.registerOnline}
             </a>

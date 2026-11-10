@@ -1,6 +1,6 @@
 import { getT, type Lang } from "@/lib/i18n";
 import { Star } from "./Doodles";
-import { ActivityRail } from "./ActivityRail";
+import { Constellation } from "./Constellation";
 import { Icon } from "./icons";
 
 // Tepi atas/bawah melengkung (bukan kotak) supaya peralihan antar section terasa mengalir.
@@ -20,7 +20,7 @@ function Curve({ edge }: { edge: "top" | "bottom" }) {
 }
 
 // Program Pendidikan Inklusif (LSU): gelap dan ringkas. Judul jelas ini program, tiga poin layanan,
-// lalu aktivitas pendampingan. Tanpa tombol, tanpa foto anak.
+// lalu aktivitas pendampingan sebagai rasi bintang interaktif. Tanpa tombol, tanpa foto anak.
 export function Inklusi({ lang }: { lang: Lang }) {
   const { inklusi: k } = getT(lang);
   return (
@@ -73,7 +73,7 @@ export function Inklusi({ lang }: { lang: Lang }) {
           <p className="mb-4 text-[14px] font-semibold tracking-wide text-white/80">
             {k.activitiesLabel}
           </p>
-          <ActivityRail items={k.activities} label={k.activitiesLabel} />
+          <div className="px-5 sm:px-8"><Constellation items={k.activities} label={k.activitiesLabel} /></div>
         </div>
       </div>
     </section>

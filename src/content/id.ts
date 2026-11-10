@@ -239,7 +239,7 @@ export const id = {
   },
 
   faq: {
-    title: ["Yang sering ditanyakan ", "orang tua"],
+    title: ["Pertanyaan ", "umum"],
     photoAlt: "Siswa SD Alfa Centauri membaca bersama", photoLabel: "Suasana kelas",
     noAnswer: "Membutuhkan informasi lebih lanjut?", help: "Tim admin kami siap membantu menjawab pertanyaan Anda melalui WhatsApp.", ask: "Hubungi admin via WhatsApp",
     askWa: wa("saya ingin bertanya tentang: "),
