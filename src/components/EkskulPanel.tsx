@@ -42,7 +42,7 @@ export function EkskulPanel({ lang }: { lang: Lang }) {
   };
 
   return (
-    <div id="ekskul" className="reveal flex min-h-0 min-w-0 flex-col overflow-hidden rounded-[2rem] bg-navy-900 p-6 text-white sm:p-7">
+    <div id="ekskul" className="reveal flex min-h-0 min-w-0 flex-col overflow-hidden rounded-[1.25rem] bg-navy-900 p-6 text-white sm:p-7">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="text-2xl font-semibold !text-white">{ui.title}</h3>
@@ -89,7 +89,7 @@ export function EkskulPanel({ lang }: { lang: Lang }) {
                 <span className="grid size-10 place-items-center rounded-full bg-white text-brand-600">
                   <Icon name={e.icon} size={19} />
                 </span>
-                <span className="text-[13px] font-semibold leading-tight">{e.label}</span>
+                <span className="text-[14px] font-semibold leading-tight">{e.label}</span>
               </button>
             </li>
           ))}
@@ -117,7 +117,7 @@ export function EkskulPanel({ lang }: { lang: Lang }) {
           <button type="button" onClick={() => go(idx + 1)} aria-label={ui.next} className="absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
             <ChevronRight size={20} aria-hidden />
           </button>
-          <p className="absolute bottom-4 right-4 rounded-full bg-navy-900/70 px-3 py-1 text-[12.5px] font-semibold tabular-nums backdrop-blur">
+          <p className="absolute bottom-4 right-4 rounded-full bg-navy-900/70 px-3 py-1 text-[13px] font-semibold tabular-nums backdrop-blur">
             {idx + 1} / {ekskul.length}
           </p>
         </div>

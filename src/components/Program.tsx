@@ -25,15 +25,14 @@ export function Program({ lang }: { lang: Lang }) {
       <div className="mx-auto w-full max-w-[78rem]">
         <h2
           id="program-title"
-          className="reveal text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem]"
+          className="reveal text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]"
         >
-          {program.title[0]}
-          <span className="text-brand-600">{program.title[1]}</span>
+          {program.title[0]}{program.title[1]}
         </h2>
 
         <div className="mt-8 grid gap-3.5 lg:mt-9 lg:min-h-[31rem] lg:grid-cols-[1.45fr_1fr]">
           {/* Tab ranah */}
-          <div className="reveal flex min-w-0 flex-col rounded-[2rem] bg-brand-50 p-6 ring-1 ring-brand-100 sm:p-7">
+          <div className="reveal flex min-w-0 flex-col rounded-[1.25rem] bg-paper p-6 sm:p-7">
             {/* Tab dengan indikator yang bergeser */}
             <div
               role="tablist"
@@ -83,14 +82,14 @@ export function Program({ lang }: { lang: Lang }) {
                 <p className="em-serif text-[2rem] leading-tight text-navy-900 sm:text-[2.2rem]">{r.tagline}</p>
                 <ul className="mt-4 grid flex-1 content-center gap-2">
                   {r.items.map((it) => (
-                    <li key={it.title} className="flex items-center gap-3 rounded-2xl bg-white px-4 py-2 ring-1 ring-brand-100">
+                    <li key={it.title} className="flex items-center gap-3 rounded-xl bg-white px-4 py-2 ring-1 ring-paper-line">
                       <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-100 text-brand-600">
                         <Icon name={it.icon} size={18} />
                       </span>
                       <span className="leading-tight">
                         <span className="block text-[15px] font-semibold text-navy-900">{it.title}</span>
                         {"desc" in it && it.desc && (
-                          <span className="mt-0.5 block text-[13px] text-navy-700">{it.desc}</span>
+                          <span className="mt-0.5 block text-[14px] text-navy-700">{it.desc}</span>
                         )}
                       </span>
                     </li>

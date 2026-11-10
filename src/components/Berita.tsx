@@ -19,8 +19,8 @@ export function Berita({ lang }: { lang: Lang }) {
       <div className="mx-auto w-full max-w-[78rem]">
         <div className="reveal flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
           <div>
-            <h2 id="berita-title" className="text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.2rem]">
-              {berita.title[0]}<span className="text-brand-600">{berita.title[1]}</span>
+            <h2 id="berita-title" className="text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
+              {berita.title[0]}{berita.title[1]}
             </h2>
             <p className="mt-3 max-w-md text-[17px] text-navy-700">{berita.sub}</p>
           </div>
@@ -37,9 +37,9 @@ export function Berita({ lang }: { lang: Lang }) {
               <div key={b.title} className={feat ? "sm:col-span-2 lg:col-span-1" : ""}>
                 <a
                   href={b.href}
-                  className={`group flex h-full min-h-[22rem] flex-col rounded-[2rem] p-5 transition hover:-translate-y-1 hover:shadow-lift lg:min-h-0 ${feat ? "bg-navy-900 text-white" : pastel[i % pastel.length]}`}
+                  className={`group flex h-full min-h-[22rem] flex-col rounded-[1.25rem] p-5 transition hover:-translate-y-1 hover:shadow-lift lg:min-h-0 ${feat ? "bg-navy-900 text-white" : pastel[i % pastel.length]}`}
                 >
-                  <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] font-semibold">
+                  <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] font-semibold">
                     <span className={`rounded-full px-3 py-1 ${feat ? "bg-brand-700 text-white" : "bg-white text-navy-900"}`}>{b.cat}</span>
                     <span className={`whitespace-nowrap ${feat ? "text-white/80" : "text-navy-700"}`}>{b.date}</span>
                     {feat && <span className="ml-auto rounded-full bg-white/15 px-3 py-1 text-white">{berita.featured}</span>}
@@ -58,7 +58,7 @@ export function Berita({ lang }: { lang: Lang }) {
                     )}
                   </div>
                   {feat && <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">{b.excerpt}</p>}
-                  <div className="relative isolate mt-4 min-h-[9rem] flex-1 overflow-hidden rounded-[1.4rem]">
+                  <div className="relative isolate mt-4 min-h-[9rem] flex-1 overflow-hidden rounded-xl">
                     <Photo src={b.photo} alt="" label={berita.photoLabel} sizes="(min-width:1024px) 460px, 94vw" className="transition duration-700 group-hover:scale-105" />
                   </div>
                 </a>

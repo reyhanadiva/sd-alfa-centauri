@@ -52,15 +52,15 @@ export function Testimoni({ lang }: { lang: Lang }) {
           if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
           touch.current = null;
         }}
-        className="relative mx-auto w-full max-w-[78rem] overflow-hidden rounded-[2.5rem] bg-brand-50 p-6 ring-1 ring-brand-100 sm:p-10 lg:p-12"
+        className="relative mx-auto w-full max-w-[78rem] overflow-hidden rounded-[1.25rem] bg-paper p-6 sm:p-10 lg:p-12"
       >
-        <Quote aria-hidden size={240} strokeWidth={1} className="pointer-events-none absolute -right-6 -top-8 rotate-180 text-brand-200/60" />
-        <h2 id="testimoni-title" className="reveal relative text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem]">
-          {ui.title[0]}<span className="text-brand-600">{ui.title[1]}</span>
+        <Quote aria-hidden size={240} strokeWidth={1} className="pointer-events-none absolute -right-6 -top-8 rotate-180 text-paper-line" />
+        <h2 id="testimoni-title" className="reveal relative text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
+          {ui.title[0]}{ui.title[1]}
         </h2>
 
         <div className="relative mt-8 grid items-center gap-7 lg:mt-10 lg:grid-cols-[18rem_1fr] lg:gap-12">
-          <div key={`p${i}`} className="fade-in relative mx-auto aspect-[4/5] w-48 overflow-hidden rounded-[2rem] shadow-lift ring-4 ring-white sm:w-56 lg:w-full">
+          <div key={`p${i}`} className="fade-in relative mx-auto aspect-[4/5] w-48 overflow-hidden rounded-[1.25rem] shadow-lift ring-4 ring-white sm:w-56 lg:w-full">
             {t.photo ? (
               <Photo src={t.photo} alt={ui.photoAlt.replace("{x}", t.name)} label={ui.photoLabel} sizes="288px" />
             ) : (
@@ -69,8 +69,8 @@ export function Testimoni({ lang }: { lang: Lang }) {
           </div>
 
           <figure key={i} className="fade-in text-center lg:text-left">
-            <blockquote className="text-[2rem] font-bold leading-[1.1] tracking-[-0.025em] text-navy-900 sm:text-[2.6rem] lg:min-h-[8.5rem] lg:text-[3rem]">
-              <Rich text={`“${t.highlight}”`} strong="text-brand-600" />
+            <blockquote className="font-display text-[2rem] font-normal leading-[1.12] tracking-[-0.02em] text-navy-900 sm:text-[2.6rem] lg:min-h-[8.5rem] lg:text-[3rem]">
+              <Rich text={`“${t.highlight}”`} strong="em-serif text-brand-700" />
             </blockquote>
             <figcaption className="mt-5 leading-snug">
               <span className="block text-[17px] font-semibold text-navy-900">{t.name}</span>
@@ -142,7 +142,7 @@ export function Testimoni({ lang }: { lang: Lang }) {
           <div className="leading-snug">
             <p className="text-[17px] font-semibold text-navy-900">{t.name}</p>
             <p className="text-[14.5px] text-navy-700">{t.persona}</p>
-            <p className="text-[13.5px] text-navy-700">{t.note}</p>
+            <p className="text-[14px] text-navy-700">{t.note}</p>
           </div>
           <button type="button" onClick={() => dlg.current?.close()} aria-label={ui.close} className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-50 text-navy-800 transition hover:bg-brand-100">
             <X size={20} aria-hidden />

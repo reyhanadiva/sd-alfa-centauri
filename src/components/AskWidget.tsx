@@ -91,7 +91,7 @@ export function AskWidget({ lang }: { lang: Lang }) {
         <div
           role="dialog"
           aria-label={a.dialog}
-          className="zoom-in fixed bottom-[5.5rem] right-4 z-[56] flex max-h-[min(34rem,calc(100svh-7.5rem))] w-[min(23rem,calc(100vw-2rem))] origin-bottom-right flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-lift ring-1 ring-brand-100 sm:right-6"
+          className="zoom-in fixed bottom-[5.5rem] right-4 z-[56] flex max-h-[min(34rem,calc(100svh-7.5rem))] w-[min(23rem,calc(100vw-2rem))] origin-bottom-right flex-col overflow-hidden rounded-[1.25rem] bg-white shadow-lift ring-1 ring-brand-100 sm:right-6"
         >
           <div className="flex items-center gap-3 bg-navy-900 px-4 py-3.5 text-white">
             <span className="relative grid size-10 place-items-center rounded-full bg-white">
@@ -99,7 +99,7 @@ export function AskWidget({ lang }: { lang: Lang }) {
             </span>
             <div className="flex-1 leading-tight">
               <p className="text-[16px] font-semibold">{a.name}</p>
-              <p className="text-[12.5px] text-white/80">{a.tagline}</p>
+              <p className="text-[13px] text-white/80">{a.tagline}</p>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label={a.close} className="grid size-9 place-items-center rounded-full transition hover:bg-white/15">
               <X size={18} aria-hidden />
@@ -111,7 +111,7 @@ export function AskWidget({ lang }: { lang: Lang }) {
               <div key={i} className={`fade-in flex flex-col gap-1.5 ${m.from === "me" ? "items-end" : "items-start"}`}>
                 <p className={`max-w-[88%] rounded-2xl px-3.5 py-2.5 text-[14.5px] leading-snug ${m.from === "me" ? "rounded-br-md bg-brand-600 text-white" : "rounded-bl-md bg-white text-navy-900 ring-1 ring-brand-100"}`}>{m.text}</p>
                 {m.links?.map((l) => (
-                  <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="rounded-full bg-navy-900 px-3.5 py-1.5 text-[13px] font-bold text-white transition hover:bg-navy-700">{l.label}</a>
+                  <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="rounded-full bg-navy-900 px-3.5 py-1.5 text-[14px] font-bold text-white transition hover:bg-navy-700">{l.label}</a>
                 ))}
               </div>
             ))}
@@ -125,7 +125,7 @@ export function AskWidget({ lang }: { lang: Lang }) {
           <div className="border-t border-brand-100 bg-white px-3 pb-3 pt-2.5">
             <div className="flex gap-1.5 overflow-x-auto pb-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {kb.filter((it) => it.chip).map((it) => (
-                <button key={it.chip} type="button" onClick={() => ask(it.chip!)} className="shrink-0 rounded-full bg-brand-50 px-3.5 py-1.5 text-[13px] font-semibold text-brand-700 ring-1 ring-brand-100 transition hover:bg-brand-100">{it.chip}</button>
+                <button key={it.chip} type="button" onClick={() => ask(it.chip!)} className="shrink-0 rounded-full bg-brand-50 px-3.5 py-1.5 text-[14px] font-semibold text-brand-700 ring-1 ring-brand-100 transition hover:bg-brand-100">{it.chip}</button>
               ))}
             </div>
             <form onSubmit={(e) => { e.preventDefault(); ask(q); }} className="flex items-center gap-2 rounded-full bg-brand-50 p-1.5 pl-4 ring-1 ring-brand-100 focus-within:ring-2 focus-within:ring-brand-500">

@@ -82,7 +82,7 @@ export function VideoProfile({ lang, className = "" }: { lang: Lang; className?:
   return (
     <div
       ref={boxRef}
-      className={`relative aspect-video overflow-hidden rounded-[1.75rem] bg-navy-900 shadow-lift ring-1 ring-brand-100 sm:rounded-[2.25rem] ${className}`}
+      className={`relative aspect-video overflow-hidden rounded-[1.25rem] bg-navy-900 shadow-lift ring-1 ring-brand-100 sm:rounded-2xl ${className}`}
     >
       {mp4 ? (
         <>
@@ -144,7 +144,7 @@ export function VideoProfile({ lang, className = "" }: { lang: Lang; className?:
             </span>
           </div>
           {!youtubeId && (
-            <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3.5 py-1 text-[12px] font-bold text-navy-800">
+            <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3.5 py-1 text-[13px] font-bold text-navy-800">
               {v18.soon}
             </span>
           )}

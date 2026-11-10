@@ -143,7 +143,7 @@ export const en: Content = {
   },
 
   fasilitas: {
-    title: ["Complete ", "facilities"],
+    title: ["Where the school day ", "happens"],
     perKelasLabel: "In every classroom",
     perKelas: ["Projector", "Air conditioning", "CCTV", "24-hour internet"],
     listAria: "Facilities list",
@@ -170,7 +170,7 @@ export const en: Content = {
   },
 
   prestasi: {
-    title: ["Achievements to be ", "proud of"],
+    title: ["Student ", "achievements"],
     totalLabel: "Total achievements", sinceText: "since {y}, from city to national level", aria: "Achievements by category",
     total: id.prestasi.total, since: id.prestasi.since,
     categories: [
@@ -207,7 +207,7 @@ export const en: Content = {
   },
 
   berita: {
-    title: ["Latest ", "news"], sub: "Updates on activities, achievements, and announcements from the school.", all: "All news", featured: "Featured", aria: "Latest news", photoLabel: "News photo",
+    title: ["School ", "news"], sub: "Updates on activities, achievements, and announcements from the school.", all: "All news", featured: "Featured", aria: "Latest news", photoLabel: "News photo",
     items: mix(id.berita.items, [
       { cat: "Character", date: "Sep 2026", title: "Character Ambassadors for Cleanliness and Tidiness: This Simple Habit Matters at School", excerpt: "Keeping things clean and tidy may look simple in daily life, but the school practices and appreciates it." },
       { cat: "Character", date: "Sep 2026", title: "Discipline Character Ambassadors: Growing from Small Habits", excerpt: "Recognition for students who show disciplined character habits in their daily school life." },
@@ -217,7 +217,7 @@ export const en: Content = {
   },
 
   faq: {
-    title: ["Frequently ", "asked questions"],
+    title: ["What parents ", "often ask"],
     photoAlt: "SD Alfa Centauri students reading together", photoLabel: "Classroom atmosphere",
     noAnswer: "Need further information?", help: "Our admin team is available to assist you via WhatsApp.", ask: "Contact admin via WhatsApp",
     askWa: wa("I would like to ask about: "),

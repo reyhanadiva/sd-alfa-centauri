@@ -129,7 +129,7 @@ export function Navbar({ lang }: { lang: Lang }) {
                         <li key={c.label}>
                           <a href={c.href} className="block rounded-xl px-4 py-2.5 transition hover:bg-brand-50">
                             <span className="block text-[15px] font-semibold text-navy-900">{c.label}</span>
-                            {c.desc && <span className="block text-[13px] text-navy-700">{c.desc}</span>}
+                            {c.desc && <span className="block text-[14px] text-navy-700">{c.desc}</span>}
                           </a>
                         </li>
                       ))}

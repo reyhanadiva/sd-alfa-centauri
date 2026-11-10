@@ -28,7 +28,7 @@ export function Closing({ lang }: { lang: Lang }) {
 
         <div className="relative mx-auto flex max-w-3xl flex-col items-center">
           <BinaryStar className="size-28 sm:size-36" />
-          <h2 id="cta-title" className="mt-9 text-[2.6rem] font-semibold leading-[1.02] !text-white sm:text-6xl lg:text-[4.4rem]">
+          <h2 id="cta-title" className="mt-9 text-[2.6rem] font-medium leading-[1.02] !text-white sm:text-6xl lg:text-[4.4rem]">
             {c.title[0]}<span className="em-serif text-brand-300">{c.title[1]}</span>
           </h2>
           <p className="mt-5 max-w-xl text-[18px] leading-relaxed text-white/80">
@@ -123,7 +123,7 @@ export function Closing({ lang }: { lang: Lang }) {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-white/15 pt-5 text-[13.5px] text-white/80">
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-white/15 pt-5 text-[14px] text-white/80">
             <p>© {thisYear} {site.name}. {c.rights}</p>
           </div>
         </div>

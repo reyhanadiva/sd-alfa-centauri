@@ -11,11 +11,11 @@ export function Lokasi({ lang }: { lang: Lang }) {
       aria-labelledby="lokasi-title"
       className="px-5 py-16 sm:px-8 lg:py-20"
     >
-      <div className="mx-auto grid w-full max-w-[78rem] overflow-hidden rounded-[2rem] bg-white shadow-lift ring-1 ring-brand-100 lg:h-[min(34rem,calc(100svh-9rem))] lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid w-full max-w-[78rem] overflow-hidden rounded-[1.25rem] bg-white shadow-lift ring-1 ring-brand-100 lg:h-[min(34rem,calc(100svh-9rem))] lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-between gap-8 p-7 sm:p-10">
           <p className="text-[14px] font-semibold text-navy-700">{t.label}</p>
           <div>
-            <h2 id="lokasi-title" className="text-[2.4rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-5xl">
+            <h2 id="lokasi-title" className="text-[2.4rem] font-medium leading-[1.1] tracking-[-0.03em] sm:text-5xl">
               <span className="text-brand-600">{t.street}</span>
               <br />
               {t.city}
@@ -38,10 +38,10 @@ export function Lokasi({ lang }: { lang: Lang }) {
                       <c.icon size={18} aria-hidden />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-[13px] text-navy-700">{c.label}</span>
+                      <span className="block text-[14px] text-navy-700">{c.label}</span>
                       <span className="block text-[17px] font-semibold tabular-nums text-navy-900">{c.value}</span>
                     </span>
-                    <span className="rounded-full bg-brand-50 px-3.5 py-1.5 text-[13px] font-bold text-brand-700 transition group-hover:bg-brand-600 group-hover:text-white">{c.cta}</span>
+                    <span className="rounded-full bg-brand-50 px-3.5 py-1.5 text-[14px] font-bold text-brand-700 transition group-hover:bg-brand-600 group-hover:text-white">{c.cta}</span>
                   </a>
                 </li>
               ))}

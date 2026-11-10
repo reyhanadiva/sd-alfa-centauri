@@ -39,10 +39,10 @@ export function Galeri({ lang }: { lang: Lang }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [zoom]);
   return (
-    <section id="galeri" aria-labelledby="galeri-title" className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50 to-white px-5 py-14 sm:px-8 lg:py-20">
+    <section id="galeri" aria-labelledby="galeri-title" className="relative overflow-hidden bg-gradient-to-b from-white via-paper to-white px-5 py-14 sm:px-8 lg:py-20">
       <div className="mx-auto w-full max-w-[78rem] [--u:2.6rem] sm:[--u:5.2rem] lg:[--u:7.6rem]">
-        <h2 id="galeri-title" className="text-center text-[clamp(3rem,8.5vw,7.25rem)] font-semibold leading-[0.95] tracking-[-0.045em]">
-          {g.title[0]}<span className="text-brand-600">{g.title[1]}</span>
+        <h2 id="galeri-title" className="text-center text-[clamp(3rem,8.5vw,7.25rem)] font-medium leading-[0.95] tracking-[-0.03em]">
+          {g.title[0]}{g.title[1]}
         </h2>
 
         <ul aria-label={g.aria} className="relative mx-auto mt-6 hidden h-[min(17rem,32svh)] sm:mb-10 sm:block">
@@ -60,7 +60,7 @@ export function Galeri({ lang }: { lang: Lang }) {
                   type="button"
                   onClick={() => open(k)}
                   aria-label={g.zoom.replace("{x}", x.title)}
-                  className="relative isolate block size-full cursor-zoom-in overflow-hidden rounded-[1.4rem] text-left shadow-lift ring-4 ring-white transition duration-500 ease-out group-hover:-translate-y-5 group-hover:scale-105 group-hover:rotate-[calc(var(--d)*-4.5deg)] group-focus-within:-translate-y-5 group-focus-within:scale-105 group-focus-within:rotate-[calc(var(--d)*-4.5deg)]"
+                  className="relative isolate block size-full cursor-zoom-in overflow-hidden rounded-xl text-left shadow-lift ring-4 ring-white transition duration-500 ease-out group-hover:-translate-y-5 group-hover:scale-105 group-hover:rotate-[calc(var(--d)*-4.5deg)] group-focus-within:-translate-y-5 group-focus-within:scale-105 group-focus-within:rotate-[calc(var(--d)*-4.5deg)]"
                 >
                   <Photo src={x.photo} alt="" label={x.title} sizes="208px" className="-z-20" />
                   <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
@@ -84,7 +84,7 @@ export function Galeri({ lang }: { lang: Lang }) {
                 type="button"
                 onClick={() => open(k)}
                 aria-label={g.zoom.replace("{x}", x.title)}
-                className="relative isolate block aspect-[4/5] overflow-hidden rounded-[1.75rem] text-left shadow-lift ring-4 ring-white"
+                className="relative isolate block aspect-[4/5] overflow-hidden rounded-[1.25rem] text-left shadow-lift ring-4 ring-white"
               >
                 <Photo src={x.photo} alt="" label={x.title} sizes="70vw" className="-z-20" />
                 <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
@@ -106,7 +106,7 @@ export function Galeri({ lang }: { lang: Lang }) {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="zoom-in relative isolate aspect-[4/5] w-[min(26rem,88vw)] max-h-[85svh] overflow-hidden rounded-[2rem] text-white shadow-lift ring-4 ring-white"
+            className="zoom-in relative isolate aspect-[4/5] w-[min(26rem,88vw)] max-h-[85svh] overflow-hidden rounded-[1.25rem] text-white shadow-lift ring-4 ring-white"
           >
             {/* Satu kegiatan = satu rangkaian foto yang bisa digeser */}
             <ul
@@ -132,7 +132,7 @@ export function Galeri({ lang }: { lang: Lang }) {
                 <button type="button" onClick={() => goSlide(slide + 1)} aria-label={g.next} className="absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy-900 shadow-lift transition hover:bg-white">
                   <ChevronRight size={20} aria-hidden />
                 </button>
-                <p className="absolute left-4 top-4 rounded-full bg-navy-900/70 px-3 py-1 text-[12.5px] font-semibold tabular-nums backdrop-blur">{slide + 1} / {album.length}</p>
+                <p className="absolute left-4 top-4 rounded-full bg-navy-900/70 px-3 py-1 text-[13px] font-semibold tabular-nums backdrop-blur">{slide + 1} / {album.length}</p>
               </>
             )}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6">

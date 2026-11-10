@@ -12,9 +12,9 @@ import { Photo } from "./Photo";
 type F = ReturnType<typeof getT>["fasilitas"];
 
 const H2 = ({ f, className = "", light = false, id = "fasilitas-title" }: { f: F; className?: string; light?: boolean; id?: string }) => (
-  <h2 id={id} className={`text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem] ${light ? "!text-white" : ""} ${className}`}>
+  <h2 id={id} className={`text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem] ${light ? "!text-white" : ""} ${className}`}>
     {f.title[0]}
-    <span className={`${light ? "text-brand-200" : "text-brand-600"}`}>{f.title[1]}</span>
+    {f.title[1]}
   </h2>
 );
 
@@ -81,7 +81,7 @@ export function FasilitasDaftar({ lang }: { lang: Lang }) {
       <div className="mx-auto w-full max-w-[78rem]">
         <H2 f={fas} />
         <div className="mt-8 grid gap-4 lg:grid-cols-[1fr_21rem] lg:gap-5">
-          <div className="relative isolate aspect-[4/3] overflow-hidden rounded-[2rem] text-white shadow-lift sm:aspect-[16/9] lg:aspect-auto lg:h-[min(30rem,calc(100svh-14rem))]">
+          <div className="relative isolate aspect-[4/3] overflow-hidden rounded-[1.25rem] text-white shadow-lift sm:aspect-[16/9] lg:aspect-auto lg:h-[min(30rem,calc(100svh-14rem))]">
             <Stack f={fas} i={i} sizes="(min-width: 1024px) 760px, 94vw" />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-navy-900/10" />
             <div aria-live="off" key={i} className="fade-in absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-7">

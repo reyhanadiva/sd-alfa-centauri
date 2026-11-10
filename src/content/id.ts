@@ -150,7 +150,7 @@ export const id = {
   },
 
   fasilitas: {
-    title: ["Fasilitas yang ", "lengkap"],
+    title: ["Ruang belajar ", "sehari-hari"],
     perKelasLabel: "Di setiap kelas",
     perKelas: ["Proyektor", "AC", "CCTV", "Internet 24 jam"],
     listAria: "Daftar fasilitas",
@@ -188,7 +188,7 @@ export const id = {
   },
 
   prestasi: {
-    title: ["Prestasi yang ", "membanggakan"],
+    title: ["Prestasi ", "siswa"],
     totalLabel: "Total prestasi", sinceText: "sejak {y}, di tingkat kota hingga nasional", aria: "Prestasi per kategori",
     total: 120, since: 2009, // placeholder
     categories: [
@@ -229,7 +229,7 @@ export const id = {
 
   // MOCKUP: 3 berita pertama diambil dari judul di website lama (poster dipotong dari tangkapan layar, resolusi rendah); ringkasan dan tanggal saya tulis ulang. Ganti dengan berita asli + foto resolusi penuh.
   berita: {
-    title: ["Berita ", "terbaru"], sub: "Kabar kegiatan, prestasi, dan pengumuman dari sekolah.", all: "Semua berita", featured: "Sorotan", aria: "Berita terbaru", photoLabel: "Foto berita",
+    title: ["Kabar ", "sekolah"], sub: "Kabar kegiatan, prestasi, dan pengumuman dari sekolah.", all: "Semua berita", featured: "Sorotan", aria: "Berita terbaru", photoLabel: "Foto berita",
     items: [
       { cat: "Karakter", date: "Sep 2026", title: "Duta Karakter Bersih dan Rapi: Ternyata, Hal Sederhana Ini Diperhatikan Sekolah", excerpt: "Menjaga kebersihan dan kerapian mungkin terlihat seperti hal sederhana dalam keseharian, tetapi dibiasakan dan diapresiasi sekolah.", href: "#", photo: "/images/berita-karakter-bersih.jpg" },
       { cat: "Karakter", date: "Sep 2026", title: "Duta Karakter Disiplin: Tumbuh dari Kebiasaan Kecil", excerpt: "Apresiasi untuk siswa yang menunjukkan pembiasaan karakter disiplin dalam keseharian di sekolah.", href: "#", photo: "/images/berita-karakter-disiplin.jpg" },
@@ -239,7 +239,7 @@ export const id = {
   },
 
   faq: {
-    title: ["Pertanyaan yang ", "sering diajukan"],
+    title: ["Yang sering ditanyakan ", "orang tua"],
     photoAlt: "Siswa SD Alfa Centauri membaca bersama", photoLabel: "Suasana kelas",
     noAnswer: "Membutuhkan informasi lebih lanjut?", help: "Tim admin kami siap membantu menjawab pertanyaan Anda melalui WhatsApp.", ask: "Hubungi admin via WhatsApp",
     askWa: wa("saya ingin bertanya tentang: "),
