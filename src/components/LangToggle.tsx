@@ -19,8 +19,8 @@ export function LangToggle({ lang, label, className = "", onDark = false }: { la
             lang === l
               ? "bg-white text-navy-900 shadow-sm"
               : onDark
-                ? "text-white/80 hover:text-white"
-                : "text-navy-700/70 hover:text-navy-900"
+                ? "text-white hover:text-white"
+                : "text-navy-700 hover:text-navy-900"
           }`}
         >
           {l}

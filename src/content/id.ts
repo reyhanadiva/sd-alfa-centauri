@@ -35,7 +35,6 @@ export const id = {
   nav: [
     { label: "Tentang", href: "#tentang", children: [
       { label: "Profil Sekolah", href: "#tentang", desc: "Sejarah dan visi" },
-      { label: "7 Pilar Karakter", href: "#pilar", desc: "Nilai yang kami tanamkan" },
       { label: "Akreditasi", href: "#akreditasi", desc: "Terakreditasi A" },
     ] },
     { label: "Program", href: "#program", children: [

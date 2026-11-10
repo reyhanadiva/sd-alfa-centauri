@@ -12,7 +12,7 @@ export function About({ lang }: { lang: Lang }) {
     <section
       id="tentang"
       aria-labelledby="tentang-title"
-      className="px-5 py-16 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6"
+      className="px-5 py-16 sm:px-8 lg:py-20"
     >
       <div className="mx-auto flex w-full max-w-[78rem] flex-col gap-8 lg:gap-6">
         <h2

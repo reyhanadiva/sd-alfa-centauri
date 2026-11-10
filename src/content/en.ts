@@ -35,7 +35,6 @@ export const en: Content = {
   nav: [
     { label: "About", href: "#tentang", children: [
       { label: "School Profile", href: "#tentang", desc: "History and vision" },
-      { label: "7 Character Pillars", href: "#pilar", desc: "Values we nurture" },
       { label: "Accreditation", href: "#akreditasi", desc: "Accredited A" },
     ] },
     { label: "Programs", href: "#program", children: [

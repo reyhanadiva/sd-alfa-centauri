@@ -39,10 +39,10 @@ export function Galeri({ lang }: { lang: Lang }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [zoom]);
   return (
-    <section id="galeri" aria-labelledby="galeri-title" className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50 to-white px-5 py-14 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6">
+    <section id="galeri" aria-labelledby="galeri-title" className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50 to-white px-5 py-14 sm:px-8 lg:py-20">
       <div className="mx-auto w-full max-w-[78rem] [--u:2.6rem] sm:[--u:5.2rem] lg:[--u:7.6rem]">
         <h2 id="galeri-title" className="text-center text-[clamp(3rem,8.5vw,7.25rem)] font-semibold leading-[0.95] tracking-[-0.045em]">
-          {g.title[0]}<span className="em-serif text-brand-600">{g.title[1]}</span>
+          {g.title[0]}<span className="text-brand-600">{g.title[1]}</span>
         </h2>
 
         <ul aria-label={g.aria} className="relative mx-auto mt-6 hidden h-[min(17rem,32svh)] sm:mb-10 sm:block">
@@ -62,7 +62,7 @@ export function Galeri({ lang }: { lang: Lang }) {
                   aria-label={g.zoom.replace("{x}", x.title)}
                   className="relative isolate block size-full cursor-zoom-in overflow-hidden rounded-[1.4rem] text-left shadow-lift ring-4 ring-white transition duration-500 ease-out group-hover:-translate-y-5 group-hover:scale-105 group-hover:rotate-[calc(var(--d)*-4.5deg)] group-focus-within:-translate-y-5 group-focus-within:scale-105 group-focus-within:rotate-[calc(var(--d)*-4.5deg)]"
                 >
-                  <Photo src={x.photo} alt={x.title} label={x.title} sizes="208px" className="-z-20" />
+                  <Photo src={x.photo} alt="" label={x.title} sizes="208px" className="-z-20" />
                   <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
                 </button>
               </li>
@@ -86,7 +86,7 @@ export function Galeri({ lang }: { lang: Lang }) {
                 aria-label={g.zoom.replace("{x}", x.title)}
                 className="relative isolate block aspect-[4/5] overflow-hidden rounded-[1.75rem] text-left shadow-lift ring-4 ring-white"
               >
-                <Photo src={x.photo} alt={x.title} label={x.title} sizes="70vw" className="-z-20" />
+                <Photo src={x.photo} alt="" label={x.title} sizes="70vw" className="-z-20" />
                 <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
                 <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-navy-900"><Maximize2 size={15} aria-hidden /></span>
                 <span className="absolute inset-x-4 bottom-4 text-lg font-semibold leading-tight text-white">{x.title}</span>
@@ -116,7 +116,7 @@ export function Galeri({ lang }: { lang: Lang }) {
             >
               {album.map((ph, k) => (
                 <li key={k} className="relative size-full shrink-0 snap-center">
-                  <Photo src={ph} alt={z.title} label={z.title} sizes="420px" className="-z-20" />
+                  <Photo src={ph} alt="" label={z.title} sizes="420px" className="-z-20" />
                 </li>
               ))}
             </ul>

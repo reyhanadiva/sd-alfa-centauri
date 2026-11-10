@@ -46,7 +46,7 @@ export function EkskulPanel({ lang }: { lang: Lang }) {
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="text-2xl font-semibold !text-white">{ui.title}</h3>
-          <p className="mt-1 text-[15px] text-white/65">{ui.sub}</p>
+          <p className="mt-1 text-[15px] text-white/80">{ui.sub}</p>
         </div>
         <div role="group" aria-label={ui.view} className="relative flex shrink-0 rounded-full bg-white/10 p-1">
           <span
@@ -67,7 +67,7 @@ export function EkskulPanel({ lang }: { lang: Lang }) {
               aria-pressed={mode === m}
               aria-label={ui.viewLabel.replace("{x}", label)}
               className={`relative z-10 grid size-9 place-items-center rounded-full transition-colors duration-300 ${
-                mode === m ? "text-navy-900" : "text-white/70 hover:text-white"
+                mode === m ? "text-navy-900" : "text-white/80 hover:text-white"
               }`}
             >
               <I size={16} aria-hidden />
@@ -84,7 +84,7 @@ export function EkskulPanel({ lang }: { lang: Lang }) {
                 type="button"
                 onClick={() => open(i)}
                 aria-label={ui.see.replace("{x}", e.label)}
-                className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white/[0.07] p-2 py-4 text-center ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:bg-white/15 active:scale-95"
+                className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white/[0.07] p-2 py-4 text-center ring-1 ring-white/15 transition hover:bg-white/15 active:scale-95"
               >
                 <span className="grid size-10 place-items-center rounded-full bg-white text-brand-600">
                   <Icon name={e.icon} size={19} />

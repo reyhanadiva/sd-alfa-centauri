@@ -23,13 +23,13 @@ export function WhyChoose({ lang }: { lang: Lang }) {
           id="mengapa-title"
           className="reveal text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.4rem]"
         >
-          {why.title[0]}<span className="em-serif text-brand-600">{why.title[1]}</span>
+          {why.title[0]}<span className="text-brand-600">{why.title[1]}</span>
         </h2>
 
         <div className="mt-8 lg:mt-9">
         <SnapRail label={why.aria} className="sm:grid sm:grid-cols-2 lg:h-[min(34rem,calc(100svh-17rem))] lg:grid-cols-12 lg:grid-rows-2">
           {/* 1. Akreditasi: huruf raksasa */}
-          <article className="relative flex min-h-[22rem] flex-col overflow-hidden rounded-[2rem] bg-brand-100 p-7 sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:min-h-0">
+          <article id="akreditasi" className="relative flex min-h-[22rem] scroll-mt-24 flex-col overflow-hidden rounded-[2rem] bg-brand-100 p-7 sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:min-h-0">
             <h3 className="text-2xl font-semibold">{why.acc.title}</h3>
             <p className="mt-1.5 max-w-[17rem] text-[16px] leading-snug text-navy-700">
               {why.acc.text}
@@ -96,8 +96,8 @@ export function WhyChoose({ lang }: { lang: Lang }) {
             </span>
             <div>
               <h3 className="text-xl font-semibold !text-white">{why.ask.title}</h3>
-              <p className="mt-1 inline-flex items-center gap-1.5 text-[15px] font-semibold text-white/90">
-                {why.ask.cta} <ArrowUpRight size={16} aria-hidden className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <p className="mt-1 inline-flex items-center gap-1.5 text-[15px] font-semibold text-white">
+                {why.ask.cta} <ArrowUpRight size={16} aria-hidden className="transition group-hover:translate-x-0.5" />
               </p>
             </div>
           </a>

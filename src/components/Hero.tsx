@@ -28,7 +28,7 @@ export function Hero({ lang }: { lang: Lang }) {
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/92 via-navy-900/45 to-navy-900/0" />
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900/45 to-transparent" />
 
-      <div className="mx-auto flex w-full max-w-[88rem] flex-col gap-8 px-5 pb-8 pt-32 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:pb-12">
+      <div className="mx-auto flex w-full max-w-[88rem] flex-col gap-8 px-5 pb-8 pt-32 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:pb-12 lg:pr-24">
         <div>
           <h1
             id="hero-title"

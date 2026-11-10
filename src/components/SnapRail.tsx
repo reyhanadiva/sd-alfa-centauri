@@ -35,6 +35,7 @@ export function SnapRail({
         ref={ref}
         onScroll={onScroll}
         role="list"
+        tabIndex={0}
         aria-label={label}
         className={`flex snap-x snap-mandatory gap-3.5 overflow-x-auto max-sm:-mx-5 max-sm:px-5 max-sm:pb-1 [scrollbar-width:none] sm:snap-none sm:overflow-visible [&::-webkit-scrollbar]:hidden ${className}`}
       >

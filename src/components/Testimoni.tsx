@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Quote, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play, Quote, X } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 import { Rich } from "./Rich";
@@ -20,19 +20,29 @@ export function Testimoni({ lang }: { lang: Lang }) {
   const touch = useRef<number | null>(null);
   const dlg = useRef<HTMLDialogElement>(null);
   const [reading, setReading] = useState(false); // dialog "baca selengkapnya" terbuka: jeda otomatis
+  const [paused, setPaused] = useState(false);
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
-    if (reading || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(mq.matches);
+    on();
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+  const running = !paused && !reduced && !reading;
+  useEffect(() => {
+    if (!running) return;
     const t = setTimeout(() => setI((x) => (x + 1) % N), MS);
     return () => clearTimeout(t);
-  }, [i, N, reading]);
-  const go = (d: number) => setI((x) => (x + d + N) % N);
+  }, [i, N, running]);
+  const go = (d: number) => { setPaused(true); setI((x) => (x + d + N) % N); };
   const t = testimoni[i];
 
   return (
     <section
       id="testimoni"
       aria-labelledby="testimoni-title"
-      className="px-5 py-16 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6"
+      className="px-5 py-16 sm:px-8 lg:py-20"
     >
       <div
         onTouchStart={(e) => (touch.current = e.touches[0].clientX)}
@@ -46,7 +56,7 @@ export function Testimoni({ lang }: { lang: Lang }) {
       >
         <Quote aria-hidden size={240} strokeWidth={1} className="pointer-events-none absolute -right-6 -top-8 rotate-180 text-brand-200/60" />
         <h2 id="testimoni-title" className="reveal relative text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem]">
-          {ui.title[0]}<span className="em-serif text-brand-600">{ui.title[1]}</span>
+          {ui.title[0]}<span className="text-brand-600">{ui.title[1]}</span>
         </h2>
 
         <div className="relative mt-8 grid items-center gap-7 lg:mt-10 lg:grid-cols-[18rem_1fr] lg:gap-12">
@@ -65,12 +75,12 @@ export function Testimoni({ lang }: { lang: Lang }) {
             <figcaption className="mt-5 leading-snug">
               <span className="block text-[17px] font-semibold text-navy-900">{t.name}</span>
               <span className="block text-[15px] text-navy-700">{t.persona}</span>
-              <span className="block text-[14px] text-navy-700/65">{t.note}</span>
+              <span className="block text-[14px] text-navy-700">{t.note}</span>
             </figcaption>
             <button
               type="button"
               onClick={() => { setReading(true); dlg.current?.showModal(); }}
-              className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[14px] font-bold text-brand-700 ring-1 ring-brand-200 transition hover:-translate-y-0.5 hover:bg-brand-100"
+              className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[14px] font-bold text-brand-700 ring-1 ring-brand-200 transition hover:bg-brand-100"
             >
               {ui.readMore} <ChevronRight size={15} aria-hidden />
             </button>
@@ -88,17 +98,17 @@ export function Testimoni({ lang }: { lang: Lang }) {
                 <li key={k}>
                   <button
                     type="button"
-                    onClick={() => setI(k)}
+                    onClick={() => { setPaused(true); setI(k); }}
                     aria-label={ui.item.replace("{n}", String(k + 1)).replace("{p}", x.persona)}
                     aria-current={on}
-                    className={`relative grid size-11 place-items-center rounded-full transition sm:size-14 ${on ? "scale-105" : "opacity-65 hover:opacity-100"}`}
+                    className={`relative grid size-11 place-items-center rounded-full transition sm:size-14 ${on ? "scale-105" : "opacity-80 hover:opacity-100"}`}
                   >
                     <span className={`relative grid size-[78%] place-items-center overflow-hidden rounded-full text-[15px] font-bold ${tint[k % tint.length]}`}>
                       {x.photo ? <Photo src={x.photo} alt="" label="" sizes="48px" /> : x.name.replace("[", "").charAt(0)}
                     </span>
                     <svg viewBox="0 0 48 48" aria-hidden className="absolute inset-0 -rotate-90">
                       <circle cx="24" cy="24" r="22" fill="none" strokeWidth="2.5" className="stroke-brand-200/70" />
-                      {on && (
+                      {on && running && (
                         <circle key={i} cx="24" cy="24" r="22" fill="none" strokeWidth="2.5" strokeLinecap="round" pathLength={1} className="ring-dash stroke-brand-600" style={{ animationDuration: `${MS}ms` }} />
                       )}
                     </svg>
@@ -107,6 +117,14 @@ export function Testimoni({ lang }: { lang: Lang }) {
               );
             })}
           </ul>
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-label={lang === "en" ? (running ? "Pause slideshow" : "Play slideshow") : running ? "Jeda tampilan otomatis" : "Putar tampilan otomatis"}
+            className="grid size-11 place-items-center rounded-full bg-white ring-1 ring-brand-100 transition hover:bg-brand-100"
+          >
+            {running ? <Pause size={18} aria-hidden /> : <Play size={18} aria-hidden />}
+          </button>
           <button type="button" onClick={() => go(1)} aria-label={ui.next} className="hidden size-11 place-items-center rounded-full bg-white ring-1 ring-brand-100 transition hover:bg-brand-100 sm:grid">
             <ChevronRight size={20} aria-hidden />
           </button>
@@ -124,7 +142,7 @@ export function Testimoni({ lang }: { lang: Lang }) {
           <div className="leading-snug">
             <p className="text-[17px] font-semibold text-navy-900">{t.name}</p>
             <p className="text-[14.5px] text-navy-700">{t.persona}</p>
-            <p className="text-[13.5px] text-navy-700/65">{t.note}</p>
+            <p className="text-[13.5px] text-navy-700">{t.note}</p>
           </div>
           <button type="button" onClick={() => dlg.current?.close()} aria-label={ui.close} className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-50 text-navy-800 transition hover:bg-brand-100">
             <X size={20} aria-hidden />

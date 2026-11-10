@@ -20,7 +20,7 @@ export function Program({ lang }: { lang: Lang }) {
     <section
       id="program"
       aria-labelledby="program-title"
-      className="px-5 py-16 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6"
+      className="px-5 py-16 sm:px-8 lg:py-20"
     >
       <div className="mx-auto w-full max-w-[78rem]">
         <h2
@@ -28,10 +28,10 @@ export function Program({ lang }: { lang: Lang }) {
           className="reveal text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3rem]"
         >
           {program.title[0]}
-          <span className="em-serif text-brand-600">{program.title[1]}</span>
+          <span className="text-brand-600">{program.title[1]}</span>
         </h2>
 
-        <div className="mt-8 grid gap-3.5 lg:mt-9 lg:h-[min(31rem,calc(100svh-16rem))] lg:grid-cols-[1.45fr_1fr]">
+        <div className="mt-8 grid gap-3.5 lg:mt-9 lg:min-h-[31rem] lg:grid-cols-[1.45fr_1fr]">
           {/* Tab ranah */}
           <div className="reveal flex min-w-0 flex-col rounded-[2rem] bg-brand-50 p-6 ring-1 ring-brand-100 sm:p-7">
             {/* Tab dengan indikator yang bergeser */}
@@ -53,7 +53,16 @@ export function Program({ lang }: { lang: Lang }) {
                   id={`tab-${x.key}`}
                   aria-selected={active === i}
                   aria-controls="panel-ranah"
+                  tabIndex={active === i ? 0 : -1}
                   onClick={() => select(i)}
+                  onKeyDown={(e) => {
+                    const n = ranah.length;
+                    const to = e.key === "ArrowRight" ? (i + 1) % n : e.key === "ArrowLeft" ? (i + n - 1) % n : e.key === "Home" ? 0 : e.key === "End" ? n - 1 : -1;
+                    if (to < 0) return;
+                    e.preventDefault();
+                    select(to);
+                    document.getElementById(`tab-${ranah[to].key}`)?.focus();
+                  }}
                   className={`relative z-10 rounded-full px-2 py-2 text-[15px] font-bold transition-colors duration-300 ${
                     active === i ? "text-white" : "text-navy-700 hover:text-brand-700"
                   }`}
@@ -81,7 +90,7 @@ export function Program({ lang }: { lang: Lang }) {
                       <span className="leading-tight">
                         <span className="block text-[15px] font-semibold text-navy-900">{it.title}</span>
                         {"desc" in it && it.desc && (
-                          <span className="mt-0.5 block text-[13px] text-navy-700/75">{it.desc}</span>
+                          <span className="mt-0.5 block text-[13px] text-navy-700">{it.desc}</span>
                         )}
                       </span>
                     </li>
@@ -92,7 +101,7 @@ export function Program({ lang }: { lang: Lang }) {
               <div className="fade-in relative min-h-[14rem] overflow-hidden rounded-3xl sm:min-h-0 sm:w-[38%]">
                 <Photo
                   src={r.photo}
-                  alt={r.photoLabel}
+                  alt=""
                   label={r.photoLabel}
                   sizes="(min-width: 1024px) 280px, 90vw"
                 />
