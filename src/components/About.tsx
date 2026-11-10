@@ -12,7 +12,7 @@ export function About({ lang }: { lang: Lang }) {
     <section
       id="tentang"
       aria-labelledby="tentang-title"
-      className="px-5 py-16 sm:px-8 lg:flex lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:items-center lg:py-6"
+      className="px-5 py-16 sm:px-8 lg:py-20"
     >
       <div className="mx-auto flex w-full max-w-[78rem] flex-col gap-8 lg:gap-6">
         <h2
@@ -20,7 +20,7 @@ export function About({ lang }: { lang: Lang }) {
           className="reveal text-center text-[1.3rem] font-medium leading-snug tracking-[-0.02em] text-navy-700 sm:text-[1.55rem] lg:text-[1.65rem]"
         >
           {about.lead}
-          <span className="em-serif my-1 block whitespace-nowrap text-[min(6.4vw,3.3rem)] leading-[1.1] tracking-[-0.02em] text-brand-600">
+          <span className="em-serif my-1 block text-[clamp(1.9rem,7vw,3.3rem)] lg:whitespace-nowrap leading-[1.1] tracking-[-0.02em] text-brand-600">
             &lsquo;{about.quote}&rsquo;
           </span>
           {about.tail}{" "}
@@ -41,7 +41,7 @@ export function About({ lang }: { lang: Lang }) {
           </div>
 
           <div className="reveal grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            <div className="flex flex-col justify-between gap-3 rounded-[1.75rem] bg-brand-50 p-6 ring-1 ring-brand-100">
+            <div className="flex flex-col justify-between gap-3 rounded-[1.25rem] bg-paper p-6">
               <p className="font-display text-[3.4rem] font-semibold leading-none tracking-[-0.05em] text-brand-600">
                 2009
               </p>
@@ -62,7 +62,7 @@ export function About({ lang }: { lang: Lang }) {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between gap-3 rounded-[1.75rem] bg-navy-900 p-6 text-white">
+            <div className="flex flex-col justify-between gap-3 rounded-[1.25rem] bg-navy-900 p-6 text-white">
               <div aria-hidden className="relative h-12 w-20">
                 <Star className="star-a absolute left-0 top-3 size-8 -rotate-12 text-brand-300" />
                 <Star className="star-b absolute left-9 top-0 size-10 rotate-6 text-white" />

@@ -22,10 +22,10 @@ export function CertificateDialog({ variant = "solid", lang }: { variant?: "soli
         onClick={openDialog}
         className={`${press ? "pressing " : ""}${
           variant === "link"
-            ? "relative z-10 inline-flex items-center gap-1.5 text-[13px] font-bold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
+            ? "relative z-10 -my-3 inline-flex min-h-11 items-center gap-1.5 py-3 text-[14px] font-bold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
             : variant === "dark"
-              ? "inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-2.5 text-[14px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-navy-700"
-              : "inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-bold text-brand-700 transition hover:-translate-y-0.5 hover:bg-brand-50"
+              ? "inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-2.5 text-[14px] font-bold text-white transition hover:bg-navy-700"
+              : "inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-bold text-brand-700 transition hover:bg-brand-50"
         }`}
       >
         <Award size={variant === "link" ? 14 : 17} aria-hidden /> {cert.open}

@@ -33,6 +33,7 @@ export function Navbar({ lang }: { lang: Lang }) {
       h.style.transform = `translateY(${hide ? -H : 0}px)`;
       h.style.opacity = hide ? "0" : "1";
       h.style.pointerEvents = hide ? "none" : "";
+      h.style.visibility = hide ? "hidden" : "";
     };
     const update = () => {
       raf = 0;
@@ -66,6 +67,13 @@ export function Navbar({ lang }: { lang: Lang }) {
   }, []);
 
   useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -96,12 +104,12 @@ export function Navbar({ lang }: { lang: Lang }) {
             />
           </a>
 
-          <nav aria-label={ui.mainMenu} className="hidden items-center lg:flex">
+          <nav aria-label={ui.mainMenu} className="hidden items-center xl:flex">
             {nav.map((item) => (
               <div key={item.label} className="group relative">
                 <a
                   href={item.href}
-                  className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-semibold transition ${
+                  className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[15px] font-semibold transition ${
                     solid ? "text-navy-800 hover:bg-brand-50 hover:text-brand-700" : "text-white hover:bg-white/15"
                   }`}
                 >
@@ -121,7 +129,7 @@ export function Navbar({ lang }: { lang: Lang }) {
                         <li key={c.label}>
                           <a href={c.href} className="block rounded-xl px-4 py-2.5 transition hover:bg-brand-50">
                             <span className="block text-[15px] font-semibold text-navy-900">{c.label}</span>
-                            {c.desc && <span className="block text-[13px] text-navy-700/70">{c.desc}</span>}
+                            {c.desc && <span className="block text-[14px] text-navy-700">{c.desc}</span>}
                           </a>
                         </li>
                       ))}
@@ -134,11 +142,11 @@ export function Navbar({ lang }: { lang: Lang }) {
 
           <div className="flex items-center gap-2">
             {/* Portal: dulu di top bar, sekarang dropdown kecil */}
-            <div className="group relative hidden lg:block">
+            <div className="group relative hidden xl:block">
               <button
                 type="button"
                 className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-[14px] font-semibold transition ${
-                  solid ? "text-navy-700 hover:bg-brand-50" : "text-white/90 hover:bg-white/15"
+                  solid ? "text-navy-700 hover:bg-brand-50" : "text-white hover:bg-white/15"
                 }`}
               >
                 {ui.portal}
@@ -157,11 +165,11 @@ export function Navbar({ lang }: { lang: Lang }) {
               </div>
             </div>
 
-            <LangToggle lang={lang} label={ui.language} className="hidden xl:flex" onDark={!solid} />
+            <LangToggle lang={lang} label={ui.language} className="hidden sm:flex" onDark={!solid} />
 
             <a
               href={spmb.href}
-              className={`hidden items-center gap-2 rounded-full px-5 py-2.5 text-[15px] font-bold transition sm:inline-flex ${
+              className={`hidden items-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-[15px] font-bold transition sm:inline-flex ${
                 solid ? "bg-brand-600 text-white hover:bg-brand-700" : "bg-white text-navy-900 hover:bg-brand-50"
               }`}
             >
@@ -172,7 +180,7 @@ export function Navbar({ lang }: { lang: Lang }) {
               onClick={() => setOpen(true)}
               aria-label={ui.openMenu}
               aria-expanded={open}
-              className={`grid size-11 place-items-center rounded-full transition lg:hidden ${
+              className={`grid size-11 place-items-center rounded-full transition xl:hidden ${
                 solid ? "bg-brand-50 text-navy-800" : "bg-white/15 text-white"
               }`}
             >
@@ -183,7 +191,7 @@ export function Navbar({ lang }: { lang: Lang }) {
       </header>
 
       {/* Panel menu ponsel: di LUAR <header> karena backdrop-filter membuat elemen fixed ikut ukuran header */}
-      <div className={`fixed inset-0 z-[60] lg:hidden ${open ? "visible" : "invisible"}`} aria-hidden={!open}>
+      <div className={`fixed inset-0 z-[60] xl:hidden ${open ? "visible" : "invisible"}`} aria-hidden={!open} inert={!open}>
         <div
           onClick={() => setOpen(false)}
           className={`absolute inset-0 bg-navy-900/50 backdrop-blur-sm transition-opacity duration-300 ${
@@ -239,7 +247,7 @@ export function Navbar({ lang }: { lang: Lang }) {
                 </li>
               ))}
               <li className="py-4">
-                <p className="text-sm font-semibold text-navy-700/70">{ui.portal}</p>
+                <p className="text-sm font-semibold text-navy-700">{ui.portal}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {portals.map((p) => (
                     <a key={p.label} href={p.href} className="rounded-full bg-brand-50 px-4 py-2 text-[15px] font-semibold text-brand-700">

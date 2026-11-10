@@ -7,8 +7,7 @@ import { Camera } from "lucide-react";
 type Props = {
   /**
    * - Path lokal ("/images/...") → next/image (dioptimasi).
-   * - URL foto stok Pexels → dicoba dulu dari berkas lokal "/images/stock/pexels-<id>.jpg" (hasil `npm run fetch-stock`),
-   *   lalu dari CDN Pexels; kalau dua-duanya gagal tampil placeholder.
+   * - URL foto stok Pexels (atau URL lain) → dimuat langsung dari sumbernya; kalau gagal tampil placeholder.
    * - Kosong → placeholder berlabel.
    */
   src?: string;
@@ -20,7 +19,6 @@ type Props = {
   className?: string;
 };
 
-const pexelsId = (u?: string) => u?.match(/pexels-photo-(\d+)\.jpe?g/)?.[1];
 const tones = [
   "from-brand-300 via-brand-200 to-brand-100",
   "from-brand-200 via-[#dbeafe] to-[#e0f2fe]",
@@ -36,9 +34,8 @@ export function Photo({ src, alt, label, sizes, priority, className = "" }: Prop
   const stage = st.src === src ? st.stage : 0;
   const next = () => setSt({ src, stage: stage + 1 });
 
-  const pid = pexelsId(src);
   const remote = !!src && /^https?:\/\//.test(src);
-  const sources = pid ? [`/images/stock/pexels-${pid}.jpg`, src!] : src ? [src] : [];
+  const sources = src ? [src] : [];
   const current = sources[stage];
   const failed = !current;
 
@@ -54,7 +51,7 @@ export function Photo({ src, alt, label, sizes, priority, className = "" }: Prop
         >
           <Camera aria-hidden strokeWidth={1.25} className="absolute -right-6 -top-6 size-40 rotate-12 text-white/40" />
           <div className="absolute inset-0 grid place-items-center p-4">
-            <span className="max-w-[85%] rounded-full bg-white/80 px-3.5 py-1.5 text-center text-[12.5px] font-bold leading-tight text-navy-800 shadow-sm backdrop-blur">
+            <span className="max-w-[85%] rounded-full bg-white/80 px-3.5 py-1.5 text-center text-[14px] font-bold leading-tight text-navy-800 shadow-sm backdrop-blur">
               {label}
             </span>
           </div>

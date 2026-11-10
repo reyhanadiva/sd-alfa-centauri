@@ -20,7 +20,7 @@ function Curve({ edge }: { edge: "top" | "bottom" }) {
 }
 
 // Program Pendidikan Inklusif (LSU): gelap dan ringkas. Judul jelas ini program, tiga poin layanan,
-// lalu aktivitas pendampingan yang bergerak pelan sendiri dan bisa digeser. Tanpa tombol, tanpa foto anak.
+// lalu aktivitas pendampingan. Tanpa tombol, tanpa foto anak.
 export function Inklusi({ lang }: { lang: Lang }) {
   const { inklusi: k } = getT(lang);
   return (
@@ -36,18 +36,18 @@ export function Inklusi({ lang }: { lang: Lang }) {
         <div className="absolute left-1/2 top-0 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-brand-600/25 blur-[110px]" />
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-8 py-16 text-center lg:h-[calc(100svh-5rem)] lg:min-h-[44rem] lg:gap-10 lg:py-8">
+      <div className="flex flex-col items-center justify-center gap-8 py-16 text-center lg:gap-10 lg:py-16">
         <div className="px-5 sm:px-8">
-          <p className="mx-auto w-fit rounded-full bg-white/10 px-4 py-1.5 text-[13px] font-semibold text-white/85 ring-1 ring-white/20">
+          <p className="mx-auto w-fit rounded-full bg-white/10 px-4 py-1.5 text-[14px] font-semibold text-white/85 ring-1 ring-white/20">
             {k.badge}
           </p>
           <h2
             id="inklusi-title"
-            className="reveal mx-auto mt-5 max-w-5xl text-[2.6rem] font-semibold leading-[1.02] !text-white sm:text-6xl lg:text-[3.7rem]"
+            className="reveal mx-auto mt-5 max-w-5xl text-[2.6rem] font-medium leading-[1.02] !text-white sm:text-6xl lg:text-[3.7rem]"
           >
-            {k.title[0]}<span className="em-serif text-brand-300">{k.title[1]}</span>
+            {k.title[0]}{k.title[1]}
           </h2>
-          <p className="mt-3 text-lg text-white/70 sm:text-xl">{k.sub}</p>
+          <p className="mt-3 text-lg text-white/80 sm:text-xl">{k.sub}</p>
         </div>
 
         {/* Tiga poin layanan */}
@@ -62,15 +62,15 @@ export function Inklusi({ lang }: { lang: Lang }) {
               </span>
               <div>
                 <p className="text-[17px] font-semibold leading-snug text-white">{p.title}</p>
-                <p className="mt-0.5 text-[15px] leading-snug text-white/65">{p.desc}</p>
+                <p className="mt-0.5 text-[15px] leading-snug text-white/80">{p.desc}</p>
               </div>
             </li>
           ))}
         </ul>
 
-        {/* Aktivitas pendampingan: bergerak pelan, berhenti saat disentuh */}
+        {/* Aktivitas pendampingan */}
         <div className="reveal w-full">
-          <p className="mb-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/50">
+          <p className="mb-4 text-[14px] font-semibold tracking-wide text-white/80">
             {k.activitiesLabel}
           </p>
           <ActivityRail items={k.activities} label={k.activitiesLabel} />

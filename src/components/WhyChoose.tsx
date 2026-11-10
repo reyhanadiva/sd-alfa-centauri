@@ -21,15 +21,15 @@ export function WhyChoose({ lang }: { lang: Lang }) {
       <div className="mx-auto w-full max-w-[78rem]">
         <h2
           id="mengapa-title"
-          className="reveal text-center text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.4rem]"
+          className="reveal text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]"
         >
-          {why.title[0]}<span className="em-serif text-brand-600">{why.title[1]}</span>
+          {why.title[0]}{why.title[1]}
         </h2>
 
         <div className="mt-8 lg:mt-9">
         <SnapRail label={why.aria} className="sm:grid sm:grid-cols-2 lg:h-[min(34rem,calc(100svh-17rem))] lg:grid-cols-12 lg:grid-rows-2">
           {/* 1. Akreditasi: huruf raksasa */}
-          <article className="relative flex min-h-[22rem] flex-col overflow-hidden rounded-[2rem] bg-brand-100 p-7 sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:min-h-0">
+          <article id="akreditasi" className="relative flex min-h-[22rem] scroll-mt-24 flex-col overflow-hidden rounded-[1.25rem] bg-brand-100 p-7 sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:min-h-0">
             <h3 className="text-2xl font-semibold">{why.acc.title}</h3>
             <p className="mt-1.5 max-w-[17rem] text-[16px] leading-snug text-navy-700">
               {why.acc.text}
@@ -46,7 +46,7 @@ export function WhyChoose({ lang }: { lang: Lang }) {
           </article>
 
           {/* 2. Program unggulan: foto sebagai latar */}
-          <article className="relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[2rem] p-7 text-white sm:col-span-2 lg:col-span-8 lg:min-h-0">
+          <article className="relative isolate flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[1.25rem] p-7 text-white sm:col-span-2 lg:col-span-8 lg:min-h-0">
             <Photo
               src="/images/siswa-membaca.jpg"
               alt={why.prog.alt}
@@ -63,7 +63,7 @@ export function WhyChoose({ lang }: { lang: Lang }) {
           </article>
 
           {/* 3. Kemitraan SSC: tipografi di atas navy */}
-          <article className="relative flex min-h-[15rem] flex-col overflow-hidden rounded-[2rem] bg-navy-900 p-7 text-white lg:col-span-5 lg:min-h-0">
+          <article className="relative flex min-h-[15rem] flex-col overflow-hidden rounded-[1.25rem] bg-navy-900 p-7 text-white lg:col-span-5 lg:min-h-0">
             <p
               aria-hidden
               className="pointer-events-none absolute -bottom-6 -right-3 select-none font-display text-[8.5rem] font-semibold leading-none tracking-[-0.07em] text-white/[0.07]"
@@ -89,15 +89,15 @@ export function WhyChoose({ lang }: { lang: Lang }) {
             href={why.ask.wa}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex min-h-[10rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-brand-600 p-6 text-white transition hover:bg-brand-700 sm:col-span-2 lg:col-span-3 lg:min-h-0"
+            className="group relative flex min-h-[10rem] flex-col justify-between overflow-hidden rounded-[1.25rem] bg-brand-600 p-6 text-white transition hover:bg-brand-700 sm:col-span-2 lg:col-span-3 lg:min-h-0"
           >
             <span className="grid size-11 place-items-center rounded-full bg-white/15 ring-1 ring-white/30">
               <MessageCircle size={21} aria-hidden />
             </span>
             <div>
               <h3 className="text-xl font-semibold !text-white">{why.ask.title}</h3>
-              <p className="mt-1 inline-flex items-center gap-1.5 text-[15px] font-semibold text-white/90">
-                {why.ask.cta} <ArrowUpRight size={16} aria-hidden className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <p className="mt-1 inline-flex items-center gap-1.5 text-[15px] font-semibold text-white">
+                {why.ask.cta} <ArrowUpRight size={16} aria-hidden className="transition group-hover:translate-x-0.5" />
               </p>
             </div>
           </a>

@@ -6,7 +6,7 @@ export function LangToggle({ lang, label, className = "", onDark = false }: { la
     <div
       role="group"
       aria-label={label}
-      className={`flex items-center rounded-full p-0.5 text-[12px] font-bold transition-colors ${onDark ? "bg-white/15" : "bg-brand-50"} ${className}`}
+      className={`flex items-center rounded-full p-0.5 text-[13px] font-bold transition-colors ${onDark ? "bg-white/15" : "bg-brand-50"} ${className}`}
     >
       {(["id", "en"] as const).map((l) => (
         <a
@@ -19,8 +19,8 @@ export function LangToggle({ lang, label, className = "", onDark = false }: { la
             lang === l
               ? "bg-white text-navy-900 shadow-sm"
               : onDark
-                ? "text-white/80 hover:text-white"
-                : "text-navy-700/70 hover:text-navy-900"
+                ? "text-white hover:text-white"
+                : "text-navy-700 hover:text-navy-900"
           }`}
         >
           {l}
