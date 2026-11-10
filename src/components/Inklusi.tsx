@@ -2,6 +2,7 @@ import { getT, type Lang } from "@/lib/i18n";
 import { Star } from "./Doodles";
 import { Constellation } from "./Constellation";
 import { Icon } from "./icons";
+import { Words } from "./Words";
 
 // Tepi atas/bawah melengkung (bukan kotak) supaya peralihan antar section terasa mengalir.
 function Curve({ edge }: { edge: "top" | "bottom" }) {
@@ -43,9 +44,9 @@ export function Inklusi({ lang }: { lang: Lang }) {
           </p>
           <h2
             id="inklusi-title"
-            className="reveal mx-auto mt-5 max-w-5xl text-[2.6rem] font-medium leading-[1.02] !text-white sm:text-6xl lg:text-[3.7rem]"
+            className="mx-auto mt-5 max-w-5xl text-[2.6rem] font-medium leading-[1.02] !text-white sm:text-6xl lg:text-[3.7rem]"
           >
-            {k.title[0]}{k.title[1]}
+            <Words text={k.title[0] + k.title[1]} />
           </h2>
           <p className="mt-3 text-lg text-white/80 sm:text-xl">{k.sub}</p>
         </div>
@@ -73,7 +74,7 @@ export function Inklusi({ lang }: { lang: Lang }) {
           <p className="mb-4 text-[14px] font-semibold tracking-wide text-white/80">
             {k.activitiesLabel}
           </p>
-          <div className="px-5 sm:px-8"><Constellation items={k.activities} label={k.activitiesLabel} /></div>
+          <div className="px-5 sm:px-8 -mt-2"><Constellation items={k.activities} label={k.activitiesLabel} /></div>
         </div>
       </div>
     </section>

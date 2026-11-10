@@ -28,12 +28,19 @@ export function Navbar({ lang }: { lang: Lang }) {
       if (!h || hide === hiddenNow) return;
       hiddenNow = hide;
       const H = h.offsetHeight + 8;
-      // Hilang pelan (1,1 dtk), muncul lebih cepat (0,6 dtk)
-      h.style.transition = `transform ${hide ? 1100 : 600}ms cubic-bezier(0.45,0,0.2,1), opacity ${hide ? 900 : 500}ms ease, background-color 300ms, box-shadow 300ms, border-color 300ms`;
-      h.style.transform = `translateY(${hide ? -H : 0}px)`;
+      // Hilang: geser naik + memudar dengan kurva melambat (650 ms). Muncul: sedikit lebih cepat (450 ms).
+      // visibility ditunda sampai animasi selesai, supaya tidak "putus" di tengah jalan; saat muncul langsung terlihat.
+      const d = hide ? 650 : 450;
+      h.style.transition = [
+        `transform ${d}ms cubic-bezier(0.22,1,0.36,1)`,
+        `opacity ${hide ? 500 : 300}ms cubic-bezier(0.4,0,0.2,1)`,
+        `visibility 0s linear ${hide ? d : 0}ms`,
+        "background-color 300ms, box-shadow 300ms, border-color 300ms",
+      ].join(", ");
+      h.style.transform = `translate3d(0, ${hide ? -H : 0}px, 0)`;
       h.style.opacity = hide ? "0" : "1";
       h.style.pointerEvents = hide ? "none" : "";
-      h.style.visibility = hide ? "hidden" : "";
+      h.style.visibility = hide ? "hidden" : "visible";
     };
     const update = () => {
       raf = 0;
@@ -88,7 +95,7 @@ export function Navbar({ lang }: { lang: Lang }) {
         ref={head}
         className={`fixed inset-x-0 top-0 z-50 will-change-transform ${
           solid
-            ? "border-b border-brand-100/70 bg-white/50 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.35)] backdrop-blur-2xl backdrop-saturate-150"
+            ? "border-b border-brand-100/70 bg-white/75 shadow-[0_8px_30px_-18px_rgb(15_42_92/0.35)] backdrop-blur-xl"
             : "border-b border-transparent bg-transparent"
         }`}
       >

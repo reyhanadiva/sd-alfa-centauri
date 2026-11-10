@@ -2,6 +2,7 @@ import { getT, type Lang } from "@/lib/i18n";
 import { CountUp } from "./CountUp";
 import { Star } from "./Doodles";
 import { SnapRail } from "./SnapRail";
+import { Words } from "./Words";
 
 // Total prestasi (angka besar) + sorotan per kategori. Tanpa tombol: halaman prestasi lengkap belum ada.
 // Semua angka/nama lomba masih placeholder (lihat `prestasi` di site.ts).
@@ -16,8 +17,8 @@ export function Prestasi({ lang }: { lang: Lang }) {
       className="px-5 py-16 sm:px-8 lg:py-20"
     >
       <div className="mx-auto w-full max-w-[78rem]">
-        <h2 id="prestasi-title" className="reveal text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
-          {prestasi.title[0]}{prestasi.title[1]}
+        <h2 id="prestasi-title" className="text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
+          <Words text={prestasi.title[0] + prestasi.title[1]} />
         </h2>
 
         <div className="mt-8 grid gap-3.5 lg:mt-9 lg:h-[min(32rem,calc(100svh-17rem))] lg:grid-cols-[0.8fr_1.4fr]">

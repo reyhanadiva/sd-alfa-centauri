@@ -6,14 +6,11 @@ import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { Photo } from "./Photo";
 import { SnapRail } from "./SnapRail";
 
-// Galeri kegiatan: kartu mengipas di bawah judul besar; klik untuk memperbesar. Isi: `galeri` di site.ts.
+// Galeri kegiatan: "gulungan film". Di layar lebar section dipin dan kartu foto bergerak horizontal saat halaman\n// di-scroll (foto di dalam kartu ber-parallax, chip "Lihat" mengikuti kursor). Di ponsel/tablet: geser biasa.\n// Klik kartu untuk memperbesar. Isi: `galeri` di content/*.ts.
 export function Galeri({ lang }: { lang: Lang }) {
   const g = getT(lang).galeri;
   const galeri = g.items;
-  const N = galeri.length;
-  const mid = (N - 1) / 2;
   const [zoom, setZoom] = useState<number | null>(null);
-  const [focus, setFocus] = useState(Math.floor(mid)); // kartu yang sedang di-hover/fokus, judulnya tampil di bawah kipas
   const [slide, setSlide] = useState(0); // foto ke-berapa dalam kegiatan yang dibuka
   const rail = useRef<HTMLUListElement>(null);
   const z = zoom === null ? null : galeri[zoom];
@@ -38,58 +35,150 @@ export function Galeri({ lang }: { lang: Lang }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [zoom]);
+  // ---------- Layar lebar: section "dipin", kartu bergerak horizontal mengikuti scroll ----------
+  const sec = useRef<HTMLElement>(null);
+  const track = useRef<HTMLUListElement>(null);
+  const bar = useRef<HTMLDivElement>(null);
+  const chip = useRef<HTMLDivElement>(null);
+  const span = useRef(0); // jarak geser horizontal maksimum (px)
+  useEffect(() => {
+    const s = sec.current, t = track.current;
+    if (!s || !t) return;
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let raf = 0;
+    const frame = () => {
+      raf = 0;
+      if (!mq.matches) return;
+      const vh = window.innerHeight;
+      const r = s.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - vh)));
+      t.style.transform = `translate3d(${-p * span.current}px,0,0)`;
+      if (bar.current) bar.current.style.transform = `scaleX(${p})`;
+      if (still.matches) return;
+      // Parallax foto di dalam kartu: bergeser berlawanan arah dengan posisi kartu terhadap tengah layar
+      const vw = window.innerWidth;
+      t.querySelectorAll<HTMLElement>("[data-card]").forEach((c) => {
+        const b = c.getBoundingClientRect();
+        if (b.right < -200 || b.left > vw + 200) return;
+        c.style.setProperty("--o", (((b.left + b.width / 2) - vw / 2) / vw).toFixed(3));
+      });
+    };
+    const measure = () => {
+      if (!mq.matches) { s.style.height = ""; t.style.transform = ""; return; }
+      span.current = Math.max(0, t.scrollWidth - window.innerWidth);
+      s.style.height = `${window.innerHeight + span.current}px`;
+      frame();
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(t);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", measure);
+    mq.addEventListener("change", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+      mq.removeEventListener("change", measure);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Fokus keyboard ke kartu yang belum terlihat: gulir halaman sampai kartu itu ada di tengah
+  const reveal = (el: HTMLElement) => {
+    const s = sec.current, t = track.current;
+    if (!s || !t || !window.matchMedia("(min-width: 1024px)").matches || span.current === 0) return;
+    const want = el.offsetLeft - (window.innerWidth - el.offsetWidth) / 2;
+    const p = Math.min(1, Math.max(0, want / span.current));
+    window.scrollTo({ top: s.offsetTop + p * span.current, behavior: "instant" as ScrollBehavior });
+  };
+
+  // Chip "Lihat" yang mengikuti kursor di atas kartu
+  const moveChip = (e: React.PointerEvent) => {
+    const c = chip.current;
+    if (!c || e.pointerType !== "mouse") return;
+    const over = !!(e.target as HTMLElement).closest("[data-card]");
+    c.style.translate = `${e.clientX}px ${e.clientY}px`;
+    c.dataset.on = over ? "1" : "";
+  };
+
   return (
-    <section id="galeri" aria-labelledby="galeri-title" className="relative overflow-hidden bg-gradient-to-b from-white via-paper to-white px-5 py-14 sm:px-8 lg:py-20">
-      <div className="mx-auto w-full max-w-[78rem] [--u:2.6rem] sm:[--u:5.2rem] lg:[--u:7.6rem]">
-        <h2 id="galeri-title" className="text-center text-[clamp(3rem,8.5vw,7.25rem)] font-medium leading-[0.95] tracking-[-0.03em]">
-          {g.title[0]}{g.title[1]}
-        </h2>
-
-        <ul aria-label={g.aria} className="relative mx-auto mt-6 hidden h-[min(17rem,32svh)] sm:mb-10 sm:block">
-          {galeri.map((x, k) => {
-            const d = k - mid;
-            return (
-              <li
-                key={x.title}
-                onMouseEnter={() => setFocus(k)}
-                onFocus={() => setFocus(k)}
-                style={{ "--d": d, zIndex: 20 - Math.round(Math.abs(d) * 2) } as React.CSSProperties}
-                className="group absolute left-1/2 top-0 -ml-[4.5rem] h-full w-[9rem] translate-x-[calc(var(--d)*var(--u))] translate-y-[calc(var(--d)*var(--d)*0.45rem)] rotate-[calc(var(--d)*4.5deg)] hover:z-50 focus-within:z-50 sm:-ml-[5.5rem] sm:w-[11rem] lg:-ml-[6.5rem] lg:w-[13rem]"
+    <section ref={sec} id="galeri" aria-label={g.aria} className="relative bg-navy-900 text-white">
+      {/* ---------- Layar lebar ---------- */}
+      <div className="sticky top-0 hidden h-[100svh] overflow-hidden lg:block">
+        <div aria-hidden className="pointer-events-none absolute -left-40 top-1/4 h-[30rem] w-[40rem] rounded-full bg-brand-600/25 blur-[120px]" />
+        <ul
+          ref={track}
+          aria-label={g.aria}
+          onPointerMove={moveChip}
+          onPointerLeave={() => chip.current && (chip.current.dataset.on = "")}
+          className="relative flex h-full items-center gap-8 pl-[6vw] pr-[12vw] will-change-transform"
+        >
+          <li className="w-[32rem] shrink-0 pr-8">
+            <h2 className="text-[clamp(4.5rem,8vw,8rem)] font-medium leading-[0.92] tracking-[-0.03em] !text-white">
+              {g.title[0]}
+              <span className="em-serif block text-gold-300">{g.title[1]}</span>
+            </h2>
+            <p className="mt-6 max-w-xs text-[17px] leading-relaxed text-white/80">{galeri.length} {lang === "en" ? "moments from the school year. Keep scrolling." : "momen dari keseharian sekolah. Terus gulir."}</p>
+          </li>
+          {galeri.map((x, k) => (
+            <li key={x.title} className={`shrink-0 ${k % 2 ? "translate-y-10" : "-translate-y-6"}`}>
+              <button
+                type="button"
+                data-card
+                onClick={() => open(k)}
+                onFocus={(e) => reveal(e.currentTarget)}
+                aria-label={g.zoom.replace("{x}", x.title)}
+                className="group block cursor-none text-left"
               >
-                <button
-                  type="button"
-                  onClick={() => open(k)}
-                  aria-label={g.zoom.replace("{x}", x.title)}
-                  className="relative isolate block size-full cursor-zoom-in overflow-hidden rounded-xl text-left shadow-lift ring-4 ring-white transition duration-500 ease-out group-hover:-translate-y-5 group-hover:scale-105 group-hover:rotate-[calc(var(--d)*-4.5deg)] group-focus-within:-translate-y-5 group-focus-within:scale-105 group-focus-within:rotate-[calc(var(--d)*-4.5deg)]"
-                >
-                  <Photo src={x.photo} alt="" label={x.title} sizes="208px" className="-z-20" />
-                  <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
-                </button>
-              </li>
-            );
-          })}
+                <span className={`relative isolate block overflow-hidden rounded-xl bg-navy-800 ${k % 3 === 1 ? "h-[min(28rem,56svh)] w-[min(24rem,30vw)]" : "h-[min(34rem,66svh)] w-[min(27rem,34vw)]"}`}>
+                  <span className="absolute inset-[-8%] block transition-transform duration-700 ease-out group-hover:scale-[1.04]" style={{ translate: "calc(var(--o, 0) * -9%) 0" }}>
+                    <Photo src={x.photo} alt="" label={x.title} sizes="440px" />
+                  </span>
+                  <span aria-hidden className="absolute inset-0 bg-navy-900/10 transition group-hover:bg-transparent" />
+                </span>
+                <span className="mt-4 block font-display text-[1.6rem] font-medium leading-tight text-white">{x.title}</span>
+                <span className="mt-1 block max-w-[22rem] text-[15px] text-white/75">{x.caption}</span>
+              </button>
+            </li>
+          ))}
         </ul>
-        {/* Judul kartu yang sedang disorot: kartu saling menimpa, jadi judul ditaruh di bawah kipas */}
-        <div aria-live="polite" className="hidden text-center sm:block">
-          <p key={focus} className="fade-in text-2xl font-semibold text-navy-900">{galeri[focus].title}</p>
-          <p className="mt-1 text-[16px] text-navy-700">{galeri[focus].caption}</p>
+        {/* Garis progres galeri */}
+        <div aria-hidden className="absolute inset-x-[6vw] bottom-8 h-px bg-white/15">
+          <div ref={bar} className="h-full origin-left scale-x-0 bg-gold-300" />
         </div>
+        {/* Chip kursor */}
+        <div
+          ref={chip}
+          aria-hidden
+          className="pointer-events-none fixed left-0 top-0 z-30 -ml-11 -mt-11 grid size-22 scale-0 place-items-center rounded-full bg-gold-300 text-[14px] font-bold text-navy-900 opacity-0 transition-[scale,opacity] duration-300 data-[on=1]:scale-100 data-[on=1]:opacity-100"
+        >
+          {lang === "en" ? "View" : "Lihat"}
+        </div>
+      </div>
 
-        {/* Ponsel: geser satu per satu (kipas hanya untuk layar lebar) */}
-        <div className="mt-8 sm:hidden">
-          <SnapRail label={g.aria} basis="72%">
+      {/* ---------- Ponsel & tablet: judul + geser satu per satu ---------- */}
+      <div className="px-5 py-16 sm:px-8 lg:hidden">
+        <h2 className="text-[clamp(3rem,12vw,5rem)] font-medium leading-[0.95] tracking-[-0.03em] !text-white">
+          {g.title[0]}
+          <span className="em-serif text-gold-300">{g.title[1]}</span>
+        </h2>
+        <div className="mt-8">
+          <SnapRail label={g.aria} basis="72%" className="sm:grid sm:grid-cols-3 sm:gap-4">
             {galeri.map((x, k) => (
               <button
                 key={x.title}
                 type="button"
                 onClick={() => open(k)}
                 aria-label={g.zoom.replace("{x}", x.title)}
-                className="relative isolate block aspect-[4/5] overflow-hidden rounded-[1.25rem] text-left shadow-lift ring-4 ring-white"
+                className="relative isolate block aspect-[4/5] w-full overflow-hidden rounded-xl text-left"
               >
-                <Photo src={x.photo} alt="" label={x.title} sizes="70vw" className="-z-20" />
+                <Photo src={x.photo} alt="" label={x.title} sizes="(min-width: 640px) 33vw, 70vw" className="-z-20" />
                 <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/85 via-transparent to-transparent" />
                 <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-navy-900"><Maximize2 size={15} aria-hidden /></span>
-                <span className="absolute inset-x-4 bottom-4 text-lg font-semibold leading-tight text-white">{x.title}</span>
+                <span className="absolute inset-x-4 bottom-4 font-display text-xl font-medium leading-tight text-white">{x.title}</span>
               </button>
             ))}
           </SnapRail>
