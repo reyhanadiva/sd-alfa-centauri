@@ -217,7 +217,7 @@ export const en: Content = {
   },
 
   faq: {
-    title: ["What parents ", "often ask"],
+    title: ["Common ", "questions"],
     photoAlt: "SD Alfa Centauri students reading together", photoLabel: "Classroom atmosphere",
     noAnswer: "Need further information?", help: "Our admin team is available to assist you via WhatsApp.", ask: "Contact admin via WhatsApp",
     askWa: wa("I would like to ask about: "),

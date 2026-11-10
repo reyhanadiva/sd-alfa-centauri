@@ -2,7 +2,9 @@ import Image from "next/image";
 import { ArrowUpRight, Download, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { lokasi, site, thisYear } from "@/lib/site";
 import { getT, type Lang } from "@/lib/i18n";
-import { BinaryStar, Cloud, Twinkles } from "./Sky";
+import { BinaryStar, DriftingClouds, StarDust, Twinkles } from "./Sky";
+import { Magnetic } from "./Magnetic";
+import { PointerSky } from "./PointerSky";
 
 function InstagramIcon() {
   return (
@@ -13,21 +15,22 @@ function InstagramIcon() {
 }
 
 // Penutup satu adegan: langit malam (CTA) → bukit → footer di atas warna bukit
-// yang sama, jadi tanpa sambungan. Elemen bergerak: satu-satunya "momen" gerak di halaman: bintang berkedip pelan dan bintang kembar
-// mengorbit. Reduce-motion dimatikan lewat CSS global.
+// yang sama, jadi tanpa sambungan. Elemen bergerak: momen gerak penutup: langit berlapis yang bergeser mengikuti kursor (parallax),
+// bintang kembar mengorbit, awan menyeberang di punggung bukit. Reduce-motion dimatikan lewat CSS global.
 export function Closing({ lang }: { lang: Lang }) {
   const { closing: c, lokasi: loc } = getT(lang);
   return (
-    <div className="relative isolate overflow-hidden rounded-t-[3rem] bg-gradient-to-b from-navy-800 via-navy-900 to-navy-900 text-white sm:rounded-t-[4.5rem]">
+    <PointerSky className="relative isolate overflow-hidden rounded-t-[3rem] bg-gradient-to-b from-navy-800 via-navy-900 to-navy-900 text-white sm:rounded-t-[4.5rem]">
       {/* ---------- CTA ---------- */}
       <section id="spmb" aria-labelledby="cta-title" className="relative px-5 pb-24 pt-20 text-center sm:px-8 sm:pt-28">
         <div aria-hidden className="absolute inset-0 overflow-hidden">
-          <div aria-hidden className="absolute -top-40 left-1/2 h-[34rem] w-[60rem] -translate-x-1/2 rounded-full bg-brand-600/35 blur-[120px]" />
-          <Twinkles color="text-white" />
+          <div aria-hidden className="depth absolute -top-40 left-1/2 h-[34rem] w-[60rem] -translate-x-1/2 rounded-full bg-brand-600/35 blur-[120px]" style={{ "--depth": "40px" } as React.CSSProperties} />
+          <div className="depth absolute -inset-8" style={{ "--depth": "-8px" } as React.CSSProperties}><StarDust /></div>
+          <div className="depth absolute -inset-8" style={{ "--depth": "-20px" } as React.CSSProperties}><Twinkles color="text-white" /></div>
         </div>
 
         <div className="relative mx-auto flex max-w-3xl flex-col items-center">
-          <BinaryStar className="size-28 sm:size-36" />
+          <div className="depth" style={{ "--depth": "18px" } as React.CSSProperties}><BinaryStar className="size-28 sm:size-36" /></div>
           <h2 id="cta-title" className="mt-9 text-[2.6rem] font-medium leading-[1.02] !text-white sm:text-6xl lg:text-[4.4rem]">
             {c.title[0]}<span className="em-serif text-brand-300">{c.title[1]}</span>
           </h2>
@@ -35,14 +38,16 @@ export function Closing({ lang }: { lang: Lang }) {
             {c.text}
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <Magnetic>
             <a
               href={c.registerWa}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-[17px] font-bold text-navy-900 transition hover:-translate-y-0.5 hover:bg-brand-50"
+              className="btn-gold inline-flex items-center gap-2 rounded-full px-8 py-4 text-[17px] font-bold"
             >
               {c.register} <ArrowUpRight size={20} aria-hidden />
             </a>
+            </Magnetic>
             <a
               href={c.askWa}
               target="_blank"
@@ -63,13 +68,14 @@ export function Closing({ lang }: { lang: Lang }) {
       </section>
 
       {/* ---------- Bukit + sekolah ---------- */}
-      <div aria-hidden className="relative -mb-px h-44 sm:h-64">
+      <div aria-hidden className="relative -mb-px h-48 overflow-hidden sm:h-72">
         <svg viewBox="0 0 1440 260" preserveAspectRatio="none" className="absolute inset-0 size-full">
           <path d="M0 120C200 60 380 70 560 110s360 70 560 20 240-40 320-20V260H0Z" fill="#173a7a" />
         </svg>
-        {/* Awan menggantung di punggung bukit, bergoyang pelan */}
-        <div className="absolute bottom-[42%] left-[8%] w-56 opacity-20 sm:w-80"><Cloud /></div>
-        <div className="absolute bottom-[38%] right-[6%] w-48 opacity-[0.16] sm:w-72" style={{ animationDelay: "-6s" }}><Cloud /></div>
+        {/* Awan melayang menyeberang di antara bukit belakang dan depan, ikut bergeser sedikit mengikuti kursor */}
+        <div className="depth absolute inset-0" style={{ "--depth": "14px" } as React.CSSProperties}>
+          <DriftingClouds />
+        </div>
         <svg viewBox="0 0 1440 260" preserveAspectRatio="none" className="absolute inset-0 size-full">
           <path d="M0 160c220-60 460-40 700 10s520 40 740-20V260H0Z" fill="#0f2a5c" />
           <path d="M0 215c260-40 560-30 820 0s400 25 620-5V260H0Z" fill="#0a1c40" />
@@ -128,6 +134,6 @@ export function Closing({ lang }: { lang: Lang }) {
           </div>
         </div>
       </footer>
-    </div>
+    </PointerSky>
   );
 }
