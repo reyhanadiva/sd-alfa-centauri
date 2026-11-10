@@ -82,7 +82,7 @@ export function Testimoni({ lang }: { lang: Lang }) {
                 data-k={k}
                 className="lg:flex lg:min-h-[78svh] lg:items-center"
               >
-                <figure className={`transition-opacity duration-700 lg:py-10 ${on ? "lg:opacity-100" : "lg:opacity-25"}`}>
+                <figure data-on={on || undefined} className="group/q lg:py-10">
                   {/* Ponsel/tablet: foto dan nama di atas kutipan */}
                   <figcaption className="mb-6 flex items-center gap-4 lg:hidden">
                     <span className="relative grid size-16 shrink-0 place-items-center overflow-hidden rounded-full bg-paper-line font-display text-2xl text-brand-600">
@@ -95,8 +95,8 @@ export function Testimoni({ lang }: { lang: Lang }) {
                   </figcaption>
 
                   <blockquote>
-                    <p className="font-display text-[2rem] font-normal leading-[1.12] tracking-[-0.02em] text-navy-900 sm:text-[2.6rem] lg:text-[3.1rem]">
-                      <Rich text={`“${t.highlight}”`} strong="em-serif text-brand-700" />
+                    <p className="font-display text-[2rem] font-normal leading-[1.12] tracking-[-0.02em] text-navy-900 transition-colors duration-700 sm:text-[2.6rem] lg:text-[3.1rem] lg:text-[#737888] lg:group-data-[on]/q:text-navy-900">
+                      <Rich text={`“${t.highlight}”`} strong="em-serif text-brand-700 transition-colors duration-700 lg:text-[#737888] lg:group-data-[on]/q:text-brand-700" />
                     </p>
                     <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-navy-700">{t.quote}</p>
                   </blockquote>
