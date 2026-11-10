@@ -384,3 +384,14 @@ html {
 }
 .rise[data-armed] .w { opacity: 0; transform: translateY(0.55em); filter: blur(6px); }
 .rise[data-armed][data-in] .w { opacity: 1; transform: none; filter: none; }
+
+/* Blok yang muncul dari kabur menjadi jelas (video dan kartu di bawah hero) */
+.blur-in {
+  transition: opacity 900ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 1000ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 900ms ease;
+  transition-delay: var(--d, 0ms);
+}
+.blur-in[data-armed] { opacity: 0; transform: translateY(1.5rem); filter: blur(14px); }
+.blur-in[data-armed][data-in] { opacity: 1; transform: none; filter: none; }
+@media (prefers-reduced-motion: reduce) {
+  .blur-in { transition: none; }
+}
