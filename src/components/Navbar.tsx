@@ -50,7 +50,8 @@ export function Navbar({ lang }: { lang: Lang }) {
       setSolid(y > heroEnd);
       // garis progres baca halaman (tanpa render ulang)
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
+      // pakai properti `scale` (bukan transform): kelas Tailwind v4 scale-x-0 memakai `scale` dan akan menimpa transform
+      if (bar.current) bar.current.style.scale = `${max > 0 ? Math.min(1, y / max) : 0} 1`;
       const delta = y - last;
       last = y;
       // Navbar menggantung: tetap diam sepanjang hero dan ±700px scroll turun setelahnya, baru perlahan naik dan hilang.
@@ -89,7 +90,7 @@ export function Navbar({ lang }: { lang: Lang }) {
 
   return (
     <>
-      <div ref={bar} aria-hidden className="fixed inset-x-0 top-0 z-[55] h-[3px] origin-left scale-x-0 bg-brand-500" />
+      <div ref={bar} aria-hidden className="fixed inset-x-0 top-0 z-[55] h-[3px] origin-left bg-gold-400" style={{ scale: "0 1" }} />
       {/* Transparan di atas hero (teks putih), solid setelah melewati hero. Sembunyi saat scroll turun. */}
       <header
         ref={head}
