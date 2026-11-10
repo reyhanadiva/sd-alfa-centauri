@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MessageCircle, Minus, Plus } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
+import { Words } from "./Words";
 
 // FAQ: foto + tombol "tanya admin" di kiri (membuka WhatsApp dengan pesan template; tanpa backend),
 // daftar pertanyaan di kanan (satu terbuka, transisi tinggi halus).
@@ -19,8 +20,8 @@ export function Faq({ lang }: { lang: Lang }) {
       className="px-5 py-16 sm:px-8 lg:py-20"
     >
       <div className="mx-auto w-full max-w-[78rem]">
-        <h2 id="faq-title" className="reveal text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
-          {faq.title[0]}{faq.title[1]}
+        <h2 id="faq-title" className="text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
+          <Words text={faq.title[0] + faq.title[1]} />
         </h2>
 
         <div className="mt-8 grid gap-3.5 lg:mt-9 lg:min-h-[32rem] lg:grid-cols-[0.8fr_1.2fr]">

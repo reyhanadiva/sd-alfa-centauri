@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Pause, Play, Quote, X } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 import { Rich } from "./Rich";
+import { Words } from "./Words";
 
 const tint = ["bg-brand-100 text-brand-700", "bg-[#e6f9f0] text-[#13795b]", "bg-[#fff1e6] text-[#b4531a]"];
 const MS = 6000;
@@ -55,8 +56,8 @@ export function Testimoni({ lang }: { lang: Lang }) {
         className="relative mx-auto w-full max-w-[78rem] overflow-hidden rounded-[1.25rem] bg-paper p-6 sm:p-10 lg:p-12"
       >
         <Quote aria-hidden size={240} strokeWidth={1} className="pointer-events-none absolute -right-6 -top-8 rotate-180 text-paper-line" />
-        <h2 id="testimoni-title" className="reveal relative text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
-          {ui.title[0]}{ui.title[1]}
+        <h2 id="testimoni-title" className="relative text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
+          <Words text={ui.title[0] + ui.title[1]} />
         </h2>
 
         <div className="relative mt-8 grid items-center gap-7 lg:mt-10 lg:grid-cols-[18rem_1fr] lg:gap-12">

@@ -6,6 +6,7 @@ import { CertificateDialog } from "./CertificateDialog";
 import { Angka } from "./Angka";
 import { Photo } from "./Photo";
 import { SnapRail } from "./SnapRail";
+import { Words } from "./Words";
 
 // Tiga alasan (Akreditasi A, Program Unggulan Terpadu, Kemitraan SSC) + satu kartu tanya admin.
 // Tiap kartu sengaja beda gaya: huruf raksasa, foto latar, tipografi di atas navy, kartu bergaya form.
@@ -21,9 +22,9 @@ export function WhyChoose({ lang }: { lang: Lang }) {
       <div className="mx-auto w-full max-w-[78rem]">
         <h2
           id="mengapa-title"
-          className="reveal text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]"
+          className="text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]"
         >
-          {why.title[0]}{why.title[1]}
+          <Words text={why.title[0] + why.title[1]} />
         </h2>
 
         <div className="mt-8 lg:mt-9">

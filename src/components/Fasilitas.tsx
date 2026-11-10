@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
+import { Words } from "./Words";
 
 // Fasilitas: satu foto besar + daftar pilihan. Berganti otomatis tiap 5 detik, ada tombol jeda; berhenti sendiri setelah pengunjung memilih.
 // Isi: lihat `fasilitas` di site.ts (hanya yang tertulis di website lama).
@@ -13,8 +14,7 @@ type F = ReturnType<typeof getT>["fasilitas"];
 
 const H2 = ({ f, className = "", light = false, id = "fasilitas-title" }: { f: F; className?: string; light?: boolean; id?: string }) => (
   <h2 id={id} className={`text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem] ${light ? "!text-white" : ""} ${className}`}>
-    {f.title[0]}
-    {f.title[1]}
+    <Words text={f.title[0] + f.title[1]} />
   </h2>
 );
 

@@ -5,6 +5,7 @@ import { getT, type Lang } from "@/lib/i18n";
 import { EkskulPanel } from "./EkskulPanel";
 import { Icon } from "./icons";
 import { Photo } from "./Photo";
+import { Words } from "./Words";
 
 // Explorer program: tiga ranah (Taqwa, Cerdas, Kreatif) sebagai tab di kiri,
 // ekstrakurikuler sebagai kisi ikon di kanan. Satu layar, tanpa paragraf panjang.
@@ -25,9 +26,9 @@ export function Program({ lang }: { lang: Lang }) {
       <div className="mx-auto w-full max-w-[78rem]">
         <h2
           id="program-title"
-          className="reveal text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]"
+          className="text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]"
         >
-          {program.title[0]}{program.title[1]}
+          <Words text={program.title[0] + program.title[1]} />
         </h2>
 
         <div className="mt-8 grid gap-3.5 lg:mt-9 lg:min-h-[31rem] lg:grid-cols-[1.45fr_1fr]">

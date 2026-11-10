@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 import { SnapRail } from "./SnapRail";
+import { Words } from "./Words";
 
 const pastel = ["bg-brand-100", "bg-[#e3f4ff]", "bg-[#e6f9f0]", "bg-[#fff1e6]"];
 
@@ -20,7 +21,7 @@ export function Berita({ lang }: { lang: Lang }) {
         <div className="reveal flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
           <div>
             <h2 id="berita-title" className="text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-[3.75rem]">
-              {berita.title[0]}{berita.title[1]}
+              <Words text={berita.title[0] + berita.title[1]} />
             </h2>
             <p className="mt-3 max-w-md text-[17px] text-navy-700">{berita.sub}</p>
           </div>

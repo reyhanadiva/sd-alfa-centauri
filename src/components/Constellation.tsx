@@ -106,19 +106,19 @@ export function Constellation({ items, label }: { items: readonly Item[]; label:
       ref={box}
       onPointerMove={onMove}
       onPointerLeave={() => setOn(-1)}
-      className="group/c relative mx-auto h-[38rem] w-full max-w-[72rem] overflow-hidden rounded-[1.75rem] bg-[radial-gradient(ellipse_at_top,rgb(47_107_234/0.28),transparent_60%)] ring-1 ring-white/10 sm:h-[26rem]"
+      className="group/c relative mx-auto h-[38rem] w-full max-w-[80rem] sm:h-[28rem]"
     >
       {/* Senter kursor */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/c:opacity-100"
-        style={{ background: "radial-gradient(16rem circle at var(--sx, 50%) var(--sy, 50%), rgb(111 162 255 / 0.22), transparent 70%)" }}
+        style={{ background: "radial-gradient(20rem circle at var(--sx, 50%) var(--sy, 50%), rgb(111 162 255 / 0.2), transparent 70%)" }}
       />
 
       {/* Debu bintang, bergeser berlawanan arah kursor */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-6 transition-transform duration-700 ease-out"
+        className="pointer-events-none absolute -inset-x-[10%] -inset-y-16 transition-transform duration-700 ease-out [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_75%)]"
         style={{ transform: "translate(calc(var(--px, 0) * -14px), calc(var(--py, 0) * -10px))" }}
       >
         {DUST.map((s, i) => (
