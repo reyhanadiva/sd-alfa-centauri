@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { links } from "@/lib/site";
 import { getT, type Lang } from "@/lib/i18n";
 import { Rich } from "./Rich";
@@ -35,9 +36,10 @@ export function About({ lang }: { lang: Lang }) {
               href={links.yayasan}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-brand-700 underline decoration-brand-400 decoration-2 underline-offset-[5px] transition hover:text-brand-600 hover:decoration-brand-600"
+              className="group/l -mx-1 rounded-sm px-1 font-bold text-navy-900 [background:linear-gradient(transparent_58%,var(--color-gold-300)_58%)] [box-decoration-break:clone] hover:[background:var(--color-gold-300)]"
             >
               {split(about.link, nLead + nQuote + nTail)}
+              <ArrowUpRight aria-hidden className="ml-0.5 inline size-[0.8em] -translate-y-0.5 transition-transform group-hover/l:-translate-y-1 group-hover/l:translate-x-0.5" />
             </a>
             .
           </Rise>
