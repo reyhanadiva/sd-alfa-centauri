@@ -35,7 +35,7 @@ export function About({ lang }: { lang: Lang }) {
               href={links.yayasan}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-navy-900 underline decoration-brand-400 decoration-2 underline-offset-[5px] transition hover:text-brand-600"
+              className="font-semibold text-brand-700 underline decoration-brand-400 decoration-2 underline-offset-[5px] transition hover:text-brand-600 hover:decoration-brand-600"
             >
               {split(about.link, nLead + nQuote + nTail)}
             </a>
