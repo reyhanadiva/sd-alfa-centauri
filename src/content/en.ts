@@ -61,7 +61,7 @@ export const en: Content = {
   ],
 
   hero: {
-    alt: "SD Alfa Centauri school building on Jalan Terate No. 10, Bandung",
+    alt: "Two SD Alfa Centauri students in sports uniform smiling, holding a racket and a basketball",
     sub: "Raising children who are **Taqwa** (devout), **Cerdas** (smart), and **Kreatif** (creative).",
     register: "Apply Now",
     accredited: "Accredited by BAN-S/M",

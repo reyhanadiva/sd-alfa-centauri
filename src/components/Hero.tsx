@@ -22,18 +22,18 @@ export function Hero({ lang }: { lang: Lang }) {
     >
       <div className="hero-par absolute inset-0 -z-20">
         <Image
-          src="/images/gedung-sd.jpg"
+          src="/images/siswa-olahraga.jpg"
           alt={hero.alt}
           fill
           priority
           sizes="100vw"
-          className="hero-zoom object-cover object-[50%_32%]"
+          className="hero-zoom object-cover object-[52%_30%] lg:object-[60%_28%]"
         />
       </div>
       {/* Atas gelap tipis untuk navbar, bawah gelap untuk headline */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-navy-900/60 via-transparent to-transparent [mask-image:linear-gradient(to_bottom,black,transparent_30%)]" />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/92 via-navy-900/45 to-navy-900/0" />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900/45 to-transparent" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-900/90 via-navy-900/25 to-transparent" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900/40 via-transparent to-transparent" />
 
       <div className="mx-auto flex w-full max-w-[88rem] flex-col gap-8 px-5 pb-8 pt-32 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:pb-12 lg:pr-24">
         <div>

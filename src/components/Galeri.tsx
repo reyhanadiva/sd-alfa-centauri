@@ -126,14 +126,10 @@ export function Galeri({ lang }: { lang: Lang }) {
               </ul>
             ))}
           </div>
-          {/* Ponsel & tablet: 2 kolom, tanpa parallax */}
-          <div className="grid grid-cols-2 items-start gap-3 sm:gap-4 lg:hidden">
-            {cols(2).map((col, c) => (
-              <ul key={c} aria-label={c === 0 ? g.aria : undefined} className={`flex flex-col gap-3 sm:gap-4 ${c === 1 ? "mt-10" : ""}`}>
-                {col.map((k) => tile(k))}
-              </ul>
-            ))}
-          </div>
+          {/* Ponsel & tablet: grid rata (foto pertama melebar di ponsel supaya jumlah ganjil tidak menyisakan lubang) */}
+          <ul aria-label={g.aria} className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:hidden">
+            {galeri.map((_, k) => tile(k, "[&>button]:!aspect-[4/5]" + (k === 0 && galeri.length % 2 === 1 ? " col-span-2 sm:col-span-1 [&>button]:!aspect-[16/10] sm:[&>button]:!aspect-[4/5]" : "")))}
+          </ul>
         </div>
       </div>
 

@@ -26,6 +26,16 @@ export function Testimoni({ lang }: { lang: Lang }) {
     return () => io.disconnect();
   }, []);
 
+  // Ponsel/tablet: kartu digeser ke samping; titik penanda mengikuti kartu yang terlihat
+  const rail = useRef<HTMLOListElement>(null);
+  const [slide, setSlide] = useState(0);
+  const onRail = () => {
+    const el = rail.current;
+    const first = el?.firstElementChild as HTMLElement | null;
+    if (!el || !first || el.scrollWidth <= el.clientWidth) return;
+    setSlide(Math.min(items.length - 1, Math.round(el.scrollLeft / (first.offsetWidth + 16))));
+  };
+
   const initial = (name: string) => name.replace(/^(dr\.|Dr\.)\s*/, "").replace("[", "").charAt(0);
 
   return (
@@ -72,7 +82,14 @@ export function Testimoni({ lang }: { lang: Lang }) {
         </div>
 
         {/* ---------- Kanan: kutipan ---------- */}
-        <ol className="flex flex-col gap-14 lg:gap-0">
+        <div className="min-w-0">
+        <ol
+          ref={rail}
+          onScroll={onRail}
+          tabIndex={0}
+          aria-label={ui.title[0] + ui.title[1]}
+          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:-mx-8 sm:px-8 lg:mx-0 lg:snap-none lg:flex-col lg:gap-0 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
+        >
           {items.map((t, k) => {
             const on = k === i;
             return (
@@ -80,9 +97,9 @@ export function Testimoni({ lang }: { lang: Lang }) {
                 key={t.name}
                 ref={(el) => { refs.current[k] = el; }}
                 data-k={k}
-                className="lg:flex lg:min-h-[78svh] lg:items-center"
+                className="w-[86%] shrink-0 snap-center sm:w-[62%] lg:flex lg:min-h-[78svh] lg:w-auto lg:shrink lg:items-center"
               >
-                <figure data-on={on || undefined} className="group/q lg:py-10">
+                <figure data-on={on || undefined} className="group/q h-full rounded-xl bg-white p-6 ring-1 ring-paper-line sm:p-7 lg:h-auto lg:rounded-none lg:bg-transparent lg:p-0 lg:py-10 lg:ring-0">
                   {/* Ponsel/tablet: foto dan nama di atas kutipan */}
                   <figcaption className="mb-6 flex items-center gap-4 lg:hidden">
                     <span className="relative grid size-16 shrink-0 place-items-center overflow-hidden rounded-full bg-paper-line font-display text-2xl text-brand-600">
@@ -95,10 +112,10 @@ export function Testimoni({ lang }: { lang: Lang }) {
                   </figcaption>
 
                   <blockquote>
-                    <p className="font-display text-[2rem] font-normal leading-[1.12] tracking-[-0.02em] text-navy-900 transition-colors duration-700 sm:text-[2.6rem] lg:text-[3.1rem] lg:text-[#737888] lg:group-data-[on]/q:text-navy-900">
+                    <p className="font-display text-[1.6rem] font-normal leading-[1.15] tracking-[-0.02em] text-navy-900 transition-colors duration-700 sm:text-[2.6rem] lg:text-[3.1rem] lg:text-[#737888] lg:group-data-[on]/q:text-navy-900">
                       <Rich text={`“${t.highlight}”`} strong="em-serif text-brand-700 transition-colors duration-700 lg:text-[#737888] lg:group-data-[on]/q:text-brand-700" />
                     </p>
-                    <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-navy-700">{t.quote}</p>
+                    <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-700 sm:text-[16px] lg:mt-6 lg:text-[17px]">{t.quote}</p>
                   </blockquote>
                   <p className="mt-5 text-[14px] font-semibold text-navy-700">
                     <span className="hidden lg:inline">{t.name} · </span>
@@ -109,6 +126,13 @@ export function Testimoni({ lang }: { lang: Lang }) {
             );
           })}
         </ol>
+        {/* Ponsel/tablet: penanda posisi geser */}
+        <div aria-hidden className="mt-4 flex justify-center gap-1.5 lg:hidden">
+          {items.map((t, k) => (
+            <span key={t.name} className={`h-1.5 rounded-full transition-all duration-300 ${k === slide ? "w-6 bg-gold-400" : "w-1.5 bg-navy-900/20"}`} />
+          ))}
+        </div>
+        </div>
       </div>
     </section>
   );
