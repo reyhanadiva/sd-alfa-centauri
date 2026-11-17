@@ -61,7 +61,7 @@ export const id = {
   ],
 
   hero: {
-    alt: "Gedung SD Alfa Centauri di Jalan Terate No. 10, Bandung",
+    alt: "Dua siswa SD Alfa Centauri berseragam olahraga tersenyum memegang raket dan bola basket",
     sub: "Menumbuhkan anak yang **Taqwa**, **Cerdas**, dan **Kreatif**.",
     register: "Daftar SPMB",
     accredited: "Terakreditasi BAN-S/M",
