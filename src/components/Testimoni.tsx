@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { getT, type Lang } from "@/lib/i18n";
 import { Photo } from "./Photo";
 import { Rich } from "./Rich";
@@ -29,6 +30,15 @@ export function Testimoni({ lang }: { lang: Lang }) {
   // Ponsel/tablet: kartu digeser ke samping; titik penanda mengikuti kartu yang terlihat
   const rail = useRef<HTMLOListElement>(null);
   const [slide, setSlide] = useState(0);
+  // Ponsel/tablet: kutipan lengkap disembunyikan, dibuka per kartu (kalimat utama tetap jadi fokus)
+  const [opened, setOpened] = useState<Set<number>>(new Set());
+  const toggle = (k: number) =>
+    setOpened((o) => {
+      const n = new Set(o);
+      if (n.has(k)) n.delete(k);
+      else n.add(k);
+      return n;
+    });
   const onRail = () => {
     const el = rail.current;
     const first = el?.firstElementChild as HTMLElement | null;
@@ -97,9 +107,9 @@ export function Testimoni({ lang }: { lang: Lang }) {
                 key={t.name}
                 ref={(el) => { refs.current[k] = el; }}
                 data-k={k}
-                className="w-[86%] shrink-0 snap-center sm:w-[62%] lg:flex lg:min-h-[78svh] lg:w-auto lg:shrink lg:items-center"
+                className="w-[86%] shrink-0 snap-center self-start sm:w-[62%] lg:flex lg:min-h-[78svh] lg:w-auto lg:shrink lg:items-center"
               >
-                <figure data-on={on || undefined} className="group/q h-full rounded-xl bg-white p-6 ring-1 ring-paper-line sm:p-7 lg:h-auto lg:rounded-none lg:bg-transparent lg:p-0 lg:py-10 lg:ring-0">
+                <figure data-on={on || undefined} className="group/q rounded-xl bg-white p-6 ring-1 ring-paper-line sm:p-7 lg:h-auto lg:rounded-none lg:bg-transparent lg:p-0 lg:py-10 lg:ring-0">
                   {/* Ponsel/tablet: foto dan nama di atas kutipan */}
                   <figcaption className="mb-6 flex items-center gap-4 lg:hidden">
                     <span className="relative grid size-16 shrink-0 place-items-center overflow-hidden rounded-full bg-paper-line font-display text-2xl text-brand-600">
@@ -115,7 +125,17 @@ export function Testimoni({ lang }: { lang: Lang }) {
                     <p className="font-display text-[1.6rem] font-normal leading-[1.15] tracking-[-0.02em] text-navy-900 transition-colors duration-700 sm:text-[2.6rem] lg:text-[3.1rem] lg:text-[#737888] lg:group-data-[on]/q:text-navy-900">
                       <Rich text={`“${t.highlight}”`} strong="em-serif text-brand-700 transition-colors duration-700 lg:text-[#737888] lg:group-data-[on]/q:text-brand-700" />
                     </p>
-                    <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-700 sm:text-[16px] lg:mt-6 lg:text-[17px]">{t.quote}</p>
+                    <p id={`testi-full-${k}`} className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-700 sm:text-[16px] lg:mt-6 lg:block lg:text-[17px] ${opened.has(k) ? "" : "max-lg:hidden"}`}>{t.quote}</p>
+                    <button
+                      type="button"
+                      aria-expanded={opened.has(k)}
+                      aria-controls={`testi-full-${k}`}
+                      onClick={() => toggle(k)}
+                      className="mt-4 inline-flex min-h-11 items-center gap-1.5 rounded-full text-[15px] font-bold text-brand-700 lg:hidden"
+                    >
+                      {opened.has(k) ? ui.close : ui.readMore}
+                      <ChevronDown size={18} aria-hidden className={`transition-transform duration-300 ${opened.has(k) ? "rotate-180" : ""}`} />
+                    </button>
                   </blockquote>
                   <p className="mt-5 text-[14px] font-semibold text-navy-700">
                     <span className="hidden lg:inline">{t.name} · </span>
